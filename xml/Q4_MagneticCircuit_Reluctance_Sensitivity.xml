@@ -1,0 +1,1421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ============================================================ -->
+<!-- Week 10 - Q4: Magnetic Circuit — Reluctance Model and         -->
+<!--               Inductance Sensitivity                          -->
+<!-- Course: Electromagnetism and Circuit Analysis, LUT University  -->
+<!-- Module 3: Magnetics & Induction                               -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Week 10 &ndash; Q4: Magnetic Circuit &mdash; Reluctance Model and Inductance Sensitivity</h3>
+<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><em>Module 3: Magnetics &amp; Induction. This is a training exercise requiring algebraic reasoning and differentiation.</em></p>
+<p><strong>Total: 8 points | Penalty per wrong attempt: 10%</strong></p>
+
+<hr />
+
+<h4>Circuit Description</h4>
+<p>A C-core electromagnet is formed by a ferromagnetic core with a single air gap:</p>
+<pre>
+       ┌──────────────────────────────┐
+       │        Ferromagnetic         │
+       │        core (µ_r·µ_0)        │
+       │                              │
+       │   N-turn coil wound here     │
+       │   ════════════════           │
+       │                              │
+       │        lc = mean path        │
+       │        length in core        │
+       └──────────┐    ┌──────────────┘
+                  │    │
+                  │ lg │  ← Air gap (µ_0)
+                  │    │
+                  └────┘
+       Cross-section Ac is uniform throughout.
+</pre>
+<p>The core forms a closed C-shape. The <strong>ferromagnetic section</strong> has mean path length
+\(\ell_c = {@lc_val@}\;\text{m}\) and permeability \(\mu_r \mu_0\) with \(\mu_r = {@mur_val@}\).
+The <strong>air gap</strong> has length \(\ell_g = {@lg_val@}\;\text{m}\) and permeability \(\mu_0\).
+Both sections have the same uniform cross-section \(A_c = {@Ac_val@}\;\text{m}^2\).
+An \(N = {@N_val@}\)-turn coil is wound around the core.</p>
+
+<h4>Magnetic Circuit Analogy</h4>
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse;">
+  <tr><th>Magnetic circuit</th><th>Electric circuit</th></tr>
+  <tr><td>MMF = \(NI\) (A&middot;turns)</td><td>EMF = \(V\) (volts)</td></tr>
+  <tr><td>Reluctance \(\mathcal{R}\) (H&sup1;)</td><td>Resistance \(R\) (&Omega;)</td></tr>
+  <tr><td>Flux \(\Phi\) (Wb)</td><td>Current \(I\) (A)</td></tr>
+</table>
+
+<hr />
+
+<h4>Part (a) &mdash; Reluctance Analogy MCQ (1 pt)</h4>
+<p>In the magnetic circuit analogy, which mapping is correct? Enter 1, 2, or 3.</p>
+<ol>
+  <li>MMF (\(NI\)) &harr; Voltage;&ensp; Reluctance (\(\mathcal{R}\)) &harr; Resistance;&ensp; Flux (\(\Phi\)) &harr; Current</li>
+  <li>MMF (\(NI\)) &harr; Current;&ensp; Reluctance (\(\mathcal{R}\)) &harr; Conductance;&ensp; Flux (\(\Phi\)) &harr; Voltage</li>
+  <li>MMF (\(NI\)) &harr; Power;&ensp; Reluctance (\(\mathcal{R}\)) &harr; Impedance;&ensp; Flux (\(\Phi\)) &harr; Energy</li>
+</ol>
+<p>[[input:ans1]] [[validation:ans1]]</p>
+
+<hr />
+
+<h4>Part (b) &mdash; Core Reluctance (symbolic) (1 pt)</h4>
+<p>Write the symbolic expression for the reluctance of the <strong>ferromagnetic core</strong> section.</p>
+<p><em>Use variable names: <code>lc</code> for \(\ell_c\), <code>mur</code> for \(\mu_r\),
+<code>mu0</code> for \(\mu_0\), <code>Ac</code> for \(A_c\).</em></p>
+<p><em>Syntax hint: Reluctance of a section = \(\ell/(\mu \cdot A)\), so write <code>lc/(mur*mu0*Ac)</code>.</em></p>
+<p>\(\mathcal{R}_\text{core} = \) [[input:ans2]] H\(^{-1}\) [[validation:ans2]]</p>
+
+<hr />
+
+<h4>Part (c) &mdash; Air Gap Reluctance (symbolic) (1 pt)</h4>
+<p>Write the symbolic expression for the reluctance of the <strong>air gap</strong>.
+Air has \(\mu = \mu_0\) (\(\mu_r = 1\)).</p>
+<p><em>Use variable names: <code>lg</code> for \(\ell_g\), <code>mu0</code> for \(\mu_0\),
+<code>Ac</code> for \(A_c\).</em></p>
+<p>\(\mathcal{R}_\text{gap} = \) [[input:ans3]] H\(^{-1}\) [[validation:ans3]]</p>
+
+<hr />
+
+<h4>Part (d) &mdash; Total Reluctance and Inductance (numerical) (2 pts)</h4>
+<p><strong>(d1)</strong> Compute the total reluctance \(\mathcal{R}_\text{total} = \mathcal{R}_\text{core} + \mathcal{R}_\text{gap}\) (in H\(^{-1}\)).
+Express to 3 significant figures.</p>
+<p>\(\mathcal{R}_\text{total} = \) [[input:ans4]] H\(^{-1}\) [[validation:ans4]]</p>
+
+<p><strong>(d2)</strong> Using \(L = N^2 / \mathcal{R}_\text{total}\), compute the inductance \(L\) (in H).
+Express to 3 significant figures.</p>
+<p>\(L = \) [[input:ans5]] H [[validation:ans5]]</p>
+
+<hr />
+
+<h4>Part (e) &mdash; Sensitivity Analysis (2 pts)</h4>
+<p><strong>(e1)</strong> Derive the symbolic expression for \(dL/d\ell_g\) &mdash; how sensitive is the
+inductance to changes in air gap length?</p>
+<p>Express your answer in terms of \(N\), \(\mu_0\), \(A_c\), \(\ell_c\), \(\mu_r\), \(\ell_g\).
+Show that \(L\) <em>decreases</em> as \(\ell_g\) increases (the expression should be negative).</p>
+<p><em>Hint: Write \(L = N^2 / \big(\ell_c/(\mu_r \mu_0 A_c) + \ell_g/(\mu_0 A_c)\big)\),
+then differentiate using \(\frac{d}{dx}\big(1/f(x)\big) = -f'(x)/f(x)^2\).</em></p>
+<p><em>Syntax: Use <code>N</code>, <code>mu0</code>, <code>Ac</code>, <code>lc</code>, <code>mur</code>, <code>lg</code>.</em></p>
+<p>\(\frac{dL}{d\ell_g} = \) [[input:ans6]] H/m [[validation:ans6]]</p>
+
+<p><strong>(e2)</strong> Using your derivative, estimate the approximate <strong>percentage change</strong> in \(L\)
+if the air gap \(\ell_g\) increases by 10% (i.e.&nbsp;\(\Delta\ell_g = 0.1 \cdot \ell_g\)).
+Enter the percentage (negative means \(L\) decreases). Express to 3 significant figures.</p>
+<p>\(\Delta L / L \approx\) [[input:ans7]] % [[validation:ans7]]</p>
+
+<hr />
+
+<h4>Part (f) &mdash; Physical Reasoning MCQ (1 pt)</h4>
+<p>Which statement best explains why even a small air gap causes a large drop in inductance,
+yet engineers deliberately add air gaps to power inductors? Enter 1 or 2.</p>
+<ol>
+  <li>The air gap increases the total reluctance significantly (since \(\mu_0 \ll \mu_r \mu_0\)),
+      reducing \(L = N^2/\mathcal{R}\). But the gap prevents core saturation at high currents,
+      allowing the inductor to maintain its inductance value over a wider current range.</li>
+  <li>The air gap reduces eddy current losses in the core, improving efficiency at high
+      frequencies &mdash; the inductance drop is an acceptable side effect.</li>
+</ol>
+<p>[[input:ans8]] [[validation:ans8]]</p>
+]]></text>
+  </questiontext>
+
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h3>Worked Solution</h3>
+
+<h4>Step 1: Reluctance Analogy</h4>
+<p>The correct analogy is <strong>Option 1</strong>:</p>
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
+  <tr><th>Magnetic</th><th>Electric</th><th>Relationship</th></tr>
+  <tr><td>MMF = \(NI\)</td><td>EMF = \(V\)</td><td>Driving force</td></tr>
+  <tr><td>\(\mathcal{R}\)</td><td>\(R\)</td><td>Opposition</td></tr>
+  <tr><td>\(\Phi\)</td><td>\(I\)</td><td>Response: \(\Phi = NI/\mathcal{R}\) like \(I = V/R\)</td></tr>
+</table>
+
+<h4>Step 2: Reluctances</h4>
+<p>\[\mathcal{R}_\text{core} = \frac{\ell_c}{\mu_r \mu_0 A_c}
+  = \frac{{@lc_val@}}{{@mur_val@} \times 4\pi \times 10^{-7} \times {@Ac_val@}}
+  = {@ta_Rc@}\;\text{H}^{-1}\]</p>
+<p>\[\mathcal{R}_\text{gap} = \frac{\ell_g}{\mu_0 A_c}
+  = \frac{{@lg_val@}}{4\pi \times 10^{-7} \times {@Ac_val@}}
+  = {@ta_Rg@}\;\text{H}^{-1}\]</p>
+<p><strong>Ratio:</strong> \(\mathcal{R}_\text{gap}/\mathcal{R}_\text{core} = {@float(ta_Rg/ta_Rc)@}\).
+The gap reluctance is \({@float(ta_Rg/ta_Rc)@}\) times larger than the core reluctance,
+despite being physically much shorter! This is because air has \(\mu_r = 1\) versus
+the core&rsquo;s \(\mu_r = {@mur_val@}\).</p>
+
+<h4>Step 3: Total Reluctance and Inductance</h4>
+<p>\[\mathcal{R}_\text{total} = \mathcal{R}_\text{core} + \mathcal{R}_\text{gap}
+  = {@ta_Rc@} + {@ta_Rg@} = {@ta_Rt@}\;\text{H}^{-1}\]</p>
+<p>\[L = \frac{N^2}{\mathcal{R}_\text{total}} = \frac{{@N_val@}^2}{{@ta_Rt@}}
+  = {@ta_L@}\;\text{H}\]</p>
+<p>The formula comes from: \(\Phi = NI/\mathcal{R}\), flux linkage \(\lambda = N\Phi = N^2 I/\mathcal{R}\),
+and \(L = \lambda/I = N^2/\mathcal{R}\).</p>
+
+<h4>Step 4: Sensitivity \(dL/d\ell_g\)</h4>
+<p>Write \(L = N^2 / \mathcal{R}_\text{total}\) where
+\(\mathcal{R}_\text{total} = \frac{\ell_c}{\mu_r \mu_0 A_c} + \frac{\ell_g}{\mu_0 A_c}\).</p>
+<p>Let \(D = \mathcal{R}_\text{total}\). Then:</p>
+<p>\[\frac{dD}{d\ell_g} = \frac{1}{\mu_0 A_c}\]</p>
+<p>\[\frac{dL}{d\ell_g} = -\frac{N^2}{D^2} \cdot \frac{dD}{d\ell_g}
+  = -\frac{N^2}{D^2} \cdot \frac{1}{\mu_0 A_c}\]</p>
+<p>Substituting \(D = (\ell_c/\mu_r + \ell_g)/(\mu_0 A_c)\):</p>
+<p>\[\frac{dL}{d\ell_g} = -\frac{N^2 \mu_0 A_c}{(\ell_c/\mu_r + \ell_g)^2}
+  = {@ta_dLdlg@}\;\text{H/m}\]</p>
+
+<h4>Step 5: Percentage Change</h4>
+<p>\[\frac{\Delta L}{L} \approx \frac{dL/d\ell_g \times \Delta\ell_g}{L} \times 100\%
+  = \frac{{@ta_dLdlg@} \times {@float(delta_lg)@}}{{@ta_L@}} \times 100\%
+  = {@ta_pct@}\%\]</p>
+<p>This shows that a 10% increase in gap length causes an approximately {@ta_pct@}% change in inductance &mdash;
+demonstrating the high sensitivity of \(L\) to air gap variations.</p>
+
+<h4>Step 6: Design Insight</h4>
+<p>The <strong>primary</strong> reason engineers add air gaps to power inductors is to
+<strong>prevent core saturation</strong>. The saturation current scales as
+\(I_\text{sat} \propto \mathcal{R}_\text{total}/N\) &mdash; increasing the gap raises
+\(\mathcal{R}_\text{total}\) and thus increases the current at which the core saturates.
+This allows linear operation over a much wider current range, even though \(L\) is reduced.</p>
+
+<hr />
+
+<h4>Answer Summary</h4>
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
+  <tr><th>Part</th><th>Quantity</th><th>Correct Answer</th></tr>
+  <tr><td>(a)</td><td>Analogy MCQ</td><td>Option 1</td></tr>
+  <tr><td>(b)</td><td>\(\mathcal{R}_\text{core}\) (symbolic)</td><td>\({@ta_Rc_sym@}\) H\(^{-1}\)</td></tr>
+  <tr><td>(c)</td><td>\(\mathcal{R}_\text{gap}\) (symbolic)</td><td>\({@ta_Rg_sym@}\) H\(^{-1}\)</td></tr>
+  <tr><td>(d1)</td><td>\(\mathcal{R}_\text{total}\)</td><td>{@ta_Rt@} H\(^{-1}\)</td></tr>
+  <tr><td>(d2)</td><td>\(L\)</td><td>{@ta_L@} H</td></tr>
+  <tr><td>(e1)</td><td>\(dL/d\ell_g\) (symbolic)</td><td>\({@ta_dLdlg_sym@}\) H/m</td></tr>
+  <tr><td>(e2)</td><td>\(\Delta L/L\) (%)</td><td>{@ta_pct@}%</td></tr>
+  <tr><td>(f)</td><td>Design reasoning</td><td>Option 1</td></tr>
+</table>
+]]></text>
+  </generalfeedback>
+
+  <defaultgrade>8.0000000</defaultgrade>
+  <penalty>0.1000000</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+
+  <stackversion>
+    <text>2024032101</text>
+  </stackversion>
+
+  <questionvariables>
+    <text><![CDATA[
+/* ===== Randomised parameters ===== */
+N_val:  rand([200, 500, 1000]);
+lc_val: rand([0.2, 0.3, 0.4]);
+lg_val: rand([5e-4, 1e-3, 2e-3]);
+Ac_val: rand([4e-4, 9e-4, 16e-4]);
+mur_val: rand([500, 1000, 2000]);
+mu0: 4*%pi*1e-7;
+
+/* ===== Reluctances (symbolic and numerical) ===== */
+ta_Rc_sym: lc_val/(mur_val*mu0*Ac_val);
+ta_Rg_sym: lg_val/(mu0*Ac_val);
+ta_Rc: float(ta_Rc_sym);
+ta_Rg: float(ta_Rg_sym);
+ta_Rt: float(ta_Rc + ta_Rg);
+
+/* ===== Inductance ===== */
+ta_L: float(N_val^2 / ta_Rt);
+
+/* ===== Sensitivity: dL/dlg ===== */
+/* L = N^2 / (lc/(mur*mu0*Ac) + lg/(mu0*Ac))                        */
+/* Let D = lc/(mur*mu0*Ac) + lg/(mu0*Ac). Then L = N^2/D.            */
+/* dD/dlg = 1/(mu0*Ac). dL/dlg = -N^2/D^2 * (1/(mu0*Ac))            */
+/* = -N^2*mu0*Ac / (lc/mur + lg)^2                                    */
+ta_dLdlg_sym: -N_val^2*mu0*Ac_val / (lc_val/mur_val + lg_val)^2;
+ta_dLdlg: float(ta_dLdlg_sym);
+
+/* ===== Percentage change for 10% increase in lg ===== */
+delta_lg: 0.1*lg_val;
+ta_pct: float(ta_dLdlg * delta_lg / ta_L * 100);
+
+/* ===== MCQ answers ===== */
+ta_analogy: 1;
+ta_dominator: if ta_Rg > ta_Rc then 1 else 2;
+ta_design_reason: 1;
+
+/* ===== Teacher answers for each input ===== */
+ta1: ta_analogy;
+ta2: ta_Rc_sym;
+ta3: ta_Rg_sym;
+ta4: ta_Rt;
+ta5: ta_L;
+ta6: ta_dLdlg_sym;
+ta7: ta_pct;
+ta8: ta_design_reason;
+]]></text>
+  </questionvariables>
+
+  <specificfeedback format="html">
+    <text><![CDATA[
+<h4>Part (a) &mdash; Reluctance Analogy</h4>
+<p>Your answer: {@ans1@} &nbsp;|&nbsp; Correct: {@ta1@}</p>
+<div>[[feedback:prt1]]</div>
+
+<h4>Part (b) &mdash; Core Reluctance (symbolic)</h4>
+<p>Your answer: {@ans2@}</p>
+<p>Expected: {@ta2@}</p>
+<div>[[feedback:prt2]]</div>
+
+<h4>Part (c) &mdash; Gap Reluctance (symbolic)</h4>
+<p>Your answer: {@ans3@}</p>
+<p>Expected: {@ta3@}</p>
+<div>[[feedback:prt3]]</div>
+
+<h4>Part (d1) &mdash; Total Reluctance</h4>
+<p>Your answer: {@ans4@} &nbsp;|&nbsp; Correct: {@ta4@} H\(^{-1}\)</p>
+<div>[[feedback:prt4]]</div>
+
+<h4>Part (d2) &mdash; Inductance</h4>
+<p>Your answer: {@ans5@} &nbsp;|&nbsp; Correct: {@ta5@} H</p>
+<div>[[feedback:prt5]]</div>
+
+<h4>Part (e1) &mdash; Symbolic \(dL/d\ell_g\)</h4>
+<p>Your answer: {@ans6@}</p>
+<p>Expected: {@ta6@}</p>
+<div>[[feedback:prt6]]</div>
+
+<h4>Part (e2) &mdash; Percentage Change</h4>
+<p>Your answer: {@ans7@}% &nbsp;|&nbsp; Correct: {@ta7@}%</p>
+<div>[[feedback:prt7]]</div>
+
+<h4>Part (f) &mdash; Physical Reasoning</h4>
+<p>Your answer: {@ans8@} &nbsp;|&nbsp; Correct: {@ta8@}</p>
+<div>[[feedback:prt8]]</div>
+]]></text>
+  </specificfeedback>
+
+  <questionnote>
+    <text>N={@N_val@}, lc={@lc_val@} m, lg={@lg_val@} m, Ac={@Ac_val@} m², µr={@mur_val@} | L={@ta_L@} H, dL/dlg={@ta_dLdlg@} H/m, Δ={@ta_pct@}%</text>
+  </questionnote>
+
+  <questiondescription format="html">
+    <text><![CDATA[<p>C-core magnetic circuit with air gap — reluctance analogy, symbolic and numerical reluctance/inductance, sensitivity analysis dL/dlg, percentage change, and design reasoning. Week 10 training exercise.</p>]]></text>
+  </questiondescription>
+
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>j</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <!-- ============================================================ -->
+  <!-- INPUTS (8 total: ans1–ans8)                                  -->
+  <!-- ============================================================ -->
+
+  <!-- ans1: Part (a) Analogy MCQ -->
+  <input>
+    <name>ans1</name>
+    <type>algebraic</type>
+    <tans>ta1</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans2: Part (b) Core reluctance symbolic -->
+  <input>
+    <name>ans2</name>
+    <type>algebraic</type>
+    <tans>ta2</tans>
+    <boxsize>30</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>lc/(mur*mu0*Ac)</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords>mu0,mur,lc,lg,Ac</allowwords>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans3: Part (c) Air gap reluctance symbolic -->
+  <input>
+    <name>ans3</name>
+    <type>algebraic</type>
+    <tans>ta3</tans>
+    <boxsize>30</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>lg/(mu0*Ac)</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords>mu0,mur,lc,lg,Ac</allowwords>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans4: Part (d1) Total reluctance numerical -->
+  <input>
+    <name>ans4</name>
+    <type>numerical</type>
+    <tans>ta4</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans5: Part (d2) Inductance numerical -->
+  <input>
+    <name>ans5</name>
+    <type>numerical</type>
+    <tans>ta5</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans6: Part (e1) Symbolic dL/dlg -->
+  <input>
+    <name>ans6</name>
+    <type>algebraic</type>
+    <tans>ta6</tans>
+    <boxsize>45</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>-N^2*mu0*Ac/(lc/mur + lg)^2</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords>mu0,mur,lc,lg,Ac,N</allowwords>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans7: Part (e2) Numerical percentage change -->
+  <input>
+    <name>ans7</name>
+    <type>numerical</type>
+    <tans>ta7</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans8: Part (f) Physical reasoning MCQ -->
+  <input>
+    <name>ans8</name>
+    <type>algebraic</type>
+    <tans>ta8</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ============================================================ -->
+  <!-- PRTs (8 total: prt1–prt8)                                    -->
+  <!-- ============================================================ -->
+
+  <!-- prt1: Part (a) — Analogy MCQ -->
+  <prt>
+    <name>prt1</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check analogy MCQ</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans1</sans>
+      <tans>ta1</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! MMF \(\leftrightarrow\) Voltage, Reluctance \(\leftrightarrow\) Resistance, Flux \(\leftrightarrow\) Current. The &ldquo;Ohm&rsquo;s law&rdquo; of magnetic circuits is \(\Phi = NI/\mathcal{R}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The correct analogy is Option 1: MMF (\(NI\)) acts like voltage (the driving force), reluctance \(\mathcal{R}\) acts like resistance (opposition), and flux \(\Phi\) acts like current (the response). The magnetic &ldquo;Ohm&rsquo;s law&rdquo; is \(\Phi = NI/\mathcal{R}\), directly analogous to \(I = V/R\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt2: Part (b) — Core reluctance symbolic -->
+  <prt>
+    <name>prt2</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check core reluctance via AlgEquiv</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\mathcal{R}_\text{core} = \frac{\ell_c}{\mu_r \mu_0 A_c} = {@ta2@}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. \(\mathcal{R}_\text{core} = \frac{\ell_c}{\mu_r \mu_0 A_c}\). Compare: in electric circuits \(R = \ell/(\sigma A)\). Reluctance is inversely proportional to permeability &mdash; highly permeable materials have <strong>low</strong> reluctance, just as highly conductive materials have low resistance.</p>
+<p>Expected: \({@ta2@}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt3: Part (c) — Air gap reluctance symbolic -->
+  <prt>
+    <name>prt3</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check gap reluctance via AlgEquiv</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\mathcal{R}_\text{gap} = \frac{\ell_g}{\mu_0 A_c} = {@ta3@}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. \(\mathcal{R}_\text{gap} = \frac{\ell_g}{\mu_0 A_c}\). Note \(\mu_r = 1\) for air, so just \(\mu_0\) in the denominator. Even a tiny gap (e.g. 1 mm) can produce a reluctance many times larger than a long ferromagnetic core because \(\mu_0 \ll \mu_r \mu_0\).</p>
+<p>Expected: \({@ta3@}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt4: Part (d1) — Total reluctance, 2-node cascade -->
+  <prt>
+    <name>prt4</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative check Rt within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text/>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. \(\mathcal{R}_\text{total} = \mathcal{R}_\text{core} + \mathcal{R}_\text{gap} = {@ta_Rc@} + {@ta_Rg@} = {@ta4@}\;\text{H}^{-1}\). Make sure you sum both reluctances (series magnetic circuit).</p>]]></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>SigFigsStrict check — 3 significant figures</description>
+      <answertest>SigFigsStrict</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>3</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\mathcal{R}_\text{total} = {@ta4@}\;\text{H}^{-1}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.7000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta4@} H\(^{-1}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt5: Part (d2) — Inductance, 2-node cascade -->
+  <prt>
+    <name>prt5</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative check L within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text/>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The formula \(L = N^2/\mathcal{R}_\text{total}\) comes from: \(\Phi = NI/\mathcal{R}\), flux linkage \(\lambda = N\Phi = N^2 I/\mathcal{R}\), giving \(L = \lambda/I = N^2/\mathcal{R}\). With \(N = {@N_val@}\), \(\mathcal{R}_\text{total} = {@ta_Rt@}\): \(L = {@ta5@}\;\text{H}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>SigFigsStrict check — 3 significant figures</description>
+      <answertest>SigFigsStrict</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions>3</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(L = {@ta5@}\;\text{H}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.7000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta5@} H.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt6: Part (e1) — Symbolic dL/dlg -->
+  <prt>
+    <name>prt6</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check symbolic dL/dlg via AlgEquiv</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans6</sans>
+      <tans>ta6</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\frac{dL}{d\ell_g} = {@ta6@}\). The negative sign confirms that inductance decreases as the gap widens.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt6-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Here is the derivation:</p>
+<ol>
+  <li>\(L = N^2/\mathcal{R}_\text{total}\) where \(\mathcal{R}_\text{total} = \frac{\ell_c}{\mu_r \mu_0 A_c} + \frac{\ell_g}{\mu_0 A_c}\).</li>
+  <li>Let \(D = \mathcal{R}_\text{total}\). Then \(\frac{dD}{d\ell_g} = \frac{1}{\mu_0 A_c}\).</li>
+  <li>\(\frac{dL}{d\ell_g} = -\frac{N^2}{D^2} \cdot \frac{dD}{d\ell_g} = -\frac{N^2}{D^2} \cdot \frac{1}{\mu_0 A_c}\).</li>
+  <li>Substituting \(D = (\ell_c/\mu_r + \ell_g)/(\mu_0 A_c)\):</li>
+  <li>\(\frac{dL}{d\ell_g} = -\frac{N^2 \mu_0 A_c}{(\ell_c/\mu_r + \ell_g)^2}\).</li>
+</ol>
+<p><strong>Note the negative sign</strong> &mdash; it indicates \(L\) decreases as \(\ell_g\) increases.</p>
+<p>Expected: \({@ta6@}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt7: Part (e2) — Percentage change, 2-node cascade -->
+  <prt>
+    <name>prt7</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative check percentage within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans7</sans>
+      <tans>ta7</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>1</truenextnode>
+      <trueanswernote>prt7-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text/>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The linearised percentage change is:
+\(\frac{\Delta L}{L} \approx \frac{dL/d\ell_g \times \Delta\ell_g}{L} \times 100\%\)
+where \(\Delta\ell_g = 0.1 \times \ell_g = {@float(delta_lg)@}\;\text{m}\).
+This gives \({@ta7@}\%\). This linearisation works well for small changes. The result shows \(L\) is very sensitive to gap length &mdash; a key insight for inductor design.</p>]]></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>SigFigsStrict check — 3 significant figures</description>
+      <answertest>SigFigsStrict</answertest>
+      <sans>ans7</sans>
+      <tans>ta7</tans>
+      <testoptions>3</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\Delta L/L \approx {@ta7@}\%\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.7000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta7@}%.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt8: Part (f) — Physical reasoning MCQ -->
+  <prt>
+    <name>prt8</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check design reasoning MCQ</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans8</sans>
+      <tans>ta8</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt8-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The air gap increases \(\mathcal{R}_\text{total}\) dramatically (since \(\mu_0 \ll \mu_r \mu_0\)), which reduces \(L\). But the crucial benefit is <strong>saturation prevention</strong>: the saturation current \(I_\text{sat} \propto \mathcal{R}_\text{total}/N\) increases with the gap, allowing linear operation over a wider current range.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt8-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. While option 2 is partially true (gaps can reduce eddy currents in some configurations), the <strong>primary</strong> engineering reason for the air gap in a power inductor is <strong>saturation prevention</strong>. The large reluctance from the gap dominates \(\mathcal{R}_\text{total}\) and reduces \(L\), but it raises the saturation current \(I_\text{sat}\), allowing linear operation at much higher currents. This is essential for power inductors that must handle large DC bias currents.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- DEPLOYED SEEDS                                                -->
+  <!-- ============================================================ -->
+  <deployedseed>11111</deployedseed>
+  <deployedseed>22222</deployedseed>
+  <deployedseed>33333</deployedseed>
+  <deployedseed>44444</deployedseed>
+  <deployedseed>55555</deployedseed>
+  <deployedseed>66666</deployedseed>
+
+  <!-- ============================================================ -->
+  <!-- QUESTION TESTS (6 total)                                     -->
+  <!-- ============================================================ -->
+
+  <!-- Test 1: All correct answers -->
+  <qtest>
+    <testcase>1</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <testinput>
+      <name>ans8</name>
+      <value>ta8</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt8</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt8-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 2: Wrong analogy (ans1=2) -->
+  <qtest>
+    <testcase>2</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>2</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <testinput>
+      <name>ans8</name>
+      <value>ta8</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.1000000</expectedpenalty>
+      <expectedanswernote>prt1-0-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt8</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt8-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 3: Swapped core/gap formula (ans2=ta_Rg_sym) -->
+  <qtest>
+    <testcase>3</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta_Rg_sym</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <testinput>
+      <name>ans8</name>
+      <value>ta8</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.1000000</expectedpenalty>
+      <expectedanswernote>prt2-0-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt8</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt8-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 4: Forgot gap in inductance (ans5=N^2/Rc only) -->
+  <qtest>
+    <testcase>4</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>N_val^2/ta_Rc</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <testinput>
+      <name>ans8</name>
+      <value>ta8</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.1000000</expectedpenalty>
+      <expectedanswernote>prt5-0-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt8</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt8-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 5: Wrong sign on dL/dlg (positive instead of negative) -->
+  <qtest>
+    <testcase>5</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>N_val^2*mu0*Ac_val/(lc_val/mur_val+lg_val)^2</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <testinput>
+      <name>ans8</name>
+      <value>ta8</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.1000000</expectedpenalty>
+      <expectedanswernote>prt6-0-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt8</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt8-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 6: Wrong reasoning MCQ (ans8=2) -->
+  <qtest>
+    <testcase>6</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <testinput>
+      <name>ans8</name>
+      <value>2</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt8</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.1000000</expectedpenalty>
+      <expectedanswernote>prt8-0-F</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- ============================================================ -->
+  <!-- HINTS (3, progressive)                                        -->
+  <!-- ============================================================ -->
+
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 1 (Intuition):</strong> Think of reluctance like resistance in a series electric circuit. Two sections in series add their reluctances just as resistors in series add. What does a very small \(\mu\) (like air) do to reluctance? The formula \(\mathcal{R} = \ell/(\mu A)\) says: small \(\mu\) &rarr; large \(\mathcal{R}\).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 2 (Formulas):</strong> \(\mathcal{R} = \ell/(\mu \cdot A)\) for each section. Total: \(\mathcal{R}_\text{total} = \mathcal{R}_\text{core} + \mathcal{R}_\text{gap}\). Inductance: \(L = N^2/\mathcal{R}_\text{total}\). To differentiate: write \(L\) as \(N^2/(A + B \cdot \ell_g)\) where \(A\) and \(B\) are constants, then use \(\frac{d}{d\ell_g}\big(1/(A + B \ell_g)\big) = -B/(A + B \ell_g)^2\).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 3 (Worked Step):</strong> With \(\mathcal{R}_\text{total} = \frac{\ell_c}{\mu_r \mu_0 A_c} + \frac{\ell_g}{\mu_0 A_c}\):</p>
+<p>\[\frac{d\mathcal{R}}{d\ell_g} = \frac{1}{\mu_0 A_c}\]</p>
+<p>\[\frac{dL}{d\ell_g} = -\frac{N^2}{\mathcal{R}^2} \cdot \frac{d\mathcal{R}}{d\ell_g} = -\frac{N^2 \mu_0 A_c}{(\ell_c/\mu_r + \ell_g)^2}\]</p>
+<p>For 10% change: \(\Delta L \approx \frac{dL}{d\ell_g} \times 0.1 \cdot \ell_g\), percentage \(= \Delta L / L \times 100\%\).</p>]]></text>
+  </hint>
+
+</question>
+
+</quiz>
