@@ -1,0 +1,1271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ============================================================ -->
+<!-- Week 10 - Q2: Parallel RLC Step Response                      -->
+<!-- (Non-Zero Initial Conditions)                                 -->
+<!-- Course: Electromagnetism and Circuit Analysis, LUT University  -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Week 10 &ndash; Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)</h3>
+<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
+<p><strong>Total: 7 points | Penalty per wrong attempt: 10%</strong></p>
+
+<hr />
+
+<p>A parallel RLC circuit consists of a resistor \(R = {@R_val@}\;\Omega\),
+an inductor \(L = {@L_val@}\;\text{H}\), and a capacitor \(C = {@C_val@}\;\text{F}\)
+connected in parallel.</p>
+
+<p>At \(t = 0\), a DC current source \(I_s = {@Is_val@}\;\text{A}\) is switched on (step input).
+The initial conditions are:</p>
+<ul>
+  <li>Initial capacitor voltage: \(v_C(0^+) = V_0 = {@V0_val@}\;\text{V}\)</li>
+  <li>Initial inductor current: \(i_L(0^+) = I_0 = {@I0_val@}\;\text{A}\)</li>
+</ul>
+
+<p>Your task: find the complete step response \(i_L(t)\) and then \(v(t)\) for \(t \geq 0\).</p>
+
+<hr />
+
+<h4>Part (a) &mdash; Physical Reasoning (1 pt)</h4>
+<p>When a parallel RLC circuit is underdamped and the source switches on,
+energy oscillates between \(L\) and \(C\). Which statement correctly explains
+why \(R\) eventually stops this oscillation?</p>
+<ol>
+  <li>\(R\) dissipates energy as heat on every half-cycle, progressively reducing
+      the amplitude of oscillation until all stored energy is gone.</li>
+  <li>\(R\) increases the resonant frequency over time until oscillations become
+      too fast to sustain.</li>
+  <li>\(R\) reflects energy back into the source, removing it from the LC tank circuit.</li>
+  <li>The oscillations stop because the inductor saturates after many cycles.</li>
+</ol>
+<p>Enter the number of the correct option (1&ndash;4):
+[[input:ans1]] [[validation:ans1]]</p>
+
+<hr />
+
+<h4>Part (b) &mdash; Final Value \(I_\text{final}\) (1 pt)</h4>
+<p>As \(t \to \infty\) all transients die out. What is the final (steady-state)
+inductor current \(I_\text{final}\) (in Amperes)?</p>
+<p><em>Analyse the circuit at DC steady state with the source active:
+at DC the inductor is a short circuit and the capacitor is an open circuit.</em></p>
+<p>\(I_\text{final} = \) [[input:ans2]] A [[validation:ans2]]</p>
+
+<hr />
+
+<h4>Part (c) &mdash; Damping Regime Classification (1 pt)</h4>
+<p>For a <strong>parallel</strong> RLC circuit: \(\alpha = \frac{1}{2RC}\),
+\(\omega_0 = \frac{1}{\sqrt{LC}}\). Classify the damping regime:</p>
+<ol>
+  <li>Overdamped (\(\alpha &gt; \omega_0\))</li>
+  <li>Underdamped (\(\alpha &lt; \omega_0\))</li>
+  <li>Critically damped (\(\alpha = \omega_0\))</li>
+</ol>
+<p>Enter the number of the correct regime (1&ndash;3):
+[[input:ans3]] [[validation:ans3]]</p>
+
+<hr />
+
+<h4>Part (d) &mdash; General Response Form (1 pt)</h4>
+<p>Write the <strong>general form</strong> of \(i_L(t)\) for \(t \geq 0\),
+appropriate to the damping regime you identified. Use symbolic constants
+(<code>A1, A2</code> for overdamped; <code>B1, B2</code> for underdamped;
+<code>D1, D2</code> for critically damped) &mdash; do <strong>not</strong>
+substitute numerical values for the constants yet.
+Include the forced (final value) term.</p>
+<p><em>Syntax hint: Use <code>exp(...)</code>, <code>sin(...)</code>, <code>cos(...)</code>,
+and <code>t</code>. Example: <code>0.01 + A1*exp(-208.7*t) + A2*exp(-4791.3*t)</code></em></p>
+<p>\(i_L(t) = \) [[input:ans4]] [[validation:ans4]]</p>
+
+<hr />
+
+<h4>Part (e) &mdash; Complete \(i_L(t)\) with Numerical Coefficients (1 pt)</h4>
+<p>Now apply <strong>both</strong> initial conditions
+\(i_L(0^+) = I_0 = {@I0_val@}\;\text{A}\) and
+\(\frac{di_L}{dt}(0^+) = \frac{v(0^+)}{L} = \frac{V_0}{L} = \frac{{@V0_val@}}{{@L_val@}}\;\text{A/s}\)
+to find all coefficients numerically.</p>
+<p>Enter the complete expression for \(i_L(t)\) with all numerical values substituted.</p>
+<p>\(i_L(t) = \) [[input:ans5]] A [[validation:ans5]]</p>
+
+<hr />
+
+<h4>Part (f) &mdash; Voltage \(v(t)\) from Differentiation (1 pt)</h4>
+<p>Find \(v(t)\) for \(t \geq 0\) using the relation \(v(t) = L \cdot \frac{di_L}{dt}\).</p>
+<p>Differentiate your \(i_L(t)\) expression and multiply by \(L = {@L_val@}\;\text{H}\).</p>
+<p><em>Syntax hint: Differentiate term by term. Remember the product rule for terms
+like \(t \cdot e^{-\alpha t}\).</em></p>
+<p>\(v(t) = \) [[input:ans6]] V [[validation:ans6]]</p>
+
+<hr />
+
+<h4>Part (g) &mdash; Final Value Theorem Verification (1 pt)</h4>
+<p>Verify your result using the Final Value Theorem:
+\(\lim_{t \to \infty} i_L(t)\).</p>
+<p>Read off the steady-state value directly from your \(i_L(t)\) expression &mdash;
+the constant term that remains as all exponentials decay to zero.
+Enter this value in Amperes. (Express to 3 significant figures.)</p>
+<p>\(\lim_{t \to \infty} i_L(t) = \) [[input:ans7]] A [[validation:ans7]]</p>
+]]></text>
+  </questiontext>
+
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h3>Worked Solution</h3>
+
+<h4>Step 1: Final Value (DC Steady State)</h4>
+<p>At DC steady state (\(t \to \infty\)): the inductor is a <strong>short circuit</strong>
+and the capacitor is an <strong>open circuit</strong>.
+All the source current flows through the inductor:</p>
+<p>\[I_\text{final} = I_s = {@ta_If@}\;\text{A}\]</p>
+
+<h4>Step 2: Damping Parameters</h4>
+<p>For a <strong>parallel</strong> RLC circuit:</p>
+<p>\[\alpha = \frac{1}{2RC} = \frac{1}{2 \times {@R_val@} \times {@C_val@}} = {@ta_alpha@}\;\text{rad/s}\]</p>
+<p>\[\omega_0 = \frac{1}{\sqrt{LC}} = \frac{1}{\sqrt{{@L_val@} \times {@C_val@}}} = {@ta_omega0@}\;\text{rad/s}\]</p>
+
+<h4>Step 3: Damping Regime</h4>
+<p>Comparing \(\alpha = {@ta_alpha@}\) with \(\omega_0 = {@ta_omega0@}\):</p>
+<p>The circuit is <strong>{@regime_name@}</strong>.</p>
+
+<h4>Step 4: General Form and Coefficients</h4>
+<p>The step response has the form \(i_L(t) = I_\text{final} + \text{(natural response)}\).</p>
+<p>General form: \(i_L(t) = {@ta4@}\)</p>
+
+<p>Applying initial conditions:</p>
+<ul>
+  <li>\(i_L(0^+) = I_0 = {@I0_val@}\;\text{A}\)</li>
+  <li>\(\frac{di_L}{dt}(0^+) = \frac{V_0}{L} = \frac{{@V0_val@}}{{@L_val@}} = {@float(V0_val/L_val)@}\;\text{A/s}\)</li>
+</ul>
+<p>Solving the system of two equations yields the complete response:</p>
+<p>\[i_L(t) = {@ta_iL@}\;\text{A}, \quad t \geq 0\]</p>
+
+<h4>Step 5: Voltage from Differentiation</h4>
+<p>\[v(t) = L \cdot \frac{di_L}{dt} = {@ta_v@}\;\text{V}\]</p>
+<p>Check: \(v(0^+) = {@V0_val@}\;\text{V}\) &#10003;</p>
+
+<h4>Step 6: Final Value Theorem Verification</h4>
+<p>As \(t \to \infty\), all exponential terms decay to zero.
+The constant term remaining is:</p>
+<p>\[\lim_{t \to \infty} i_L(t) = I_\text{final} = {@ta_fvt@}\;\text{A}\]</p>
+<p>This matches the DC steady-state analysis from Step 1. &#10003;</p>
+
+<hr />
+
+<h4>Answer Summary</h4>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr><th>Part</th><th>Quantity</th><th>Correct Answer</th></tr>
+  <tr><td>(a)</td><td>Physical reasoning</td><td>Option {@ta1@}</td></tr>
+  <tr><td>(b)</td><td>\(I_\text{final}\)</td><td>{@ta2@} A</td></tr>
+  <tr><td>(c)</td><td>Damping regime</td><td>{@regime_name@} (option {@ta3@})</td></tr>
+  <tr><td>(d)</td><td>General form</td><td>\({@ta4@}\)</td></tr>
+  <tr><td>(e)</td><td>\(i_L(t)\)</td><td>\({@ta_iL@}\) A</td></tr>
+  <tr><td>(f)</td><td>\(v(t)\)</td><td>\({@ta_v@}\) V</td></tr>
+  <tr><td>(g)</td><td>FVT check</td><td>{@ta_fvt@} A</td></tr>
+</table>
+]]></text>
+  </generalfeedback>
+
+  <defaultgrade>7.0000000</defaultgrade>
+  <penalty>0.1000000</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+
+  <stackversion>
+    <text>2024032101</text>
+  </stackversion>
+
+  <questionvariables>
+    <text><![CDATA[
+/* ===== Parameter set selection ===== */
+set: rand(3)+1;
+
+/* ===== Component values ===== */
+R_val:  if set=1 then 200  else if set=2 then 1000 else 500;
+L_val:  1;
+C_val:  1e-6;
+Is_val: 10e-3;
+V0_val: if set=1 then 20 else if set=2 then 5 else 15;
+I0_val: if set=2 then 3e-3 else 0;
+
+/* ===== Damping parameters (parallel RLC) ===== */
+ta_alpha:  float(1/(2*R_val*C_val));
+ta_omega0: float(1/sqrt(L_val*C_val));
+disc: float(ta_alpha^2 - ta_omega0^2);
+
+/* ===== Regime classification ===== */
+/* 1=overdamped, 2=underdamped, 3=critically damped */
+ta_regime: if abs(ta_alpha-ta_omega0) < 1.0 then 3
+           else if disc > 0 then 1
+           else 2;
+regime_name: if ta_regime=1 then "overdamped"
+             else if ta_regime=2 then "underdamped"
+             else "critically damped";
+
+/* ===== Damped frequency / root separation ===== */
+ta_omegad: float(sqrt(abs(disc)));
+
+/* ===== Final value ===== */
+ta_If: float(Is_val);
+
+/* ===== Characteristic roots ===== */
+s1_r: if ta_regime=1 then float(-ta_alpha+sqrt(disc)) else float(-ta_alpha);
+s2_r: if ta_regime=1 then float(-ta_alpha-sqrt(disc)) else float(-ta_alpha);
+
+/* ===== Coefficients for iL(t) = If + natural response ===== */
+/* Initial conditions: iL(0+)=I0, diL/dt(0+)=V0/L               */
+/* Overdamped: If+A1'+A2'=I0,  s1*A1'+s2*A2'=V0/L               */
+ta_A1p: if ta_regime=1 then float((V0_val/L_val - s2_r*(I0_val-ta_If))/(s1_r-s2_r)) else 0;
+ta_A2p: if ta_regime=1 then float(I0_val-ta_If-ta_A1p) else 0;
+
+/* Underdamped: If+B1'=I0, -alpha*B1'+omegad*B2'=V0/L            */
+ta_B1p: if ta_regime=2 then float(I0_val-ta_If) else 0;
+ta_B2p: if ta_regime=2 then float((V0_val/L_val+ta_alpha*ta_B1p)/ta_omegad) else 0;
+
+/* Critically damped: If+D2'=I0, D1'-alpha*D2'=V0/L              */
+ta_D2p: if ta_regime=3 then float(I0_val-ta_If) else 0;
+ta_D1p: if ta_regime=3 then float(V0_val/L_val+ta_alpha*ta_D2p) else 0;
+
+/* ===== iL(t) complete ===== */
+ta_iL: if ta_regime=1 then ta_If + ta_A1p*exp(s1_r*t) + ta_A2p*exp(s2_r*t)
+       else if ta_regime=2 then ta_If + exp(-ta_alpha*t)*(ta_B1p*cos(ta_omegad*t)+ta_B2p*sin(ta_omegad*t))
+       else ta_If + (ta_D1p*t+ta_D2p)*exp(-ta_alpha*t);
+
+/* ===== v(t) = L * d(iL)/dt ===== */
+ta_v: ev(L_val*diff(ta_iL, t), simp);
+
+/* ===== FVT check value ===== */
+ta_fvt: float(ta_If);
+
+/* ===== Teacher answers ===== */
+ta1: 1;
+ta2: ta_If;
+ta3: ta_regime;
+
+/* Part (d): general form with symbolic constants */
+ta4: if ta_regime=1 then ta_If + A1*exp(s1_r*t) + A2*exp(s2_r*t)
+     else if ta_regime=2 then ta_If + exp(-ta_alpha*t)*(B1*cos(ta_omegad*t)+B2*sin(ta_omegad*t))
+     else ta_If + (D1*t+D2)*exp(-ta_alpha*t);
+
+ta5: ta_iL;
+ta6: ta_v;
+ta7: ta_fvt;
+]]></text>
+  </questionvariables>
+
+  <specificfeedback format="html">
+    <text><![CDATA[
+<h4>Part (a) &mdash; Physical Reasoning</h4>
+<p>Your answer: {@ans1@} &nbsp;|&nbsp; Correct answer: {@ta1@}</p>
+<div>[[feedback:prt1]]</div>
+
+<h4>Part (b) &mdash; Final Value \(I_\text{final}\)</h4>
+<p>Your answer: {@ans2@} &nbsp;|&nbsp; Correct answer: {@ta2@} A</p>
+<div>[[feedback:prt2]]</div>
+
+<h4>Part (c) &mdash; Damping Regime</h4>
+<p>Your answer: {@ans3@} &nbsp;|&nbsp; Correct answer: {@ta3@} ({@regime_name@})</p>
+<div>[[feedback:prt3]]</div>
+
+<h4>Part (d) &mdash; General Response Form</h4>
+<p>Your answer: {@ans4@}</p>
+<p>Expected form: {@ta4@}</p>
+<div>[[feedback:prt4]]</div>
+
+<h4>Part (e) &mdash; Complete \(i_L(t)\)</h4>
+<p>Your answer: {@ans5@}</p>
+<p>Correct: {@ta5@}</p>
+<div>[[feedback:prt5]]</div>
+
+<h4>Part (f) &mdash; Voltage \(v(t)\)</h4>
+<p>Your answer: {@ans6@}</p>
+<p>Correct: {@ta6@}</p>
+<div>[[feedback:prt6]]</div>
+
+<h4>Part (g) &mdash; Final Value Theorem</h4>
+<p>Your answer: {@ans7@} &nbsp;|&nbsp; Correct answer: {@ta7@} A</p>
+<div>[[feedback:prt7]]</div>
+]]></text>
+  </specificfeedback>
+
+  <questionnote>
+    <text>Set {@set@} | α={@ta_alpha@}, ω₀={@ta_omega0@} | {@regime_name@} | V0={@V0_val@} V, I0={@I0_val@} A</text>
+  </questionnote>
+
+  <questiondescription format="html">
+    <text><![CDATA[<p>Parallel RLC Step Response with non-zero initial conditions — find iL(t), v(t), verify with FVT. Week 10 training exercise.</p>]]></text>
+  </questiondescription>
+
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>j</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <!-- ============================================================ -->
+  <!-- INPUTS (7 total)                                              -->
+  <!-- ============================================================ -->
+
+  <!-- ans1: Part (a) Physical reasoning MCQ -->
+  <input>
+    <name>ans1</name>
+    <type>algebraic</type>
+    <tans>ta1</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans2: Part (b) Final value I_final -->
+  <input>
+    <name>ans2</name>
+    <type>numerical</type>
+    <tans>ta2</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans3: Part (c) Regime MCQ -->
+  <input>
+    <name>ans3</name>
+    <type>algebraic</type>
+    <tans>ta3</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans4: Part (d) General response form (symbolic) -->
+  <input>
+    <name>ans4</name>
+    <type>algebraic</type>
+    <tans>ta4</tans>
+    <boxsize>45</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords>A1,A2,B1,B2,D1,D2</allowwords>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans5: Part (e) Complete iL(t) with numerical coefficients -->
+  <input>
+    <name>ans5</name>
+    <type>algebraic</type>
+    <tans>ta5</tans>
+    <boxsize>45</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans6: Part (f) v(t) from differentiation -->
+  <input>
+    <name>ans6</name>
+    <type>algebraic</type>
+    <tans>ta6</tans>
+    <boxsize>45</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans7: Part (g) FVT verification -->
+  <input>
+    <name>ans7</name>
+    <type>numerical</type>
+    <tans>ta7</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ============================================================ -->
+  <!-- PRTs (7 total, each worth 1 mark)                            -->
+  <!-- ============================================================ -->
+
+  <!-- prt1: Part (a) — Physical reasoning MCQ -->
+  <prt>
+    <name>prt1</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check physical reasoning MCQ</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans1</sans>
+      <tans>ta1</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The resistor dissipates energy as heat (\(P = v^2/R\) or \(P = i^2 R\)) on every oscillation cycle. This progressively reduces the total energy stored in the LC tank until oscillations cease and the circuit reaches steady state.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The correct answer is {@ta1@}. A resistor is a <strong>passive element</strong> that converts electrical energy into heat (Joule heating). It cannot change the resonant frequency, reflect energy, or cause saturation. On each oscillation cycle, \(R\) dissipates a fraction of the stored energy, progressively damping the oscillations.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt2: Part (b) — I_final, 2-node cascade -->
+  <prt>
+    <name>prt2</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative check I_final within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text/>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. At DC steady state: the inductor is a <strong>short circuit</strong> (zero impedance) and the capacitor is an <strong>open circuit</strong> (infinite impedance). All source current flows through the inductor: \(I_\text{final} = I_s = {@ta2@}\;\text{A}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>SigFigsStrict check — 3 significant figures</description>
+      <answertest>SigFigsStrict</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>3</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(I_\text{final} = {@ta2@}\;\text{A}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.7000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta2@} A.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt3: Part (c) — Damping regime MCQ -->
+  <prt>
+    <name>prt3</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+alpha_sq: float(ta_alpha^2);
+omega0_sq: float(ta_omega0^2);
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check regime classification</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The circuit is <strong>{@regime_name@}</strong>.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. For a <strong>parallel</strong> RLC circuit, \(\alpha = \frac{1}{2RC}\) (not \(\frac{R}{2L}\), which is for series). Compare: \(\alpha^2 = {@alpha_sq@}\) vs \(\omega_0^2 = {@omega0_sq@}\). Since \(\alpha = {@ta_alpha@}\) and \(\omega_0 = {@ta_omega0@}\), the circuit is <strong>{@regime_name@}</strong> (option {@ta3@}).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt4: Part (d) — General response form (symbolic) -->
+  <prt>
+    <name>prt4</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check symbolic general form</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! Your general form matches the expected structure for the {@regime_name@} case.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The circuit is <strong>{@regime_name@}</strong>. The expected general form is:</p><p>\(i_L(t) = {@ta4@}\)</p><p>Make sure you included the forced response term \(I_\text{final} = {@ta_If@}\) and used the correct natural response form with the appropriate symbolic constants (A1, A2 for overdamped; B1, B2 for underdamped; D1, D2 for critically damped).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt5: Part (e) — Complete iL(t) with numerical coefficients -->
+  <prt>
+    <name>prt5</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+dvdt0: float(V0_val/L_val);
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check complete iL(t) expression</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(i_L(t) = {@ta5@}\;\text{A}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. You need to solve <strong>two simultaneous equations</strong> from the initial conditions:</p>
+<ol>
+  <li>From \(i_L(0^+) = I_0 = {@I0_val@}\;\text{A}\): substitute \(t = 0\) into your general form.</li>
+  <li>From \(\frac{di_L}{dt}(0^+) = \frac{V_0}{L} = {@dvdt0@}\;\text{A/s}\): differentiate, then substitute \(t = 0\).</li>
+</ol>
+<p>The correct complete expression is: \(i_L(t) = {@ta5@}\;\text{A}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt6: Part (f) — v(t) from differentiation -->
+  <prt>
+    <name>prt6</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check v(t) expression</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans6</sans>
+      <tans>ta6</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(v(t) = {@ta6@}\;\text{V}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt6-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Remember: \(v(t) = L \cdot \frac{di_L}{dt}\). Differentiate each term of \(i_L(t)\) carefully. For products like \(f(t) \cdot e^{st}\), use the <strong>product rule</strong>: \(\frac{d}{dt}[f(t) \cdot e^{st}] = f'(t) \cdot e^{st} + f(t) \cdot s \cdot e^{st}\). The correct result is \(v(t) = {@ta6@}\;\text{V}\). As a check: \(v(0^+) = {@V0_val@}\;\text{V}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt7: Part (g) — FVT verification, 2-node cascade -->
+  <prt>
+    <name>prt7</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative check FVT within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans7</sans>
+      <tans>ta7</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>1</truenextnode>
+      <trueanswernote>prt7-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text/>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. As \(t \to \infty\), all exponential terms \(e^{st}\) with \(\text{Re}(s) < 0\) decay to zero. Only the constant term \(I_\text{final}\) remains: \(\lim_{t \to \infty} i_L(t) = {@ta7@}\;\text{A}\). This should match the DC steady-state value from Part (b).</p>]]></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>SigFigsStrict check — 3 significant figures</description>
+      <answertest>SigFigsStrict</answertest>
+      <sans>ans7</sans>
+      <tans>ta7</tans>
+      <testoptions>3</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\lim_{t \to \infty} i_L(t) = {@ta7@}\;\text{A}\), confirming the DC steady-state analysis.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.7000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta7@} A.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- DEPLOYED SEEDS                                                -->
+  <!-- ============================================================ -->
+  <deployedseed>11111</deployedseed>
+  <deployedseed>22222</deployedseed>
+  <deployedseed>33333</deployedseed>
+  <deployedseed>44444</deployedseed>
+  <deployedseed>55555</deployedseed>
+  <deployedseed>66666</deployedseed>
+
+  <!-- ============================================================ -->
+  <!-- QUESTION TESTS (6 total)                                     -->
+  <!-- ============================================================ -->
+
+  <!-- Test 1: All correct answers -->
+  <qtest>
+    <testcase>1</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-1-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 2: Wrong physical reasoning MCQ (ans1=3) -->
+  <qtest>
+    <testcase>2</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>3</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.1000000</expectedpenalty>
+      <expectedanswernote>prt1-0-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-1-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 3: Wrong I_final (ans2=0) -->
+  <qtest>
+    <testcase>3</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>0</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.1000000</expectedpenalty>
+      <expectedanswernote>prt2-0-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-1-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 4: Wrong regime (always wrong regardless of set) -->
+  <qtest>
+    <testcase>4</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>mod(ta_regime,3)+1</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.1000000</expectedpenalty>
+      <expectedanswernote>prt3-0-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-1-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 5: Forgot natural response (ans5=ta_If, just the DC final value) -->
+  <qtest>
+    <testcase>5</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta_If</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.1000000</expectedpenalty>
+      <expectedanswernote>prt5-0-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-1-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 6: Wrong FVT (ans7=0) -->
+  <qtest>
+    <testcase>6</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>0</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.1000000</expectedpenalty>
+      <expectedanswernote>prt7-0-F</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- ============================================================ -->
+  <!-- HINTS (3, progressive)                                        -->
+  <!-- ============================================================ -->
+
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 1 (Intuition):</strong> Energy in an LC tank sloshes back and forth between magnetic energy (inductor: \(\frac{1}{2}Li^2\)) and electric energy (capacitor: \(\frac{1}{2}Cv^2\)). What does a resistor do to energy? Think about power dissipation \(P = v^2/R\).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 2 (Formulas):</strong> For a parallel RLC circuit: \(\alpha = \frac{1}{2RC}\), \(\omega_0 = \frac{1}{\sqrt{LC}}\). Compare \(\alpha^2\) with \(\omega_0^2\) to classify the regime. The step response has the form: \(i_L(t) = I_\text{final} + \text{(natural response form)}\). Initial conditions: \(i_L(0^+) = I_0\), and \(\frac{di_L}{dt}(0^+) = \frac{v(0^+)}{L} = \frac{V_0}{L}\).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 3 (Worked Step):</strong> For the underdamped case: \(i_L(t) = I_f + e^{-\alpha t}(B_1 \cos\omega_d t + B_2 \sin\omega_d t)\).</p>
+<p>From \(i_L(0^+) = I_f + B_1 = I_0\): solve \(B_1 = I_0 - I_f\).</p>
+<p>Then differentiate: \(\frac{di_L}{dt}(0^+) = -\alpha B_1 + \omega_d B_2 = \frac{V_0}{L}\). Solve for \(B_2\).</p>]]></text>
+  </hint>
+
+</question>
+
+</quiz>
