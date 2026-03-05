@@ -89,18 +89,18 @@ Which statement correctly describes the initial conditions?</p>
 <h4>Part (e) &mdash; Characteristic Root \(s_1\) (1 pt)</h4>
 <p>Find the characteristic root \(s_1\) with the <strong>larger real part</strong>
 (or positive imaginary part if complex conjugate pair).</p>
+<p>\(s_1 = \) [[input:ans7]] [[validation:ans7]]</p>
 <p><em>Syntax hint: For complex roots use <code>j</code> for the imaginary unit,
 e.g., <code>-2800+9600*j</code></em></p>
-<p>\(s_1 = \) [[input:ans7]] [[validation:ans7]]</p>
 
 <hr />
 
 <h4>Part (f) &mdash; Complete Current Response \(i(t)\) (1 pt)</h4>
 <p>Write the complete expression for \(i(t)\) (in Amperes) for \(t &gt; 0\).</p>
+<p>\(i(t) = \) [[input:ans8]] A [[validation:ans8]]</p>
 <p><em>Syntax hint: Use <code>exp(...)</code>, <code>sin(...)</code>, <code>cos(...)</code>,
 and <code>t</code> as the time variable.<br />
 Example: <code>-0.104*exp(-2800*t)*sin(9600*t)</code></em></p>
-<p>\(i(t) = \) [[input:ans8]] A [[validation:ans8]]</p>
 ]]></text>
   </questiontext>
 
@@ -241,35 +241,27 @@ ta8_at_t3: float(subst(t=t_test3, ta8));
   <specificfeedback format="html">
     <text><![CDATA[
 <h4>Part (a) &mdash; DC Steady-State Concept</h4>
-<p>Your answer: {@ans1@} &nbsp;|&nbsp; Correct answer: {@ta1@}</p>
 <div>[[feedback:prt1]]</div>
 
 <h4>Part (b1) &mdash; Initial Current \(i(0^+)\)</h4>
-<p>Your answer: {@ans2@} &nbsp;|&nbsp; Correct answer: {@ta2@}</p>
 <div>[[feedback:prt2]]</div>
 
 <h4>Part (b2) &mdash; Initial Capacitor Voltage \(v_C(0^+)\)</h4>
-<p>Your answer: {@ans3@} &nbsp;|&nbsp; Correct answer: {@ta3@} V</p>
 <div>[[feedback:prt3]]</div>
 
 <h4>Part (c1) &mdash; Damping Coefficient \(\alpha\)</h4>
-<p>Your answer: {@ans4@} &nbsp;|&nbsp; Correct answer: {@ta4@} rad/s</p>
 <div>[[feedback:prt4]]</div>
 
 <h4>Part (c2) &mdash; Natural Frequency \(\omega_0\)</h4>
-<p>Your answer: {@ans5@} &nbsp;|&nbsp; Correct answer: {@ta5@} rad/s</p>
 <div>[[feedback:prt5]]</div>
 
 <h4>Part (d) &mdash; Damping Regime</h4>
-<p>Your answer: {@ans6@} &nbsp;|&nbsp; Correct answer: {@ta6@} ({@regime_name@})</p>
 <div>[[feedback:prt6]]</div>
 
 <h4>Part (e) &mdash; Characteristic Root \(s_1\)</h4>
-<p>Your answer: {@ans7@} &nbsp;|&nbsp; Correct answer: {@ta7@}</p>
 <div>[[feedback:prt7]]</div>
 
 <h4>Part (f) &mdash; Complete Response \(i(t)\)</h4>
-<p>Your answer: {@ans8@} &nbsp;|&nbsp; Correct answer: {@ta8@}</p>
 <div>[[feedback:prt8]]</div>
 ]]></text>
   </specificfeedback>

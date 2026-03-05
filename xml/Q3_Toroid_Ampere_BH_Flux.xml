@@ -50,10 +50,10 @@ which law do you apply along a closed circular path through the core?</p>
 derive a symbolic expression for the flux density \(B\) in terms of the given quantities.</p>
 <p><em>Start from \(NI = H_\text{core} \cdot \ell_1 + H_\text{gap} \cdot \ell_2\)
 and use \(B = \mu_r \mu_0 H_\text{core} = \mu_0 H_\text{gap}\).</em></p>
+<p>\(B = \) [[input:ans2]] T [[validation:ans2]]</p>
 <p><em>Syntax hint: Use <code>N</code> for turns, <code>I</code> for current,
 <code>mu0</code> for \(\mu_0\), <code>mur</code> for \(\mu_r\),
 <code>l1</code> and <code>l2</code> for lengths.</em></p>
-<p>\(B = \) [[input:ans2]] T [[validation:ans2]]</p>
 
 <hr />
 
@@ -227,33 +227,24 @@ ta7: ta_design;
   <specificfeedback format="html">
     <text><![CDATA[
 <h4>Part (a) &mdash; Which Law?</h4>
-<p>Your answer: {@ans1@} &nbsp;|&nbsp; Correct answer: {@ta1@}</p>
 <div>[[feedback:prt1]]</div>
 
 <h4>Part (b1) &mdash; Symbolic \(B\)</h4>
-<p>Your answer: {@ans2@}</p>
-<p>Expected: {@ta2@}</p>
 <div>[[feedback:prt2a]]</div>
 
 <h4>Part (b2) &mdash; Numerical \(B\)</h4>
-<p>Your answer: {@ans3@} &nbsp;|&nbsp; Correct answer: {@ta3@} T</p>
 <div>[[feedback:prt2b]]</div>
 
 <h4>Part (c) &mdash; \(H_\text{core}\)</h4>
-<p>Your answer: {@ans4@} &nbsp;|&nbsp; Correct answer: {@ta4@} A/m</p>
 <div>[[feedback:prt3]]</div>
 
 <h4>Part (d) &mdash; Total Flux \(\Phi\)</h4>
-<p>Your answer: {@ans5@} &nbsp;|&nbsp; Correct answer: {@ta5@} Wb</p>
 <div>[[feedback:prt4]]</div>
 
 <h4>Part (e) &mdash; Flux Continuity Reasoning</h4>
-<p>Your explanation:</p>
-<p>{@ans6@}</p>
 <div>[[feedback:prt5]]</div>
 
 <h4>Part (f) &mdash; Design Reasoning</h4>
-<p>Your answer: {@ans7@} &nbsp;|&nbsp; Correct answer: {@ta7@}</p>
 <div>[[feedback:prt6]]</div>
 ]]></text>
   </specificfeedback>

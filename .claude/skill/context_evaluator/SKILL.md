@@ -27,8 +27,8 @@ When this skill is loaded, immediately read ALL context files in this order:
   - Each variant is a separate `<question>` element with its own STACK variables, PRTs, and feedback.
   - Numerical inputs use tolerances ±0.01 to ±0.5. Algebraic inputs are minimized.
   - Randomization via Maxima `rand()` with constrained ranges to avoid degenerate cases.
-  - **MANDATORY — Syntax hints after every input field:**
-    - Every `[[input:ansN]]` in the question HTML MUST be followed by a visible `<p><em>Syntax hint: ...</em></p>` line immediately after the input.
+  - **MANDATORY — Syntax hints AFTER every input field:**
+    - Every `[[input:ansN]]` in the question HTML MUST be followed by a visible `<p><em>Syntax hint: ...</em></p>` line immediately AFTER the input line. Never place the syntax hint before the input field.
     - MCQ / integer inputs: `"Enter a single integer, e.g. <code>2</code>"`.
     - Numerical inputs: `"Enter a number, e.g. <code>0.523</code> or <code>5.23e-1</code>"` (adapt examples to the expected magnitude).
     - Symbolic / algebraic inputs: show a complete example using the expected variable names, e.g. `"Write <code>lc/(mur*mu0*Ac)</code>"`.
@@ -45,6 +45,9 @@ When this skill is loaded, immediately read ALL context files in this order:
     - Never use `SigFigsStrict` as a scoring gate — do not penalise students for significant-figure formatting.
     - For complex expressions (e.g. i(t) with float coefficients), use a 2-node PRT: Node 0 tries `AlgEquiv`; if it fails, Node 1 evaluates both expressions at 2–3 numerical test points using feedback variables and compares with `NumRelative` (5% tolerance).
     - For complex-valued roots (s₁), use a 2-node PRT: Node 0 tries `AlgEquiv`; if it fails, Node 1 compares real and imaginary parts numerically (2% tolerance) via feedback variables.
+  - **MANDATORY — Specific feedback format:**
+    - In `<specificfeedback>`, do NOT use `{@ansN@}` to display student answers — STACK renders these as CAS variable symbols (e.g. `ans₁`) instead of the actual student input.
+    - Use only the PRT feedback blocks `[[feedback:prtN]]` in specific feedback. The PRT true/false feedback already contains all necessary correct/incorrect messaging.
 - When creating SVG circuit diagrams, follow these conventions:
   - Sans-serif fonts (e.g., Arial, Helvetica).
   - High-contrast black lines on white background.

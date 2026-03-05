@@ -71,8 +71,8 @@ An \(N = {@N_val@}\)-turn coil is wound around the core.</p>
 <p>Write the symbolic expression for the reluctance of the <strong>ferromagnetic core</strong> section.</p>
 <p><em>Use variable names: <code>lc</code> for \(\ell_c\), <code>mur</code> for \(\mu_r\),
 <code>mu0</code> for \(\mu_0\), <code>Ac</code> for \(A_c\).</em></p>
-<p><em>Syntax hint: Reluctance of a section = \(\ell/(\mu \cdot A)\), so write <code>lc/(mur*mu0*Ac)</code>.</em></p>
 <p>\(\mathcal{R}_\text{core} = \) [[input:ans2]] H\(^{-1}\) [[validation:ans2]]</p>
+<p><em>Syntax hint: Reluctance of a section = \(\ell/(\mu \cdot A)\), so write <code>lc/(mur*mu0*Ac)</code>.</em></p>
 
 <hr />
 
@@ -269,38 +269,27 @@ ta8: ta_design_reason;
   <specificfeedback format="html">
     <text><![CDATA[
 <h4>Part (a) &mdash; Reluctance Analogy</h4>
-<p>Your answer: {@ans1@} &nbsp;|&nbsp; Correct: {@ta1@}</p>
 <div>[[feedback:prt1]]</div>
 
 <h4>Part (b) &mdash; Core Reluctance (symbolic)</h4>
-<p>Your answer: {@ans2@}</p>
-<p>Expected: {@ta2@}</p>
 <div>[[feedback:prt2]]</div>
 
 <h4>Part (c) &mdash; Gap Reluctance (symbolic)</h4>
-<p>Your answer: {@ans3@}</p>
-<p>Expected: {@ta3@}</p>
 <div>[[feedback:prt3]]</div>
 
 <h4>Part (d1) &mdash; Total Reluctance</h4>
-<p>Your answer: {@ans4@} &nbsp;|&nbsp; Correct: {@ta4@} H\(^{-1}\)</p>
 <div>[[feedback:prt4]]</div>
 
 <h4>Part (d2) &mdash; Inductance</h4>
-<p>Your answer: {@ans5@} &nbsp;|&nbsp; Correct: {@ta5@} H</p>
 <div>[[feedback:prt5]]</div>
 
 <h4>Part (e1) &mdash; Symbolic \(dL/d\ell_g\)</h4>
-<p>Your answer: {@ans6@}</p>
-<p>Expected: {@ta6@}</p>
 <div>[[feedback:prt6]]</div>
 
 <h4>Part (e2) &mdash; Percentage Change</h4>
-<p>Your answer: {@ans7@}% &nbsp;|&nbsp; Correct: {@ta7@}%</p>
 <div>[[feedback:prt7]]</div>
 
 <h4>Part (f) &mdash; Physical Reasoning</h4>
-<p>Your answer: {@ans8@} &nbsp;|&nbsp; Correct: {@ta8@}</p>
 <div>[[feedback:prt8]]</div>
 ]]></text>
   </specificfeedback>

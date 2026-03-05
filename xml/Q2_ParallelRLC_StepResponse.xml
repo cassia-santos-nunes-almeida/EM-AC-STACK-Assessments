@@ -83,9 +83,9 @@ appropriate to the damping regime you identified. Use symbolic constants
 <code>D1, D2</code> for critically damped) &mdash; do <strong>not</strong>
 substitute numerical values for the constants yet.
 Include the forced (final value) term.</p>
+<p>\(i_L(t) = \) [[input:ans4]] [[validation:ans4]]</p>
 <p><em>Syntax hint: Use <code>exp(...)</code>, <code>sin(...)</code>, <code>cos(...)</code>,
 and <code>t</code>. Example: <code>0.01 + A1*exp(-208.7*t) + A2*exp(-4791.3*t)</code></em></p>
-<p>\(i_L(t) = \) [[input:ans4]] [[validation:ans4]]</p>
 
 <hr />
 
@@ -104,9 +104,9 @@ and <code>t</code>. Example: <code>0.5 + 0.02*exp(-200*t)*sin(980*t) - 0.01*exp(
 <h4>Part (f) &mdash; Voltage \(v(t)\) from Differentiation (1 pt)</h4>
 <p>Find \(v(t)\) for \(t \geq 0\) using the relation \(v(t) = L \cdot \frac{di_L}{dt}\).</p>
 <p>Differentiate your \(i_L(t)\) expression and multiply by \(L = {@L_val@}\;\text{H}\).</p>
+<p>\(v(t) = \) [[input:ans6]] V [[validation:ans6]]</p>
 <p><em>Syntax hint: Differentiate term by term. Remember the product rule for terms
 like \(t \cdot e^{-\alpha t}\).</em></p>
-<p>\(v(t) = \) [[input:ans6]] V [[validation:ans6]]</p>
 
 <hr />
 
@@ -279,34 +279,24 @@ ta6_at_t3: float(subst(t=t_test3, ta6));
   <specificfeedback format="html">
     <text><![CDATA[
 <h4>Part (a) &mdash; Physical Reasoning</h4>
-<p>Your answer: {@ans1@} &nbsp;|&nbsp; Correct answer: {@ta1@}</p>
 <div>[[feedback:prt1]]</div>
 
 <h4>Part (b) &mdash; Final Value \(I_\text{final}\)</h4>
-<p>Your answer: {@ans2@} &nbsp;|&nbsp; Correct answer: {@ta2@} A</p>
 <div>[[feedback:prt2]]</div>
 
 <h4>Part (c) &mdash; Damping Regime</h4>
-<p>Your answer: {@ans3@} &nbsp;|&nbsp; Correct answer: {@ta3@} ({@regime_name@})</p>
 <div>[[feedback:prt3]]</div>
 
 <h4>Part (d) &mdash; General Response Form</h4>
-<p>Your answer: {@ans4@}</p>
-<p>Expected form: {@ta4@}</p>
 <div>[[feedback:prt4]]</div>
 
 <h4>Part (e) &mdash; Complete \(i_L(t)\)</h4>
-<p>Your answer: {@ans5@}</p>
-<p>Correct: {@ta5@}</p>
 <div>[[feedback:prt5]]</div>
 
 <h4>Part (f) &mdash; Voltage \(v(t)\)</h4>
-<p>Your answer: {@ans6@}</p>
-<p>Correct: {@ta6@}</p>
 <div>[[feedback:prt6]]</div>
 
 <h4>Part (g) &mdash; Final Value Theorem</h4>
-<p>Your answer: {@ans7@} &nbsp;|&nbsp; Correct answer: {@ta7@} A</p>
 <div>[[feedback:prt7]]</div>
 ]]></text>
   </specificfeedback>
