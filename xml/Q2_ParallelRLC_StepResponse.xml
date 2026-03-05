@@ -262,6 +262,17 @@ ta4: if ta_regime=1 then ta_If + A1*exp(s1_r*t) + A2*exp(s2_r*t)
 ta5: ta_iL;
 ta6: ta_v;
 ta7: ta_fvt;
+
+/* ===== Numerical sampling for expression PRTs ===== */
+t_test1: 1.0e-4;
+t_test2: 5.0e-4;
+t_test3: 1.0e-3;
+ta5_at_t1: float(subst(t=t_test1, ta5));
+ta5_at_t2: float(subst(t=t_test2, ta5));
+ta5_at_t3: float(subst(t=t_test3, ta5));
+ta6_at_t1: float(subst(t=t_test1, ta6));
+ta6_at_t2: float(subst(t=t_test2, ta6));
+ta6_at_t3: float(subst(t=t_test3, ta6));
 ]]></text>
   </questionvariables>
 
@@ -516,7 +527,7 @@ ta7: ta_fvt;
     </node>
   </prt>
 
-  <!-- prt2: Part (b) — I_final, 2-node cascade -->
+  <!-- prt2: Part (b) — I_final, single-node NumRelative 5% -->
   <prt>
     <name>prt2</name>
     <value>1.0000000</value>
@@ -534,12 +545,12 @@ ta7: ta_fvt;
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
-      <truescore>0.7000000</truescore>
+      <truescore>1.0000000</truescore>
       <truepenalty/>
-      <truenextnode>1</truenextnode>
+      <truenextnode>-1</truenextnode>
       <trueanswernote>prt2-0-T</trueanswernote>
       <truefeedback format="html">
-        <text/>
+        <text><![CDATA[<p>Correct! \(I_\text{final} = {@ta2@}\;\text{A}\).</p>]]></text>
       </truefeedback>
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
@@ -548,31 +559,6 @@ ta7: ta_fvt;
       <falseanswernote>prt2-0-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. At DC steady state: the inductor is a <strong>short circuit</strong> (zero impedance) and the capacitor is an <strong>open circuit</strong> (infinite impedance). All source current flows through the inductor: \(I_\text{final} = I_s = {@ta2@}\;\text{A}\).</p>]]></text>
-      </falsefeedback>
-    </node>
-    <node>
-      <name>1</name>
-      <description>SigFigsStrict check — 3 significant figures</description>
-      <answertest>SigFigsStrict</answertest>
-      <sans>ans2</sans>
-      <tans>ta2</tans>
-      <testoptions>3</testoptions>
-      <quiet>0</quiet>
-      <truescoremode>=</truescoremode>
-      <truescore>1.0000000</truescore>
-      <truepenalty/>
-      <truenextnode>-1</truenextnode>
-      <trueanswernote>prt2-1-T</trueanswernote>
-      <truefeedback format="html">
-        <text><![CDATA[<p>Correct! \(I_\text{final} = {@ta2@}\;\text{A}\).</p>]]></text>
-      </truefeedback>
-      <falsescoremode>=</falsescoremode>
-      <falsescore>0.7000000</falsescore>
-      <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
-      <falseanswernote>prt2-1-F</falseanswernote>
-      <falsefeedback format="html">
-        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta2@} A.</p>]]></text>
       </falsefeedback>
     </node>
   </prt>
@@ -652,7 +638,7 @@ omega0_sq: float(ta_omega0^2);
     </node>
   </prt>
 
-  <!-- prt5: Part (e) — Complete iL(t) with numerical coefficients -->
+  <!-- prt5: Part (e) — Complete iL(t), 2-node: AlgEquiv then numerical sampling -->
   <prt>
     <name>prt5</name>
     <value>1.0000000</value>
@@ -661,11 +647,18 @@ omega0_sq: float(ta_omega0^2);
     <feedbackvariables>
       <text><![CDATA[
 dvdt0: float(V0_val/L_val);
+sa5_at_t1: float(subst(t=t_test1, ans5));
+sa5_at_t2: float(subst(t=t_test2, ans5));
+sa5_at_t3: float(subst(t=t_test3, ans5));
+rerr5_1: if abs(ta5_at_t1) > 1.0e-10 then abs((sa5_at_t1 - ta5_at_t1)/ta5_at_t1) else abs(sa5_at_t1 - ta5_at_t1);
+rerr5_2: if abs(ta5_at_t2) > 1.0e-10 then abs((sa5_at_t2 - ta5_at_t2)/ta5_at_t2) else abs(sa5_at_t2 - ta5_at_t2);
+rerr5_3: if abs(ta5_at_t3) > 1.0e-10 then abs((sa5_at_t3 - ta5_at_t3)/ta5_at_t3) else abs(sa5_at_t3 - ta5_at_t3);
+iL_num_ok: if rerr5_1 < 0.05 and rerr5_2 < 0.05 and rerr5_3 < 0.05 then true else false;
 ]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
-      <description>Check complete iL(t) expression</description>
+      <description>AlgEquiv check iL(t) expression</description>
       <answertest>AlgEquiv</answertest>
       <sans>ans5</sans>
       <tans>ta5</tans>
@@ -682,8 +675,33 @@ dvdt0: float(V0_val/L_val);
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Numerical sampling fallback for iL(t) at 3 test points</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>iL_num_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! Your expression evaluates correctly at multiple test points.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-1-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. You need to solve <strong>two simultaneous equations</strong> from the initial conditions:</p>
 <ol>
@@ -695,18 +713,26 @@ dvdt0: float(V0_val/L_val);
     </node>
   </prt>
 
-  <!-- prt6: Part (f) — v(t) from differentiation -->
+  <!-- prt6: Part (f) — v(t), 2-node: AlgEquiv then numerical sampling -->
   <prt>
     <name>prt6</name>
     <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text><![CDATA[
+sa6_at_t1: float(subst(t=t_test1, ans6));
+sa6_at_t2: float(subst(t=t_test2, ans6));
+sa6_at_t3: float(subst(t=t_test3, ans6));
+rerr6_1: if abs(ta6_at_t1) > 1.0e-10 then abs((sa6_at_t1 - ta6_at_t1)/ta6_at_t1) else abs(sa6_at_t1 - ta6_at_t1);
+rerr6_2: if abs(ta6_at_t2) > 1.0e-10 then abs((sa6_at_t2 - ta6_at_t2)/ta6_at_t2) else abs(sa6_at_t2 - ta6_at_t2);
+rerr6_3: if abs(ta6_at_t3) > 1.0e-10 then abs((sa6_at_t3 - ta6_at_t3)/ta6_at_t3) else abs(sa6_at_t3 - ta6_at_t3);
+vt_num_ok: if rerr6_1 < 0.05 and rerr6_2 < 0.05 and rerr6_3 < 0.05 then true else false;
+]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
-      <description>Check v(t) expression</description>
+      <description>AlgEquiv check v(t) expression</description>
       <answertest>AlgEquiv</answertest>
       <sans>ans6</sans>
       <tans>ta6</tans>
@@ -723,15 +749,40 @@ dvdt0: float(V0_val/L_val);
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt6-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Numerical sampling fallback for v(t) at 3 test points</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>vt_num_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! Your expression evaluates correctly at multiple test points.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt6-1-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. Remember: \(v(t) = L \cdot \frac{di_L}{dt}\). Differentiate each term of \(i_L(t)\) carefully. For products like \(f(t) \cdot e^{st}\), use the <strong>product rule</strong>: \(\frac{d}{dt}[f(t) \cdot e^{st}] = f'(t) \cdot e^{st} + f(t) \cdot s \cdot e^{st}\). The correct result is \(v(t) = {@ta6@}\;\text{V}\). As a check: \(v(0^+) = {@V0_val@}\;\text{V}\).</p>]]></text>
       </falsefeedback>
     </node>
   </prt>
 
-  <!-- prt7: Part (g) — FVT verification, 2-node cascade -->
+  <!-- prt7: Part (g) — FVT verification, single-node NumRelative 5% -->
   <prt>
     <name>prt7</name>
     <value>1.0000000</value>
@@ -749,12 +800,12 @@ dvdt0: float(V0_val/L_val);
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
-      <truescore>0.7000000</truescore>
+      <truescore>1.0000000</truescore>
       <truepenalty/>
-      <truenextnode>1</truenextnode>
+      <truenextnode>-1</truenextnode>
       <trueanswernote>prt7-0-T</trueanswernote>
       <truefeedback format="html">
-        <text/>
+        <text><![CDATA[<p>Correct! \(\lim_{t \to \infty} i_L(t) = {@ta7@}\;\text{A}\), confirming the DC steady-state analysis.</p>]]></text>
       </truefeedback>
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
@@ -763,31 +814,6 @@ dvdt0: float(V0_val/L_val);
       <falseanswernote>prt7-0-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. As \(t \to \infty\), all exponential terms \(e^{st}\) with \(\text{Re}(s) < 0\) decay to zero. Only the constant term \(I_\text{final}\) remains: \(\lim_{t \to \infty} i_L(t) = {@ta7@}\;\text{A}\). This should match the DC steady-state value from Part (b).</p>]]></text>
-      </falsefeedback>
-    </node>
-    <node>
-      <name>1</name>
-      <description>SigFigsStrict check — 3 significant figures</description>
-      <answertest>SigFigsStrict</answertest>
-      <sans>ans7</sans>
-      <tans>ta7</tans>
-      <testoptions>3</testoptions>
-      <quiet>0</quiet>
-      <truescoremode>=</truescoremode>
-      <truescore>1.0000000</truescore>
-      <truepenalty/>
-      <truenextnode>-1</truenextnode>
-      <trueanswernote>prt7-1-T</trueanswernote>
-      <truefeedback format="html">
-        <text><![CDATA[<p>Correct! \(\lim_{t \to \infty} i_L(t) = {@ta7@}\;\text{A}\), confirming the DC steady-state analysis.</p>]]></text>
-      </truefeedback>
-      <falsescoremode>=</falsescoremode>
-      <falsescore>0.7000000</falsescore>
-      <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
-      <falseanswernote>prt7-1-F</falseanswernote>
-      <falsefeedback format="html">
-        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta7@} A.</p>]]></text>
       </falsefeedback>
     </node>
   </prt>
@@ -847,7 +873,7 @@ dvdt0: float(V0_val/L_val);
       <name>prt2</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt2-1-T</expectedanswernote>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt3</name>
@@ -877,7 +903,7 @@ dvdt0: float(V0_val/L_val);
       <name>prt7</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt7-1-T</expectedanswernote>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
     </expected>
   </qtest>
 
@@ -922,7 +948,7 @@ dvdt0: float(V0_val/L_val);
       <name>prt2</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt2-1-T</expectedanswernote>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt3</name>
@@ -952,7 +978,7 @@ dvdt0: float(V0_val/L_val);
       <name>prt7</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt7-1-T</expectedanswernote>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
     </expected>
   </qtest>
 
@@ -1027,7 +1053,7 @@ dvdt0: float(V0_val/L_val);
       <name>prt7</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt7-1-T</expectedanswernote>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
     </expected>
   </qtest>
 
@@ -1072,7 +1098,7 @@ dvdt0: float(V0_val/L_val);
       <name>prt2</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt2-1-T</expectedanswernote>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt3</name>
@@ -1102,7 +1128,7 @@ dvdt0: float(V0_val/L_val);
       <name>prt7</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt7-1-T</expectedanswernote>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
     </expected>
   </qtest>
 
@@ -1147,7 +1173,7 @@ dvdt0: float(V0_val/L_val);
       <name>prt2</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt2-1-T</expectedanswernote>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt3</name>
@@ -1177,7 +1203,7 @@ dvdt0: float(V0_val/L_val);
       <name>prt7</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt7-1-T</expectedanswernote>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
     </expected>
   </qtest>
 
@@ -1222,7 +1248,7 @@ dvdt0: float(V0_val/L_val);
       <name>prt2</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt2-1-T</expectedanswernote>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt3</name>

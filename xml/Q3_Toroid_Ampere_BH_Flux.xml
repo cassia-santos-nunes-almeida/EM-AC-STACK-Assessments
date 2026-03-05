@@ -523,7 +523,7 @@ ta7: ta_design;
     </node>
   </prt>
 
-  <!-- prt2b: Part (b2) — Numerical B, 2-node cascade -->
+  <!-- prt2b: Part (b2) — Numerical B, single-node NumRelative 5% -->
   <prt>
     <name>prt2b</name>
     <value>1.0000000</value>
@@ -541,12 +541,12 @@ ta7: ta_design;
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
-      <truescore>0.7000000</truescore>
+      <truescore>1.0000000</truescore>
       <truepenalty/>
-      <truenextnode>1</truenextnode>
+      <truenextnode>-1</truenextnode>
       <trueanswernote>prt2b-0-T</trueanswernote>
       <truefeedback format="html">
-        <text/>
+        <text><![CDATA[<p>Correct! \(B = {@ta3@}\;\text{T}\).</p>]]></text>
       </truefeedback>
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
@@ -557,34 +557,9 @@ ta7: ta_design;
         <text><![CDATA[<p>Incorrect. Using \(B = \frac{NI \cdot \mu_0}{\ell_1/\mu_r + \ell_2}\) with the given values: \(B = {@ta3@}\;\text{T}\). Check that you used \(\mu_0 = 4\pi \times 10^{-7}\) and converted all units correctly.</p>]]></text>
       </falsefeedback>
     </node>
-    <node>
-      <name>1</name>
-      <description>SigFigsStrict check — 3 significant figures</description>
-      <answertest>SigFigsStrict</answertest>
-      <sans>ans3</sans>
-      <tans>ta3</tans>
-      <testoptions>3</testoptions>
-      <quiet>0</quiet>
-      <truescoremode>=</truescoremode>
-      <truescore>1.0000000</truescore>
-      <truepenalty/>
-      <truenextnode>-1</truenextnode>
-      <trueanswernote>prt2b-1-T</trueanswernote>
-      <truefeedback format="html">
-        <text><![CDATA[<p>Correct! \(B = {@ta3@}\;\text{T}\), with proper significant figures.</p>]]></text>
-      </truefeedback>
-      <falsescoremode>=</falsescoremode>
-      <falsescore>0.7000000</falsescore>
-      <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
-      <falseanswernote>prt2b-1-F</falseanswernote>
-      <falsefeedback format="html">
-        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta3@} T.</p>]]></text>
-      </falsefeedback>
-    </node>
   </prt>
 
-  <!-- prt3: Part (c) — H_core, 2-node cascade -->
+  <!-- prt3: Part (c) — H_core, single-node NumRelative 5% -->
   <prt>
     <name>prt3</name>
     <value>1.0000000</value>
@@ -602,12 +577,12 @@ ta7: ta_design;
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
-      <truescore>0.7000000</truescore>
+      <truescore>1.0000000</truescore>
       <truepenalty/>
-      <truenextnode>1</truenextnode>
+      <truenextnode>-1</truenextnode>
       <trueanswernote>prt3-0-T</trueanswernote>
       <truefeedback format="html">
-        <text/>
+        <text><![CDATA[<p>Correct! \(H_\text{core} = {@ta4@}\;\text{A/m}\).</p>]]></text>
       </truefeedback>
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
@@ -619,34 +594,9 @@ ta7: ta_design;
 <p><em>Note: \(H_\text{gap} = B/\mu_0 = {@ta_Hgap@}\;\text{A/m}\), which is \(\mu_r = {@mur_val@}\) times larger than \(H_\text{core}\). This illustrates why the gap dominates the magnetic circuit and stores most of the energy.</em></p>]]></text>
       </falsefeedback>
     </node>
-    <node>
-      <name>1</name>
-      <description>SigFigsStrict check — 3 significant figures</description>
-      <answertest>SigFigsStrict</answertest>
-      <sans>ans4</sans>
-      <tans>ta4</tans>
-      <testoptions>3</testoptions>
-      <quiet>0</quiet>
-      <truescoremode>=</truescoremode>
-      <truescore>1.0000000</truescore>
-      <truepenalty/>
-      <truenextnode>-1</truenextnode>
-      <trueanswernote>prt3-1-T</trueanswernote>
-      <truefeedback format="html">
-        <text><![CDATA[<p>Correct! \(H_\text{core} = {@ta4@}\;\text{A/m}\).</p>]]></text>
-      </truefeedback>
-      <falsescoremode>=</falsescoremode>
-      <falsescore>0.7000000</falsescore>
-      <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
-      <falseanswernote>prt3-1-F</falseanswernote>
-      <falsefeedback format="html">
-        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta4@} A/m.</p>]]></text>
-      </falsefeedback>
-    </node>
   </prt>
 
-  <!-- prt4: Part (d) — Flux Phi, 2-node cascade -->
+  <!-- prt4: Part (d) — Flux Phi, single-node NumRelative 5% -->
   <prt>
     <name>prt4</name>
     <value>1.0000000</value>
@@ -664,12 +614,12 @@ ta7: ta_design;
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
-      <truescore>0.7000000</truescore>
+      <truescore>1.0000000</truescore>
       <truepenalty/>
-      <truenextnode>1</truenextnode>
+      <truenextnode>-1</truenextnode>
       <trueanswernote>prt4-0-T</trueanswernote>
       <truefeedback format="html">
-        <text/>
+        <text><![CDATA[<p>Correct! \(\Phi = {@ta5@}\;\text{Wb}\).</p>]]></text>
       </truefeedback>
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
@@ -678,31 +628,6 @@ ta7: ta_design;
       <falseanswernote>prt4-0-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. The total flux is \(\Phi = B \cdot A\). Make sure you <strong>multiply</strong> your \(B\) value by the cross-sectional area \(A = {@Ac_val@}\;\text{m}^2\). With \(B = {@ta_B@}\;\text{T}\): \(\Phi = {@ta5@}\;\text{Wb}\).</p>]]></text>
-      </falsefeedback>
-    </node>
-    <node>
-      <name>1</name>
-      <description>SigFigsStrict check — 3 significant figures</description>
-      <answertest>SigFigsStrict</answertest>
-      <sans>ans5</sans>
-      <tans>ta5</tans>
-      <testoptions>3</testoptions>
-      <quiet>0</quiet>
-      <truescoremode>=</truescoremode>
-      <truescore>1.0000000</truescore>
-      <truepenalty/>
-      <truenextnode>-1</truenextnode>
-      <trueanswernote>prt4-1-T</trueanswernote>
-      <truefeedback format="html">
-        <text><![CDATA[<p>Correct! \(\Phi = {@ta5@}\;\text{Wb}\).</p>]]></text>
-      </truefeedback>
-      <falsescoremode>=</falsescoremode>
-      <falsescore>0.7000000</falsescore>
-      <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
-      <falseanswernote>prt4-1-F</falseanswernote>
-      <falsefeedback format="html">
-        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta5@} Wb.</p>]]></text>
       </falsefeedback>
     </node>
   </prt>
@@ -841,19 +766,19 @@ ta7: ta_design;
       <name>prt2b</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt2b-1-T</expectedanswernote>
+      <expectedanswernote>prt2b-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt3</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt3-1-T</expectedanswernote>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
@@ -916,19 +841,19 @@ ta7: ta_design;
       <name>prt2b</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt2b-1-T</expectedanswernote>
+      <expectedanswernote>prt2b-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt3</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt3-1-T</expectedanswernote>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
@@ -997,13 +922,13 @@ ta7: ta_design;
       <name>prt3</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt3-1-T</expectedanswernote>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
@@ -1066,13 +991,13 @@ ta7: ta_design;
       <name>prt2b</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt2b-1-T</expectedanswernote>
+      <expectedanswernote>prt2b-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt3</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt3-1-T</expectedanswernote>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt4</name>
@@ -1141,19 +1066,19 @@ ta7: ta_design;
       <name>prt2b</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt2b-1-T</expectedanswernote>
+      <expectedanswernote>prt2b-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt3</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt3-1-T</expectedanswernote>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>

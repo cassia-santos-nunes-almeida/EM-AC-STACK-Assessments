@@ -615,7 +615,7 @@ ta8: ta_design_reason;
     </node>
   </prt>
 
-  <!-- prt4: Part (d1) — Total reluctance, 2-node cascade -->
+  <!-- prt4: Part (d1) — Total reluctance, single-node NumRelative 5% -->
   <prt>
     <name>prt4</name>
     <value>1.0000000</value>
@@ -633,12 +633,12 @@ ta8: ta_design_reason;
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
-      <truescore>0.7000000</truescore>
+      <truescore>1.0000000</truescore>
       <truepenalty/>
-      <truenextnode>1</truenextnode>
+      <truenextnode>-1</truenextnode>
       <trueanswernote>prt4-0-T</trueanswernote>
       <truefeedback format="html">
-        <text/>
+        <text><![CDATA[<p>Correct! \(\mathcal{R}_\text{total} = {@ta4@}\;\text{H}^{-1}\).</p>]]></text>
       </truefeedback>
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
@@ -649,34 +649,9 @@ ta8: ta_design_reason;
         <text><![CDATA[<p>Incorrect. \(\mathcal{R}_\text{total} = \mathcal{R}_\text{core} + \mathcal{R}_\text{gap} = {@ta_Rc@} + {@ta_Rg@} = {@ta4@}\;\text{H}^{-1}\). Make sure you sum both reluctances (series magnetic circuit).</p>]]></text>
       </falsefeedback>
     </node>
-    <node>
-      <name>1</name>
-      <description>SigFigsStrict check — 3 significant figures</description>
-      <answertest>SigFigsStrict</answertest>
-      <sans>ans4</sans>
-      <tans>ta4</tans>
-      <testoptions>3</testoptions>
-      <quiet>0</quiet>
-      <truescoremode>=</truescoremode>
-      <truescore>1.0000000</truescore>
-      <truepenalty/>
-      <truenextnode>-1</truenextnode>
-      <trueanswernote>prt4-1-T</trueanswernote>
-      <truefeedback format="html">
-        <text><![CDATA[<p>Correct! \(\mathcal{R}_\text{total} = {@ta4@}\;\text{H}^{-1}\).</p>]]></text>
-      </truefeedback>
-      <falsescoremode>=</falsescoremode>
-      <falsescore>0.7000000</falsescore>
-      <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
-      <falseanswernote>prt4-1-F</falseanswernote>
-      <falsefeedback format="html">
-        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta4@} H\(^{-1}\).</p>]]></text>
-      </falsefeedback>
-    </node>
   </prt>
 
-  <!-- prt5: Part (d2) — Inductance, 2-node cascade -->
+  <!-- prt5: Part (d2) — Inductance, single-node NumRelative 5% -->
   <prt>
     <name>prt5</name>
     <value>1.0000000</value>
@@ -694,12 +669,12 @@ ta8: ta_design_reason;
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
-      <truescore>0.7000000</truescore>
+      <truescore>1.0000000</truescore>
       <truepenalty/>
-      <truenextnode>1</truenextnode>
+      <truenextnode>-1</truenextnode>
       <trueanswernote>prt5-0-T</trueanswernote>
       <truefeedback format="html">
-        <text/>
+        <text><![CDATA[<p>Correct! \(L = {@ta5@}\;\text{H}\).</p>]]></text>
       </truefeedback>
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
@@ -708,31 +683,6 @@ ta8: ta_design_reason;
       <falseanswernote>prt5-0-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. The formula \(L = N^2/\mathcal{R}_\text{total}\) comes from: \(\Phi = NI/\mathcal{R}\), flux linkage \(\lambda = N\Phi = N^2 I/\mathcal{R}\), giving \(L = \lambda/I = N^2/\mathcal{R}\). With \(N = {@N_val@}\), \(\mathcal{R}_\text{total} = {@ta_Rt@}\): \(L = {@ta5@}\;\text{H}\).</p>]]></text>
-      </falsefeedback>
-    </node>
-    <node>
-      <name>1</name>
-      <description>SigFigsStrict check — 3 significant figures</description>
-      <answertest>SigFigsStrict</answertest>
-      <sans>ans5</sans>
-      <tans>ta5</tans>
-      <testoptions>3</testoptions>
-      <quiet>0</quiet>
-      <truescoremode>=</truescoremode>
-      <truescore>1.0000000</truescore>
-      <truepenalty/>
-      <truenextnode>-1</truenextnode>
-      <trueanswernote>prt5-1-T</trueanswernote>
-      <truefeedback format="html">
-        <text><![CDATA[<p>Correct! \(L = {@ta5@}\;\text{H}\).</p>]]></text>
-      </truefeedback>
-      <falsescoremode>=</falsescoremode>
-      <falsescore>0.7000000</falsescore>
-      <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
-      <falseanswernote>prt5-1-F</falseanswernote>
-      <falsefeedback format="html">
-        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta5@} H.</p>]]></text>
       </falsefeedback>
     </node>
   </prt>
@@ -782,7 +732,7 @@ ta8: ta_design_reason;
     </node>
   </prt>
 
-  <!-- prt7: Part (e2) — Percentage change, 2-node cascade -->
+  <!-- prt7: Part (e2) — Percentage change, single-node NumRelative 5% -->
   <prt>
     <name>prt7</name>
     <value>1.0000000</value>
@@ -800,12 +750,12 @@ ta8: ta_design_reason;
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
-      <truescore>0.7000000</truescore>
+      <truescore>1.0000000</truescore>
       <truepenalty/>
-      <truenextnode>1</truenextnode>
+      <truenextnode>-1</truenextnode>
       <trueanswernote>prt7-0-T</trueanswernote>
       <truefeedback format="html">
-        <text/>
+        <text><![CDATA[<p>Correct! \(\Delta L/L \approx {@ta7@}\%\).</p>]]></text>
       </truefeedback>
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
@@ -817,31 +767,6 @@ ta8: ta_design_reason;
 \(\frac{\Delta L}{L} \approx \frac{dL/d\ell_g \times \Delta\ell_g}{L} \times 100\%\)
 where \(\Delta\ell_g = 0.1 \times \ell_g = {@float(delta_lg)@}\;\text{m}\).
 This gives \({@ta7@}\%\). This linearisation works well for small changes. The result shows \(L\) is very sensitive to gap length &mdash; a key insight for inductor design.</p>]]></text>
-      </falsefeedback>
-    </node>
-    <node>
-      <name>1</name>
-      <description>SigFigsStrict check — 3 significant figures</description>
-      <answertest>SigFigsStrict</answertest>
-      <sans>ans7</sans>
-      <tans>ta7</tans>
-      <testoptions>3</testoptions>
-      <quiet>0</quiet>
-      <truescoremode>=</truescoremode>
-      <truescore>1.0000000</truescore>
-      <truepenalty/>
-      <truenextnode>-1</truenextnode>
-      <trueanswernote>prt7-1-T</trueanswernote>
-      <truefeedback format="html">
-        <text><![CDATA[<p>Correct! \(\Delta L/L \approx {@ta7@}\%\).</p>]]></text>
-      </truefeedback>
-      <falsescoremode>=</falsescoremode>
-      <falsescore>0.7000000</falsescore>
-      <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
-      <falseanswernote>prt7-1-F</falseanswernote>
-      <falsefeedback format="html">
-        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta7@}%.</p>]]></text>
       </falsefeedback>
     </node>
   </prt>
@@ -953,13 +878,13 @@ This gives \({@ta7@}\%\). This linearisation works well for small changes. The r
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt5-1-T</expectedanswernote>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt6</name>
@@ -971,7 +896,7 @@ This gives \({@ta7@}\%\). This linearisation works well for small changes. The r
       <name>prt7</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt7-1-T</expectedanswernote>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt8</name>
@@ -1038,13 +963,13 @@ This gives \({@ta7@}\%\). This linearisation works well for small changes. The r
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt5-1-T</expectedanswernote>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt6</name>
@@ -1056,7 +981,7 @@ This gives \({@ta7@}\%\). This linearisation works well for small changes. The r
       <name>prt7</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt7-1-T</expectedanswernote>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt8</name>
@@ -1123,13 +1048,13 @@ This gives \({@ta7@}\%\). This linearisation works well for small changes. The r
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt5-1-T</expectedanswernote>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt6</name>
@@ -1141,7 +1066,7 @@ This gives \({@ta7@}\%\). This linearisation works well for small changes. The r
       <name>prt7</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt7-1-T</expectedanswernote>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt8</name>
@@ -1208,7 +1133,7 @@ This gives \({@ta7@}\%\). This linearisation works well for small changes. The r
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
@@ -1226,7 +1151,7 @@ This gives \({@ta7@}\%\). This linearisation works well for small changes. The r
       <name>prt7</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt7-1-T</expectedanswernote>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt8</name>
@@ -1293,13 +1218,13 @@ This gives \({@ta7@}\%\). This linearisation works well for small changes. The r
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt5-1-T</expectedanswernote>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt6</name>
@@ -1311,7 +1236,7 @@ This gives \({@ta7@}\%\). This linearisation works well for small changes. The r
       <name>prt7</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt7-1-T</expectedanswernote>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt8</name>
@@ -1378,13 +1303,13 @@ This gives \({@ta7@}\%\). This linearisation works well for small changes. The r
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt5-1-T</expectedanswernote>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt6</name>
@@ -1396,7 +1321,7 @@ This gives \({@ta7@}\%\). This linearisation works well for small changes. The r
       <name>prt7</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt7-1-T</expectedanswernote>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt8</name>
