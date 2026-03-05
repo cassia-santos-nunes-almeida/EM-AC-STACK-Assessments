@@ -27,6 +27,24 @@ When this skill is loaded, immediately read ALL context files in this order:
   - Each variant is a separate `<question>` element with its own STACK variables, PRTs, and feedback.
   - Numerical inputs use tolerances ±0.01 to ±0.5. Algebraic inputs are minimized.
   - Randomization via Maxima `rand()` with constrained ranges to avoid degenerate cases.
+  - **MANDATORY — Syntax hints after every input field:**
+    - Every `[[input:ansN]]` in the question HTML MUST be followed by a visible `<p><em>Syntax hint: ...</em></p>` line immediately after the input.
+    - MCQ / integer inputs: `"Enter a single integer, e.g. <code>2</code>"`.
+    - Numerical inputs: `"Enter a number, e.g. <code>0.523</code> or <code>5.23e-1</code>"` (adapt examples to the expected magnitude).
+    - Symbolic / algebraic inputs: show a complete example using the expected variable names, e.g. `"Write <code>lc/(mur*mu0*Ac)</code>"`.
+    - Expression inputs (functions of t, etc.): show exp/sin/cos syntax, e.g. `"Use <code>exp(...)</code>, <code>sin(...)</code>, <code>cos(...)</code>, and <code>t</code>."`.
+    - Notes / essay inputs: provide a content hint about what to address, e.g. `"Think about what Gauss's law for magnetism implies at the interface."`.
+  - **MANDATORY — Conceptual hints as Moodle progressive hints:**
+    - Every question MUST include 2–3 `<hint>` elements at the end of the `<question>` block (these are Moodle's progressive hints shown on "Try again").
+    - Hint 1: Intuition / physical reasoning.
+    - Hint 2: Relevant formulas and approach.
+    - Hint 3: Worked step or partial derivation.
+    - These are separate from the per-input syntax hints above — syntax hints are always visible; conceptual hints are revealed progressively.
+  - **MANDATORY — Grading robustness:**
+    - Never use `AlgEquiv` alone for numerical answers that may be rounded — use `NumRelative` with appropriate tolerance (typically 5%).
+    - Never use `SigFigsStrict` as a scoring gate — do not penalise students for significant-figure formatting.
+    - For complex expressions (e.g. i(t) with float coefficients), use a 2-node PRT: Node 0 tries `AlgEquiv`; if it fails, Node 1 evaluates both expressions at 2–3 numerical test points using feedback variables and compares with `NumRelative` (5% tolerance).
+    - For complex-valued roots (s₁), use a 2-node PRT: Node 0 tries `AlgEquiv`; if it fails, Node 1 compares real and imaginary parts numerically (2% tolerance) via feedback variables.
 - When creating SVG circuit diagrams, follow these conventions:
   - Sans-serif fonts (e.g., Arial, Helvetica).
   - High-contrast black lines on white background.
