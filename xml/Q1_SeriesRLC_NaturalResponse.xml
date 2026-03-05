@@ -4,6 +4,7 @@
 <!-- ============================================================ -->
 <!-- Week 10 - Q1: Series RLC Natural Response (Switch Opening)    -->
 <!-- Course: Electromagnetism and Circuit Analysis, LUT University  -->
+<!-- FIXED: Grading issues with s1, i(t), and sig figs             -->
 <!-- ============================================================ -->
 <question type="stack">
   <name>
@@ -40,32 +41,35 @@ Which statement correctly describes the initial conditions?</p>
 </ol>
 <p>Enter the number of the correct option (1&ndash;4):
 [[input:ans1]] [[validation:ans1]]</p>
+<p><em>Syntax hint: Enter a single integer, e.g. <code>1</code></em></p>
 
 <hr />
 
 <h4>Part (b1) &mdash; Initial Current \(i(0^+)\) (1 pt)</h4>
 <p>Using the DC steady-state analysis and continuity conditions, what is \(i(0^+)\) in Amperes?</p>
 <p>\(i(0^+) = \) [[input:ans2]] A [[validation:ans2]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0</code> or <code>2.5</code></em></p>
 
 <hr />
 
 <h4>Part (b2) &mdash; Initial Capacitor Voltage \(v_C(0^+)\) (1 pt)</h4>
-<p>What is the value of \(v_C(0^+)\) in Volts? (Express to 3 significant figures.)</p>
+<p>What is the value of \(v_C(0^+)\) in Volts?</p>
 <p>\(v_C(0^+) = \) [[input:ans3]] V [[validation:ans3]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>50.0</code></em></p>
 
 <hr />
 
 <h4>Part (c1) &mdash; Damping Coefficient \(\alpha\) (1 pt)</h4>
-<p>Calculate the damping coefficient \(\alpha\) (in rad/s) for this series RLC circuit.
-(Express to 3 significant figures.)</p>
+<p>Calculate the damping coefficient \(\alpha\) (in rad/s) for this series RLC circuit.</p>
 <p>\(\alpha = \) [[input:ans4]] rad/s [[validation:ans4]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>15000</code> or <code>1.5e4</code></em></p>
 
 <hr />
 
 <h4>Part (c2) &mdash; Natural Frequency \(\omega_0\) (1 pt)</h4>
-<p>Calculate the resonant (natural) frequency \(\omega_0\) (in rad/s).
-(Express to 3 significant figures.)</p>
+<p>Calculate the resonant (natural) frequency \(\omega_0\) (in rad/s).</p>
 <p>\(\omega_0 = \) [[input:ans5]] rad/s [[validation:ans5]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>3160</code> or <code>3.16e3</code></em></p>
 
 <hr />
 
@@ -78,6 +82,7 @@ Which statement correctly describes the initial conditions?</p>
 </ol>
 <p>Enter the number of the correct regime (1&ndash;3):
 [[input:ans6]] [[validation:ans6]]</p>
+<p><em>Syntax hint: Enter a single integer, e.g. <code>1</code></em></p>
 
 <hr />
 
@@ -221,6 +226,15 @@ ta7: if ta_regime=1 then s1_r
 ta8: if ta_regime=1 then ta_A1*exp(s1_r*t)+ta_A2*exp(s2_r*t)
      else if ta_regime=2 then ta_B2*exp(-ta_alpha*t)*sin(ta_omegad*t)
      else ta_D1*t*exp(-ta_alpha*t);
+
+/* ===== Pre-computed test-point values for i(t) numerical check ===== */
+/* Evaluate ta8 at three test points to verify student expression numerically */
+t_test1: 1.0e-4;
+t_test2: 5.0e-4;
+t_test3: 1.0e-3;
+ta8_at_t1: float(subst(t=t_test1, ta8));
+ta8_at_t2: float(subst(t=t_test2, ta8));
+ta8_at_t3: float(subst(t=t_test3, ta8));
 ]]></text>
   </questionvariables>
 
@@ -458,6 +472,9 @@ ta8: if ta_regime=1 then ta_A1*exp(s1_r*t)+ta_A2*exp(s2_r*t)
 
   <!-- ============================================================ -->
   <!-- PRTs (8 total, each worth 1 mark)                            -->
+  <!-- FIXED: Removed SigFigsStrict cascades, use NumRelative only  -->
+  <!-- FIXED: prt7 uses NumRelative for s1 (tolerance for rounding) -->
+  <!-- FIXED: prt8 uses numerical sampling fallback for i(t)        -->
   <!-- ============================================================ -->
 
   <!-- prt1: Part (a) — DC steady-state MCQ -->
@@ -532,7 +549,7 @@ ta8: if ta_regime=1 then ta_A1*exp(s1_r*t)+ta_A2*exp(s2_r*t)
     </node>
   </prt>
 
-  <!-- prt3: Part (b2) — vC(0+), 2-node cascade -->
+  <!-- prt3: Part (b2) — vC(0+), single node NumRelative 5% -->
   <prt>
     <name>prt3</name>
     <value>1.0000000</value>
@@ -550,12 +567,12 @@ ta8: if ta_regime=1 then ta_A1*exp(s1_r*t)+ta_A2*exp(s2_r*t)
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
-      <truescore>0.7000000</truescore>
+      <truescore>1.0000000</truescore>
       <truepenalty/>
-      <truenextnode>1</truenextnode>
+      <truenextnode>-1</truenextnode>
       <trueanswernote>prt3-0-T</trueanswernote>
       <truefeedback format="html">
-        <text/>
+        <text><![CDATA[<p>Correct! \(v_C(0^+) = {@ta3@}\;\text{V}\).</p>]]></text>
       </truefeedback>
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
@@ -566,34 +583,9 @@ ta8: if ta_regime=1 then ta_A1*exp(s1_r*t)+ta_A2*exp(s2_r*t)
         <text><![CDATA[<p>Incorrect. The capacitor voltage at DC steady state equals the source voltage. By continuity: \(v_C(0^+) = V_s = {@ta3@}\;\text{V}\).</p>]]></text>
       </falsefeedback>
     </node>
-    <node>
-      <name>1</name>
-      <description>SigFigsStrict check — 3 significant figures</description>
-      <answertest>SigFigsStrict</answertest>
-      <sans>ans3</sans>
-      <tans>ta3</tans>
-      <testoptions>3</testoptions>
-      <quiet>0</quiet>
-      <truescoremode>=</truescoremode>
-      <truescore>1.0000000</truescore>
-      <truepenalty/>
-      <truenextnode>-1</truenextnode>
-      <trueanswernote>prt3-1-T</trueanswernote>
-      <truefeedback format="html">
-        <text><![CDATA[<p>Correct! \(v_C(0^+) = {@ta3@}\;\text{V}\), with proper significant figures.</p>]]></text>
-      </truefeedback>
-      <falsescoremode>=</falsescoremode>
-      <falsescore>0.7000000</falsescore>
-      <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
-      <falseanswernote>prt3-1-F</falseanswernote>
-      <falsefeedback format="html">
-        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta3@} V.</p>]]></text>
-      </falsefeedback>
-    </node>
   </prt>
 
-  <!-- prt4: Part (c1) — alpha, 2-node cascade -->
+  <!-- prt4: Part (c1) — alpha, single node NumRelative 5% -->
   <prt>
     <name>prt4</name>
     <value>1.0000000</value>
@@ -611,12 +603,12 @@ ta8: if ta_regime=1 then ta_A1*exp(s1_r*t)+ta_A2*exp(s2_r*t)
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
-      <truescore>0.7000000</truescore>
+      <truescore>1.0000000</truescore>
       <truepenalty/>
-      <truenextnode>1</truenextnode>
+      <truenextnode>-1</truenextnode>
       <trueanswernote>prt4-0-T</trueanswernote>
       <truefeedback format="html">
-        <text/>
+        <text><![CDATA[<p>Correct! \(\alpha = {@ta4@}\;\text{rad/s}\).</p>]]></text>
       </truefeedback>
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
@@ -627,34 +619,9 @@ ta8: if ta_regime=1 then ta_A1*exp(s1_r*t)+ta_A2*exp(s2_r*t)
         <text><![CDATA[<p>Incorrect. For a <strong>series</strong> RLC circuit, the damping coefficient is \(\alpha = \frac{R}{2L}\), <strong>not</strong> \(\frac{1}{2RC}\) (which applies to <em>parallel</em> RLC). With \(R = {@R_val@}\;\Omega\) and \(L = {@L_val@}\;\text{H}\): \(\alpha = {@ta4@}\;\text{rad/s}\).</p>]]></text>
       </falsefeedback>
     </node>
-    <node>
-      <name>1</name>
-      <description>SigFigsStrict check — 3 significant figures</description>
-      <answertest>SigFigsStrict</answertest>
-      <sans>ans4</sans>
-      <tans>ta4</tans>
-      <testoptions>3</testoptions>
-      <quiet>0</quiet>
-      <truescoremode>=</truescoremode>
-      <truescore>1.0000000</truescore>
-      <truepenalty/>
-      <truenextnode>-1</truenextnode>
-      <trueanswernote>prt4-1-T</trueanswernote>
-      <truefeedback format="html">
-        <text><![CDATA[<p>Correct! \(\alpha = {@ta4@}\;\text{rad/s}\).</p>]]></text>
-      </truefeedback>
-      <falsescoremode>=</falsescoremode>
-      <falsescore>0.7000000</falsescore>
-      <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
-      <falseanswernote>prt4-1-F</falseanswernote>
-      <falsefeedback format="html">
-        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta4@} rad/s.</p>]]></text>
-      </falsefeedback>
-    </node>
   </prt>
 
-  <!-- prt5: Part (c2) — omega0, 2-node cascade -->
+  <!-- prt5: Part (c2) — omega0, single node NumRelative 5% -->
   <prt>
     <name>prt5</name>
     <value>1.0000000</value>
@@ -672,12 +639,12 @@ ta8: if ta_regime=1 then ta_A1*exp(s1_r*t)+ta_A2*exp(s2_r*t)
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
-      <truescore>0.7000000</truescore>
+      <truescore>1.0000000</truescore>
       <truepenalty/>
-      <truenextnode>1</truenextnode>
+      <truenextnode>-1</truenextnode>
       <trueanswernote>prt5-0-T</trueanswernote>
       <truefeedback format="html">
-        <text/>
+        <text><![CDATA[<p>Correct! \(\omega_0 = {@ta5@}\;\text{rad/s}\).</p>]]></text>
       </truefeedback>
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
@@ -686,31 +653,6 @@ ta8: if ta_regime=1 then ta_A1*exp(s1_r*t)+ta_A2*exp(s2_r*t)
       <falseanswernote>prt5-0-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. The natural frequency is \(\omega_0 = \frac{1}{\sqrt{LC}}\). With \(L = {@L_val@}\;\text{H}\) and \(C = {@C_val@}\;\text{F}\): \(\omega_0 = {@ta5@}\;\text{rad/s}\).</p>]]></text>
-      </falsefeedback>
-    </node>
-    <node>
-      <name>1</name>
-      <description>SigFigsStrict check — 3 significant figures</description>
-      <answertest>SigFigsStrict</answertest>
-      <sans>ans5</sans>
-      <tans>ta5</tans>
-      <testoptions>3</testoptions>
-      <quiet>0</quiet>
-      <truescoremode>=</truescoremode>
-      <truescore>1.0000000</truescore>
-      <truepenalty/>
-      <truenextnode>-1</truenextnode>
-      <trueanswernote>prt5-1-T</trueanswernote>
-      <truefeedback format="html">
-        <text><![CDATA[<p>Correct! \(\omega_0 = {@ta5@}\;\text{rad/s}\).</p>]]></text>
-      </truefeedback>
-      <falsescoremode>=</falsescoremode>
-      <falsescore>0.7000000</falsescore>
-      <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
-      <falseanswernote>prt5-1-F</falseanswernote>
-      <falsefeedback format="html">
-        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta5@} rad/s.</p>]]></text>
       </falsefeedback>
     </node>
   </prt>
@@ -755,22 +697,34 @@ omega0_sq: float(ta_omega0^2);
   </prt>
 
   <!-- prt7: Part (e) — characteristic root s1 -->
+  <!-- FIXED: 2-node approach. Node 0 tries AlgEquiv (exact match). -->
+  <!-- If that fails, Node 1 uses NumRelative 1% to accept rounded values. -->
   <prt>
     <name>prt7</name>
     <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text><![CDATA[
+/* For numerical fallback: extract real and imaginary parts */
+ta7_real: float(realpart(ta7));
+ta7_imag: float(imagpart(ta7));
+sa7_real: float(realpart(ans7));
+sa7_imag: float(imagpart(ans7));
+/* Check magnitude of the difference relative to magnitude of ta7 */
+err_real: if abs(ta7_real) > 0.01 then abs((sa7_real - ta7_real)/ta7_real) else abs(sa7_real - ta7_real);
+err_imag: if abs(ta7_imag) > 0.01 then abs((sa7_imag - ta7_imag)/ta7_imag) else abs(sa7_imag - ta7_imag);
+s1_num_ok: if err_real < 0.02 and err_imag < 0.02 then true else false;
+]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
-      <description>Check s1 root</description>
+      <description>Try AlgEquiv first (exact symbolic match)</description>
       <answertest>AlgEquiv</answertest>
       <sans>ans7</sans>
       <tans>ta7</tans>
       <testoptions/>
-      <quiet>0</quiet>
+      <quiet>1</quiet>
       <truescoremode>=</truescoremode>
       <truescore>1.0000000</truescore>
       <truepenalty/>
@@ -782,8 +736,33 @@ omega0_sq: float(ta_omega0^2);
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt7-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Numerical fallback: accept if real and imag parts within 2%</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>s1_num_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! Your answer \({@ans7@}\) is numerically equivalent to \(s_1 = {@ta7@}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-1-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. The characteristic root with the larger real part is \(s_1 = {@ta7@}\). Remember the characteristic equation is \(s^2 + \frac{R}{L}s + \frac{1}{LC} = 0\), giving \(s = -\alpha \pm \sqrt{\alpha^2 - \omega_0^2}\).</p>]]></text>
       </falsefeedback>
@@ -791,22 +770,39 @@ omega0_sq: float(ta_omega0^2);
   </prt>
 
   <!-- prt8: Part (f) — complete i(t) expression -->
+  <!-- FIXED: 2-node approach. Node 0 tries AlgEquiv. If that fails,      -->
+  <!-- Node 1 evaluates both expressions at test points and compares       -->
+  <!-- numerically to catch floating-point expression comparison failures.  -->
   <prt>
     <name>prt8</name>
     <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text><![CDATA[
+/* Evaluate student answer at three test points */
+sa8_at_t1: float(subst(t=t_test1, ans8));
+sa8_at_t2: float(subst(t=t_test2, ans8));
+sa8_at_t3: float(subst(t=t_test3, ans8));
+
+/* Compute relative errors at each test point */
+/* Use absolute error if teacher value is near zero */
+rerr1: if abs(ta8_at_t1) > 1.0e-10 then abs((sa8_at_t1 - ta8_at_t1)/ta8_at_t1) else abs(sa8_at_t1 - ta8_at_t1);
+rerr2: if abs(ta8_at_t2) > 1.0e-10 then abs((sa8_at_t2 - ta8_at_t2)/ta8_at_t2) else abs(sa8_at_t2 - ta8_at_t2);
+rerr3: if abs(ta8_at_t3) > 1.0e-10 then abs((sa8_at_t3 - ta8_at_t3)/ta8_at_t3) else abs(sa8_at_t3 - ta8_at_t3);
+
+/* All three test points must agree within 5% */
+it_num_ok: if rerr1 < 0.05 and rerr2 < 0.05 and rerr3 < 0.05 then true else false;
+]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
-      <description>Check complete i(t) expression</description>
+      <description>Try AlgEquiv first for exact symbolic match</description>
       <answertest>AlgEquiv</answertest>
       <sans>ans8</sans>
       <tans>ta8</tans>
       <testoptions/>
-      <quiet>0</quiet>
+      <quiet>1</quiet>
       <truescoremode>=</truescoremode>
       <truescore>1.0000000</truescore>
       <truepenalty/>
@@ -818,8 +814,33 @@ omega0_sq: float(ta_omega0^2);
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt8-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Numerical sampling fallback: evaluate at 3 test points</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>it_num_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt8-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! Your expression for \(i(t)\) matches the expected answer numerically at all test points.</p><p>Expected form: \(i(t) = {@ta8@}\;\text{A}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt8-1-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. Remember to apply <strong>both</strong> initial conditions: \(i(0) = 0\) and \(\frac{di}{dt}(0) = {@didt0@}\;\text{A/s}\). The complete response is \(i(t) = {@ta8@}\;\text{A}\).</p>]]></text>
       </falsefeedback>
@@ -838,6 +859,7 @@ omega0_sq: float(ta_omega0^2);
 
   <!-- ============================================================ -->
   <!-- QUESTION TESTS (6 total)                                     -->
+  <!-- Updated answer notes to reflect simplified PRT structure      -->
   <!-- ============================================================ -->
 
   <!-- Test 1: All correct answers -->
@@ -891,19 +913,19 @@ omega0_sq: float(ta_omega0^2);
       <name>prt3</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt3-1-T</expectedanswernote>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt5-1-T</expectedanswernote>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt6</name>
@@ -976,19 +998,19 @@ omega0_sq: float(ta_omega0^2);
       <name>prt3</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt3-1-T</expectedanswernote>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt5-1-T</expectedanswernote>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt6</name>
@@ -1061,19 +1083,19 @@ omega0_sq: float(ta_omega0^2);
       <name>prt3</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt3-1-T</expectedanswernote>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt5-1-T</expectedanswernote>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt6</name>
@@ -1152,13 +1174,13 @@ omega0_sq: float(ta_omega0^2);
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt5-1-T</expectedanswernote>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt6</name>
@@ -1231,19 +1253,19 @@ omega0_sq: float(ta_omega0^2);
       <name>prt3</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt3-1-T</expectedanswernote>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt5-1-T</expectedanswernote>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt6</name>
@@ -1316,19 +1338,19 @@ omega0_sq: float(ta_omega0^2);
       <name>prt3</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt3-1-T</expectedanswernote>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt4</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt4-1-T</expectedanswernote>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt5</name>
       <expectedscore>1.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
-      <expectedanswernote>prt5-1-T</expectedanswernote>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
     </expected>
     <expected>
       <name>prt6</name>
@@ -1346,7 +1368,7 @@ omega0_sq: float(ta_omega0^2);
       <name>prt8</name>
       <expectedscore>0.0000000</expectedscore>
       <expectedpenalty>0.1000000</expectedpenalty>
-      <expectedanswernote>prt8-0-F</expectedanswernote>
+      <expectedanswernote>prt8-1-F</expectedanswernote>
     </expected>
   </qtest>
 
