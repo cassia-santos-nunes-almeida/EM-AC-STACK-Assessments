@@ -1,0 +1,1186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ============================================================ -->
+<!-- Week 10 - Q3: Toroidal Core — Ampère, B-H Relation, and Flux  -->
+<!-- Course: Electromagnetism and Circuit Analysis, LUT University  -->
+<!-- Module 3: Magnetics & Induction                               -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Week 10 &ndash; Q3: Toroidal Core &mdash; Amp&egrave;re, B&ndash;H Relation, and Flux</h3>
+<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><em>Module 3: Magnetics &amp; Induction. This is a training exercise requiring physical reasoning.</em></p>
+<p><strong>Total: 7 points | Penalty per wrong attempt: 10%</strong></p>
+
+<hr />
+
+<p>A toroidal core carries \(N = {@N_val@}\) turns of wire with current \(I = {@I_val@}\;\text{A}\).</p>
+
+<p>The toroid consists of:</p>
+<ul>
+  <li>A <strong>ferromagnetic core section</strong> of length \(\ell_1 = {@l1_val@}\;\text{m}\) and relative permeability \(\mu_r = {@mur_val@}\).</li>
+  <li>An <strong>air gap</strong> of length \(\ell_2 = {@l2_val@}\;\text{m}\) (with \(\mu_r = 1\)).</li>
+</ul>
+<p>The cross-sectional area \(A = {@Ac_val@}\;\text{m}^2\) is <strong>uniform</strong> throughout both sections.</p>
+<p>Use \(\mu_0 = 4\pi \times 10^{-7}\;\text{H/m}\).</p>
+
+<hr />
+
+<h4>Part (a) &mdash; Which Law? (1 pt)</h4>
+<p>To find the magnetic field intensity \(H\) inside the toroid,
+which law do you apply along a closed circular path through the core?</p>
+<ol>
+  <li>Biot&ndash;Savart law (integration over current elements)</li>
+  <li>Amp&egrave;re&rsquo;s circuital law (\(\oint \mathbf{H} \cdot d\mathbf{l} = NI_\text{enclosed}\))</li>
+  <li>Faraday&rsquo;s law (\(\oint \mathbf{E} \cdot d\mathbf{l} = -d\Phi/dt\))</li>
+</ol>
+<p>Enter the number of the correct option (1&ndash;3):
+[[input:ans1]] [[validation:ans1]]</p>
+
+<hr />
+
+<h4>Part (b1) &mdash; Symbolic Expression for \(B\) (1 pt)</h4>
+<p>Using Amp&egrave;re&rsquo;s law and flux continuity (\(B\) is uniform across the cross-section),
+derive a symbolic expression for the flux density \(B\) in terms of the given quantities.</p>
+<p><em>Start from \(NI = H_\text{core} \cdot \ell_1 + H_\text{gap} \cdot \ell_2\)
+and use \(B = \mu_r \mu_0 H_\text{core} = \mu_0 H_\text{gap}\).</em></p>
+<p><em>Syntax hint: Use <code>N</code> for turns, <code>I</code> for current,
+<code>mu0</code> for \(\mu_0\), <code>mur</code> for \(\mu_r\),
+<code>l1</code> and <code>l2</code> for lengths.</em></p>
+<p>\(B = \) [[input:ans2]] T [[validation:ans2]]</p>
+
+<hr />
+
+<h4>Part (b2) &mdash; Numerical Value of \(B\) (1 pt)</h4>
+<p>Now substitute the values: \(N = {@N_val@}\), \(I = {@I_val@}\;\text{A}\),
+\(\mu_0 = 4\pi \times 10^{-7}\;\text{H/m}\), \(\mu_r = {@mur_val@}\),
+\(\ell_1 = {@l1_val@}\;\text{m}\), \(\ell_2 = {@l2_val@}\;\text{m}\).</p>
+<p>Calculate \(B\) in Tesla. (Express to 3 significant figures.)</p>
+<p>\(B = \) [[input:ans3]] T [[validation:ans3]]</p>
+
+<hr />
+
+<h4>Part (c) &mdash; \(H_\text{core}\) (1 pt)</h4>
+<p>From \(B = \mu_r \mu_0 H_\text{core}\), find the magnetic field intensity
+\(H_\text{core}\) in the ferromagnetic section (in A/m).
+(Express to 3 significant figures.)</p>
+<p>\(H_\text{core} = \) [[input:ans4]] A/m [[validation:ans4]]</p>
+
+<hr />
+
+<h4>Part (d) &mdash; Total Magnetic Flux \(\Phi\) (1 pt)</h4>
+<p>The flux \(\Phi = B \cdot A\) passes through the uniform cross-section
+\(A = {@Ac_val@}\;\text{m}^2\).</p>
+<p>Calculate the total magnetic flux in Weber. (Express to 3 significant figures.)</p>
+<p>\(\Phi = \) [[input:ans5]] Wb [[validation:ans5]]</p>
+
+<hr />
+
+<h4>Part (e) &mdash; Flux Continuity Reasoning (1 pt &mdash; participation)</h4>
+<p>Explain in 1&ndash;2 sentences why the magnetic flux density \(B\) has the
+<strong>same value</strong> in both the core section and the air gap,
+despite their very different permeabilities.</p>
+<p><em>Hint: Think about what Gauss&rsquo;s law for magnetism (\(\nabla \cdot \mathbf{B} = 0\))
+implies at the interface between two materials.</em></p>
+<p>[[input:ans6]] [[validation:ans6]]</p>
+
+<hr />
+
+<h4>Part (f) &mdash; Design Reasoning (1 pt)</h4>
+<p>A transformer core should store minimal magnetic energy (to transfer it efficiently
+to the secondary). A power inductor core must store maximal energy.
+Which device intentionally uses an air gap, and why?</p>
+<ol>
+  <li>The transformer &mdash; the gap increases flux linkage between primary and secondary.</li>
+  <li>The power inductor &mdash; the gap reduces effective permeability, preventing core
+      saturation and allowing more energy storage in the field.</li>
+</ol>
+<p>Enter 1 or 2:
+[[input:ans7]] [[validation:ans7]]</p>
+]]></text>
+  </questiontext>
+
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h3>Worked Solution</h3>
+
+<h4>Step 1: Identify the Law</h4>
+<p><strong>Amp&egrave;re&rsquo;s circuital law</strong> is the correct tool:
+\(\oint \mathbf{H} \cdot d\mathbf{l} = NI\).</p>
+<p>For a toroid with symmetry, the path integral splits into two segments:</p>
+<p>\[H_\text{core} \cdot \ell_1 + H_\text{gap} \cdot \ell_2 = NI\]</p>
+
+<h4>Step 2: Flux Continuity</h4>
+<p>Because \(\nabla \cdot \mathbf{B} = 0\) (no magnetic monopoles) and the cross-section
+is uniform, the normal component of \(\mathbf{B}\) must be continuous across the
+core&ndash;gap interface. Therefore \(B_\text{core} = B_\text{gap} = B\).</p>
+<p>The constitutive relations give:</p>
+<ul>
+  <li>Core: \(B = \mu_r \mu_0 H_\text{core}\) &nbsp;&rarr;&nbsp; \(H_\text{core} = \frac{B}{\mu_r \mu_0}\)</li>
+  <li>Gap: \(B = \mu_0 H_\text{gap}\) &nbsp;&rarr;&nbsp; \(H_\text{gap} = \frac{B}{\mu_0}\)</li>
+</ul>
+
+<h4>Step 3: Derive \(B\) Symbolically</h4>
+<p>Substituting into Amp&egrave;re&rsquo;s law:</p>
+<p>\[\frac{B}{\mu_r \mu_0} \cdot \ell_1 + \frac{B}{\mu_0} \cdot \ell_2 = NI\]</p>
+<p>\[B \left(\frac{\ell_1}{\mu_r \mu_0} + \frac{\ell_2}{\mu_0}\right) = NI\]</p>
+<p>\[B = \frac{NI \cdot \mu_0}{\frac{\ell_1}{\mu_r} + \ell_2}\]</p>
+
+<h4>Step 4: Numerical Evaluation</h4>
+<p>With \(N = {@N_val@}\), \(I = {@I_val@}\;\text{A}\), \(\mu_r = {@mur_val@}\),
+\(\ell_1 = {@l1_val@}\;\text{m}\), \(\ell_2 = {@l2_val@}\;\text{m}\):</p>
+<p>\[B = \frac{{@N_val@} \times {@I_val@} \times 4\pi \times 10^{-7}}{\frac{{@l1_val@}}{{@mur_val@}} + {@l2_val@}} = {@ta_B@}\;\text{T}\]</p>
+
+<h4>Step 5: \(H_\text{core}\)</h4>
+<p>\[H_\text{core} = \frac{B}{\mu_r \mu_0} = \frac{{@ta_B@}}{{@mur_val@} \times 4\pi \times 10^{-7}} = {@ta_Hcore@}\;\text{A/m}\]</p>
+<p><em>Note: \(H_\text{gap} = B/\mu_0 = \mu_r \times H_\text{core}\), which is
+{@mur_val@} times larger! The gap dominates the magnetic circuit even though it is
+physically tiny (\(\ell_2 = {@l2_val@}\;\text{m}\)).</em></p>
+
+<h4>Step 6: Magnetic Flux</h4>
+<p>\[\Phi = B \cdot A = {@ta_B@} \times {@Ac_val@} = {@ta_phi@}\;\text{Wb}\]</p>
+
+<h4>Step 7: Why the Gap Matters for Design</h4>
+<p>An air gap <strong>increases the reluctance</strong> of the magnetic circuit,
+which <strong>reduces inductance</strong> but <strong>prevents core saturation</strong>.
+A <strong>power inductor</strong> intentionally uses a gap so it can handle higher
+currents without saturating, storing energy in the gap field (\(u = B^2/(2\mu_0)\)).
+A transformer avoids gaps to maintain high mutual coupling.</p>
+
+<hr />
+
+<h4>Answer Summary</h4>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr><th>Part</th><th>Quantity</th><th>Correct Answer</th></tr>
+  <tr><td>(a)</td><td>Which law?</td><td>Option {@ta_law@} (Amp&egrave;re)</td></tr>
+  <tr><td>(b1)</td><td>\(B\) (symbolic)</td><td>\({@ta_B_sym@}\) T</td></tr>
+  <tr><td>(b2)</td><td>\(B\) (numerical)</td><td>{@ta_B@} T</td></tr>
+  <tr><td>(c)</td><td>\(H_\text{core}\)</td><td>{@ta_Hcore@} A/m</td></tr>
+  <tr><td>(d)</td><td>\(\Phi\)</td><td>{@ta_phi@} Wb</td></tr>
+  <tr><td>(e)</td><td>Flux continuity</td><td>(Participation mark)</td></tr>
+  <tr><td>(f)</td><td>Design reasoning</td><td>Option {@ta_design@} (Power inductor)</td></tr>
+</table>
+]]></text>
+  </generalfeedback>
+
+  <defaultgrade>7.0000000</defaultgrade>
+  <penalty>0.1000000</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+
+  <stackversion>
+    <text>2024032101</text>
+  </stackversion>
+
+  <questionvariables>
+    <text><![CDATA[
+/* ===== Randomised parameters ===== */
+N_val:  rand([100, 200, 500]);
+I_val:  rand([1, 2, 5]);
+l1_val: rand([0.2, 0.3, 0.4]);
+l2_val: rand([5e-4, 1e-3, 2e-3]);
+Ac_val: rand([4e-4, 9e-4, 16e-4]);
+mur_val: rand([500, 1000, 2000]);
+mu0: 4*%pi*1e-7;
+
+/* ===== Derived answers ===== */
+/* From Ampere: NI = H_core*l1 + H_gap*l2                        */
+/* Flux continuity: B = mur*mu0*H_core = mu0*H_gap                */
+/* -> NI = B*l1/(mur*mu0) + B*l2/mu0 = B*(l1/(mur*mu0)+l2/mu0)  */
+/* -> B = N*I*mu0 / (l1/mur + l2)                                 */
+
+ta_B_sym: N_val*I_val*mu0 / (l1_val/mur_val + l2_val);
+ta_B:     float(ta_B_sym);
+
+ta_Hcore_sym: ta_B_sym/(mur_val*mu0);
+ta_Hcore: float(ta_Hcore_sym);
+
+ta_Hgap: float(ta_B/(mu0));
+
+ta_phi:   float(ta_B * Ac_val);
+
+/* ===== Teacher answers ===== */
+ta_law:    2;
+ta_design: 2;
+
+ta1: ta_law;
+ta2: ta_B_sym;
+ta3: ta_B;
+ta4: ta_Hcore;
+ta5: ta_phi;
+/* ta6 is essay/notes — always pass */
+ta6: "Gauss law for magnetism requires flux continuity.";
+ta7: ta_design;
+]]></text>
+  </questionvariables>
+
+  <specificfeedback format="html">
+    <text><![CDATA[
+<h4>Part (a) &mdash; Which Law?</h4>
+<p>Your answer: {@ans1@} &nbsp;|&nbsp; Correct answer: {@ta1@}</p>
+<div>[[feedback:prt1]]</div>
+
+<h4>Part (b1) &mdash; Symbolic \(B\)</h4>
+<p>Your answer: {@ans2@}</p>
+<p>Expected: {@ta2@}</p>
+<div>[[feedback:prt2a]]</div>
+
+<h4>Part (b2) &mdash; Numerical \(B\)</h4>
+<p>Your answer: {@ans3@} &nbsp;|&nbsp; Correct answer: {@ta3@} T</p>
+<div>[[feedback:prt2b]]</div>
+
+<h4>Part (c) &mdash; \(H_\text{core}\)</h4>
+<p>Your answer: {@ans4@} &nbsp;|&nbsp; Correct answer: {@ta4@} A/m</p>
+<div>[[feedback:prt3]]</div>
+
+<h4>Part (d) &mdash; Total Flux \(\Phi\)</h4>
+<p>Your answer: {@ans5@} &nbsp;|&nbsp; Correct answer: {@ta5@} Wb</p>
+<div>[[feedback:prt4]]</div>
+
+<h4>Part (e) &mdash; Flux Continuity Reasoning</h4>
+<p>Your explanation:</p>
+<p>{@ans6@}</p>
+<div>[[feedback:prt5]]</div>
+
+<h4>Part (f) &mdash; Design Reasoning</h4>
+<p>Your answer: {@ans7@} &nbsp;|&nbsp; Correct answer: {@ta7@}</p>
+<div>[[feedback:prt6]]</div>
+]]></text>
+  </specificfeedback>
+
+  <questionnote>
+    <text>N={@N_val@}, I={@I_val@} A, l1={@l1_val@} m, l2={@l2_val@} m, A={@Ac_val@} m², µr={@mur_val@} | B={@ta_B@} T, Φ={@ta_phi@} Wb</text>
+  </questionnote>
+
+  <questiondescription format="html">
+    <text><![CDATA[<p>Toroidal core with air gap — apply Ampère's law, derive B symbolically and numerically, find H_core, flux, and reason about design. Week 10 training exercise.</p>]]></text>
+  </questiondescription>
+
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>j</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <!-- ============================================================ -->
+  <!-- INPUTS (7 total for 6 parts: a, b1, b2, c, d, e, f)         -->
+  <!-- ============================================================ -->
+
+  <!-- ans1: Part (a) Which law MCQ -->
+  <input>
+    <name>ans1</name>
+    <type>algebraic</type>
+    <tans>ta1</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans2: Part (b1) Symbolic B expression -->
+  <input>
+    <name>ans2</name>
+    <type>algebraic</type>
+    <tans>ta2</tans>
+    <boxsize>35</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>N*I*mu0/(l1/mur + l2)</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords>mu0,mur,l1,l2</allowwords>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans3: Part (b2) Numerical B value -->
+  <input>
+    <name>ans3</name>
+    <type>numerical</type>
+    <tans>ta3</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans4: Part (c) Numerical H_core -->
+  <input>
+    <name>ans4</name>
+    <type>numerical</type>
+    <tans>ta4</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans5: Part (d) Numerical flux Phi -->
+  <input>
+    <name>ans5</name>
+    <type>numerical</type>
+    <tans>ta5</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans6: Part (e) Reasoning (notes/essay) -->
+  <input>
+    <name>ans6</name>
+    <type>notes</type>
+    <tans>ta6</tans>
+    <boxsize>35</boxsize>
+    <strictsyntax>0</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint>Think about what Gauss's law for magnetism implies at the interface.</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans7: Part (f) Design reasoning MCQ -->
+  <input>
+    <name>ans7</name>
+    <type>algebraic</type>
+    <tans>ta7</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ============================================================ -->
+  <!-- PRTs (7 total: prt1, prt2a, prt2b, prt3, prt4, prt5, prt6)  -->
+  <!-- prt1=1, prt2a=1, prt2b=1, prt3=1, prt4=1, prt5=1, prt6=1   -->
+  <!-- ============================================================ -->
+
+  <!-- prt1: Part (a) — Which law MCQ -->
+  <prt>
+    <name>prt1</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check which-law MCQ</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans1</sans>
+      <tans>ta1</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! Amp&egrave;re&rsquo;s circuital law \(\oint \mathbf{H} \cdot d\mathbf{l} = NI\) is the direct tool for computing \(H\) in symmetric geometries like toroids.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The correct answer is {@ta1@}: <strong>Amp&egrave;re&rsquo;s circuital law</strong> \(\oint \mathbf{H} \cdot d\mathbf{l} = NI\).</p>
+<ul>
+  <li>Biot&ndash;Savart gives \(\mathbf{B}\) from current elements &mdash; less direct for this geometry.</li>
+  <li>Faraday&rsquo;s law relates \(\mathbf{E}\) to changing flux &mdash; not relevant for static fields.</li>
+</ul>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt2a: Part (b1) — Symbolic B expression -->
+  <prt>
+    <name>prt2a</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check symbolic B expression via AlgEquiv</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2a-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! Your expression for \(B\) is algebraically equivalent to the expected result: \(B = {@ta2@}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2a-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Here is the derivation step by step:</p>
+<ol>
+  <li>Amp&egrave;re: \(H_\text{core} \cdot \ell_1 + H_\text{gap} \cdot \ell_2 = NI\)</li>
+  <li>Substituting \(H_\text{core} = B/(\mu_r \mu_0)\) and \(H_\text{gap} = B/\mu_0\):</li>
+  <li>\(\frac{B \ell_1}{\mu_r \mu_0} + \frac{B \ell_2}{\mu_0} = NI\)</li>
+  <li>Factor out \(B\): \(B\left(\frac{\ell_1}{\mu_r \mu_0} + \frac{\ell_2}{\mu_0}\right) = NI\)</li>
+  <li>Solve: \(B = \frac{NI \cdot \mu_0}{\ell_1/\mu_r + \ell_2}\)</li>
+</ol>
+<p>Expected: \(B = {@ta2@}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt2b: Part (b2) — Numerical B, 2-node cascade -->
+  <prt>
+    <name>prt2b</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative check B within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>1</truenextnode>
+      <trueanswernote>prt2b-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text/>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2b-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Using \(B = \frac{NI \cdot \mu_0}{\ell_1/\mu_r + \ell_2}\) with the given values: \(B = {@ta3@}\;\text{T}\). Check that you used \(\mu_0 = 4\pi \times 10^{-7}\) and converted all units correctly.</p>]]></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>SigFigsStrict check — 3 significant figures</description>
+      <answertest>SigFigsStrict</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions>3</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2b-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(B = {@ta3@}\;\text{T}\), with proper significant figures.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.7000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2b-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta3@} T.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt3: Part (c) — H_core, 2-node cascade -->
+  <prt>
+    <name>prt3</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative check H_core within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text/>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Use \(H_\text{core} = \frac{B}{\mu_r \mu_0}\). With \(B = {@ta_B@}\;\text{T}\), \(\mu_r = {@mur_val@}\): \(H_\text{core} = {@ta4@}\;\text{A/m}\).</p>
+<p><em>Note: \(H_\text{gap} = B/\mu_0 = {@ta_Hgap@}\;\text{A/m}\), which is \(\mu_r = {@mur_val@}\) times larger than \(H_\text{core}\). This illustrates why the gap dominates the magnetic circuit and stores most of the energy.</em></p>]]></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>SigFigsStrict check — 3 significant figures</description>
+      <answertest>SigFigsStrict</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>3</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(H_\text{core} = {@ta4@}\;\text{A/m}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.7000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta4@} A/m.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt4: Part (d) — Flux Phi, 2-node cascade -->
+  <prt>
+    <name>prt4</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative check Phi within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text/>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The total flux is \(\Phi = B \cdot A\). Make sure you <strong>multiply</strong> your \(B\) value by the cross-sectional area \(A = {@Ac_val@}\;\text{m}^2\). With \(B = {@ta_B@}\;\text{T}\): \(\Phi = {@ta5@}\;\text{Wb}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>SigFigsStrict check — 3 significant figures</description>
+      <answertest>SigFigsStrict</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions>3</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\Phi = {@ta5@}\;\text{Wb}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.7000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Your value is numerically correct but not expressed to 3 significant figures. Score: 70%. Expected: {@ta5@} Wb.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt5: Part (e) — Reasoning (always pass / participation) -->
+  <prt>
+    <name>prt5</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Always award participation mark for notes input</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>1</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Thank you for your explanation. <strong>Model answer:</strong> Gauss&rsquo;s law for magnetism (\(\nabla \cdot \mathbf{B} = 0\), equivalently \(\oint \mathbf{B} \cdot d\mathbf{A} = 0\)) requires that the normal component of \(\mathbf{B}\) is continuous across any interface. Since the toroid cross-section is uniform and \(\mathbf{B}\) is everywhere normal to the cross-section, the same \(B\) must exist in both the core and the gap. What differs is \(H\): \(H_\text{gap} = \mu_r \times H_\text{core}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>1.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Participation mark awarded. <strong>Model answer:</strong> Gauss&rsquo;s law for magnetism requires the normal component of \(\mathbf{B}\) to be continuous at any interface. With a uniform cross-section, \(B\) must be the same in both sections.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt6: Part (f) — Design reasoning MCQ -->
+  <prt>
+    <name>prt6</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check design reasoning MCQ</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans7</sans>
+      <tans>ta7</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! A <strong>power inductor</strong> intentionally uses an air gap. The gap increases reluctance and reduces effective permeability, which prevents core saturation at high currents and allows linear energy storage in the magnetic field (\(u = B^2/(2\mu_0)\) is large in the gap).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt6-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The correct answer is {@ta7@}. An air gap dramatically <strong>reduces inductance</strong> (increases reluctance), which may seem counterproductive. But it <strong>prevents core saturation</strong> at high currents, allowing the inductor to store more energy linearly. The energy density in the gap \(u = B^2/(2\mu_0)\) is much higher than in the core \(u = B^2/(2\mu_r\mu_0)\).</p>
+<p>Transformers <strong>avoid</strong> gaps to maintain high mutual coupling between primary and secondary windings.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- DEPLOYED SEEDS                                                -->
+  <!-- ============================================================ -->
+  <deployedseed>10101</deployedseed>
+  <deployedseed>20202</deployedseed>
+  <deployedseed>30303</deployedseed>
+  <deployedseed>40404</deployedseed>
+  <deployedseed>50505</deployedseed>
+  <deployedseed>60606</deployedseed>
+
+  <!-- ============================================================ -->
+  <!-- QUESTION TESTS (5 total)                                     -->
+  <!-- ============================================================ -->
+
+  <!-- Test 1: All correct answers -->
+  <qtest>
+    <testcase>1</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2a</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2a-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2b</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2b-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 2: Wrong law (ans1=1, Biot-Savart) -->
+  <qtest>
+    <testcase>2</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.1000000</expectedpenalty>
+      <expectedanswernote>prt1-0-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2a</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2a-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2b</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2b-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 3: Wrong numerical B (ans3=0) -->
+  <qtest>
+    <testcase>3</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>0</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2a</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2a-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2b</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.1000000</expectedpenalty>
+      <expectedanswernote>prt2b-0-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 4: Wrong flux — entered B instead of B*A (ans5=ta_B) -->
+  <qtest>
+    <testcase>4</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta_B</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2a</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2a-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2b</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2b-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.1000000</expectedpenalty>
+      <expectedanswernote>prt4-0-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 5: Wrong design choice (ans7=1, transformer) -->
+  <qtest>
+    <testcase>5</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>1</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2a</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2a-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2b</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2b-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.1000000</expectedpenalty>
+      <expectedanswernote>prt6-0-F</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- ============================================================ -->
+  <!-- HINTS (3, progressive)                                        -->
+  <!-- ============================================================ -->
+
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 1 (Intuition):</strong> Imagine threading a rope through a donut. The rope represents the closed Amperian path. Every turn of wire that passes through the donut hole contributes \(NI\) to the total &ldquo;magnetomotive force&rdquo; driving \(H\) around the path.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 2 (Formulas):</strong> Amp&egrave;re: \(\oint \mathbf{H} \cdot d\mathbf{l} = NI\). For the toroid: \(H_\text{core} \cdot \ell_1 + H_\text{gap} \cdot \ell_2 = NI\). Flux continuity (\(\nabla \cdot \mathbf{B} = 0\) at interface): \(B_\text{core} = B_\text{gap} = B\). So \(H_\text{core} = B/(\mu_r \mu_0)\), \(H_\text{gap} = B/\mu_0\). Substitute and solve for \(B\).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 3 (Worked Step):</strong> Substituting into Amp&egrave;re&rsquo;s law:</p>
+<p>\[\frac{B \ell_1}{\mu_r \mu_0} + \frac{B \ell_2}{\mu_0} = NI\]</p>
+<p>\[B \left(\frac{\ell_1}{\mu_r \mu_0} + \frac{\ell_2}{\mu_0}\right) = NI\]</p>
+<p>\[B = \frac{NI \cdot \mu_0}{\ell_1/\mu_r + \ell_2}\]</p>]]></text>
+  </hint>
+
+</question>
+
+</quiz>
