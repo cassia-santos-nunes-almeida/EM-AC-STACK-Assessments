@@ -41,30 +41,35 @@ Which statement correctly describes the initial conditions?</p>
 </ol>
 <p>Enter the number of the correct option (1&ndash;4):
 [[input:ans1]] [[validation:ans1]]</p>
+<p><em>Syntax hint: Enter a single integer, e.g. <code>1</code></em></p>
 
 <hr />
 
 <h4>Part (b1) &mdash; Initial Current \(i(0^+)\) (1 pt)</h4>
 <p>Using the DC steady-state analysis and continuity conditions, what is \(i(0^+)\) in Amperes?</p>
 <p>\(i(0^+) = \) [[input:ans2]] A [[validation:ans2]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0</code> or <code>2.5</code></em></p>
 
 <hr />
 
 <h4>Part (b2) &mdash; Initial Capacitor Voltage \(v_C(0^+)\) (1 pt)</h4>
 <p>What is the value of \(v_C(0^+)\) in Volts?</p>
 <p>\(v_C(0^+) = \) [[input:ans3]] V [[validation:ans3]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>50.0</code></em></p>
 
 <hr />
 
 <h4>Part (c1) &mdash; Damping Coefficient \(\alpha\) (1 pt)</h4>
 <p>Calculate the damping coefficient \(\alpha\) (in rad/s) for this series RLC circuit.</p>
 <p>\(\alpha = \) [[input:ans4]] rad/s [[validation:ans4]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>15000</code> or <code>1.5e4</code></em></p>
 
 <hr />
 
 <h4>Part (c2) &mdash; Natural Frequency \(\omega_0\) (1 pt)</h4>
 <p>Calculate the resonant (natural) frequency \(\omega_0\) (in rad/s).</p>
 <p>\(\omega_0 = \) [[input:ans5]] rad/s [[validation:ans5]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>3160</code> or <code>3.16e3</code></em></p>
 
 <hr />
 
@@ -77,6 +82,7 @@ Which statement correctly describes the initial conditions?</p>
 </ol>
 <p>Enter the number of the correct regime (1&ndash;3):
 [[input:ans6]] [[validation:ans6]]</p>
+<p><em>Syntax hint: Enter a single integer, e.g. <code>1</code></em></p>
 
 <hr />
 

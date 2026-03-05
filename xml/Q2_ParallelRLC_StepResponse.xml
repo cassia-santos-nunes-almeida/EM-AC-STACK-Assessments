@@ -48,6 +48,7 @@ why \(R\) eventually stops this oscillation?</p>
 </ol>
 <p>Enter the number of the correct option (1&ndash;4):
 [[input:ans1]] [[validation:ans1]]</p>
+<p><em>Syntax hint: Enter a single integer, e.g. <code>1</code></em></p>
 
 <hr />
 
@@ -57,6 +58,7 @@ inductor current \(I_\text{final}\) (in Amperes)?</p>
 <p><em>Analyse the circuit at DC steady state with the source active:
 at DC the inductor is a short circuit and the capacitor is an open circuit.</em></p>
 <p>\(I_\text{final} = \) [[input:ans2]] A [[validation:ans2]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0.5</code> or <code>2</code></em></p>
 
 <hr />
 
@@ -70,6 +72,7 @@ at DC the inductor is a short circuit and the capacitor is an open circuit.</em>
 </ol>
 <p>Enter the number of the correct regime (1&ndash;3):
 [[input:ans3]] [[validation:ans3]]</p>
+<p><em>Syntax hint: Enter a single integer, e.g. <code>2</code></em></p>
 
 <hr />
 
@@ -93,6 +96,8 @@ and <code>t</code>. Example: <code>0.01 + A1*exp(-208.7*t) + A2*exp(-4791.3*t)</
 to find all coefficients numerically.</p>
 <p>Enter the complete expression for \(i_L(t)\) with all numerical values substituted.</p>
 <p>\(i_L(t) = \) [[input:ans5]] A [[validation:ans5]]</p>
+<p><em>Syntax hint: Use <code>exp(...)</code>, <code>sin(...)</code>, <code>cos(...)</code>,
+and <code>t</code>. Example: <code>0.5 + 0.02*exp(-200*t)*sin(980*t) - 0.01*exp(-200*t)*cos(980*t)</code></em></p>
 
 <hr />
 
@@ -112,6 +117,7 @@ like \(t \cdot e^{-\alpha t}\).</em></p>
 the constant term that remains as all exponentials decay to zero.
 Enter this value in Amperes. (Express to 3 significant figures.)</p>
 <p>\(\lim_{t \to \infty} i_L(t) = \) [[input:ans7]] A [[validation:ans7]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0.5</code></em></p>
 ]]></text>
   </questiontext>
 

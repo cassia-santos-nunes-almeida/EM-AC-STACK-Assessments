@@ -41,6 +41,7 @@ which law do you apply along a closed circular path through the core?</p>
 </ol>
 <p>Enter the number of the correct option (1&ndash;3):
 [[input:ans1]] [[validation:ans1]]</p>
+<p><em>Syntax hint: Enter a single integer, e.g. <code>2</code></em></p>
 
 <hr />
 
@@ -62,6 +63,7 @@ and use \(B = \mu_r \mu_0 H_\text{core} = \mu_0 H_\text{gap}\).</em></p>
 \(\ell_1 = {@l1_val@}\;\text{m}\), \(\ell_2 = {@l2_val@}\;\text{m}\).</p>
 <p>Calculate \(B\) in Tesla. (Express to 3 significant figures.)</p>
 <p>\(B = \) [[input:ans3]] T [[validation:ans3]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0.523</code> or <code>5.23e-1</code></em></p>
 
 <hr />
 
@@ -70,6 +72,7 @@ and use \(B = \mu_r \mu_0 H_\text{core} = \mu_0 H_\text{gap}\).</em></p>
 \(H_\text{core}\) in the ferromagnetic section (in A/m).
 (Express to 3 significant figures.)</p>
 <p>\(H_\text{core} = \) [[input:ans4]] A/m [[validation:ans4]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>417</code> or <code>4.17e2</code></em></p>
 
 <hr />
 
@@ -78,6 +81,7 @@ and use \(B = \mu_r \mu_0 H_\text{core} = \mu_0 H_\text{gap}\).</em></p>
 \(A = {@Ac_val@}\;\text{m}^2\).</p>
 <p>Calculate the total magnetic flux in Weber. (Express to 3 significant figures.)</p>
 <p>\(\Phi = \) [[input:ans5]] Wb [[validation:ans5]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>2.09e-4</code> or <code>0.000209</code></em></p>
 
 <hr />
 
@@ -102,6 +106,7 @@ Which device intentionally uses an air gap, and why?</p>
 </ol>
 <p>Enter 1 or 2:
 [[input:ans7]] [[validation:ans7]]</p>
+<p><em>Syntax hint: Enter a single integer, e.g. <code>2</code></em></p>
 ]]></text>
   </questiontext>
 
