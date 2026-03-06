@@ -417,7 +417,7 @@ ta8_at_t3: float(subst(t=t_test3, ta8));
     <boxsize>22</boxsize>
     <strictsyntax>1</strictsyntax>
     <insertstars>1</insertstars>
-    <syntaxhint>-2800+9600*j</syntaxhint>
+    <syntaxhint/>
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
     <allowwords/>
@@ -437,7 +437,7 @@ ta8_at_t3: float(subst(t=t_test3, ta8));
     <boxsize>45</boxsize>
     <strictsyntax>1</strictsyntax>
     <insertstars>1</insertstars>
-    <syntaxhint>-0.104*exp(-2800*t)*sin(9600*t)</syntaxhint>
+    <syntaxhint/>
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
     <allowwords/>
@@ -503,11 +503,11 @@ ta8_at_t3: float(subst(t=t_test3, ta8));
     </feedbackvariables>
     <node>
       <name>0</name>
-      <description>Check i(0+) value</description>
-      <answertest>AlgEquiv</answertest>
+      <description>Check i(0+) value — NumAbsolute because answer is 0</description>
+      <answertest>NumAbsolute</answertest>
       <sans>ans2</sans>
       <tans>ta2</tans>
-      <testoptions/>
+      <testoptions>0.01</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
       <truescore>1.0000000</truescore>

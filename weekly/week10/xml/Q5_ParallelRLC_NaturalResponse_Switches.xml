@@ -64,14 +64,14 @@ becomes a source-free <strong>parallel</strong> RLC circuit with \(R = {@R_val@}
 \(L = {@L_mH@}\;\text{mH}\), and \(C = {@C_uF@}\;\mu\text{F}\).</p>
 <p>Calculate the damping coefficient \(\alpha = \frac{1}{2RC}\) in rad/s.</p>
 <p>\(\alpha = \) [[input:ans3]] rad/s [[validation:ans3]]</p>
-<p><em>Syntax hint: Enter a number, e.g. <code>400</code></em></p>
+<p><em>Syntax hint: Enter a number, e.g. <code>1000</code></em></p>
 
 <hr />
 
 <h4>Part (d) &mdash; Resonant Frequency \(\omega_0\) (1 pt)</h4>
 <p>Calculate the undamped resonant frequency \(\omega_0 = \frac{1}{\sqrt{LC}}\) in rad/s.</p>
 <p>\(\omega_0 = \) [[input:ans4]] rad/s [[validation:ans4]]</p>
-<p><em>Syntax hint: Enter a number, e.g. <code>500</code></em></p>
+<p><em>Syntax hint: Enter a number, e.g. <code>1000</code></em></p>
 
 <hr />
 
@@ -749,11 +749,11 @@ vo_num_ok: if rerr7_1 < 0.05 and rerr7_2 < 0.05 and rerr7_3 < 0.05 then true els
     <feedbackvariables><text/></feedbackvariables>
     <node>
       <name>0</name>
-      <description>Check final value = 0</description>
-      <answertest>AlgEquiv</answertest>
+      <description>Check final value = 0 — NumAbsolute because answer is 0</description>
+      <answertest>NumAbsolute</answertest>
       <sans>ans8</sans>
       <tans>ta8</tans>
-      <testoptions/>
+      <testoptions>0.01</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
       <truescore>1.0000000</truescore>

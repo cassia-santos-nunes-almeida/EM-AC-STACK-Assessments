@@ -59,14 +59,8 @@ An \(N = {@N_val@}\)-turn coil is wound around the core.</p>
 <hr />
 
 <h4>Part (a) &mdash; Reluctance Analogy MCQ (1 pt)</h4>
-<p>In the magnetic circuit analogy, which mapping is correct? Enter 1, 2, or 3.</p>
-<ol>
-  <li>MMF (\(NI\)) &harr; Voltage;&ensp; Reluctance (\(\mathcal{R}\)) &harr; Resistance;&ensp; Flux (\(\Phi\)) &harr; Current</li>
-  <li>MMF (\(NI\)) &harr; Current;&ensp; Reluctance (\(\mathcal{R}\)) &harr; Conductance;&ensp; Flux (\(\Phi\)) &harr; Voltage</li>
-  <li>MMF (\(NI\)) &harr; Power;&ensp; Reluctance (\(\mathcal{R}\)) &harr; Impedance;&ensp; Flux (\(\Phi\)) &harr; Energy</li>
-</ol>
+<p>In the magnetic circuit analogy, which mapping is correct?</p>
 <p>[[input:ans1]] [[validation:ans1]]</p>
-<p><em>Syntax hint: Enter a single integer, e.g. <code>1</code></em></p>
 
 <hr />
 
@@ -123,16 +117,8 @@ Enter the percentage (negative means \(L\) decreases). Express to 3 significant 
 
 <h4>Part (f) &mdash; Physical Reasoning MCQ (1 pt)</h4>
 <p>Which statement best explains why even a small air gap causes a large drop in inductance,
-yet engineers deliberately add air gaps to power inductors? Enter 1 or 2.</p>
-<ol>
-  <li>The air gap increases the total reluctance significantly (since \(\mu_0 \ll \mu_r \mu_0\)),
-      reducing \(L = N^2/\mathcal{R}\). But the gap prevents core saturation at high currents,
-      allowing the inductor to maintain its inductance value over a wider current range.</li>
-  <li>The air gap reduces eddy current losses in the core, improving efficiency at high
-      frequencies &mdash; the inductance drop is an acceptable side effect.</li>
-</ol>
+yet engineers deliberately add air gaps to power inductors?</p>
 <p>[[input:ans8]] [[validation:ans8]]</p>
-<p><em>Syntax hint: Enter a single integer, e.g. <code>1</code></em></p>
 ]]></text>
   </questiontext>
 
@@ -252,20 +238,27 @@ ta_dLdlg: float(ta_dLdlg_sym);
 delta_lg: 0.1*lg_val;
 ta_pct: float(ta_dLdlg * delta_lg / ta_L * 100);
 
-/* ===== MCQ answers ===== */
+/* ===== MCQ option lists (STACK dropdown format) ===== */
 ta_analogy: 1;
 ta_dominator: if ta_Rg > ta_Rc then 1 else 2;
 ta_design_reason: 1;
 
+mcq_analogy: [[1, true, "MMF (NI) \u2194 Voltage; Reluctance \u2194 Resistance; Flux \u2194 Current"],
+              [2, false, "MMF (NI) \u2194 Current; Reluctance \u2194 Conductance; Flux \u2194 Voltage"],
+              [3, false, "MMF (NI) \u2194 Power; Reluctance \u2194 Impedance; Flux \u2194 Energy"]];
+
+mcq_design: [[1, true, "The air gap increases reluctance, reducing L, but prevents core saturation at high currents"],
+             [2, false, "The air gap reduces eddy current losses; the inductance drop is a side effect"]];
+
 /* ===== Teacher answers for each input ===== */
-ta1: ta_analogy;
+ta1: mcq_analogy;
 ta2: ta_Rc_sym;
 ta3: ta_Rg_sym;
 ta4: ta_Rt;
 ta5: ta_L;
 ta6: ta_dLdlg_sym;
 ta7: ta_pct;
-ta8: ta_design_reason;
+ta8: mcq_design;
 ]]></text>
   </questionvariables>
 
@@ -333,10 +326,10 @@ ta8: ta_design_reason;
   <!-- INPUTS (8 total: ans1–ans8)                                  -->
   <!-- ============================================================ -->
 
-  <!-- ans1: Part (a) Analogy MCQ -->
+  <!-- ans1: Part (a) Analogy MCQ (dropdown) -->
   <input>
     <name>ans1</name>
-    <type>algebraic</type>
+    <type>dropdown</type>
     <tans>ta1</tans>
     <boxsize>3</boxsize>
     <strictsyntax>1</strictsyntax>
@@ -345,11 +338,11 @@ ta8: ta_design_reason;
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
     <allowwords/>
-    <forbidfloat>1</forbidfloat>
+    <forbidfloat>0</forbidfloat>
     <requirelowestterms>0</requirelowestterms>
     <checkanswertype>0</checkanswertype>
-    <mustverify>1</mustverify>
-    <showvalidation>3</showvalidation>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
     <options/>
   </input>
 
@@ -361,7 +354,7 @@ ta8: ta_design_reason;
     <boxsize>30</boxsize>
     <strictsyntax>1</strictsyntax>
     <insertstars>1</insertstars>
-    <syntaxhint>lc/(mur*mu0*Ac)</syntaxhint>
+    <syntaxhint/>
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
     <allowwords>mu0,mur,lc,lg,Ac</allowwords>
@@ -381,7 +374,7 @@ ta8: ta_design_reason;
     <boxsize>30</boxsize>
     <strictsyntax>1</strictsyntax>
     <insertstars>1</insertstars>
-    <syntaxhint>lg/(mu0*Ac)</syntaxhint>
+    <syntaxhint/>
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
     <allowwords>mu0,mur,lc,lg,Ac</allowwords>
@@ -441,7 +434,7 @@ ta8: ta_design_reason;
     <boxsize>45</boxsize>
     <strictsyntax>1</strictsyntax>
     <insertstars>1</insertstars>
-    <syntaxhint>-N^2*mu0*Ac/(lc/mur + lg)^2</syntaxhint>
+    <syntaxhint/>
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
     <allowwords>mu0,mur,lc,lg,Ac,N</allowwords>
@@ -473,10 +466,10 @@ ta8: ta_design_reason;
     <options/>
   </input>
 
-  <!-- ans8: Part (f) Physical reasoning MCQ -->
+  <!-- ans8: Part (f) Physical reasoning MCQ (dropdown) -->
   <input>
     <name>ans8</name>
-    <type>algebraic</type>
+    <type>dropdown</type>
     <tans>ta8</tans>
     <boxsize>3</boxsize>
     <strictsyntax>1</strictsyntax>
@@ -485,11 +478,11 @@ ta8: ta_design_reason;
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
     <allowwords/>
-    <forbidfloat>1</forbidfloat>
+    <forbidfloat>0</forbidfloat>
     <requirelowestterms>0</requirelowestterms>
     <checkanswertype>0</checkanswertype>
-    <mustverify>1</mustverify>
-    <showvalidation>3</showvalidation>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
     <options/>
   </input>
 

@@ -37,14 +37,7 @@
 <h4>Part (a) &mdash; Which Law? (1 pt)</h4>
 <p>To find the magnetic field intensity \(H\) inside the toroid,
 which law do you apply along a closed circular path through the core?</p>
-<ol>
-  <li>Biot&ndash;Savart law (integration over current elements)</li>
-  <li>Amp&egrave;re&rsquo;s circuital law (\(\oint \mathbf{H} \cdot d\mathbf{l} = NI_\text{enclosed}\))</li>
-  <li>Faraday&rsquo;s law (\(\oint \mathbf{E} \cdot d\mathbf{l} = -d\Phi/dt\))</li>
-</ol>
-<p>Enter the number of the correct option (1&ndash;3):
-[[input:ans1]] [[validation:ans1]]</p>
-<p><em>Syntax hint: Enter a single integer, e.g. <code>2</code></em></p>
+<p>[[input:ans1]] [[validation:ans1]]</p>
 
 <hr />
 
@@ -102,14 +95,7 @@ implies at the interface between two materials.</em></p>
 <p>A transformer core should store minimal magnetic energy (to transfer it efficiently
 to the secondary). A power inductor core must store maximal energy.
 Which device intentionally uses an air gap, and why?</p>
-<ol>
-  <li>The transformer &mdash; the gap increases flux linkage between primary and secondary.</li>
-  <li>The power inductor &mdash; the gap reduces effective permeability, preventing core
-      saturation and allowing more energy storage in the field.</li>
-</ol>
-<p>Enter 1 or 2:
-[[input:ans7]] [[validation:ans7]]</p>
-<p><em>Syntax hint: Enter a single integer, e.g. <code>2</code></em></p>
+<p>[[input:ans7]] [[validation:ans7]]</p>
 ]]></text>
   </questiontext>
 
@@ -212,18 +198,26 @@ ta_Hgap: float(ta_B/(mu0));
 
 ta_phi:   float(ta_B * Ac_val);
 
-/* ===== Teacher answers ===== */
+/* ===== MCQ option lists (STACK dropdown format) ===== */
 ta_law:    2;
 ta_design: 2;
 
-ta1: ta_law;
+mcq_law: [[1, false, "Biot\u2013Savart law (integration over current elements)"],
+          [2, true, "Amp\u00e8re\u2019s circuital law"],
+          [3, false, "Faraday\u2019s law"]];
+
+mcq_design: [[1, false, "The transformer \u2014 the gap increases flux linkage between primary and secondary"],
+             [2, true, "The power inductor \u2014 the gap reduces effective permeability, preventing core saturation and allowing more energy storage"]];
+
+/* ===== Teacher answers ===== */
+ta1: mcq_law;
 ta2: ta_B_sym;
 ta3: ta_B;
 ta4: ta_Hcore;
 ta5: ta_phi;
 /* ta6 is essay/notes — always pass */
 ta6: "Gauss law for magnetism requires flux continuity.";
-ta7: ta_design;
+ta7: mcq_design;
 ]]></text>
   </questionvariables>
 
@@ -288,10 +282,10 @@ ta7: ta_design;
   <!-- INPUTS (7 total for 6 parts: a, b1, b2, c, d, e, f)         -->
   <!-- ============================================================ -->
 
-  <!-- ans1: Part (a) Which law MCQ -->
+  <!-- ans1: Part (a) Which law MCQ (dropdown) -->
   <input>
     <name>ans1</name>
-    <type>algebraic</type>
+    <type>dropdown</type>
     <tans>ta1</tans>
     <boxsize>3</boxsize>
     <strictsyntax>1</strictsyntax>
@@ -300,11 +294,11 @@ ta7: ta_design;
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
     <allowwords/>
-    <forbidfloat>1</forbidfloat>
+    <forbidfloat>0</forbidfloat>
     <requirelowestterms>0</requirelowestterms>
     <checkanswertype>0</checkanswertype>
-    <mustverify>1</mustverify>
-    <showvalidation>3</showvalidation>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
     <options/>
   </input>
 
@@ -316,7 +310,7 @@ ta7: ta_design;
     <boxsize>35</boxsize>
     <strictsyntax>1</strictsyntax>
     <insertstars>1</insertstars>
-    <syntaxhint>N*I*mu0/(l1/mur + l2)</syntaxhint>
+    <syntaxhint/>
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
     <allowwords>mu0,mur,l1,l2</allowwords>
@@ -408,10 +402,10 @@ ta7: ta_design;
     <options/>
   </input>
 
-  <!-- ans7: Part (f) Design reasoning MCQ -->
+  <!-- ans7: Part (f) Design reasoning MCQ (dropdown) -->
   <input>
     <name>ans7</name>
-    <type>algebraic</type>
+    <type>dropdown</type>
     <tans>ta7</tans>
     <boxsize>3</boxsize>
     <strictsyntax>1</strictsyntax>
@@ -420,11 +414,11 @@ ta7: ta_design;
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
     <allowwords/>
-    <forbidfloat>1</forbidfloat>
+    <forbidfloat>0</forbidfloat>
     <requirelowestterms>0</requirelowestterms>
     <checkanswertype>0</checkanswertype>
-    <mustverify>1</mustverify>
-    <showvalidation>3</showvalidation>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
     <options/>
   </input>
 
