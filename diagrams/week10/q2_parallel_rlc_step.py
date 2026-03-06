@@ -48,5 +48,7 @@ with schemdraw.Drawing(file='diagrams/week10/q2_parallel_rlc_step.svg') as d:
     d += elm.Line().left().at(junction_bot_R).tox(source.start)
     d += elm.Line().up().toy(source.start)
 
-    # Voltage polarity: v(t) across the parallel combination (source column)
-    d += elm.Gap().down().at(source.end).label(['+', '$v(t)$', '−'], loc='bottom', ofst=0.15)
+    # Voltage polarity: v(t) between source and R branch
+    # Invisible spacer to offset Gap from the current source
+    spacer = d.add(elm.Line().right().at(source.end).length(0.75).color('white').zorder(-1))
+    d += elm.Gap().down().at(spacer.end).label(['+', '$v(t)$', '−'], loc='bottom', ofst=0.15)
