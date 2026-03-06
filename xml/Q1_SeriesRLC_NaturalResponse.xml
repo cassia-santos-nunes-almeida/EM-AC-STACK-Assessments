@@ -35,15 +35,7 @@ At \(t = 0\), the switch <strong>opens</strong>, disconnecting the DC source and
 <h4>Part (a) &mdash; DC Steady-State Concept (1 pt)</h4>
 <p>Before the switch opens (\(t &lt; 0\)), the circuit has been in DC steady state for a very long time.
 Which statement correctly describes the initial conditions?</p>
-<ol>
-  <li>Capacitor = open circuit at DC &rarr; \(i(0^-) = 0\;\text{A}\), \(v_C(0^-) = V_s\)</li>
-  <li>Inductor = open circuit at DC &rarr; \(i(0^-) = 0\), \(v_C(0^-) = 0\)</li>
-  <li>Both components block DC &rarr; \(i = 0\), \(v_C = 0\)</li>
-  <li>Inductor = short circuit carrying \(V_s/R\) &rarr; \(v_C = 0\)</li>
-</ol>
-<p>Enter the number of the correct option (1&ndash;4):
-[[input:ans1]] [[validation:ans1]]</p>
-<p><em>Syntax hint: Enter a single integer, e.g. <code>1</code></em></p>
+<p>[[input:ans1]] [[validation:ans1]]</p>
 
 <hr />
 
@@ -77,14 +69,7 @@ Which statement correctly describes the initial conditions?</p>
 
 <h4>Part (d) &mdash; Damping Regime Classification (1 pt)</h4>
 <p>Based on your values of \(\alpha\) and \(\omega_0\), classify the damping regime:</p>
-<ol>
-  <li>Overdamped (\(\alpha &gt; \omega_0\))</li>
-  <li>Underdamped (\(\alpha &lt; \omega_0\))</li>
-  <li>Critically damped (\(\alpha = \omega_0\))</li>
-</ol>
-<p>Enter the number of the correct regime (1&ndash;3):
-[[input:ans6]] [[validation:ans6]]</p>
-<p><em>Syntax hint: Enter a single integer, e.g. <code>1</code></em></p>
+<p>[[input:ans6]] [[validation:ans6]]</p>
 
 <hr />
 
@@ -214,12 +199,12 @@ ta_B2: if ta_regime=2 then float(didt0/ta_omegad) else 0;
 ta_D1: if ta_regime=3 then float(didt0) else 0;
 
 /* ===== Teacher answers ===== */
-ta1: 1;
+ta1: [[1, true, "Capacitor = open circuit at DC, so i(0⁻) = 0 A and v_C(0⁻) = Vs"], [2, false, "Inductor = open circuit at DC, so i(0⁻) = 0 and v_C(0⁻) = 0"], [3, false, "Both components block DC, so i = 0 and v_C = 0"], [4, false, "Inductor = short circuit carrying Vs/R, so v_C = 0"]];
 ta2: 0;
 ta3: float(Vs_val);
 ta4: ta_alpha;
 ta5: ta_omega0;
-ta6: ta_regime;
+ta6: [[1, is(ta_regime=1), "Overdamped"], [2, is(ta_regime=2), "Underdamped"], [3, is(ta_regime=3), "Critically damped"]];
 
 ta7: if ta_regime=1 then s1_r
      else if ta_regime=2 then (-ta_alpha + ta_omegad*%i)
@@ -304,10 +289,10 @@ ta8_at_t3: float(subst(t=t_test3, ta8));
   <!-- INPUTS (8 total)                                              -->
   <!-- ============================================================ -->
 
-  <!-- ans1: Part (a) MCQ — DC steady-state concept -->
+  <!-- ans1: Part (a) MCQ — DC steady-state concept (radio) -->
   <input>
     <name>ans1</name>
-    <type>algebraic</type>
+    <type>radio</type>
     <tans>ta1</tans>
     <boxsize>3</boxsize>
     <strictsyntax>1</strictsyntax>
@@ -319,8 +304,8 @@ ta8_at_t3: float(subst(t=t_test3, ta8));
     <forbidfloat>1</forbidfloat>
     <requirelowestterms>0</requirelowestterms>
     <checkanswertype>0</checkanswertype>
-    <mustverify>1</mustverify>
-    <showvalidation>3</showvalidation>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
     <options/>
   </input>
 
@@ -404,10 +389,10 @@ ta8_at_t3: float(subst(t=t_test3, ta8));
     <options/>
   </input>
 
-  <!-- ans6: Part (d) MCQ — damping regime -->
+  <!-- ans6: Part (d) MCQ — damping regime (radio) -->
   <input>
     <name>ans6</name>
-    <type>algebraic</type>
+    <type>radio</type>
     <tans>ta6</tans>
     <boxsize>3</boxsize>
     <strictsyntax>1</strictsyntax>
@@ -419,8 +404,8 @@ ta8_at_t3: float(subst(t=t_test3, ta8));
     <forbidfloat>1</forbidfloat>
     <requirelowestterms>0</requirelowestterms>
     <checkanswertype>0</checkanswertype>
-    <mustverify>1</mustverify>
-    <showvalidation>3</showvalidation>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
     <options/>
   </input>
 

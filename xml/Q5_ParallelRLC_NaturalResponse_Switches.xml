@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ============================================================ -->
+<!-- Week 10 - Q5: Parallel RLC Natural Response (Two Switches)    -->
+<!-- Based on Nilsson P8.11                                        -->
+<!-- Course: Electromagnetism and Circuit Analysis, LUT University  -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Week 10 – Q5: Parallel RLC Natural Response (Two-Switch Circuit)</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Week 10 &ndash; Q5: Parallel RLC Natural Response (Two-Switch Circuit)</h3>
+<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
+<p><strong>Total: 8 points | Penalty per wrong attempt: 10%</strong></p>
+
+<hr />
+
+<p>The two switches in the circuit shown below operate synchronously.
+When switch&nbsp;1 is in position&nbsp;<strong>a</strong>, switch&nbsp;2 is in position&nbsp;<strong>d</strong>.
+When switch&nbsp;1 moves to position&nbsp;<strong>b</strong>, switch&nbsp;2 moves to position&nbsp;<strong>c</strong>.
+Switch&nbsp;1 has been in position&nbsp;<strong>a</strong> for a long time.</p>
+
+<p>At \(t = 0\), the switches move to their alternate positions. Find \(v_o(t)\) for \(t \geq 0\).</p>
+
+<p><strong>Circuit parameters:</strong></p>
+<ul>
+  <li>Current source: \(I_s = {@Is_val@}\;\text{A}\)</li>
+  <li>Left-side resistor: \(R_a = {@Ra_val@}\;\Omega\)</li>
+  <li>Inductor: \(L = {@L_mH@}\;\text{mH}\)</li>
+  <li>Parallel resistor: \(R = {@R_val@}\;\Omega\)</li>
+  <li>Right-side resistor: \(R_b = {@Rb_val@}\;\Omega\)</li>
+  <li>DC voltage source: \(V_{dc} = {@Vdc_val@}\;\text{V}\)</li>
+  <li>Capacitor: \(C = {@C_uF@}\;\mu\text{F}\)</li>
+</ul>
+
+<p><img src="@@PLUGINFILE@@/q5_parallel_rlc_natural_switches.svg" alt="Two-switch parallel RLC circuit" style="max-width:550px;" /></p>
+
+<hr />
+
+<h4>Part (a) &mdash; Initial Capacitor Voltage \(V_0\) (1 pt)</h4>
+<p>Before the switches flip (\(t &lt; 0\)), the circuit has been in DC steady state for a long time.
+At DC steady state, the capacitor is an <strong>open circuit</strong> (no current flows through it or \(R_b\)).
+What is the initial capacitor voltage \(V_0 = v_o(0^-)\) in Volts?</p>
+<p>\(V_0 = \) [[input:ans1]] V [[validation:ans1]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>100</code></em></p>
+
+<hr />
+
+<h4>Part (b) &mdash; Initial Inductor Current \(I_0\) (1 pt)</h4>
+<p>At DC steady state (\(t &lt; 0\)), the inductor is a <strong>short circuit</strong>.
+What is the initial inductor current \(I_0 = i_L(0^-)\) in Amperes?</p>
+<p>\(I_0 = \) [[input:ans2]] A [[validation:ans2]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>5</code></em></p>
+
+<hr />
+
+<h4>Part (c) &mdash; Damping Coefficient \(\alpha\) (1 pt)</h4>
+<p>After the switches flip (\(t &gt; 0\)), the sources are disconnected and the circuit
+becomes a source-free <strong>parallel</strong> RLC circuit with \(R = {@R_val@}\;\Omega\),
+\(L = {@L_mH@}\;\text{mH}\), and \(C = {@C_uF@}\;\mu\text{F}\).</p>
+<p>Calculate the damping coefficient \(\alpha = \frac{1}{2RC}\) in rad/s.</p>
+<p>\(\alpha = \) [[input:ans3]] rad/s [[validation:ans3]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>400</code></em></p>
+
+<hr />
+
+<h4>Part (d) &mdash; Resonant Frequency \(\omega_0\) (1 pt)</h4>
+<p>Calculate the undamped resonant frequency \(\omega_0 = \frac{1}{\sqrt{LC}}\) in rad/s.</p>
+<p>\(\omega_0 = \) [[input:ans4]] rad/s [[validation:ans4]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>500</code></em></p>
+
+<hr />
+
+<h4>Part (e) &mdash; Damping Regime Classification (1 pt)</h4>
+<p>Compare \(\alpha^2\) with \(\omega_0^2\) and classify the damping regime:</p>
+<p>Select your answer: [[input:ans5]] [[validation:ans5]]</p>
+
+<hr />
+
+<h4>Part (f) &mdash; General Response Form (1 pt)</h4>
+<p>Write the <strong>general form</strong> of \(v_o(t)\) for \(t \geq 0\),
+appropriate to the damping regime you identified. Use symbolic constants
+(<code>A1, A2</code> for overdamped; <code>B1, B2</code> for underdamped;
+<code>D1, D2</code> for critically damped).</p>
+<p><strong>Note:</strong> This is a <strong>natural response</strong> (source-free circuit), so there is no forced (steady-state) term.</p>
+<p>\(v_o(t) = \) [[input:ans6]] [[validation:ans6]]</p>
+<p><em>Syntax hint: Use <code>exp(...)</code>, <code>sin(...)</code>, <code>cos(...)</code>,
+and <code>t</code>. Example: <code>A1*exp(-20.9*t) + A2*exp(-479.1*t)</code></em></p>
+
+<hr />
+
+<h4>Part (g) &mdash; Complete \(v_o(t)\) with Numerical Coefficients (1 pt)</h4>
+<p>Apply the initial conditions
+\(v_o(0^+) = V_0 = {@V0_val@}\;\text{V}\) and
+\(\frac{dv_o}{dt}(0^+) = -\frac{1}{C}\!\left(\frac{V_0}{R} + I_0\right) = {@dvdt0@}\;\text{V/s}\)
+to find all coefficients numerically.</p>
+<p>Enter the complete expression for \(v_o(t)\) with all numerical values substituted.</p>
+<p>\(v_o(t) = \) [[input:ans7]] V [[validation:ans7]]</p>
+<p><em>Syntax hint: Use <code>exp(...)</code>, <code>sin(...)</code>, <code>cos(...)</code>,
+and <code>t</code>. Example: <code>100*exp(-400*t)*cos(300*t) - 800*exp(-400*t)*sin(300*t)</code></em></p>
+
+<hr />
+
+<h4>Part (h) &mdash; Final Value Verification (1 pt)</h4>
+<p>What is \(\lim_{t \to \infty} v_o(t)\)?</p>
+<p>Read off the steady-state value directly from your \(v_o(t)\) expression &mdash;
+the constant term that remains as all exponentials decay to zero.</p>
+<p>\(\lim_{t \to \infty} v_o(t) = \) [[input:ans8]] V [[validation:ans8]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0</code></em></p>
+]]></text>
+  </questiontext>
+
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h3>Worked Solution</h3>
+
+<h4>Step 1: Initial Conditions (DC Steady State for \(t < 0\))</h4>
+<p>With switch&nbsp;1 at position&nbsp;a and switch&nbsp;2 at position&nbsp;d for a long time:</p>
+<ul>
+  <li><strong>Capacitor voltage:</strong> At DC steady state, the capacitor is an open circuit.
+      No current flows through \(R_b\), so \(V_0 = V_{dc} = {@V0_val@}\;\text{V}\).</li>
+  <li><strong>Inductor current:</strong> At DC steady state, the inductor is a short circuit.
+      All of \(I_s\) flows through the inductor: \(I_0 = I_s = {@I0_val@}\;\text{A}\).</li>
+</ul>
+
+<h4>Step 2: Circuit for \(t > 0\)</h4>
+<p>After the switches flip, the sources are disconnected. The remaining circuit is a
+source-free parallel RLC: \(R = {@R_val@}\;\Omega\), \(L = {@L_val@}\;\text{H}\),
+\(C = {@C_val@}\;\text{F}\).</p>
+
+<h4>Step 3: Damping Parameters</h4>
+<p>\[\alpha = \frac{1}{2RC} = \frac{1}{2 \times {@R_val@} \times {@C_val@}} = {@ta_alpha@}\;\text{rad/s}\]</p>
+<p>\[\omega_0 = \frac{1}{\sqrt{LC}} = \frac{1}{\sqrt{{@L_val@} \times {@C_val@}}} = {@ta_omega0@}\;\text{rad/s}\]</p>
+
+<h4>Step 4: Damping Regime</h4>
+<p>Comparing \(\alpha = {@ta_alpha@}\) with \(\omega_0 = {@ta_omega0@}\):</p>
+<p>The circuit is <strong>{@regime_name@}</strong>.</p>
+
+<h4>Step 5: General Form and Coefficients</h4>
+<p>For a source-free (natural response) parallel RLC, the final value is zero.</p>
+<p>General form: \(v_o(t) = {@ta6@}\)</p>
+
+<p>Applying initial conditions:</p>
+<ul>
+  <li>\(v_o(0^+) = V_0 = {@V0_val@}\;\text{V}\)</li>
+  <li>\(\frac{dv_o}{dt}(0^+) = -\frac{1}{C}\!\left(\frac{V_0}{R} + I_0\right) = {@dvdt0@}\;\text{V/s}\)</li>
+</ul>
+<p>Solving the system of two equations yields the complete response:</p>
+<p>\[v_o(t) = {@ta_vo@}\;\text{V}, \quad t \geq 0\]</p>
+
+<h4>Step 6: Final Value</h4>
+<p>As \(t \to \infty\), all exponential terms decay to zero.
+Since there is no source in the circuit for \(t > 0\), the final value is:</p>
+<p>\[\lim_{t \to \infty} v_o(t) = 0\;\text{V}\]</p>
+
+<hr />
+
+<h4>Answer Summary</h4>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr><th>Part</th><th>Quantity</th><th>Correct Answer</th></tr>
+  <tr><td>(a)</td><td>\(V_0\)</td><td>{@ta1@} V</td></tr>
+  <tr><td>(b)</td><td>\(I_0\)</td><td>{@ta2@} A</td></tr>
+  <tr><td>(c)</td><td>\(\alpha\)</td><td>{@ta3@} rad/s</td></tr>
+  <tr><td>(d)</td><td>\(\omega_0\)</td><td>{@ta4@} rad/s</td></tr>
+  <tr><td>(e)</td><td>Damping regime</td><td>{@regime_name@}</td></tr>
+  <tr><td>(f)</td><td>General form</td><td>\({@ta6@}\)</td></tr>
+  <tr><td>(g)</td><td>\(v_o(t)\)</td><td>\({@ta_vo@}\) V</td></tr>
+  <tr><td>(h)</td><td>Final value</td><td>{@ta8@} V</td></tr>
+</table>
+]]></text>
+  </generalfeedback>
+
+  <defaultgrade>8.0000000</defaultgrade>
+  <penalty>0.1000000</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+
+  <stackversion>
+    <text>2024032101</text>
+  </stackversion>
+
+  <questionvariables>
+    <text><![CDATA[
+/* ===== Parameter set selection ===== */
+set: rand(3)+1;
+
+/* ===== Component values (for t > 0 parallel RLC) ===== */
+R_val:  if set=1 then 50   else if set=2 then 20   else 50;
+L_mH:   if set=1 then 160  else if set=2 then 1000 else 250;
+L_val:  L_mH/1000;
+C_uF:   if set=1 then 25   else if set=2 then 100  else 25;
+C_val:  C_uF*1e-6;
+
+/* ===== Pre-switch initial conditions ===== */
+V0_val: if set=1 then 100  else if set=2 then 50   else 75;
+I0_val: if set=1 then 5    else if set=2 then 2    else 3;
+
+/* ===== Pre-switch circuit display values ===== */
+Is_val:  I0_val;
+Ra_val:  if set=1 then 250 else if set=2 then 400 else 300;
+Rb_val:  if set=1 then 75  else if set=2 then 150 else 80;
+Vdc_val: V0_val;
+
+/* ===== Damping parameters (parallel RLC) ===== */
+ta_alpha:  float(1/(2*R_val*C_val));
+ta_omega0: float(1/sqrt(L_val*C_val));
+disc: float(ta_alpha^2 - ta_omega0^2);
+
+/* ===== Regime classification ===== */
+ta_regime: if abs(ta_alpha-ta_omega0) < 1.0 then 3
+           else if disc > 0 then 1
+           else 2;
+regime_name: if ta_regime=1 then "overdamped"
+             else if ta_regime=2 then "underdamped"
+             else "critically damped";
+
+/* ===== Damped frequency / root separation ===== */
+ta_omegad: float(sqrt(abs(disc)));
+
+/* ===== Characteristic roots ===== */
+s1_r: if ta_regime=1 then float(-ta_alpha+sqrt(disc)) else float(-ta_alpha);
+s2_r: if ta_regime=1 then float(-ta_alpha-sqrt(disc)) else float(-ta_alpha);
+
+/* ===== dv/dt(0+) ===== */
+dvdt0: float(-(1/C_val)*(V0_val/R_val + I0_val));
+
+/* ===== Coefficients ===== */
+ta_A1: if ta_regime=1 then float((dvdt0 - s2_r*V0_val)/(s1_r - s2_r)) else 0;
+ta_A2: if ta_regime=1 then float(V0_val - ta_A1) else 0;
+ta_B1: if ta_regime=2 then float(V0_val) else 0;
+ta_B2: if ta_regime=2 then float((dvdt0 + ta_alpha*ta_B1)/ta_omegad) else 0;
+ta_D2: if ta_regime=3 then float(V0_val) else 0;
+ta_D1: if ta_regime=3 then float(dvdt0 + ta_alpha*ta_D2) else 0;
+
+/* ===== v_o(t) complete ===== */
+ta_vo: if ta_regime=1 then ta_A1*exp(s1_r*t) + ta_A2*exp(s2_r*t)
+       else if ta_regime=2 then exp(-ta_alpha*t)*(ta_B1*cos(ta_omegad*t)+ta_B2*sin(ta_omegad*t))
+       else (ta_D1*t+ta_D2)*exp(-ta_alpha*t);
+
+/* ===== Teacher answers ===== */
+ta1: float(V0_val);
+ta2: float(I0_val);
+ta3: ta_alpha;
+ta4: ta_omega0;
+ta5: [[1, is(ta_regime=1), "Overdamped"], [2, is(ta_regime=2), "Underdamped"], [3, is(ta_regime=3), "Critically damped"]];
+ta6: if ta_regime=1 then A1*exp(s1_r*t) + A2*exp(s2_r*t)
+     else if ta_regime=2 then exp(-ta_alpha*t)*(B1*cos(ta_omegad*t)+B2*sin(ta_omegad*t))
+     else (D1*t+D2)*exp(-ta_alpha*t);
+ta7: ta_vo;
+ta8: 0;
+
+/* ===== Numerical sampling ===== */
+t_test1: 1.0e-4;
+t_test2: 5.0e-4;
+t_test3: 1.0e-3;
+ta7_at_t1: float(subst(t=t_test1, ta7));
+ta7_at_t2: float(subst(t=t_test2, ta7));
+ta7_at_t3: float(subst(t=t_test3, ta7));
+]]></text>
+  </questionvariables>
+
+  <specificfeedback format="html">
+    <text><![CDATA[
+<h4>Part (a) &mdash; Initial Voltage \(V_0\)</h4>
+<div>[[feedback:prt1]]</div>
+<h4>Part (b) &mdash; Initial Current \(I_0\)</h4>
+<div>[[feedback:prt2]]</div>
+<h4>Part (c) &mdash; Damping Coefficient \(\alpha\)</h4>
+<div>[[feedback:prt3]]</div>
+<h4>Part (d) &mdash; Resonant Frequency \(\omega_0\)</h4>
+<div>[[feedback:prt4]]</div>
+<h4>Part (e) &mdash; Damping Regime</h4>
+<div>[[feedback:prt5]]</div>
+<h4>Part (f) &mdash; General Response Form</h4>
+<div>[[feedback:prt6]]</div>
+<h4>Part (g) &mdash; Complete \(v_o(t)\)</h4>
+<div>[[feedback:prt7]]</div>
+<h4>Part (h) &mdash; Final Value</h4>
+<div>[[feedback:prt8]]</div>
+]]></text>
+  </specificfeedback>
+
+  <questionnote>
+    <text>Set {@set@} | R={@R_val@}, L={@L_mH@}mH, C={@C_uF@}uF | {@regime_name@} | V0={@V0_val@}V, I0={@I0_val@}A</text>
+  </questionnote>
+
+  <questiondescription format="html">
+    <text><![CDATA[<p>Parallel RLC Natural Response with two switches — find initial conditions and v_o(t). Based on Nilsson P8.11. Week 10 training exercise.</p>]]></text>
+  </questiondescription>
+
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>j</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <!-- ============================================================ -->
+  <!-- INPUTS                                                        -->
+  <!-- ============================================================ -->
+
+  <input>
+    <name>ans1</name>
+    <type>numerical</type>
+    <tans>ta1</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <input>
+    <name>ans2</name>
+    <type>numerical</type>
+    <tans>ta2</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <input>
+    <name>ans3</name>
+    <type>numerical</type>
+    <tans>ta3</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <input>
+    <name>ans4</name>
+    <type>numerical</type>
+    <tans>ta4</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans5: Damping regime — RADIO button -->
+  <input>
+    <name>ans5</name>
+    <type>radio</type>
+    <tans>ta5</tans>
+    <boxsize>30</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
+    <options/>
+  </input>
+
+  <input>
+    <name>ans6</name>
+    <type>algebraic</type>
+    <tans>ta6</tans>
+    <boxsize>45</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords>A1,A2,B1,B2,D1,D2</allowwords>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <input>
+    <name>ans7</name>
+    <type>algebraic</type>
+    <tans>ta7</tans>
+    <boxsize>45</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <input>
+    <name>ans8</name>
+    <type>numerical</type>
+    <tans>ta8</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ============================================================ -->
+  <!-- PRTs                                                          -->
+  <!-- ============================================================ -->
+
+  <prt>
+    <name>prt1</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text/></feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check V0</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>ta1</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(V_0 = {@ta1@}\;\text{V}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. At DC steady state: capacitor = open circuit, no current through \(R_b\), so \(V_0 = V_{dc} = {@ta1@}\;\text{V}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <prt>
+    <name>prt2</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text/></feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check I0</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(I_0 = {@ta2@}\;\text{A}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. At DC steady state: inductor = short circuit, all source current flows through it: \(I_0 = I_s = {@ta2@}\;\text{A}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <prt>
+    <name>prt3</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text/></feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check alpha</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\alpha = {@ta3@}\;\text{rad/s}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. For parallel RLC: \(\alpha = \frac{1}{2RC} = {@ta3@}\;\text{rad/s}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <prt>
+    <name>prt4</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text/></feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check omega0</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\omega_0 = {@ta4@}\;\text{rad/s}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. \(\omega_0 = \frac{1}{\sqrt{LC}} = {@ta4@}\;\text{rad/s}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <prt>
+    <name>prt5</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text/></feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check regime (radio)</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The circuit is <strong>{@regime_name@}</strong>.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. \(\alpha = {@ta_alpha@}\), \(\omega_0 = {@ta_omega0@}\). The circuit is <strong>{@regime_name@}</strong>.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <prt>
+    <name>prt6</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text/></feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check symbolic general form</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans6</sans>
+      <tans>ta6</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct!</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt6-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The expected form is: \(v_o(t) = {@ta6@}\)</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <prt>
+    <name>prt7</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa7_at_t1: float(subst(t=t_test1, ans7));
+sa7_at_t2: float(subst(t=t_test2, ans7));
+sa7_at_t3: float(subst(t=t_test3, ans7));
+rerr7_1: if abs(ta7_at_t1) > 1.0e-10 then abs((sa7_at_t1 - ta7_at_t1)/ta7_at_t1) else abs(sa7_at_t1 - ta7_at_t1);
+rerr7_2: if abs(ta7_at_t2) > 1.0e-10 then abs((sa7_at_t2 - ta7_at_t2)/ta7_at_t2) else abs(sa7_at_t2 - ta7_at_t2);
+rerr7_3: if abs(ta7_at_t3) > 1.0e-10 then abs((sa7_at_t3 - ta7_at_t3)/ta7_at_t3) else abs(sa7_at_t3 - ta7_at_t3);
+vo_num_ok: if rerr7_1 < 0.05 and rerr7_2 < 0.05 and rerr7_3 < 0.05 then true else false;
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>AlgEquiv check v_o(t)</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans7</sans>
+      <tans>ta7</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(v_o(t) = {@ta7@}\;\text{V}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt7-0-F</falseanswernote>
+      <falsefeedback format="html"><text/></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Numerical sampling fallback</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>vo_num_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! Your expression evaluates correctly at multiple test points.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The correct expression is: \(v_o(t) = {@ta7@}\;\text{V}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <prt>
+    <name>prt8</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text/></feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check final value = 0</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans8</sans>
+      <tans>ta8</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt8-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\lim_{t \to \infty} v_o(t) = 0\;\text{V}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt8-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. No source for \(t > 0\), so all energy dissipates: \(\lim_{t \to \infty} v_o(t) = 0\;\text{V}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- DEPLOYED SEEDS                                                -->
+  <!-- ============================================================ -->
+  <deployedseed>11111</deployedseed>
+  <deployedseed>22222</deployedseed>
+  <deployedseed>33333</deployedseed>
+  <deployedseed>44444</deployedseed>
+  <deployedseed>55555</deployedseed>
+  <deployedseed>66666</deployedseed>
+
+  <!-- ============================================================ -->
+  <!-- QUESTION TESTS                                                -->
+  <!-- ============================================================ -->
+
+  <!-- Test 1: All correct -->
+  <qtest>
+    <testcase>1</testcase>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>ta4</value></testinput>
+    <testinput><name>ans5</name><value>ta5</value></testinput>
+    <testinput><name>ans6</name><value>ta6</value></testinput>
+    <testinput><name>ans7</name><value>ta7</value></testinput>
+    <testinput><name>ans8</name><value>ta8</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-0-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-0-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-0-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-0-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt5-0-T</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt6-0-T</expectedanswernote></expected>
+    <expected><name>prt7</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt7-0-T</expectedanswernote></expected>
+    <expected><name>prt8</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt8-0-T</expectedanswernote></expected>
+  </qtest>
+
+  <!-- Test 2: Wrong V0 -->
+  <qtest>
+    <testcase>2</testcase>
+    <testinput><name>ans1</name><value>0</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>ta4</value></testinput>
+    <testinput><name>ans5</name><value>ta5</value></testinput>
+    <testinput><name>ans6</name><value>ta6</value></testinput>
+    <testinput><name>ans7</name><value>ta7</value></testinput>
+    <testinput><name>ans8</name><value>ta8</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-0-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-0-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-0-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-0-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt5-0-T</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt6-0-T</expectedanswernote></expected>
+    <expected><name>prt7</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt7-0-T</expectedanswernote></expected>
+    <expected><name>prt8</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt8-0-T</expectedanswernote></expected>
+  </qtest>
+
+  <!-- Test 3: Wrong I0 -->
+  <qtest>
+    <testcase>3</testcase>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>0</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>ta4</value></testinput>
+    <testinput><name>ans5</name><value>ta5</value></testinput>
+    <testinput><name>ans6</name><value>ta6</value></testinput>
+    <testinput><name>ans7</name><value>ta7</value></testinput>
+    <testinput><name>ans8</name><value>ta8</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-0-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-0-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-0-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-0-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt5-0-T</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt6-0-T</expectedanswernote></expected>
+    <expected><name>prt7</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt7-0-T</expectedanswernote></expected>
+    <expected><name>prt8</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt8-0-T</expectedanswernote></expected>
+  </qtest>
+
+  <!-- Test 4: Wrong v_o(t) (just V0, no decay) -->
+  <qtest>
+    <testcase>4</testcase>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>ta4</value></testinput>
+    <testinput><name>ans5</name><value>ta5</value></testinput>
+    <testinput><name>ans6</name><value>ta6</value></testinput>
+    <testinput><name>ans7</name><value>V0_val</value></testinput>
+    <testinput><name>ans8</name><value>ta8</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-0-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-0-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-0-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-0-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt5-0-T</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt6-0-T</expectedanswernote></expected>
+    <expected><name>prt7</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt7-0-F</expectedanswernote></expected>
+    <expected><name>prt8</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt8-0-T</expectedanswernote></expected>
+  </qtest>
+
+  <!-- Test 5: Wrong final value (V0 instead of 0) -->
+  <qtest>
+    <testcase>5</testcase>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>ta4</value></testinput>
+    <testinput><name>ans5</name><value>ta5</value></testinput>
+    <testinput><name>ans6</name><value>ta6</value></testinput>
+    <testinput><name>ans7</name><value>ta7</value></testinput>
+    <testinput><name>ans8</name><value>V0_val</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-0-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-0-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-0-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-0-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt5-0-T</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt6-0-T</expectedanswernote></expected>
+    <expected><name>prt7</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt7-0-T</expectedanswernote></expected>
+    <expected><name>prt8</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt8-0-F</expectedanswernote></expected>
+  </qtest>
+
+  <!-- ============================================================ -->
+  <!-- HINTS                                                         -->
+  <!-- ============================================================ -->
+
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 1 (Pre-switch Analysis):</strong> At DC steady state: inductor = short circuit, capacitor = open circuit. Use these to find \(V_0\) and \(I_0\). After switches flip, sources disconnect &mdash; source-free parallel RLC remains.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 2 (Formulas):</strong> For parallel RLC natural response: \(\alpha = \frac{1}{2RC}\), \(\omega_0 = \frac{1}{\sqrt{LC}}\). Initial rate of change: \(\frac{dv_o}{dt}(0^+) = -\frac{1}{C}\!\left(\frac{V_0}{R} + I_0\right)\).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 3 (Worked Step):</strong> For underdamped: \(v_o(t) = e^{-\alpha t}(B_1 \cos\omega_d t + B_2 \sin\omega_d t)\). From \(v_o(0^+) = B_1 = V_0\). Then: \(\frac{dv_o}{dt}(0^+) = -\alpha B_1 + \omega_d B_2\). Solve for \(B_2\).</p>]]></text>
+  </hint>
+
+</question>
+
+</quiz>
