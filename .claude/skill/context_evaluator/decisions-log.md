@@ -197,5 +197,15 @@ Each entry: `[date] — Decision` followed by reasoning and rejected alternative
 
 ---
 
+### 2026-03-06 — Deep audit fixes: AlgEquiv→NumAbsolute for zero answers, MCQ dropdown conversion, syntaxhint leak removal
+**Reason:** User reported "Fill in correct responses" marking some answers incorrect in STACK preview. Root cause analysis identified three categories of issues:
+1. **Q3/Q4 MCQ inputs using `type="algebraic"` instead of `type="dropdown"`** — STACK's "Fill correct" behaves inconsistently with typed integer MCQs vs. dropdown MCQs. Converting to dropdown with Maxima list format `[[value, bool, "text"]]` aligns with Q1/Q2/Q5 convention and fixes preview behavior.
+2. **AlgEquiv for zero-valued answers (Q1 prt2 i(0⁺)=0, Q5 prt8 v(∞)=0)** — Changed to NumAbsolute with tolerance 0.01 to avoid edge cases.
+3. **8 syntaxhints leaking exact answers** — Removed or replaced with generic examples across Q1, Q3, Q4, Q5.
+**Physics/math verified correct** across all 5 questions. No SigFigsStrict anywhere. 5% NumRelative properly applied on all non-zero numerical answers.
+**Alternatives rejected:** Leaving algebraic MCQs (functional but inconsistent UX and "Fill correct" issues), keeping answer-leaking hints (undermines assessment integrity).
+
+---
+
 ## Last Updated
 2026-03-06

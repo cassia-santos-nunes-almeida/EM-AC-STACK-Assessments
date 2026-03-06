@@ -1,7 +1,7 @@
 # Active Session — STACK Exam & Practice Question Builder
 
 ## Current Milestone
-**Week 10 Q1-Q5 content functional. Q5 diagram needs topology fix to match Nilsson P8.11.** All questions work in STACK with correct Maxima grading. The Q5 circuit diagram (`q5_parallel_rlc_natural_switches.py/svg`) does not match the textbook reference — needs complete Schemdraw rewrite. After fixing, the SVG must be re-embedded as base64 in the XML.
+**Week 10 Q1-Q5 content functional and audited. Q5 diagram needs topology fix to match Nilsson P8.11.** All questions work in STACK with correct Maxima grading. Deep audit completed (2026-03-06): fixed PRT grading issues (AlgEquiv→NumAbsolute for zero answers), converted Q3/Q4 MCQs from algebraic to dropdown, removed 8 answer-leaking syntaxhints. The Q5 circuit diagram (`q5_parallel_rlc_natural_switches.py/svg`) does not match the textbook reference — needs complete Schemdraw rewrite. After fixing, the SVG must be re-embedded as base64 in the XML.
 
 ## Pending Tasks (Prioritized)
 
@@ -29,6 +29,7 @@
 - [x] Base64 SVG auto-embedding for all Q1-Q5 weekly questions
 - [x] Converted radio MCQs to dropdown (type="dropdown") — no more "Clear my choice"
 - [x] Two attempts at Q5 diagram rewrite (still doesn't match reference)
+- [x] **Deep audit of Q1-Q5**: Fixed PRT grading (AlgEquiv→NumAbsolute for zero answers in Q1 prt2, Q5 prt8), converted Q3/Q4 MCQs from algebraic→dropdown with Maxima list format, removed 8 answer-leaking syntaxhints (Q1 ans7/ans8, Q3 ans2, Q4 ans2/ans3/ans6, Q5 ans3/ans4 hints). Physics/math verified correct across all 5 questions. No SigFigsStrict used. 5% NumRelative properly applied.
 
 ### Repo Reorganization (2026-03-06)
 - [x] Reorganized repo into `exams/midterm-week9/`, `weekly/week10/`, `shared/scripts/`
