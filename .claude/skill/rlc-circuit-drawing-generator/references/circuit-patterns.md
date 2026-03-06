@@ -5,7 +5,11 @@ Common circuit patterns and their Schemdraw implementations.
 **Important**:
 - **Preferred layout**: Vertical component arrangement on the right side using `.down()`
 - The ground symbol must be connected to the source negative terminal to form a complete circuit.
-- Use `.label('text')` without `loc` parameter - Schemdraw's default positioning handles label placement intelligently.
+- **Label positioning**: Always use explicit `loc` and `ofst` for vertical elements to prevent labels overlapping symbols:
+  - UP sources: `.label('Vs', loc='left', ofst=(0, 0.6))` → label screen-LEFT
+  - DOWN components: `.label('R₁', loc='right', ofst=(0, 0.6))` → label screen-RIGHT
+  - Horizontal components: default `.label('R₁')` is fine (labels go above, clear of symbol)
+  - The `ofst` y-component works in the element's **local** coordinate frame, not screen coordinates.
 
 ## Pattern 1: Simple Single-Component Circuit (Vertical - Preferred)
 
@@ -29,13 +33,13 @@ with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=12)
 
     # Voltage source (left side, vertical)
-    source = d.add(elm.SourceV().up().label('V₁\n12V'))
+    source = d.add(elm.SourceV().up().label('V₁\n12V', loc='left', ofst=(0, 0.6)))
 
     # Top rail to the right
     d += elm.Line().right().length(5).at(source.end)
 
     # Component vertical on right side
-    d += elm.Resistor().down().label('R₁  1kΩ')
+    d += elm.Resistor().down().label('R₁  1kΩ', loc='right', ofst=(0, 0.6))
 
     # Return path
     d += elm.Line().left().length(3)
@@ -67,10 +71,10 @@ import schemdraw.elements as elm
 with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=12)
 
-    source = d.add(elm.SourceV().up().label('V₁\n12V'))
+    source = d.add(elm.SourceV().up().label('V₁\n12V', loc='left', ofst=(0, 0.6)))
     d += elm.Line().right().length(5).at(source.end)
-    d += elm.Resistor().down().label('R₁  10kΩ')
-    d += elm.Capacitor().down().label('C₁  100nF')
+    d += elm.Resistor().down().label('R₁  10kΩ', loc='right', ofst=(0, 0.6))
+    d += elm.Capacitor().down().label('C₁  100nF', loc='right', ofst=(0, 0.6))
     d += elm.Line().left().length(3)
     d += elm.Ground()
     d += elm.Line().left().tox(source.start)
@@ -100,10 +104,10 @@ import schemdraw.elements as elm
 with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=12)
 
-    source = d.add(elm.SourceV().up().label('V₁\n12V'))
+    source = d.add(elm.SourceV().up().label('V₁\n12V', loc='left', ofst=(0, 0.6)))
     d += elm.Line().right().length(5).at(source.end)
-    d += elm.Resistor().down().label('R₁  100Ω')
-    d += elm.Inductor().down().label('L₁  10mH')
+    d += elm.Resistor().down().label('R₁  100Ω', loc='right', ofst=(0, 0.6))
+    d += elm.Inductor().down().label('L₁  10mH', loc='right', ofst=(0, 0.6))
     d += elm.Line().left().length(3)
     d += elm.Ground()
     d += elm.Line().left().tox(source.start)
@@ -135,11 +139,11 @@ import schemdraw.elements as elm
 with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=12)
 
-    source = d.add(elm.SourceV().up().label('V₁\n12V'))
+    source = d.add(elm.SourceV().up().label('V₁\n12V', loc='left', ofst=(0, 0.6)))
     d += elm.Line().right().length(5).at(source.end)
-    d += elm.Resistor().down().label('R₁  100Ω')
-    d += elm.Inductor().down().label('L₁  10mH')
-    d += elm.Capacitor().down().label('C₁  1μF')
+    d += elm.Resistor().down().label('R₁  100Ω', loc='right', ofst=(0, 0.6))
+    d += elm.Inductor().down().label('L₁  10mH', loc='right', ofst=(0, 0.6))
+    d += elm.Capacitor().down().label('C₁  1μF', loc='right', ofst=(0, 0.6))
     d += elm.Line().left().length(3)
     d += elm.Ground()
     d += elm.Line().left().tox(source.start)
@@ -169,7 +173,7 @@ import schemdraw.elements as elm
 with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=12)
 
-    source = d.add(elm.SourceV().up().label('V₁\n12V'))
+    source = d.add(elm.SourceV().up().label('V₁\n12V', loc='left', ofst=(0, 0.6)))
     d += elm.Line().right().length(1)
 
     d.push()  # Save position for parallel branch
@@ -211,7 +215,7 @@ import schemdraw.elements as elm
 with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=12)
 
-    source = d.add(elm.SourceV().up().label('V₁\n12V'))
+    source = d.add(elm.SourceV().up().label('V₁\n12V', loc='left', ofst=(0, 0.6)))
     d += elm.Line().right().length(1)
 
     # First branch - Resistor
@@ -253,7 +257,7 @@ with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=12)
 
     # Use SourceSin for AC
-    source = d.add(elm.SourceSin().up().label('V₁\n120V\n60Hz'))
+    source = d.add(elm.SourceSin().up().label('V₁\n120V\n60Hz', loc='left', ofst=(0, 0.6)))
     d += elm.Line().right().length(0.5)
     d += elm.Resistor().right().label('R₁\n100Ω')
     d += elm.Inductor().right().label('L₁\n10mH')
@@ -288,7 +292,7 @@ import schemdraw.elements as elm
 with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=12)
 
-    source = d.add(elm.SourceV().up().label('Vin\n12V'))
+    source = d.add(elm.SourceV().up().label('Vin\n12V', loc='left', ofst=(0, 0.6)))
     d += elm.Line().right().length(0.5)
     d += elm.Resistor().right().label('R₁\n10kΩ')
 
@@ -319,7 +323,7 @@ import schemdraw.elements as elm
 with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=12)
 
-    source = d.add(elm.SourceV().up().label('V₁\n12V'))
+    source = d.add(elm.SourceV().up().label('V₁\n12V', loc='left', ofst=(0, 0.6)))
     d += elm.Line().right().length(0.5)
     d += elm.Ammeter().right().label('A')
     d += elm.Resistor().right().label('R₁\n1kΩ')
@@ -335,7 +339,7 @@ with schemdraw.Drawing() as d:
 ## Tips for Clean Layouts
 
 1. **Vertical component layout (preferred)**: Arrange components vertically on the right side using `.down()` - this produces cleaner diagrams
-2. **Default label positioning**: Use `.label('text')` without `loc` parameter - Schemdraw automatically positions labels based on element orientation
+2. **Explicit label positioning**: Always use `loc` and `ofst=(0, 0.6)` for vertical elements. UP sources: `loc='left'`. DOWN components: `loc='right'`. Horizontal elements can use default `.label('text')`. The `ofst` y-component moves labels perpendicular to the element in the element's local frame
 3. **Vertical source**: Always place voltage source vertically on the left with `.up()`
 4. **Top rail**: Use `d += elm.Line().right().length(5).at(source.end)` to connect source to components
 5. **Ground placement**: Put ground on the return path (bottom)

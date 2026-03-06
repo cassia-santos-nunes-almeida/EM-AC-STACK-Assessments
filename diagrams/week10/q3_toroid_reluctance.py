@@ -6,7 +6,7 @@ with schemdraw.Drawing(file='diagrams/week10/q3_toroid_reluctance.svg') as d:
     d.config(unit=3.5, fontsize=14, font='sans-serif')
 
     # MMF source (modelled as voltage source in reluctance analogy)
-    source = d.add(elm.SourceV().up().label('$NI$\n(MMF)', loc='left', ofst=(-0.3, 0)))
+    source = d.add(elm.SourceV().up().label('$NI$\n(MMF)', loc='left', ofst=(0, 0.6)))
 
     # Top rail
     d += elm.Line().right().length(5).at(source.end)
@@ -14,12 +14,12 @@ with schemdraw.Drawing(file='diagrams/week10/q3_toroid_reluctance.svg') as d:
     # Core reluctance (going down)
     Rcore = d.add(elm.Resistor().down().label(
         '$\\mathcal{R}_{\\mathrm{core}} = \\dfrac{\\ell_1}{\\mu_r \\mu_0 A}$',
-        loc='right', ofst=(0.3, 0)))
+        loc='right', ofst=(0, 0.6)))
 
     # Air gap reluctance (going down)
     Rgap = d.add(elm.Resistor().down().label(
         '$\\mathcal{R}_{\\mathrm{gap}} = \\dfrac{\\ell_2}{\\mu_0 A}$',
-        loc='right', ofst=(0.3, 0)))
+        loc='right', ofst=(0, 0.6)))
 
     # Bottom return
     d += elm.Line().left().tox(source.start)

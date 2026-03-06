@@ -17,7 +17,7 @@ ax1.set_title('t < 0  (switch closed)', fontsize=14, fontweight='bold')
 with schemdraw.Drawing(canvas=ax1) as d:
     d.config(unit=3, fontsize=13, font='sans-serif')
 
-    source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(-0.3, 0)))
+    source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(0, 0.6)))
     d += elm.Line().right().length(0.5).at(source.end)
     d += elm.Resistor().right().label('R₁')
 
@@ -26,14 +26,14 @@ with schemdraw.Drawing(canvas=ax1) as d:
 
     # R2 branch (with closed switch)
     d.push()
-    d += elm.Switch().down().label('S', loc='right', ofst=(0.3, 0))
-    d += elm.Resistor().down().label('R₂', loc='right', ofst=(0.3, 0))
+    d += elm.Switch().down().label('S', loc='right', ofst=(0, 0.6))
+    d += elm.Resistor().down().label('R₂', loc='right', ofst=(0, 0.6))
     d += elm.Line().down().length(0.3)
     d.pop()
 
     # C branch in parallel
     d += elm.Line().right().length(2)
-    d += elm.Capacitor().down().label('C', loc='right', ofst=(0.3, 0))
+    d += elm.Capacitor().down().label('C', loc='right', ofst=(0, 0.6))
     d += elm.Line().down().length(0.3)
 
     d += elm.Line().left().length(2)
@@ -48,7 +48,7 @@ ax2.set_title('t > 0  (switch opens)', fontsize=14, fontweight='bold')
 with schemdraw.Drawing(canvas=ax2) as d:
     d.config(unit=3, fontsize=13, font='sans-serif')
 
-    source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(-0.3, 0)))
+    source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(0, 0.6)))
     d += elm.Line().right().length(0.5).at(source.end)
     d += elm.Resistor().right().label('R₁')
 
@@ -57,7 +57,7 @@ with schemdraw.Drawing(canvas=ax2) as d:
 
     # Capacitor (R2 disconnected)
     d += elm.Line().right().length(1)
-    d += elm.Capacitor().down().label('C', loc='right', ofst=(0.3, 0))
+    d += elm.Capacitor().down().label('C', loc='right', ofst=(0, 0.6))
 
     d.add(elm.CurrentLabelInline(direction='in').at(source.end).label('i(t)', fontsize=12))
 

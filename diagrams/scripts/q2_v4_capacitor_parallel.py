@@ -10,7 +10,7 @@ with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=14, font='sans-serif')
 
     # Voltage source (left side)
-    source = d.add(elm.SourceV().up().label('V', loc='left', ofst=(-0.3, 0)))
+    source = d.add(elm.SourceV().up().label('V', loc='left', ofst=(0, 0.6)))
 
     # Top rail
     d += elm.Line().right().length(1).at(source.end)
@@ -21,7 +21,7 @@ with schemdraw.Drawing() as d:
 
     # C1 branch (first parallel)
     d.push()
-    c1 = d.add(elm.Capacitor().down().label('C₁', loc='right', ofst=(0.3, 0)))
+    c1 = d.add(elm.Capacitor().down().label('C₁', loc='right', ofst=(0, 0.6)))
     c1_bot = d.here
     d.pop()
 
@@ -30,7 +30,7 @@ with schemdraw.Drawing() as d:
     d += elm.Dot()
 
     # C2 branch (second parallel)
-    c2 = d.add(elm.Capacitor().down().label('C₂', loc='right', ofst=(0.3, 0)))
+    c2 = d.add(elm.Capacitor().down().label('C₂', loc='right', ofst=(0, 0.6)))
     c2_bot = d.here
 
     # Bottom rail connecting both capacitors

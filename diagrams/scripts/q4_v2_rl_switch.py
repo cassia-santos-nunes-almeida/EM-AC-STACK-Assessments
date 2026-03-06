@@ -17,7 +17,7 @@ ax1.set_title('t < 0  (switch closed)', fontsize=14, fontweight='bold')
 with schemdraw.Drawing(canvas=ax1) as d:
     d.config(unit=3, fontsize=13, font='sans-serif')
 
-    source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(-0.3, 0)))
+    source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(0, 0.6)))
     d += elm.Line().right().length(0.5).at(source.end)
     sw = d.add(elm.Switch().right().label('S'))
     d += elm.Resistor().right().label('R₁')
@@ -27,13 +27,13 @@ with schemdraw.Drawing(canvas=ax1) as d:
 
     # R2 branch
     d.push()
-    d += elm.Resistor().down().label('R₂', loc='right', ofst=(0.3, 0))
+    d += elm.Resistor().down().label('R₂', loc='right', ofst=(0, 0.6))
     d += elm.Line().down().length(0.5)
     d.pop()
 
     # L branch in parallel
     d += elm.Line().right().length(2)
-    d += elm.Inductor().down().label('L', loc='right', ofst=(0.3, 0))
+    d += elm.Inductor().down().label('L', loc='right', ofst=(0, 0.6))
     d += elm.Line().down().length(0.5)
 
     d += elm.Line().left().length(2)
@@ -51,7 +51,7 @@ with schemdraw.Drawing(canvas=ax2) as d:
     # No source — just R2 and L in a loop
     r2 = d.add(elm.Resistor().right().label('R₂'))
     d += elm.Line().right().length(0.5)
-    ind = d.add(elm.Inductor().down().label('L', loc='right', ofst=(0.3, 0)))
+    ind = d.add(elm.Inductor().down().label('L', loc='right', ofst=(0, 0.6)))
     d += elm.Line().left().length(3.5)
     d += elm.Line().up().toy(r2.start)
 

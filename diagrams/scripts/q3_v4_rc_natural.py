@@ -11,7 +11,7 @@ with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=14, font='sans-serif')
 
     # Capacitor on the left (vertical, with initial condition)
-    cap = d.add(elm.Capacitor().up().label('C', loc='left', ofst=(-0.3, 0)))
+    cap = d.add(elm.Capacitor().up().label('C', loc='left', ofst=(0, 0.6)))
 
     # Top rail: R1
     d += elm.Line().right().length(0.5).at(cap.end)
@@ -23,7 +23,7 @@ with schemdraw.Drawing() as d:
 
     # R3 vertical to ground from Node A
     d.push()
-    d += elm.Resistor().down().label('R₃', loc='right', ofst=(0.3, 0))
+    d += elm.Resistor().down().label('R₃', loc='right', ofst=(0, 0.6))
     d += elm.Line().down().length(0.5)
     d.pop()
 
@@ -36,7 +36,7 @@ with schemdraw.Drawing() as d:
 
     # R4 vertical to ground from Node B
     d += elm.Line().right().length(0.5)
-    d += elm.Resistor().down().label('R₄', loc='right', ofst=(0.3, 0))
+    d += elm.Resistor().down().label('R₄', loc='right', ofst=(0, 0.6))
     d += elm.Line().down().length(0.5)
 
     # Bottom return rail

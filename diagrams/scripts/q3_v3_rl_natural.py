@@ -11,7 +11,7 @@ with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=14, font='sans-serif')
 
     # Inductor on the left (vertical, with initial condition)
-    ind = d.add(elm.Inductor().up().label('L', loc='left', ofst=(-0.3, 0)))
+    ind = d.add(elm.Inductor().up().label('L', loc='left', ofst=(0, 0.6)))
 
     # Top rail
     d += elm.Line().right().length(0.5).at(ind.end)
@@ -19,7 +19,7 @@ with schemdraw.Drawing() as d:
     # R4 vertical to ground (shunt)
     d += elm.Dot()
     d.push()
-    d += elm.Resistor().down().label('R₄', loc='right', ofst=(0.3, 0))
+    d += elm.Resistor().down().label('R₄', loc='right', ofst=(0, 0.6))
     d += elm.Line().down().length(0.5)
     d.pop()
 
@@ -32,13 +32,13 @@ with schemdraw.Drawing() as d:
 
     # R2 vertical to ground from Node A
     d.push()
-    d += elm.Resistor().down().label('R₂', loc='right', ofst=(0.3, 0))
+    d += elm.Resistor().down().label('R₂', loc='right', ofst=(0, 0.6))
     d += elm.Line().down().length(0.5)
     d.pop()
 
     # R3 continues right then to ground
     d += elm.Line().right().length(1)
-    d += elm.Resistor().down().label('R₃', loc='right', ofst=(0.3, 0))
+    d += elm.Resistor().down().label('R₃', loc='right', ofst=(0, 0.6))
     d += elm.Line().down().length(0.5)
 
     # Bottom return rail

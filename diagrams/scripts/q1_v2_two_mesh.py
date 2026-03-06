@@ -10,7 +10,7 @@ with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=14, font='sans-serif')
 
     # Left voltage source
-    vs1 = d.add(elm.SourceV().up().label('Vs₁', loc='left', ofst=(-0.3, 0)))
+    vs1 = d.add(elm.SourceV().up().label('Vs₁', loc='left', ofst=(0, 0.6)))
 
     # Top rail left mesh: R1
     d += elm.Line().right().length(0.5).at(vs1.end)
@@ -21,7 +21,7 @@ with schemdraw.Drawing() as d:
 
     # R2 shared vertical element (center)
     d.push()
-    d += elm.Resistor().down().label('R₂', loc='right', ofst=(0.3, 0))
+    d += elm.Resistor().down().label('R₂', loc='right', ofst=(0, 0.6))
     center_bot = d.add(elm.Dot())
     d.pop()
 
@@ -30,7 +30,7 @@ with schemdraw.Drawing() as d:
     d += elm.Line().right().length(0.5)
 
     # Right voltage source
-    vs2 = d.add(elm.SourceV().down().label('Vs₂', loc='right', ofst=(0.3, 0)))
+    vs2 = d.add(elm.SourceV().down().label('Vs₂', loc='right', ofst=(0, 0.6)))
 
     # Bottom rail right mesh: connect to center bottom
     d += elm.Line().left().length(0.5)

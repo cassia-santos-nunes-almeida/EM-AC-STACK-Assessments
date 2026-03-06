@@ -6,7 +6,7 @@ with schemdraw.Drawing(file='diagrams/week10/q1_series_rlc_switch.svg') as d:
     d.config(unit=3.5, fontsize=14, font='sans-serif')
 
     # DC voltage source on the left (vertical, positive on top)
-    source = d.add(elm.SourceV().up().label('$V_s$', loc='left', ofst=(-0.3, 0)))
+    source = d.add(elm.SourceV().up().label('$V_s$', loc='left', ofst=(0, 0.6)))
 
     # Top rail rightward
     d += elm.Line().right().length(2).at(source.end)
@@ -18,13 +18,13 @@ with schemdraw.Drawing(file='diagrams/week10/q1_series_rlc_switch.svg') as d:
     d += elm.Line().right().length(2)
 
     # Resistor going down
-    R = d.add(elm.Resistor().down().label('$R$', loc='right', ofst=(0.3, 0)))
+    R = d.add(elm.Resistor().down().label('$R$', loc='right', ofst=(0, 0.6)))
 
     # Inductor going down
-    L = d.add(elm.Inductor().down().label('$L$', loc='right', ofst=(0.3, 0)))
+    L = d.add(elm.Inductor().down().label('$L$', loc='right', ofst=(0, 0.6)))
 
     # Capacitor going down with voltage polarity
-    C = d.add(elm.Capacitor().down().label('$C$', loc='right', ofst=(0.3, 0)))
+    C = d.add(elm.Capacitor().down().label('$C$', loc='right', ofst=(0, 0.6)))
 
     # Voltage polarity on capacitor
     d += elm.CurrentLabelInline(direction='in').at(C).label('$v_C$')

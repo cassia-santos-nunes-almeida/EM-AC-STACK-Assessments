@@ -10,7 +10,7 @@ with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=14, font='sans-serif')
 
     # Voltage source with step input
-    source = d.add(elm.SourceV().up().label('Vs·u(t)', loc='left', ofst=(-0.3, 0)))
+    source = d.add(elm.SourceV().up().label('Vs·u(t)', loc='left', ofst=(0, 0.6)))
 
     # Top rail: R1
     d += elm.Line().right().length(0.5).at(source.end)
@@ -22,7 +22,7 @@ with schemdraw.Drawing() as d:
 
     # R2 vertical to ground from Node A
     d.push()
-    d += elm.Resistor().down().label('R₂', loc='right', ofst=(0.3, 0))
+    d += elm.Resistor().down().label('R₂', loc='right', ofst=(0, 0.6))
     d += elm.Line().down().length(0.5)
     d.pop()
 
@@ -35,7 +35,7 @@ with schemdraw.Drawing() as d:
 
     # Inductor vertical to ground from Node B
     d += elm.Line().right().length(0.5)
-    ind = d.add(elm.Inductor().down().label('L', loc='right', ofst=(0.3, 0)))
+    ind = d.add(elm.Inductor().down().label('L', loc='right', ofst=(0, 0.6)))
 
     # Current arrow
     d.add(elm.CurrentLabelInline(direction='in').at(source.end).label('i(t)', fontsize=13))

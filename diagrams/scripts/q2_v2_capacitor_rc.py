@@ -10,7 +10,7 @@ with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=14, font='sans-serif')
 
     # Voltage source (left side)
-    source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(-0.3, 0)))
+    source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(0, 0.6)))
 
     # Top rail: resistor
     d += elm.Line().right().length(0.5).at(source.end)
@@ -22,7 +22,7 @@ with schemdraw.Drawing() as d:
 
     # Capacitor vertical on right side
     d += elm.Line().right().length(1)
-    cap = d.add(elm.Capacitor().down().label('C', loc='right', ofst=(0.3, 0)))
+    cap = d.add(elm.Capacitor().down().label('C', loc='right', ofst=(0, 0.6)))
 
     # Current arrow on top rail
     d.add(elm.CurrentLabelInline(direction='in').at(source.end).label('i(t)', fontsize=13))

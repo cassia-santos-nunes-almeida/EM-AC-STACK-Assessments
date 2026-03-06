@@ -10,7 +10,7 @@ with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=14, font='sans-serif')
 
     # Voltage source (left side)
-    source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(-0.3, 0)))
+    source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(0, 0.6)))
 
     # Top rail: switch then resistor
     d += elm.Line().right().length(0.5).at(source.end)
@@ -19,7 +19,7 @@ with schemdraw.Drawing() as d:
 
     # Continue to inductor (vertical on right)
     d += elm.Line().right().length(0.5)
-    ind = d.add(elm.Inductor().down().label('L', loc='right', ofst=(0.3, 0)))
+    ind = d.add(elm.Inductor().down().label('L', loc='right', ofst=(0, 0.6)))
 
     # Current arrow on top rail
     d.add(elm.CurrentLabelInline(direction='in').at(sw.center).label('i(t)', fontsize=13))

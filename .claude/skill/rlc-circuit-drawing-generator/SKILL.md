@@ -47,7 +47,31 @@ Users can describe circuits in natural language:
 - **Power source**: Vertical on left side, positive terminal on top
 - **Components**: Arranged vertically on the right side using `.down()`
 - **Ground**: Reference point on the return path (bottom)
-- **Labels**: Include component designators and values (R₁  10kΩ) - use default positioning
+- **Labels**: Include component designators and values (R₁  10kΩ) - use explicit positioning with `ofst` to avoid overlap (see below)
+
+## Label Positioning (CRITICAL)
+
+Schemdraw's default label placement overlaps with element symbols on vertical components.
+**Always use explicit `loc` and `ofst` parameters** for vertical elements.
+
+The `ofst` parameter uses the **element's local coordinate frame**, not screen coordinates.
+For vertical elements, `ofst=(0, y)` moves labels **perpendicular** to the element:
+
+| Element direction | Goal | Code |
+|---|---|---|
+| `.down()` → label screen-RIGHT | `loc='right', ofst=(0, 0.6)` |
+| `.down()` → label screen-LEFT  | `loc='left', ofst=(0, 0.6)` |
+| `.up()` → label screen-LEFT    | `loc='left', ofst=(0, 0.6)` |
+| `.up()` → label screen-RIGHT   | `loc='left', ofst=(0, -0.6)` |
+| `.right()` → label above       | default (no `ofst` needed) |
+| `.left()` → label above        | default (no `ofst` needed) |
+
+**For the standard layout** (source UP on left, components DOWN on right):
+```python
+source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(0, 0.6)))
+d += elm.Resistor().down().label('R₁', loc='right', ofst=(0, 0.6))
+d += elm.Capacitor().down().label('C₁', loc='right', ofst=(0, 0.6))
+```
 
 ## Schemdraw Code Generation
 
@@ -59,7 +83,7 @@ Use the bundled references for syntax:
 
 **Important**: The ground must be connected to the source negative terminal to form a complete circuit.
 
-**Labeling**: Use `.label('text')` without specifying `loc` - Schemdraw's default positioning handles placement intelligently based on element orientation.
+**Labeling**: Always use explicit `loc` and `ofst` for vertical elements (see Label Positioning section above).
 
 ```python
 import schemdraw
@@ -68,16 +92,16 @@ import schemdraw.elements as elm
 with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=12)
 
-    # Start with power source (vertical, positive up)
-    source = d.add(elm.SourceV().up().label('V₁\n12V'))
+    # Source: UP → label LEFT with ofst=(0, 0.6)
+    source = d.add(elm.SourceV().up().label('V₁\n12V', loc='left', ofst=(0, 0.6)))
 
     # Top rail to the right
     d += elm.Line().right().length(5).at(source.end)
 
-    # Components arranged vertically using .down()
-    d += elm.Resistor().down().label('R₁  100Ω')
-    d += elm.Inductor().down().label('L₁  10mH')
-    d += elm.Capacitor().down().label('C₁  1μF')
+    # Components DOWN → label RIGHT with ofst=(0, 0.6)
+    d += elm.Resistor().down().label('R₁  100Ω', loc='right', ofst=(0, 0.6))
+    d += elm.Inductor().down().label('L₁  10mH', loc='right', ofst=(0, 0.6))
+    d += elm.Capacitor().down().label('C₁  1μF', loc='right', ofst=(0, 0.6))
 
     # Return path with ground
     d += elm.Line().left().length(3)

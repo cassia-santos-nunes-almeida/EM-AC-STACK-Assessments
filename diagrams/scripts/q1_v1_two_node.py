@@ -10,7 +10,7 @@ with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=14, font='sans-serif')
 
     # Voltage source (left side, vertical)
-    source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(-0.3, 0)))
+    source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(0, 0.6)))
 
     # Top rail from source to R1
     d += elm.Line().right().length(1).at(source.end)
@@ -22,7 +22,7 @@ with schemdraw.Drawing() as d:
 
     # R2 vertical to ground from Node A
     d.push()
-    d += elm.Resistor().down().label('R₂', loc='right', ofst=(0.3, 0))
+    d += elm.Resistor().down().label('R₂', loc='right', ofst=(0, 0.6))
     d += elm.Line().down().length(0.5)
     d.pop()
 
@@ -32,13 +32,13 @@ with schemdraw.Drawing() as d:
 
     # R3 vertical to ground
     d.push()
-    d += elm.Resistor().down().label('R₃', loc='right', ofst=(0.3, 0))
+    d += elm.Resistor().down().label('R₃', loc='right', ofst=(0, 0.6))
     d += elm.Line().down().length(0.5)
     d.pop()
 
     # Continue right to current source
     d += elm.Line().right().length(1)
-    d += elm.SourceI().down().reverse().label('Is', loc='right', ofst=(0.3, 0))
+    d += elm.SourceI().down().reverse().label('Is', loc='right', ofst=(0, 0.6))
 
     # Bottom return rail
     d += elm.Line().left().length(2)

@@ -6,7 +6,7 @@ with schemdraw.Drawing(file='diagrams/week10/q2_parallel_rlc_step.svg') as d:
     d.config(unit=3.5, fontsize=14, font='sans-serif')
 
     # DC current source on the left (vertical, arrow pointing up)
-    source = d.add(elm.SourceI().up().label('$I_s$', loc='left', ofst=(-0.3, 0)))
+    source = d.add(elm.SourceI().up().label('$I_s$', loc='left', ofst=(0, 0.6)))
 
     # Top rail rightward
     d += elm.Line().right().length(1.5).at(source.end)
@@ -17,7 +17,7 @@ with schemdraw.Drawing(file='diagrams/week10/q2_parallel_rlc_step.svg') as d:
 
     # Branch 1: Resistor (leftmost parallel branch)
     d.push()
-    R = d.add(elm.Resistor().down().label('$R$', loc='right', ofst=(0.3, 0)))
+    R = d.add(elm.Resistor().down().label('$R$', loc='right', ofst=(0, 0.6)))
     junction_bot_R = d.here
     d.pop()
 
@@ -27,7 +27,7 @@ with schemdraw.Drawing(file='diagrams/week10/q2_parallel_rlc_step.svg') as d:
     d.push()
 
     # Branch 2: Inductor (middle parallel branch)
-    L = d.add(elm.Inductor().down().label('$L$', loc='right', ofst=(0.3, 0)))
+    L = d.add(elm.Inductor().down().label('$L$', loc='right', ofst=(0, 0.6)))
     # Current arrow on inductor
     d += elm.CurrentLabelInline(direction='in').at(L).label('$i_L$')
     junction_bot_L = d.here
@@ -38,7 +38,7 @@ with schemdraw.Drawing(file='diagrams/week10/q2_parallel_rlc_step.svg') as d:
     d += elm.Dot()
 
     # Branch 3: Capacitor (rightmost parallel branch)
-    C = d.add(elm.Capacitor().down().label('$C$', loc='right', ofst=(0.3, 0)))
+    C = d.add(elm.Capacitor().down().label('$C$', loc='right', ofst=(0, 0.6)))
     junction_bot_C = d.here
 
     # Bottom rail: connect all branch bottoms

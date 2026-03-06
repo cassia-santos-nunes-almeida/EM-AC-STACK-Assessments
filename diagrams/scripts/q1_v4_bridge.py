@@ -10,7 +10,7 @@ with schemdraw.Drawing() as d:
     d.config(unit=3, fontsize=14, font='sans-serif')
 
     # Voltage source on the far left
-    source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(-0.3, 0)))
+    source = d.add(elm.SourceV().up().label('Vs', loc='left', ofst=(0, 0.6)))
 
     # Connect to top node A
     d += elm.Line().right().length(1).at(source.end)
@@ -18,14 +18,14 @@ with schemdraw.Drawing() as d:
 
     # Upper-left arm: R1 from A down-left to B
     d.push()
-    d += elm.Resistor().down().label('R₁', loc='left', ofst=(-0.3, 0))
+    d += elm.Resistor().down().label('R₁', loc='left', ofst=(0, 0.6))
     nodeB = d.add(elm.Dot())
     d.add(elm.Annotate().at(nodeB.center).delta(-0.8, 0).label('B', color='red', fontsize=14))
     d.pop()
 
     # Upper-right arm: R2 from A to the right then down to C
     d += elm.Line().right().length(3)
-    d += elm.Resistor().down().label('R₂', loc='right', ofst=(0.3, 0))
+    d += elm.Resistor().down().label('R₂', loc='right', ofst=(0, 0.6))
     nodeC = d.add(elm.Dot())
     d.add(elm.Annotate().at(nodeC.center).delta(0.8, 0).label('C', color='red', fontsize=14))
 
@@ -33,11 +33,11 @@ with schemdraw.Drawing() as d:
     d.add(elm.Resistor().right().at(nodeB.center).tox(nodeC.center).label('R₅'))
 
     # Lower-left arm: R3 from B down to D
-    d.add(elm.Resistor().down().at(nodeB.center).label('R₃', loc='left', ofst=(-0.3, 0)))
+    d.add(elm.Resistor().down().at(nodeB.center).label('R₃', loc='left', ofst=(0, 0.6)))
     nodeD_left = d.here
 
     # Lower-right arm: R4 from C down to D
-    d.add(elm.Resistor().down().at(nodeC.center).label('R₄', loc='right', ofst=(0.3, 0)))
+    d.add(elm.Resistor().down().at(nodeC.center).label('R₄', loc='right', ofst=(0, 0.6)))
     nodeD_right = d.here
 
     # Bottom rail connecting D nodes
