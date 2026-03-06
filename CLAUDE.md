@@ -91,7 +91,7 @@ Every question MUST include 2-3 `<hint>` elements at the end of the `<question>`
 | Setting | Value | Reason |
 |---------|-------|--------|
 | `insertstars` | `1` | Required for algebraic expression inputs (e.g. `2*exp(-3*t)`) |
-| Classification MCQs | `type="radio"` | Use radio buttons, NOT dropdown MCQs, for regime/method selection |
+| Classification MCQs | `type="dropdown"` | Use dropdown select for regime/method classification (no "Clear my choice" clutter) |
 | MCQ option format | `[[value, bool, "text"]]` | STACK 4.x Maxima list format in `questionvariables` |
 
 ## Maxima CAS Patterns
@@ -159,7 +159,7 @@ These are hard-won lessons from previous sessions. **Do not repeat these errors:
 2. **Don't use `SigFigsStrict` as a scoring gate** — penalizes formatting, not understanding.
 3. **Don't leak answers** via `syntaxhint` or textarea placeholder text. In unsupervised exams, even structural hints narrow the solution space.
 4. **Verify parameter sets mathematically** before implementing. Check that `alpha` vs `omega0` produces the intended damping regime for every variant.
-5. **Don't use dropdown MCQs** for classification questions — use `type="radio"` radio buttons.
+5. **Don't use `type="radio"` for classification MCQs** — radio buttons show an unnecessary "Clear my choice" link. Use `type="dropdown"` instead.
 6. **Don't embed base64 in exam XMLs** — Moodle's HTML sanitizer strips data URIs. Use text placeholders for exams.
 7. **Don't include dependent sources in Easy questions** — students find them confusing; reserve for Difficult (Q4) only.
 8. **Test all parameter set variants** before committing. A single untested variant can produce wrong answers or degenerate cases.

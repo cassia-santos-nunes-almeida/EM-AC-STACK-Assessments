@@ -173,6 +173,12 @@ Each entry: `[date] — Decision` followed by reasoning and rejected alternative
 
 ---
 
+### 2026-03-06 — Switch back to dropdown (type="dropdown") for classification MCQs
+**Reason:** Radio buttons show an unnecessary "Clear my choice" link in Moodle. The earlier dropdown rendering issues (2026-02-23) were caused by incorrect Maxima format, not the dropdown type itself. Now that the correct `[[value, bool, "text"]]` format is in place, dropdown works cleanly — simple click-and-choose with no clutter. Supersedes the 2026-03-05 decision to use radio.
+**Alternatives rejected:** Radio buttons (shows "Clear my choice"), integer input (less user-friendly).
+
+---
+
 ### 2026-03-06 — Use base64 SVG embedding for weekly practice questions
 **Reason:** Weekly questions are lower-stakes than exams. Base64 SVG data URIs work in the Moodle question bank for practice/formative contexts where the HTML sanitizer is less restrictive. This avoids the manual diagram upload step required for exam questions.
 **Alternatives rejected:** Text placeholders (unnecessary friction for practice questions), `@@PLUGINFILE@@` (unreliable on import).

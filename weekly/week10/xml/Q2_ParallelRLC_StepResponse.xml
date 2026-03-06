@@ -325,7 +325,7 @@ ta6_at_t3: float(subst(t=t_test3, ta6));
   <!-- ans1: Part (a) Physical reasoning MCQ (radio) -->
   <input>
     <name>ans1</name>
-    <type>radio</type>
+    <type>dropdown</type>
     <tans>ta1</tans>
     <boxsize>3</boxsize>
     <strictsyntax>1</strictsyntax>
@@ -365,7 +365,7 @@ ta6_at_t3: float(subst(t=t_test3, ta6));
   <!-- ans3: Part (c) Regime MCQ (radio) -->
   <input>
     <name>ans3</name>
-    <type>radio</type>
+    <type>dropdown</type>
     <tans>ta3</tans>
     <boxsize>3</boxsize>
     <strictsyntax>1</strictsyntax>

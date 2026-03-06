@@ -292,7 +292,7 @@ ta8_at_t3: float(subst(t=t_test3, ta8));
   <!-- ans1: Part (a) MCQ — DC steady-state concept (radio) -->
   <input>
     <name>ans1</name>
-    <type>radio</type>
+    <type>dropdown</type>
     <tans>ta1</tans>
     <boxsize>3</boxsize>
     <strictsyntax>1</strictsyntax>
@@ -392,7 +392,7 @@ ta8_at_t3: float(subst(t=t_test3, ta8));
   <!-- ans6: Part (d) MCQ — damping regime (radio) -->
   <input>
     <name>ans6</name>
-    <type>radio</type>
+    <type>dropdown</type>
     <tans>ta6</tans>
     <boxsize>3</boxsize>
     <strictsyntax>1</strictsyntax>

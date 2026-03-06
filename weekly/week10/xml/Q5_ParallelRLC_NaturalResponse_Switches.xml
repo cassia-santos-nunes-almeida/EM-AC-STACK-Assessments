@@ -399,7 +399,7 @@ ta7_at_t3: float(subst(t=t_test3, ta7));
   <!-- ans5: Damping regime — RADIO button -->
   <input>
     <name>ans5</name>
-    <type>radio</type>
+    <type>dropdown</type>
     <tans>ta5</tans>
     <boxsize>30</boxsize>
     <strictsyntax>1</strictsyntax>

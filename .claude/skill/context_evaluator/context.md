@@ -122,7 +122,7 @@ Each question has 4 scaffolded subparts (A-D) mixing STACK auto-graded and Essay
 - Complex Maxima algebraic inputs for students (error-prone and frustrating).
 - Reducing the exam pool to fewer than 15 variants (instructor requirement).
 - Using `AlgEquiv` for numerical answers that could be 0 (use `NumAbsolute` instead).
-- Using dropdown MCQs for classification — use radio buttons (`type="radio"`).
+- Using `type="radio"` for classification MCQs — shows "Clear my choice" clutter. Use `type="dropdown"` instead.
 
 ## Last Updated
 2026-03-06
