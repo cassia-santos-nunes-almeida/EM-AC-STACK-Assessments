@@ -151,6 +151,10 @@ gap.label('-', loc='bottom', ofst=0.15)
 | Weekly questions | Base64 SVG embedded directly in XML via `shared/scripts/embed_images_in_xml.py` |
 | Exam questions | Text placeholders `[INSERT DIAGRAM: ...]` — instructor uploads manually via Moodle editor |
 
+## Known Issues / Pending Work
+
+- **Q5 diagram (`weekly/week10/diagrams/q5_parallel_rlc_natural_switches.py`)** — Does NOT match Nilsson Figure P8.11. The Schemdraw layout needs a complete rewrite to match the textbook circuit topology. Two rewrite attempts failed. The user has the reference image. After fixing, regenerate SVG and re-embed base64 in `Q5_ParallelRLC_NaturalResponse_Switches.xml`.
+
 ## Common Mistakes to Avoid
 
 These are hard-won lessons from previous sessions. **Do not repeat these errors:**
