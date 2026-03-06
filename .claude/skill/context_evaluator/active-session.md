@@ -1,50 +1,47 @@
-# Active Session — STACK Exam Builder
+# Active Session — STACK Exam & Practice Question Builder
 
 ## Current Milestone
-**Exam content complete and audit-hardened.** All 15 question variants have been through multiple rounds of Moodle compatibility fixes, a critical exam audit (answer leaks, tolerance bugs, formula errors), and diagram export. The project is ready for Moodle import testing.
+**Repo reorganized with CLAUDE.md. Exam (15 variants) and Week 10 (Q1-Q5) content complete.** Repository restructured into `exams/` and `weekly/` directories with shared scripts. CLAUDE.md captures all technical conventions and lessons learned for session persistence.
 
 ## Completed Tasks
-- [x] Prompt evaluation and corrections documented (`docs/00_prompt_evaluation.md`)
-- [x] Exam overview specification written (`docs/01_exam_overview.md`)
-- [x] Q1 Easy — 4 STACK variants with SVG diagrams (two-node, two-mesh, T-network, bridge)
-- [x] Q2 Medium A — 4 STACK+Essay variants with SVG diagrams (inductor RL, capacitor RC, inductor waveform, capacitor parallel)
-- [x] Q3 Medium B — 4 STACK variants with complex resistor networks (3-4 nodes, 3 meshes, 4-5 resistors each). Part B changed from algebraic transfer function to numerical Req. All hints, version IDs, and s-domain annotations stripped from diagrams and question text for AI resistance.
-- [x] Q4 Difficult — 3 STACK variants with SVG diagrams (RC switch, RL switch, Thevenin RC)
-- [x] Upload question with per-question checklists
-- [x] Claude skill package created
-- [x] PNG exports generated for all 15 diagrams (1200px, 150 DPI)
-- [x] **Moodle compatibility fixes (multiple rounds):**
-  - Q1 STACK dropdown MCQ format fixed (bare integer → Maxima `[[value, bool, "text"]]` list format)
-  - Q2 dropdowns converted to match Q1 format (options moved into `questionvariables`)
-  - SVG embedding iterated: base64 data URIs → `@@PLUGINFILE@@` → **text placeholders** (final approach)
-- [x] **Critical exam audit fixes:**
-  - Q4 V2: Fixed time constant formula (removed ×1000 error in `tau_ms`)
-  - Q3 all: Removed `syntaxhint` on `ansB` that leaked exact transfer function answers
-  - Q3 all: Added uppercase A,B,C,D to MCQ `allowwords` for case-insensitive input
-  - Q1 all: Removed textarea placeholders that gave away Part B equations
-  - Q1 V3: Removed duplicate `Vs`/`Is` variable assignment
-  - Q1 V4: Removed balance condition hint from Part D placeholder
-  - Q2 all: Changed `prtB` from `NumAbsolute` to `NumRelative` (5%) to fix tolerance bug
-  - Q4 all: Removed textarea placeholders that leaked s-domain solutions
+
+### Repo Reorganization (2026-03-06)
+- [x] Reorganized repo into `exams/midterm-week9/`, `weekly/week10/`, `shared/scripts/`
+- [x] Created `CLAUDE.md` with STACK XML conventions, Maxima patterns, schemdraw rules, and common mistakes
+- [x] Updated all skill context files (context.md, active-session.md, decisions-log.md)
+- [x] Moved shared utilities (render_all.py, embed_images_in_xml.py) to `shared/scripts/`
+
+### Week 10 Practice Questions (2026-03-05 to 2026-03-06)
+- [x] Q1 — Series RLC natural response (3 damping regimes, radio MCQ classification)
+- [x] Q2 — Parallel RLC step response (3 damping regimes, with voltage polarity Gap fix)
+- [x] Q3 — Toroid: Ampere's law, B-H curve, magnetic flux (physical + reluctance diagrams)
+- [x] Q4 — Magnetic circuit: reluctance, sensitivity analysis (C-core physical + reluctance diagrams)
+- [x] Q5 — Parallel RLC natural response with switches (P8.11 inspired, 3 damping regimes)
+- [x] Base64 SVG embedding implemented for all weekly questions
+- [x] Converted dropdown MCQs to radio buttons for damping regime classification
+
+### Midterm Week 9 Exam (2026-02-22 to 2026-02-24)
+- [x] Q1 Easy — 4 STACK variants (two-node, two-mesh, T-network, bridge)
+- [x] Q2 Medium A — 4 STACK+Essay variants (inductor RL, capacitor RC, waveform, parallel)
+- [x] Q3 Medium B — 4 STACK variants (complex resistor networks, Req numerical)
+- [x] Q4 Difficult — 3 STACK variants (RC switch, RL switch, Thevenin RC)
+- [x] Upload question, PNG exports, critical audit (answer leaks, tolerance bugs)
+- [x] MCQ format fixed (Maxima list format), diagram placeholders finalized
 
 ## Immediate Next Steps (Prioritized)
-1. **Moodle test import** — Import all 5 XML files into a Moodle sandbox and verify:
-   - Questions render correctly (formatting intact)
-   - Diagrams display after manual upload via placeholders
-   - STACK randomization produces valid parameter combinations
-   - PRTs grade sample answers correctly
-   - Essay textareas appear with correct word limits
-   - Upload question accepts PDF/JPG/PNG up to 4 files
-2. **Peer review** — Have a colleague attempt each variant to check:
-   - Time-on-task estimates (20+30+30+30 min) are realistic
-   - Difficulty equivalence across variants within each pool
-   - Wording clarity for international students
-3. **Feedback pass** — Review all STACK feedback strings for tone and helpfulness (post-exam learning goal)
-4. **Quiz assembly** — Configure Moodle quiz settings (random question from each pool, sequential navigation, timer, single attempt)
+1. **Moodle test import** — Import weekly/week10 XML files into sandbox, verify base64 SVGs render
+2. **Moodle exam import** — Import exams/midterm-week9 XMLs, verify diagram placeholders work
+3. **Add more weeks** — Create `weekly/week11/`, `weekly/week12/` etc. as course progresses
+4. **Peer review** — Colleague review of exam difficulty equivalence and time-on-task
+5. **Quiz assembly** — Configure Moodle quiz settings (random selection, timer, single attempt)
+
+## Deferred Items
+- Q4 4th variant (RL with Thevenin reduction) — instructor may request later
+- Week 10 PNG exports (only SVGs generated; PNGs needed if SVG rendering fails in Moodle)
 
 ## Blockers / Open Questions
-- **Moodle instance access needed** — Cannot validate XML imports without a STACK-enabled Moodle sandbox.
-- **Q4 variant count** — Only 3 variants (vs. 4 for other pools). Instructor may want a 4th variant for better randomization. Candidate: RL circuit with Thevenin reduction.
+- **Moodle instance access needed** — Cannot validate XML imports without a STACK-enabled Moodle sandbox
+- **Base64 SVG rendering** — Weekly questions use embedded base64; needs verification in target Moodle theme
 
 ## Last Updated
-2026-02-24
+2026-03-06

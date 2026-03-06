@@ -161,5 +161,35 @@ Each entry: `[date] — Decision` followed by reasoning and rejected alternative
 
 ---
 
+### 2026-03-05 — Use radio buttons (type="radio") instead of dropdown MCQs for classification
+**Reason:** Dropdown MCQs in STACK use a complex Maxima list format and render inconsistently. Radio buttons are more natural for regime/method classification (3-4 options) and work reliably across STACK versions.
+**Alternatives rejected:** Dropdown MCQ (rendering issues, verbose Maxima syntax), integer input with mapping (error-prone for students).
+
+---
+
+### 2026-03-05 — Use NumAbsolute (tolerance 0.01) when reference value is 0
+**Reason:** `NumRelative` computes relative error as `|student - teacher| / |teacher|`, which divides by zero when the correct answer is 0. Discovered when testing Q5 Part (h) where v_o(infinity) = 0.
+**Alternatives rejected:** `NumRelative` with any tolerance (mathematically undefined at 0), `AlgEquiv` (too strict for numerical contexts).
+
+---
+
+### 2026-03-06 — Use base64 SVG embedding for weekly practice questions
+**Reason:** Weekly questions are lower-stakes than exams. Base64 SVG data URIs work in the Moodle question bank for practice/formative contexts where the HTML sanitizer is less restrictive. This avoids the manual diagram upload step required for exam questions.
+**Alternatives rejected:** Text placeholders (unnecessary friction for practice questions), `@@PLUGINFILE@@` (unreliable on import).
+
+---
+
+### 2026-03-06 — Reorganize repo into exams/ and weekly/ subdirectories
+**Reason:** The flat structure (all XMLs in `xml/`, all diagrams in `diagrams/`) mixed exam and weekly content, making it hard to add new content types. The new `exams/<name>/` and `weekly/<weekN>/` structure scales to any number of exams and weekly sets. Shared utilities moved to `shared/scripts/`.
+**Alternatives rejected:** Keep flat structure with naming conventions only (doesn't scale), separate repos per content type (over-engineered).
+
+---
+
+### 2026-03-06 — Add CLAUDE.md for persistent technical context
+**Reason:** Skill context files (context.md, active-session.md, decisions-log.md) require loading the skill to access. CLAUDE.md is automatically loaded by Claude Code, providing always-available technical guardrails (STACK conventions, common mistakes, Maxima patterns) without depending on skill activation.
+**Alternatives rejected:** Relying only on skill context files (not loaded in Claude Code CLI), putting everything in CLAUDE.md (would duplicate project management that skills handle better).
+
+---
+
 ## Last Updated
-2026-02-24
+2026-03-06
