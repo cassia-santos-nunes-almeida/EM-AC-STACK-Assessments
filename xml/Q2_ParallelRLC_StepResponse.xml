@@ -40,17 +40,7 @@ The initial conditions are:</p>
 <p>When a parallel RLC circuit is underdamped and the source switches on,
 energy oscillates between \(L\) and \(C\). Which statement correctly explains
 why \(R\) eventually stops this oscillation?</p>
-<ol>
-  <li>\(R\) dissipates energy as heat on every half-cycle, progressively reducing
-      the amplitude of oscillation until all stored energy is gone.</li>
-  <li>\(R\) increases the resonant frequency over time until oscillations become
-      too fast to sustain.</li>
-  <li>\(R\) reflects energy back into the source, removing it from the LC tank circuit.</li>
-  <li>The oscillations stop because the inductor saturates after many cycles.</li>
-</ol>
-<p>Enter the number of the correct option (1&ndash;4):
-[[input:ans1]] [[validation:ans1]]</p>
-<p><em>Syntax hint: Enter a single integer, e.g. <code>1</code></em></p>
+<p>[[input:ans1]] [[validation:ans1]]</p>
 
 <hr />
 
@@ -67,14 +57,7 @@ at DC the inductor is a short circuit and the capacitor is an open circuit.</em>
 <h4>Part (c) &mdash; Damping Regime Classification (1 pt)</h4>
 <p>For a <strong>parallel</strong> RLC circuit: \(\alpha = \frac{1}{2RC}\),
 \(\omega_0 = \frac{1}{\sqrt{LC}}\). Classify the damping regime:</p>
-<ol>
-  <li>Overdamped (\(\alpha &gt; \omega_0\))</li>
-  <li>Underdamped (\(\alpha &lt; \omega_0\))</li>
-  <li>Critically damped (\(\alpha = \omega_0\))</li>
-</ol>
-<p>Enter the number of the correct regime (1&ndash;3):
-[[input:ans3]] [[validation:ans3]]</p>
-<p><em>Syntax hint: Enter a single integer, e.g. <code>2</code></em></p>
+<p>[[input:ans3]] [[validation:ans3]]</p>
 
 <hr />
 
@@ -252,9 +235,9 @@ ta_v: ev(L_val*diff(ta_iL, t), simp);
 ta_fvt: float(ta_If);
 
 /* ===== Teacher answers ===== */
-ta1: 1;
+ta1: [[1, true, "R dissipates energy as heat on every half-cycle, reducing the oscillation amplitude"], [2, false, "R increases the resonant frequency until oscillations become too fast"], [3, false, "R reflects energy back into the source, removing it from the LC tank"], [4, false, "The oscillations stop because the inductor saturates after many cycles"]];
 ta2: ta_If;
-ta3: ta_regime;
+ta3: [[1, is(ta_regime=1), "Overdamped"], [2, is(ta_regime=2), "Underdamped"], [3, is(ta_regime=3), "Critically damped"]];
 
 /* Part (d): general form with symbolic constants */
 ta4: if ta_regime=1 then ta_If + A1*exp(s1_r*t) + A2*exp(s2_r*t)
@@ -339,10 +322,10 @@ ta6_at_t3: float(subst(t=t_test3, ta6));
   <!-- INPUTS (7 total)                                              -->
   <!-- ============================================================ -->
 
-  <!-- ans1: Part (a) Physical reasoning MCQ -->
+  <!-- ans1: Part (a) Physical reasoning MCQ (radio) -->
   <input>
     <name>ans1</name>
-    <type>algebraic</type>
+    <type>radio</type>
     <tans>ta1</tans>
     <boxsize>3</boxsize>
     <strictsyntax>1</strictsyntax>
@@ -354,8 +337,8 @@ ta6_at_t3: float(subst(t=t_test3, ta6));
     <forbidfloat>1</forbidfloat>
     <requirelowestterms>0</requirelowestterms>
     <checkanswertype>0</checkanswertype>
-    <mustverify>1</mustverify>
-    <showvalidation>3</showvalidation>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
     <options/>
   </input>
 
@@ -379,10 +362,10 @@ ta6_at_t3: float(subst(t=t_test3, ta6));
     <options/>
   </input>
 
-  <!-- ans3: Part (c) Regime MCQ -->
+  <!-- ans3: Part (c) Regime MCQ (radio) -->
   <input>
     <name>ans3</name>
-    <type>algebraic</type>
+    <type>radio</type>
     <tans>ta3</tans>
     <boxsize>3</boxsize>
     <strictsyntax>1</strictsyntax>
@@ -394,8 +377,8 @@ ta6_at_t3: float(subst(t=t_test3, ta6));
     <forbidfloat>1</forbidfloat>
     <requirelowestterms>0</requirelowestterms>
     <checkanswertype>0</checkanswertype>
-    <mustverify>1</mustverify>
-    <showvalidation>3</showvalidation>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
     <options/>
   </input>
 
