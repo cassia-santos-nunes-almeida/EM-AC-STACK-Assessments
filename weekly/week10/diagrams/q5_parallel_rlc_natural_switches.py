@@ -24,12 +24,13 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 # ── Helper: draw SPST switch with matplotlib ─────────────────
-def draw_switch(ax, left_pt, right_pt, closed, label_text):
+def draw_switch(ax, left_pt, right_pt, closed, label_text, name=None):
     """Draw a SPST switch manually on the matplotlib axes.
 
     left_pt, right_pt: (x, y) tuples for the two contacts.
     closed: True = arm touches contact (SW1/SW4 at t<0).
     label_text: annotation above the switch, e.g. 't = 0\n(opens)'.
+    name: optional switch name label (e.g. 'SW1') drawn below the switch.
     """
     x1, y1 = float(left_pt[0]), float(left_pt[1])
     x2, y2 = float(right_pt[0]), float(right_pt[1])
@@ -54,6 +55,11 @@ def draw_switch(ax, left_pt, right_pt, closed, label_text):
     # Label above
     ax.text(mid_x, y1 + gap * 0.8, label_text,
             ha='center', va='bottom', fontsize=11, fontfamily='sans-serif')
+
+    # Switch name below
+    if name:
+        ax.text(mid_x, y1 - gap * 0.3, name, ha='center', va='top',
+                fontsize=10, fontfamily='sans-serif', fontstyle='italic')
 
 
 # ── Build circuit with schemdraw ─────────────────────────────
@@ -96,7 +102,7 @@ bot_L = d.here
 d.pop()
 
 # ── SW2 gap (open -> closes at t=0) ──────────────────────────
-d += elm.Line().right().length(WIRE)
+d += elm.Line().right().length(1.0)  # extra space so v_o(t) label doesn't crowd L
 sw2_left = d.here
 sw2_right = (sw2_left[0] + SW_GAP, sw2_left[1])
 d += elm.Line().right().length(WIRE).at(sw2_right)
@@ -154,10 +160,10 @@ fig = d.fig.fig    # matplotlib Figure
 ax = d.fig.ax      # matplotlib Axes
 
 # Draw the 4 switches
-draw_switch(ax, sw1_left, sw1_right, closed=True,  label_text='t = 0\n(opens)')
-draw_switch(ax, sw2_left, sw2_right, closed=False, label_text='t = 0\n(closes)')
-draw_switch(ax, sw3_left, sw3_right, closed=False, label_text='t = 0\n(closes)')
-draw_switch(ax, sw4_left, sw4_right, closed=True,  label_text='t = 0\n(opens)')
+draw_switch(ax, sw1_left, sw1_right, closed=True,  label_text='t = 0\n(opens)',  name='SW1')
+draw_switch(ax, sw2_left, sw2_right, closed=False, label_text='t = 0\n(closes)', name='SW2')
+draw_switch(ax, sw3_left, sw3_right, closed=False, label_text='t = 0\n(closes)', name='SW3')
+draw_switch(ax, sw4_left, sw4_right, closed=True,  label_text='t = 0\n(opens)',  name='SW4')
 
 # v_o(t) polarity labels (to the left of R)
 rx = float(top_R[0])
