@@ -548,7 +548,11 @@ ta8_correct: 1;
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text>/* Check for order-of-magnitude error (10x or 0.1x) */
+sa2_float: float(ans2);
+prt2_oom_ok: if (abs(sa2_float) > 0) then (
+  is(abs(sa2_float/ta_Rc - 10) / 10 < 0.05) or is(abs(sa2_float/ta_Rc - 1/10) / (1/10) < 0.05)
+) else false;</text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -594,8 +598,34 @@ ta8_correct: 1;
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>2</falsenextnode>
       <falseanswernote>prt2-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Partial credit: order-of-magnitude error (10x or 0.1x)</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt2_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer has the correct formula structure but is off by a factor of 10 &mdash; check your scientific notation exponent. You used \({@ans2@}\); the correct value is \({@ta2@}\).</p>
+<p><strong>Partial credit awarded (30%).</strong></p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. \(\mathcal{R}_\text{core} = \frac{\ell_c}{\mu_r \mu_0 A_c}\). Compare: in electric circuits \(R = \ell/(\sigma A)\). Reluctance is inversely proportional to permeability &mdash; highly permeable materials have <strong>low</strong> reluctance, just as highly conductive materials have low resistance.</p>
 <p>Expected: \({@ta2@}\).</p>]]></text>
@@ -610,7 +640,11 @@ ta8_correct: 1;
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text>/* Check for order-of-magnitude error (10x or 0.1x) */
+sa3_float: float(ans3);
+prt3_oom_ok: if (abs(sa3_float) > 0) then (
+  is(abs(sa3_float/ta_Rg - 10) / 10 < 0.05) or is(abs(sa3_float/ta_Rg - 1/10) / (1/10) < 0.05)
+) else false;</text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -656,8 +690,34 @@ ta8_correct: 1;
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>2</falsenextnode>
       <falseanswernote>prt3-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Partial credit: order-of-magnitude error (10x or 0.1x)</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt3_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer has the correct formula structure but is off by a factor of 10 &mdash; check your scientific notation exponent. You used \({@ans3@}\); the correct value is \({@ta3@}\).</p>
+<p><strong>Partial credit awarded (30%).</strong></p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. \(\mathcal{R}_\text{gap} = \frac{\ell_g}{\mu_0 A_c}\). Note \(\mu_r = 1\) for air, so just \(\mu_0\) in the denominator. Even a tiny gap (e.g. 1 mm) can produce a reluctance many times larger than a long ferromagnetic core because \(\mu_0 \ll \mu_r \mu_0\).</p>
 <p>Expected: \({@ta3@}\).</p>]]></text>
@@ -665,14 +725,19 @@ ta8_correct: 1;
     </node>
   </prt>
 
-  <!-- prt4: Part (d1) — Total reluctance, single-node NumRelative 5% -->
+  <!-- prt4: Part (d1) — Total reluctance, NumRelative 5% + OOM partial credit -->
   <prt>
     <name>prt4</name>
     <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text>/* Check for order-of-magnitude error (10x or 0.1x) */
+sa4_float: float(ans4);
+ref4_float: float(ta4);
+prt4_oom_ok: if (abs(sa4_float) > 0 and abs(ref4_float) > 0) then (
+  is(abs(sa4_float/ref4_float - 10) / 10 < 0.05) or is(abs(sa4_float/ref4_float - 1/10) / (1/10) < 0.05)
+) else false;</text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -693,22 +758,53 @@ ta8_correct: 1;
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Partial credit: order-of-magnitude error (10x or 0.1x)</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt4_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by a factor of 10 &mdash; check your scientific notation exponent. Expected \({@ta4@}\;\text{H}^{-1}\).</p>
+<p><strong>Partial credit awarded (30%).</strong></p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-1-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. \(\mathcal{R}_\text{total} = \mathcal{R}_\text{core} + \mathcal{R}_\text{gap} = {@ta_Rc@} + {@ta_Rg@} = {@ta4@}\;\text{H}^{-1}\). Make sure you sum both reluctances (series magnetic circuit).</p>]]></text>
       </falsefeedback>
     </node>
   </prt>
 
-  <!-- prt5: Part (d2) — Inductance, single-node NumRelative 5% -->
+  <!-- prt5: Part (d2) — Inductance, NumRelative 5% + OOM partial credit -->
   <prt>
     <name>prt5</name>
     <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text>/* Check for order-of-magnitude error (10x or 0.1x) */
+sa5_float: float(ans5);
+ref5_float: float(ta5);
+prt5_oom_ok: if (abs(sa5_float) > 0 and abs(ref5_float) > 0) then (
+  is(abs(sa5_float/ref5_float - 10) / 10 < 0.05) or is(abs(sa5_float/ref5_float - 1/10) / (1/10) < 0.05)
+) else false;</text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -729,22 +825,53 @@ ta8_correct: 1;
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Partial credit: order-of-magnitude error (10x or 0.1x)</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt5_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by a factor of 10 &mdash; check your scientific notation exponent. Expected \(L = {@ta5@}\;\text{H}\).</p>
+<p><strong>Partial credit awarded (30%).</strong></p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-1-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. The formula \(L = N^2/\mathcal{R}_\text{total}\) comes from: \(\Phi = NI/\mathcal{R}\), flux linkage \(\lambda = N\Phi = N^2 I/\mathcal{R}\), giving \(L = \lambda/I = N^2/\mathcal{R}\). With \(N = {@N_val@}\), \(\mathcal{R}_\text{total} = {@ta_Rt@}\): \(L = {@ta5@}\;\text{H}\).</p>]]></text>
       </falsefeedback>
     </node>
   </prt>
 
-  <!-- prt6: Part (e1) — Symbolic dL/dlg -->
+  <!-- prt6: Part (e1) — Symbolic dL/dlg, 3-node: AlgEquiv + NumRelative + OOM -->
   <prt>
     <name>prt6</name>
     <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text>/* Check for order-of-magnitude error (10x or 0.1x) */
+sa6_float: float(ans6);
+ref6_float: float(ta_dLdlg);
+prt6_oom_ok: if (abs(sa6_float) > 0 and abs(ref6_float) > 0) then (
+  is(abs(sa6_float/ref6_float - 10) / 10 < 0.05) or is(abs(sa6_float/ref6_float - 1/10) / (1/10) < 0.05)
+) else false;</text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -790,8 +917,34 @@ ta8_correct: 1;
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>2</falsenextnode>
       <falseanswernote>prt6-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Partial credit: order-of-magnitude error (10x or 0.1x)</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt6_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by a factor of 10 &mdash; check your scientific notation exponent. Expected \({@ta6@}\).</p>
+<p><strong>Partial credit awarded (30%).</strong></p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt6-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. Here is the derivation:</p>
 <ol>
