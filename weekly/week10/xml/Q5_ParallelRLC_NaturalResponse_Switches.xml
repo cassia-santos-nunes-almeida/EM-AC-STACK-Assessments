@@ -82,6 +82,7 @@ becomes a source-free <strong>parallel</strong> RLC circuit with \(R = {@R_val@}
 <h4>Part (e) &mdash; Damping Regime Classification (1 pt)</h4>
 <p>Compare \(\alpha^2\) with \(\omega_0^2\) and classify the damping regime:</p>
 <p>Select your answer: [[input:ans5]] [[validation:ans5]]</p>
+<p><em>Syntax hint: Select one option from the list.</em></p>
 
 <hr />
 
@@ -215,7 +216,7 @@ ta_omega0: float(1/sqrt(L_val*C_val));
 disc: float(ta_alpha^2 - ta_omega0^2);
 
 /* ===== Regime classification ===== */
-ta_regime: if abs(ta_alpha-ta_omega0) < 1.0 then 3
+ta_regime: if abs(disc) < 0.01 then 3
            else if disc > 0 then 1
            else 2;
 regime_name: if ta_regime=1 then "overdamped"

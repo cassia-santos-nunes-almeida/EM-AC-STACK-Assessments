@@ -13,10 +13,11 @@
 % Voltage source (left, vertical, positive on top)
 \draw (0,4) to[V, v=$V_s$] (0,0);
 
-% Top rail with switch (opens at t=0)
+% Top rail with switch SW1 (opens at t=0)
 \draw (0,4) -- (2,4)
       to[opening switch, l=$t{=}0$ (opens)] (4,4)
       -- (6,4);
+\node[below, font=\sffamily\itshape] at (3,3.5) {SW1};
 
 % Series R-L-C going down on the right
 \draw (6,4) to[R, l_=$R$] (6,2.7)

@@ -61,6 +61,7 @@ An \(N = {@N_val@}\)-turn coil is wound around the core.</p>
 <h4>Part (a) &mdash; Reluctance Analogy MCQ (1 pt)</h4>
 <p>In the magnetic circuit analogy, which mapping is correct?</p>
 <p>[[input:ans1]] [[validation:ans1]]</p>
+<p><em>Syntax hint: Select one option from the list.</em></p>
 
 <hr />
 
@@ -119,6 +120,7 @@ Enter the percentage (negative means \(L\) decreases). Express to 3 significant 
 <p>Which statement best explains why even a small air gap causes a large drop in inductance,
 yet engineers deliberately add air gaps to power inductors?</p>
 <p>[[input:ans8]] [[validation:ans8]]</p>
+<p><em>Syntax hint: Select one option from the list.</em></p>
 ]]></text>
   </questiontext>
 

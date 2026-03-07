@@ -41,6 +41,7 @@ The initial conditions are:</p>
 energy oscillates between \(L\) and \(C\). Which statement correctly explains
 why \(R\) eventually stops this oscillation?</p>
 <p>[[input:ans1]] [[validation:ans1]]</p>
+<p><em>Syntax hint: Select one option from the list.</em></p>
 
 <hr />
 
@@ -58,6 +59,7 @@ at DC the inductor is a short circuit and the capacitor is an open circuit.</em>
 <p>For a <strong>parallel</strong> RLC circuit: \(\alpha = \frac{1}{2RC}\),
 \(\omega_0 = \frac{1}{\sqrt{LC}}\). Classify the damping regime:</p>
 <p>[[input:ans3]] [[validation:ans3]]</p>
+<p><em>Syntax hint: Select one option from the list.</em></p>
 
 <hr />
 
@@ -192,7 +194,7 @@ disc: float(ta_alpha^2 - ta_omega0^2);
 
 /* ===== Regime classification ===== */
 /* 1=overdamped, 2=underdamped, 3=critically damped */
-ta_regime: if abs(ta_alpha-ta_omega0) < 1.0 then 3
+ta_regime: if abs(disc) < 0.01 then 3
            else if disc > 0 then 1
            else 2;
 regime_name: if ta_regime=1 then "overdamped"

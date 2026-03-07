@@ -38,6 +38,7 @@
 <p>To find the magnetic field intensity \(H\) inside the toroid,
 which law do you apply along a closed circular path through the core?</p>
 <p>[[input:ans1]] [[validation:ans1]]</p>
+<p><em>Syntax hint: Select one option from the list.</em></p>
 
 <hr />
 
@@ -96,6 +97,7 @@ implies at the interface between two materials.</em></p>
 to the secondary). A power inductor core must store maximal energy.
 Which device intentionally uses an air gap, and why?</p>
 <p>[[input:ans7]] [[validation:ans7]]</p>
+<p><em>Syntax hint: Select one option from the list.</em></p>
 ]]></text>
   </questiontext>
 
