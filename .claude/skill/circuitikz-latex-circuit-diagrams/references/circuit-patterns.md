@@ -96,17 +96,17 @@ Using native `opening switch` / `closing switch` elements.
 
 ## Pattern 6: Multi-Switch Circuit
 
-Name every switch with `\textit{}` labels.
+Name every switch with `\textit{}` labels. **Critical:** the element name describes the *action at t=0*, not the prior state. `opening switch` = was closed, now opening. `closing switch` = was open, now closing.
 
 ```latex
-% SW1: closed, opens at t=0
+% SW1: was closed for t<0, opens at t=0 → use "opening switch"
 \draw (2,4) -- (3,4)
-      to[closing switch, l={\shortstack{$t{=}0$\\(opens)}}] (5,4);
+      to[opening switch, l={\shortstack{$t{=}0$\\(opens)}}] (5,4);
 \node[font=\sffamily\small\itshape, below, yshift=-4pt] at (4,4) {SW1};
 
-% SW2: open, closes at t=0
+% SW2: was open for t<0, closes at t=0 → use "closing switch"
 \draw (6,4)
-      to[opening switch, l={\shortstack{$t{=}0$\\(closes)}}] (8,4);
+      to[closing switch, l={\shortstack{$t{=}0$\\(closes)}}] (8,4);
 \node[font=\sffamily\small\itshape, below, yshift=-4pt] at (7,4) {SW2};
 ```
 

@@ -64,6 +64,27 @@
 4. **Add more weeks** — Create `weekly/week11/`, `weekly/week12/` as course progresses
 5. **Migrate exam diagrams** — Optionally redraw exam diagrams in CircuiTikZ
 
+## External Skill Updates Needed (my-claude-skill GitHub)
+
+The following updates should be applied to the **my-claude-skill** repository next time it's open. These reflect lessons learned across sessions 1-3.
+
+### CircuiTikZ Diagram Skill (`circuitikz-latex-circuit-diagrams`)
+
+1. **SKILL.md — Add compilation testing rule:** Add a note under Workflow: "Always compile `.tex` → SVG and visually inspect before base64-encoding into XML. LaTeX errors produce no output and a broken base64 renders as nothing in Moodle." (lesson #25)
+2. **SKILL.md — Add `standalone` border note:** Mention `border=10pt` is mandatory to prevent label/arrow clipping at SVG edges (lesson #26).
+3. **circuit-patterns.md — Pattern 6 switch bug FIXED locally:** The original had `closing switch` for "opens" and `opening switch` for "closes" — reversed. Fixed in this repo's copy. **Sync this fix to the skill repo.**
+4. **circuit-patterns.md — Add tip about testing before embedding:** Add to "Tips for Clean Layouts": "Always compile and visually inspect SVGs before embedding as base64 in XML."
+5. **circuitikz-guide.md — Add switch semantics warning:** In the Switches table, add a note: "Element name = action at t=0, not prior state. `opening switch` = was closed, now breaking. `closing switch` = was open, now making."
+6. **assets/examples/ — Consider adding CircuiTikZ examples:** Current examples are legacy Schemdraw `.py` files. Add `.tex` equivalents for at least 2-3 patterns (series RLC, parallel RLC, multi-switch).
+
+### Context Evaluator Skill (`contex-evaluator`)
+
+1. **SKILL.md — Add PRT validation reference:** Under "Session Rules > Do", add: "Before committing any STACK XML, run the multi-tiered PRT validation checklist (documented in CLAUDE.md). Validate all 4 tiers: structural, grading, XML/CAS safety, pedagogical."
+2. **SKILL.md — Fix SVG naming convention:** Current text says `q{N}_v{M}_{description}.svg` but weekly questions use `q{N}_{description}.svg` (no variant suffix). Clarify: exams use variant suffix, weekly questions don't.
+3. **SKILL.md — Add progressive hint unlocking:** Under "MANDATORY — Conceptual hints", add: "Future: investigate STACK `[[if test="..."]]` conditional blocks for attempt-gated progressive hint reveal."
+4. **SKILL.md — Add CDATA rule:** Under grading robustness, add: "All PRT `<feedbackvariables>` blocks containing `<` comparison operators MUST be wrapped in `<![CDATA[...]]>`."
+5. **SKILL.md — Fix skill name typo:** The `name` field says `contex-evaluator` (missing 't'). Should be `context-evaluator`.
+
 ## Deferred Items
 - Q4 4th variant (RL with Thevenin reduction) — instructor may request later
 - Exam diagram migration to CircuiTikZ (lower priority — text placeholders still work)
