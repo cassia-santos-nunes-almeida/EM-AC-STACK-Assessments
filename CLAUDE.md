@@ -19,7 +19,7 @@ Testing-Codes/
 ├── CLAUDE.md                          # This file — repo-level rules and lessons learned
 ├── .claude/skill/
 │   ├── context_evaluator/             # Project management context (session tracking, decisions)
-│   └── rlc-circuit-drawing-generator/ # Circuit diagram generation skill + references
+│   └── circuitikz-latex-circuit-diagrams/ # Circuit diagram generation skill + references
 ├── docs/                              # Human-readable documentation
 │   ├── 00_prompt_evaluation.md        # Original exam brief analysis and corrections
 │   └── 01_exam_overview.md            # Complete exam specification
