@@ -180,7 +180,7 @@ Since there is no source in the circuit for \(t > 0\), the final value is:</p>
   </generalfeedback>
 
   <defaultgrade>8.0000000</defaultgrade>
-  <penalty>0.1000000</penalty>
+  <penalty>0.0000000</penalty>
   <hidden>0</hidden>
   <idnumber/>
 
@@ -490,7 +490,13 @@ ta5_correct: ta_regime;
     <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
-    <feedbackvariables><text/></feedbackvariables>
+    <feedbackvariables>
+      <text><![CDATA[
+sa1_float: float(ans1);
+ref1_float: float(ta1);
+prt1_oom_ok: if (abs(ref1_float) > 1.0e-30 and abs(sa1_float) > 1.0e-30 and (abs(sa1_float/ref1_float - 10) < 1.5 or abs(sa1_float/ref1_float - 0.1) < 0.015)) then true else false;
+]]></text>
+    </feedbackvariables>
     <node>
       <name>0</name>
       <description>Check V0</description>
@@ -510,8 +516,54 @@ ta5_correct: ta_regime;
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html"><text/></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>15% tolerance partial credit</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>ta1</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is close but not within 5%. The expected value is \(V_0 = {@ta1@}\;\text{V}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt1-1-F</falseanswernote>
+      <falsefeedback format="html"><text/></falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Order-of-magnitude partial credit</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt1_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by about an order of magnitude. Check your unit conversions. The expected value is \(V_0 = {@ta1@}\;\text{V}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. At DC steady state: capacitor = open circuit, no current through \(R_b\), so \(V_0 = V_{dc} = {@ta1@}\;\text{V}\).</p>]]></text>
       </falsefeedback>
@@ -523,7 +575,13 @@ ta5_correct: ta_regime;
     <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
-    <feedbackvariables><text/></feedbackvariables>
+    <feedbackvariables>
+      <text><![CDATA[
+sa2_float: float(ans2);
+ref2_float: float(ta2);
+prt2_oom_ok: if (abs(ref2_float) > 1.0e-30 and abs(sa2_float) > 1.0e-30 and (abs(sa2_float/ref2_float - 10) < 1.5 or abs(sa2_float/ref2_float - 0.1) < 0.015)) then true else false;
+]]></text>
+    </feedbackvariables>
     <node>
       <name>0</name>
       <description>Check I0</description>
@@ -543,8 +601,54 @@ ta5_correct: ta_regime;
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html"><text/></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>15% tolerance partial credit</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is close but not within 5%. The expected value is \(I_0 = {@ta2@}\;\text{A}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt2-1-F</falseanswernote>
+      <falsefeedback format="html"><text/></falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Order-of-magnitude partial credit</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt2_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by about an order of magnitude. Check your unit conversions. The expected value is \(I_0 = {@ta2@}\;\text{A}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. At DC steady state: inductor = short circuit, all source current flows through it: \(I_0 = I_s = {@ta2@}\;\text{A}\).</p>]]></text>
       </falsefeedback>
@@ -556,7 +660,13 @@ ta5_correct: ta_regime;
     <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
-    <feedbackvariables><text/></feedbackvariables>
+    <feedbackvariables>
+      <text><![CDATA[
+sa3_float: float(ans3);
+ref3_float: float(ta3);
+prt3_oom_ok: if (abs(ref3_float) > 1.0e-30 and abs(sa3_float) > 1.0e-30 and (abs(sa3_float/ref3_float - 10) < 1.5 or abs(sa3_float/ref3_float - 0.1) < 0.015)) then true else false;
+]]></text>
+    </feedbackvariables>
     <node>
       <name>0</name>
       <description>Check alpha</description>
@@ -576,8 +686,54 @@ ta5_correct: ta_regime;
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html"><text/></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>15% tolerance partial credit</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is close but not within 5%. The expected value is \(\alpha = {@ta3@}\;\text{rad/s}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt3-1-F</falseanswernote>
+      <falsefeedback format="html"><text/></falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Order-of-magnitude partial credit</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt3_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by about an order of magnitude. Check your unit conversions. The expected value is \(\alpha = {@ta3@}\;\text{rad/s}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. For parallel RLC: \(\alpha = \frac{1}{2RC} = {@ta3@}\;\text{rad/s}\).</p>]]></text>
       </falsefeedback>
@@ -589,7 +745,13 @@ ta5_correct: ta_regime;
     <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
-    <feedbackvariables><text/></feedbackvariables>
+    <feedbackvariables>
+      <text><![CDATA[
+sa4_float: float(ans4);
+ref4_float: float(ta4);
+prt4_oom_ok: if (abs(ref4_float) > 1.0e-30 and abs(sa4_float) > 1.0e-30 and (abs(sa4_float/ref4_float - 10) < 1.5 or abs(sa4_float/ref4_float - 0.1) < 0.015)) then true else false;
+]]></text>
+    </feedbackvariables>
     <node>
       <name>0</name>
       <description>Check omega0</description>
@@ -609,8 +771,54 @@ ta5_correct: ta_regime;
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html"><text/></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>15% tolerance partial credit</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is close but not within 5%. The expected value is \(\omega_0 = {@ta4@}\;\text{rad/s}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt4-1-F</falseanswernote>
+      <falsefeedback format="html"><text/></falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Order-of-magnitude partial credit</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt4_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by about an order of magnitude. Check your unit conversions. The expected value is \(\omega_0 = {@ta4@}\;\text{rad/s}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. \(\omega_0 = \frac{1}{\sqrt{LC}} = {@ta4@}\;\text{rad/s}\).</p>]]></text>
       </falsefeedback>
@@ -697,6 +905,7 @@ rerr7_1: if abs(ta7_at_t1) > 1.0e-10 then abs((sa7_at_t1 - ta7_at_t1)/ta7_at_t1)
 rerr7_2: if abs(ta7_at_t2) > 1.0e-10 then abs((sa7_at_t2 - ta7_at_t2)/ta7_at_t2) else abs(sa7_at_t2 - ta7_at_t2);
 rerr7_3: if abs(ta7_at_t3) > 1.0e-10 then abs((sa7_at_t3 - ta7_at_t3)/ta7_at_t3) else abs(sa7_at_t3 - ta7_at_t3);
 vo_num_ok: if rerr7_1 < 0.05 and rerr7_2 < 0.05 and rerr7_3 < 0.05 then true else false;
+vo_close_ok: if (rerr7_1 < 0.15 and rerr7_2 < 0.15 and rerr7_3 < 0.15) then true else false;
 ]]></text>
     </feedbackvariables>
     <node>
@@ -741,8 +950,31 @@ vo_num_ok: if rerr7_1 < 0.05 and rerr7_2 < 0.05 and rerr7_3 < 0.05 then true els
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>2</falsenextnode>
       <falseanswernote>prt7-1-F</falseanswernote>
+      <falsefeedback format="html"><text/></falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>15% tolerance partial credit</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>vo_close_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your expression is approximately correct but not within 5%. Check your coefficients.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. The correct expression is: \(v_o(t) = {@ta7@}\;\text{V}\).</p>]]></text>
       </falsefeedback>
@@ -774,8 +1006,31 @@ vo_num_ok: if rerr7_1 < 0.05 and rerr7_2 < 0.05 and rerr7_3 < 0.05 then true els
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt8-0-F</falseanswernote>
+      <falsefeedback format="html"><text/></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Wider tolerance partial credit</description>
+      <answertest>NumAbsolute</answertest>
+      <sans>ans8</sans>
+      <tans>ta8</tans>
+      <testoptions>0.1</testoptions>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt8-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Your answer is near zero but not precise enough. For a source-free circuit, all energy dissipates.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt8-1-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. No source for \(t > 0\), so all energy dissipates: \(\lim_{t \to \infty} v_o(t) = 0\;\text{V}\).</p>]]></text>
       </falsefeedback>
@@ -828,7 +1083,7 @@ vo_num_ok: if rerr7_1 < 0.05 and rerr7_2 < 0.05 and rerr7_3 < 0.05 then true els
     <testinput><name>ans6</name><value>ta6</value></testinput>
     <testinput><name>ans7</name><value>ta7</value></testinput>
     <testinput><name>ans8</name><value>ta8</value></testinput>
-    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-0-F</expectedanswernote></expected>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-2-F</expectedanswernote></expected>
     <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-0-T</expectedanswernote></expected>
     <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-0-T</expectedanswernote></expected>
     <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-0-T</expectedanswernote></expected>
@@ -850,7 +1105,7 @@ vo_num_ok: if rerr7_1 < 0.05 and rerr7_2 < 0.05 and rerr7_3 < 0.05 then true els
     <testinput><name>ans7</name><value>ta7</value></testinput>
     <testinput><name>ans8</name><value>ta8</value></testinput>
     <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-0-T</expectedanswernote></expected>
-    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-0-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-2-F</expectedanswernote></expected>
     <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-0-T</expectedanswernote></expected>
     <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-0-T</expectedanswernote></expected>
     <expected><name>prt5</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt5-0-T</expectedanswernote></expected>
@@ -876,7 +1131,7 @@ vo_num_ok: if rerr7_1 < 0.05 and rerr7_2 < 0.05 and rerr7_3 < 0.05 then true els
     <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-0-T</expectedanswernote></expected>
     <expected><name>prt5</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt5-0-T</expectedanswernote></expected>
     <expected><name>prt6</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt6-0-T</expectedanswernote></expected>
-    <expected><name>prt7</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt7-0-F</expectedanswernote></expected>
+    <expected><name>prt7</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt7-2-F</expectedanswernote></expected>
     <expected><name>prt8</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt8-0-T</expectedanswernote></expected>
   </qtest>
 
@@ -898,7 +1153,7 @@ vo_num_ok: if rerr7_1 < 0.05 and rerr7_2 < 0.05 and rerr7_3 < 0.05 then true els
     <expected><name>prt5</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt5-0-T</expectedanswernote></expected>
     <expected><name>prt6</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt6-0-T</expectedanswernote></expected>
     <expected><name>prt7</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt7-0-T</expectedanswernote></expected>
-    <expected><name>prt8</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt8-0-F</expectedanswernote></expected>
+    <expected><name>prt8</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt8-1-F</expectedanswernote></expected>
   </qtest>
 
   <!-- ============================================================ -->

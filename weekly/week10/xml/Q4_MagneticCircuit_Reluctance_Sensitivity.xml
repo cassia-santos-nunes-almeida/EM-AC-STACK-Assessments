@@ -202,7 +202,7 @@ This allows linear operation over a much wider current range, even though \(L\) 
   </generalfeedback>
 
   <defaultgrade>8.0000000</defaultgrade>
-  <penalty>0.1000000</penalty>
+  <penalty>0.0000000</penalty>
   <hidden>0</hidden>
   <idnumber/>
 
@@ -548,11 +548,11 @@ ta8_correct: 1;
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text>/* Check for order-of-magnitude error (10x or 0.1x) */
+      <text><![CDATA[/* Check for order-of-magnitude error (10x or 0.1x) */
 sa2_float: float(ans2);
 prt2_oom_ok: if (abs(sa2_float) > 0) then (
   is(abs(sa2_float/ta_Rc - 10) / 10 < 0.05) or is(abs(sa2_float/ta_Rc - 1/10) / (1/10) < 0.05)
-) else false;</text>
+) else false;]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -598,8 +598,34 @@ prt2_oom_ok: if (abs(sa2_float) > 0) then (
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>2</falsenextnode>
+      <falsenextnode>3</falsenextnode>
       <falseanswernote>prt2-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>3</name>
+      <description>Intermediate partial credit: NumRelative 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta_Rc</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-3-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is close but not within 5%. Expected \({@ta2@}\).</p>
+<p><strong>Partial credit awarded (70%).</strong></p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt2-3-F</falseanswernote>
       <falsefeedback format="html">
         <text/>
       </falsefeedback>
@@ -640,11 +666,11 @@ prt2_oom_ok: if (abs(sa2_float) > 0) then (
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text>/* Check for order-of-magnitude error (10x or 0.1x) */
+      <text><![CDATA[/* Check for order-of-magnitude error (10x or 0.1x) */
 sa3_float: float(ans3);
 prt3_oom_ok: if (abs(sa3_float) > 0) then (
   is(abs(sa3_float/ta_Rg - 10) / 10 < 0.05) or is(abs(sa3_float/ta_Rg - 1/10) / (1/10) < 0.05)
-) else false;</text>
+) else false;]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -690,8 +716,34 @@ prt3_oom_ok: if (abs(sa3_float) > 0) then (
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>2</falsenextnode>
+      <falsenextnode>3</falsenextnode>
       <falseanswernote>prt3-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>3</name>
+      <description>Intermediate partial credit: NumRelative 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>ta_Rg</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-3-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is close but not within 5%. Expected \({@ta3@}\).</p>
+<p><strong>Partial credit awarded (70%).</strong></p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt3-3-F</falseanswernote>
       <falsefeedback format="html">
         <text/>
       </falsefeedback>
@@ -732,12 +784,12 @@ prt3_oom_ok: if (abs(sa3_float) > 0) then (
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text>/* Check for order-of-magnitude error (10x or 0.1x) */
+      <text><![CDATA[/* Check for order-of-magnitude error (10x or 0.1x) */
 sa4_float: float(ans4);
 ref4_float: float(ta4);
 prt4_oom_ok: if (abs(sa4_float) > 0 and abs(ref4_float) > 0) then (
   is(abs(sa4_float/ref4_float - 10) / 10 < 0.05) or is(abs(sa4_float/ref4_float - 1/10) / (1/10) < 0.05)
-) else false;</text>
+) else false;]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -758,8 +810,34 @@ prt4_oom_ok: if (abs(sa4_float) > 0 and abs(ref4_float) > 0) then (
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>1</falsenextnode>
+      <falsenextnode>2</falsenextnode>
       <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Intermediate partial credit: NumRelative 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is close but not within 5%. Expected \({@ta4@}\;\text{H}^{-1}\).</p>
+<p><strong>Partial credit awarded (70%).</strong></p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt4-2-F</falseanswernote>
       <falsefeedback format="html">
         <text/>
       </falsefeedback>
@@ -799,12 +877,12 @@ prt4_oom_ok: if (abs(sa4_float) > 0 and abs(ref4_float) > 0) then (
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text>/* Check for order-of-magnitude error (10x or 0.1x) */
+      <text><![CDATA[/* Check for order-of-magnitude error (10x or 0.1x) */
 sa5_float: float(ans5);
 ref5_float: float(ta5);
 prt5_oom_ok: if (abs(sa5_float) > 0 and abs(ref5_float) > 0) then (
   is(abs(sa5_float/ref5_float - 10) / 10 < 0.05) or is(abs(sa5_float/ref5_float - 1/10) / (1/10) < 0.05)
-) else false;</text>
+) else false;]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -825,8 +903,34 @@ prt5_oom_ok: if (abs(sa5_float) > 0 and abs(ref5_float) > 0) then (
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>1</falsenextnode>
+      <falsenextnode>2</falsenextnode>
       <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Intermediate partial credit: NumRelative 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is close but not within 5%. Expected \(L = {@ta5@}\;\text{H}\).</p>
+<p><strong>Partial credit awarded (70%).</strong></p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt5-2-F</falseanswernote>
       <falsefeedback format="html">
         <text/>
       </falsefeedback>
@@ -866,12 +970,12 @@ prt5_oom_ok: if (abs(sa5_float) > 0 and abs(ref5_float) > 0) then (
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text>/* Check for order-of-magnitude error (10x or 0.1x) */
+      <text><![CDATA[/* Check for order-of-magnitude error (10x or 0.1x) */
 sa6_float: float(ans6);
 ref6_float: float(ta_dLdlg);
 prt6_oom_ok: if (abs(sa6_float) > 0 and abs(ref6_float) > 0) then (
   is(abs(sa6_float/ref6_float - 10) / 10 < 0.05) or is(abs(sa6_float/ref6_float - 1/10) / (1/10) < 0.05)
-) else false;</text>
+) else false;]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -917,8 +1021,34 @@ prt6_oom_ok: if (abs(sa6_float) > 0 and abs(ref6_float) > 0) then (
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>2</falsenextnode>
+      <falsenextnode>3</falsenextnode>
       <falseanswernote>prt6-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>3</name>
+      <description>Intermediate partial credit: NumRelative 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans6</sans>
+      <tans>ta_dLdlg</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-3-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is close but not within 5%. Expected \({@ta6@}\).</p>
+<p><strong>Partial credit awarded (70%).</strong></p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt6-3-F</falseanswernote>
       <falsefeedback format="html">
         <text/>
       </falsefeedback>
@@ -967,7 +1097,9 @@ prt6_oom_ok: if (abs(sa6_float) > 0 and abs(ref6_float) > 0) then (
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text><![CDATA[sa7_float: float(ans7);
+ref7_float: float(ta7);
+prt7_oom_ok: if (abs(ref7_float) > 1.0e-30 and abs(sa7_float) > 1.0e-30 and (abs(sa7_float/ref7_float - 10) < 1.5 or abs(sa7_float/ref7_float - 0.1) < 0.015)) then true else false;]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -988,8 +1120,60 @@ prt6_oom_ok: if (abs(sa6_float) > 0 and abs(ref6_float) > 0) then (
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt7-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Intermediate partial credit: NumRelative 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans7</sans>
+      <tans>ta7</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is close but not within 5%. Expected \({@ta7@}\%\).</p>
+<p><strong>Partial credit awarded (70%).</strong></p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt7-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Partial credit: order-of-magnitude error (10x or 0.1x)</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt7_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by a factor of 10 &mdash; check your calculation. Expected \({@ta7@}\%\).</p>
+<p><strong>Partial credit awarded (30%).</strong></p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. The linearised percentage change is:
 \(\frac{\Delta L}{L} \approx \frac{dL/d\ell_g \times \Delta\ell_g}{L} \times 100\%\)

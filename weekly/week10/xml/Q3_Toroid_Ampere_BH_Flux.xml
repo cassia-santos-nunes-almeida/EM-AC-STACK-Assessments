@@ -168,7 +168,7 @@ A transformer avoids gaps to maintain high mutual coupling.</p>
   </generalfeedback>
 
   <defaultgrade>7.0000000</defaultgrade>
-  <penalty>0.1000000</penalty>
+  <penalty>0.0000000</penalty>
   <hidden>0</hidden>
   <idnumber/>
 
@@ -490,7 +490,9 @@ ta7: mcq_design;
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text><![CDATA[sa2a_float: float(ans2);
+ref2a_float: float(ta3);
+prt2a_oom_ok: if (abs(ref2a_float) > 1.0e-30 and abs(sa2a_float) > 1.0e-30 and (abs(sa2a_float/ref2a_float - 10) < 1.5 or abs(sa2a_float/ref2a_float - 0.1) < 0.015)) then true else false;]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -536,8 +538,58 @@ ta7: mcq_design;
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>2</falsenextnode>
       <falseanswernote>prt2a-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Partial credit: NumRelative 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta3</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2a-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Your expression evaluates within 15% but isn't precise enough.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>3</falsenextnode>
+      <falseanswernote>prt2a-2-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>3</name>
+      <description>Order-of-magnitude check</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt2a_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2a-3-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>You appear to be off by a factor of 10. Check your permeability values or unit conversions.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2a-3-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. Here is the derivation step by step:</p>
 <ol>
@@ -552,14 +604,16 @@ ta7: mcq_design;
     </node>
   </prt>
 
-  <!-- prt2b: Part (b2) — Numerical B, single-node NumRelative 5% -->
+  <!-- prt2b: Part (b2) — Numerical B, tiered partial credit -->
   <prt>
     <name>prt2b</name>
     <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text><![CDATA[sa2b_float: float(ans3);
+ref2b_float: float(ta3);
+prt2b_oom_ok: if (abs(ref2b_float) > 1.0e-30 and abs(sa2b_float) > 1.0e-30 and (abs(sa2b_float/ref2b_float - 10) < 1.5 or abs(sa2b_float/ref2b_float - 0.1) < 0.015)) then true else false;]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -580,8 +634,58 @@ ta7: mcq_design;
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt2b-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Partial credit: NumRelative 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2b-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Your answer is within 15% but isn't precise enough.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt2b-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Order-of-magnitude check</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt2b_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2b-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>You appear to be off by a factor of 10. Check your permeability values or unit conversions.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2b-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. Using \(B = \frac{NI \cdot \mu_0}{\ell_1/\mu_r + \ell_2}\) with the given values: \(B = {@ta3@}\;\text{T}\). Check that you used \(\mu_0 = 4\pi \times 10^{-7}\) and converted all units correctly.</p>]]></text>
       </falsefeedback>
@@ -595,7 +699,9 @@ ta7: mcq_design;
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text><![CDATA[sa3_float: float(ans4);
+ref3_float: float(ta4);
+prt3_oom_ok: if (abs(ref3_float) > 1.0e-30 and abs(sa3_float) > 1.0e-30 and (abs(sa3_float/ref3_float - 10) < 1.5 or abs(sa3_float/ref3_float - 0.1) < 0.015)) then true else false;]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -616,8 +722,58 @@ ta7: mcq_design;
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Partial credit: NumRelative 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Your answer is within 15% but isn't precise enough.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt3-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Order-of-magnitude check</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt3_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>You appear to be off by a factor of 10. Check your permeability values or unit conversions.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. Use \(H_\text{core} = \frac{B}{\mu_r \mu_0}\). With \(B = {@ta_B@}\;\text{T}\), \(\mu_r = {@mur_val@}\): \(H_\text{core} = {@ta4@}\;\text{A/m}\).</p>
 <p><em>Note: \(H_\text{gap} = B/\mu_0 = {@ta_Hgap@}\;\text{A/m}\), which is \(\mu_r = {@mur_val@}\) times larger than \(H_\text{core}\). This illustrates why the gap dominates the magnetic circuit and stores most of the energy.</em></p>]]></text>
@@ -632,7 +788,9 @@ ta7: mcq_design;
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text><![CDATA[sa4_float: float(ans5);
+ref4_float: float(ta5);
+prt4_oom_ok: if (abs(ref4_float) > 1.0e-30 and abs(sa4_float) > 1.0e-30 and (abs(sa4_float/ref4_float - 10) < 1.5 or abs(sa4_float/ref4_float - 0.1) < 0.015)) then true else false;]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -653,8 +811,58 @@ ta7: mcq_design;
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Partial credit: NumRelative 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Your answer is within 15% but isn't precise enough.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt4-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Order-of-magnitude check</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt4_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>You appear to be off by a factor of 10. Check your permeability values or unit conversions.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. The total flux is \(\Phi = B \cdot A\). Make sure you <strong>multiply</strong> your \(B\) value by the cross-sectional area \(A = {@Ac_val@}\;\text{m}^2\). With \(B = {@ta_B@}\;\text{T}\): \(\Phi = {@ta5@}\;\text{Wb}\).</p>]]></text>
       </falsefeedback>

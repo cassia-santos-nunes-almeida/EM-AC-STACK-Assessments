@@ -154,7 +154,7 @@ All the source voltage appears across the capacitor:</p>
   </generalfeedback>
 
   <defaultgrade>8.0000000</defaultgrade>
-  <penalty>0.1000000</penalty>
+  <penalty>0.0000000</penalty>
   <hidden>0</hidden>
   <idnumber/>
 
@@ -530,22 +530,50 @@ ta8_at_t3: float(subst(t=t_test3, ta8));
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>NumAbsolute</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.1</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Your answer is near zero but not precise enough. Remember that the inductor current cannot change instantaneously.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-1-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. Since no DC current flows through the series circuit at steady state (capacitor is open), \(i(0^-) = 0\;\text{A}\). By continuity of inductor current, \(i(0^+) = {@ta2@}\;\text{A}\).</p>]]></text>
       </falsefeedback>
     </node>
   </prt>
 
-  <!-- prt3: Part (b2) — vC(0+), single node NumRelative 5% -->
+  <!-- prt3: Part (b2) — vC(0+), tiered partial credit -->
   <prt>
     <name>prt3</name>
     <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text><![CDATA[
+sa3_float: float(ans3);
+ref3_float: float(ta3);
+prt3_oom_ok: if (abs(ref3_float) > 1.0e-30 and abs(sa3_float) > 1.0e-30 and (abs(sa3_float/ref3_float - 10) < 1.5 or abs(sa3_float/ref3_float - 0.1) < 0.015)) then true else false;
+]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -566,22 +594,74 @@ ta8_at_t3: float(subst(t=t_test3, ta8));
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Your answer is within 15% of the expected value. Double-check your arithmetic or rounding.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt3-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt3_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>You appear to be off by a factor of 10. Check your unit prefix or decimal point.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. The capacitor voltage at DC steady state equals the source voltage. By continuity: \(v_C(0^+) = V_s = {@ta3@}\;\text{V}\).</p>]]></text>
       </falsefeedback>
     </node>
   </prt>
 
-  <!-- prt4: Part (c1) — alpha, single node NumRelative 5% -->
+  <!-- prt4: Part (c1) — alpha, tiered partial credit -->
   <prt>
     <name>prt4</name>
     <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text><![CDATA[
+sa4_float: float(ans4);
+ref4_float: float(ta4);
+prt4_oom_ok: if (abs(ref4_float) > 1.0e-30 and abs(sa4_float) > 1.0e-30 and (abs(sa4_float/ref4_float - 10) < 1.5 or abs(sa4_float/ref4_float - 0.1) < 0.015)) then true else false;
+]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -602,22 +682,74 @@ ta8_at_t3: float(subst(t=t_test3, ta8));
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Your answer is within 15% of the expected value. Double-check your arithmetic or rounding.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt4-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt4_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>You appear to be off by a factor of 10. Check your unit prefix or decimal point.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. For a <strong>series</strong> RLC circuit, the damping coefficient is \(\alpha = \frac{R}{2L}\), <strong>not</strong> \(\frac{1}{2RC}\) (which applies to <em>parallel</em> RLC). With \(R = {@R_val@}\;\Omega\) and \(L = {@L_val@}\;\text{H}\): \(\alpha = {@ta4@}\;\text{rad/s}\).</p>]]></text>
       </falsefeedback>
     </node>
   </prt>
 
-  <!-- prt5: Part (c2) — omega0, single node NumRelative 5% -->
+  <!-- prt5: Part (c2) — omega0, tiered partial credit -->
   <prt>
     <name>prt5</name>
     <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
-      <text/>
+      <text><![CDATA[
+sa5_float: float(ans5);
+ref5_float: float(ta5);
+prt5_oom_ok: if (abs(ref5_float) > 1.0e-30 and abs(sa5_float) > 1.0e-30 and (abs(sa5_float/ref5_float - 10) < 1.5 or abs(sa5_float/ref5_float - 0.1) < 0.015)) then true else false;
+]]></text>
     </feedbackvariables>
     <node>
       <name>0</name>
@@ -638,8 +770,56 @@ ta8_at_t3: float(subst(t=t_test3, ta8));
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>1</falsenextnode>
       <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Your answer is within 15% of the expected value. Double-check your arithmetic or rounding.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt5-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt5_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>You appear to be off by a factor of 10. Check your unit prefix or decimal point.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. The natural frequency is \(\omega_0 = \frac{1}{\sqrt{LC}}\). With \(L = {@L_val@}\;\text{H}\) and \(C = {@C_val@}\;\text{F}\): \(\omega_0 = {@ta5@}\;\text{rad/s}\).</p>]]></text>
       </falsefeedback>
@@ -704,6 +884,7 @@ sa7_imag: float(imagpart(ans7));
 err_real: if abs(ta7_real) > 0.01 then abs((sa7_real - ta7_real)/ta7_real) else abs(sa7_real - ta7_real);
 err_imag: if abs(ta7_imag) > 0.01 then abs((sa7_imag - ta7_imag)/ta7_imag) else abs(sa7_imag - ta7_imag);
 s1_num_ok: if err_real < 0.02 and err_imag < 0.02 then true else false;
+s1_close_ok: if (abs(err_real) < 0.15 and abs(err_imag) < 0.15) then true else false;
 ]]></text>
     </feedbackvariables>
     <node>
@@ -750,8 +931,32 @@ s1_num_ok: if err_real < 0.02 and err_imag < 0.02 then true else false;
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>2</falsenextnode>
       <falseanswernote>prt7-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>s1_close_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Your root is within 15% but not precise enough. Check your computation of alpha and omega.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. The characteristic root with the larger real part is \(s_1 = {@ta7@}\). Remember the characteristic equation is \(s^2 + \frac{R}{L}s + \frac{1}{LC} = 0\), giving \(s = -\alpha \pm \sqrt{\alpha^2 - \omega_0^2}\).</p>]]></text>
       </falsefeedback>
@@ -782,6 +987,7 @@ rerr3: if abs(ta8_at_t3) > 1.0e-10 then abs((sa8_at_t3 - ta8_at_t3)/ta8_at_t3) e
 
 /* All three test points must agree within 5% */
 it_num_ok: if rerr1 < 0.05 and rerr2 < 0.05 and rerr3 < 0.05 then true else false;
+it_close_ok: if (rerr1 < 0.15 and rerr2 < 0.15 and rerr3 < 0.15) then true else false;
 ]]></text>
     </feedbackvariables>
     <node>
@@ -828,8 +1034,32 @@ it_num_ok: if rerr1 < 0.05 and rerr2 < 0.05 and rerr3 < 0.05 then true else fals
       <falsescoremode>=</falsescoremode>
       <falsescore>0.0000000</falsescore>
       <falsepenalty/>
-      <falsenextnode>-1</falsenextnode>
+      <falsenextnode>2</falsenextnode>
       <falseanswernote>prt8-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>it_close_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt8-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your expression is approximately correct but not within 5%. Check your coefficients or initial conditions.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt8-2-F</falseanswernote>
       <falsefeedback format="html">
         <text><![CDATA[<p>Incorrect. Remember to apply <strong>both</strong> initial conditions: \(i(0) = 0\) and \(\frac{di}{dt}(0) = {@didt0@}\;\text{A/s}\). The complete response is \(i(t) = {@ta8@}\;\text{A}\).</p>]]></text>
       </falsefeedback>
