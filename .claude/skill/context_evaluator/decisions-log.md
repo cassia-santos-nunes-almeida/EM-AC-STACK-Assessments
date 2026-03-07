@@ -226,5 +226,29 @@ Each entry: `[date] — Decision` followed by reasoning and rejected alternative
 
 ---
 
+### 2026-03-07 — Adopt multi-tiered PRT validation methodology as standard practice
+
+**Reason:** Manual spot-checking of PRTs missed subtle issues in previous sessions (e.g., broken node chains, missing feedbackvariable definitions, un-wrapped `<` operators). A systematic 4-tier checklist (structural integrity → grading correctness → XML/CAS safety → pedagogical quality) caught all categories of issues during session 3 validation of 38 PRTs across 5 questions.
+
+**Methodology tiers:**
+1. **Structural:** Node chain completeness, orphan detection, feedbackvariable definitions
+2. **Grading:** NumAbsolute for zero, NumRelative fallback on symbolic PRTs, score consistency
+3. **XML/CAS Safety:** CDATA wrapping, insertstars, exact arithmetic
+4. **Pedagogical:** Syntax hints, progressive hints, diagram-text sync, no answer leaks
+
+**Alternatives rejected:** Ad-hoc checking (incomplete coverage), automated XML schema validation only (doesn't catch CAS-level issues like wrong answertest selection).
+
+---
+
+### 2026-03-07 — Plan progressive hint unlocking as next feature
+
+**Reason:** Currently all hints are visible simultaneously, which reduces their pedagogical value — students skip straight to the most detailed hint. STACK supports `[[if test="..."]]` conditional blocks that can gate content on attempt number or PRT score, enabling a progressive reveal: Hint 1 (intuition) → Hint 2 (formulas, after 1 wrong attempt) → Hint 3 (worked step, after 2 wrong attempts).
+
+**Scope:** Weekly questions first (Q1-Q5). Exam applicability TBD — progressive hints may conflict with exam time pressure.
+
+**Alternatives rejected:** Removing hints entirely (reduces learning value), keeping all hints visible (current approach, but suboptimal for learning).
+
+---
+
 ## Last Updated
 2026-03-07

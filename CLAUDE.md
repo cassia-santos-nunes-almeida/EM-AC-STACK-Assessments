@@ -227,9 +227,41 @@ When a circuit has multiple switches (e.g., Nilsson P8.11 style):
 - SW2, SW3 open at `t < 0` → isolate the middle RLC section.
 - At `t = 0`, all switches change state → sources disconnect, L‖R‖C forms a source-free parallel RLC.
 
+## PRT Validation Methodology (Multi-Tiered)
+
+Before committing any STACK XML, validate **every PRT** using this checklist:
+
+### Tier 1 — Structural Integrity
+- [ ] **Node chain completeness:** Every `truenextnode` / `falsenextnode` points to an existing node name or `-1` (exit). No dangling references.
+- [ ] **No orphan nodes:** Every node is reachable from node 0 (root) in each PRT.
+- [ ] **Feedbackvariables defined:** All variables referenced in PRT node tests (`sans`, `tans`, or boolean flags) are defined either in the PRT's `<feedbackvariables>` or in `<questionvariables>`.
+
+### Tier 2 — Grading Correctness
+- [ ] **NumAbsolute for zero:** Any PRT where the expected answer is 0 uses `NumAbsolute` (tolerance 0.01), never `NumRelative`.
+- [ ] **NumRelative fallback on symbolic PRTs:** Any `AlgEquiv` node that evaluates to a numerical value has a fallback node with `NumRelative` (5%) against `float()`.
+- [ ] **Score consistency:** Typical pattern is 1.0 (exact/5%), 0.7 (close/15%), 0.3 (order-of-magnitude), 0.0 (wrong).
+- [ ] **No `SigFigsStrict` as scoring gate.**
+- [ ] **No `{@ansN@}` in specificfeedback** — use `[[feedback:prtN]]` only.
+
+### Tier 3 — XML/CAS Safety
+- [ ] **CDATA wrapping:** All `<feedbackvariables>` blocks containing `<` comparison operators are wrapped in `<![CDATA[...]]>`.
+- [ ] **Penalty settings:** Question-level and per-node penalty values are intentional (typically 0 for practice, >0 for exams).
+- [ ] **`insertstars=1`** on all algebraic inputs.
+- [ ] **Exact arithmetic:** No floating-point constants (`1e-7`) in expressions involving symbolic constants (`%pi`).
+
+### Tier 4 — Pedagogical Quality
+- [ ] **Syntax hints present** after every `[[input:ansN]]` with type-appropriate text.
+- [ ] **Progressive hints** (2-3 `<hint>` elements) at the end of each `<question>` block.
+- [ ] **Diagram-text sync:** Component names in diagrams match XML text exactly.
+- [ ] **No answer leaks** via `syntaxhint`, placeholder text, or hint content.
+
 ## Known Issues / Pending Work
 
-- *(None at this time)*
+### Progressive Hint Unlocking (Next Step)
+- **Goal:** Implement STACK's `[[if test="..."]]` conditional blocks to reveal hints progressively based on student attempt count or score, rather than showing all hints at once.
+- **Approach:** Use `\{#attempts#\}` or PRT score variables to gate hint visibility.
+- **Scope:** Apply to all weekly questions first (Q1-Q5), then evaluate for exam use.
+- **Status:** Not yet started — planned for next session.
 
 ## Common Mistakes to Avoid
 
@@ -248,14 +280,20 @@ These are hard-won lessons from previous sessions. **Do not repeat these errors:
 11. **Name every switch in multi-switch circuits** — unnamed switches force students to count from left to right, which is error-prone. Use SW1, SW2, … in both the diagram and the XML text.
 12. **Don't use abstract switch position labels** (e.g., "position a", "position b") for SPST switches — these only make sense for SPDT (multi-throw) switches. For SPST, describe as "open" or "closed".
 13. **Leave adequate spacing between adjacent vertical components** in horizontal-rail circuits — voltage/polarity labels (like `v_o(t)`) need clear visual separation from neighboring components.
-15. **Don't use `\dfrac` inside CircuiTikZ `l=` labels** — it causes "Extra \endgroup" errors. Use a separate `\node` element for complex math labels instead.
-14. **Keep diagram labels and XML text in sync** — if the diagram shows SW1–SW4, the questiontext, generalfeedback, and hints must all use the same names. Never mix naming conventions (e.g., "switch 1" in text vs. "SW1" in diagram).
+14. **Don't use `\dfrac` inside CircuiTikZ `l=` labels** — it causes "Extra \endgroup" errors. Use a separate `\node` element for complex math labels instead.
+15. **Keep diagram labels and XML text in sync** — if the diagram shows SW1–SW4, the questiontext, generalfeedback, and hints must all use the same names. Never mix naming conventions (e.g., "switch 1" in text vs. "SW1" in diagram).
 16. **Use exact arithmetic for `mu0`** — write `mu0: 4*%pi/10^7;` (exact rational), **never** `4*%pi*1e-7` (float). The `1e-7` float causes `AlgEquiv` to fail when comparing symbolic expressions like `0.2*%pi` due to floating-point mismatch. This applies to any CAS variable whose definition includes `%pi` or other symbolic constants.
 17. **Always add a `NumRelative` fallback node on symbolic PRTs** — when a PRT uses `AlgEquiv` on an expression that evaluates to a numerical value (possibly containing `%pi`), add a second node with `NumRelative` (5%) against the `float()` version. This catches decimal approximations and any residual float-precision edge cases.
 18. **Define variable aliases for hint symbols** — if a syntax hint tells students to type `N`, `l1`, `mur`, etc., the `questionvariables` block must define matching aliases (`N: N_val; l1: l1_val;` etc.) so STACK can substitute values when the student uses those names. Without aliases, student symbolic expressions contain free variables and fail `AlgEquiv`.
 19. **Syntax hints must explain how to type every special symbol** — don't assume students know CAS syntax. Every algebraic input hint must explicitly state: `mu0` for μ₀, `mur` for μᵣ, `%pi` for π, `j` for imaginary unit, `exp()` / `sin()` / `cos()` for functions. Show a complete typed example matching the expected answer form.
 20. **Use the correct CircuiTikZ switch element for the action** — `opening switch` draws a switch that is opening (was closed, now breaks), `closing switch` draws a switch that is closing (was open, now connects). Don't confuse the element name with the switch's state *before* t=0.
+21. **Wrap all PRT feedbackvariables containing `<` in CDATA** — XML parsers interpret bare `<` as tag openers, corrupting the Maxima code. Always use `<![CDATA[ ... ]]>` around feedbackvariables that contain comparison operators.
+22. **Validate PRT node chains before committing** — use the multi-tiered validation methodology (see "PRT Validation Methodology" section). Check node reachability, feedbackvariable definitions, CDATA wrapping, and score consistency. A single broken `truenextnode` reference can silently skip grading nodes.
+23. **Don't mix Schemdraw and CircuiTikZ in the same content set** — visual inconsistency (line styles, component shapes, font rendering) confuses students. Pick one tool per content set. Legacy Schemdraw files are preserved with `_schemdraw` suffix but should not be used for new content.
+24. **CircuiTikZ `opening switch` vs `closing switch` is about the action, not the prior state** — `opening switch` = was closed, now opening (shows a breaking contact). `closing switch` = was open, now closing (shows a making contact). The name describes what happens at t=0, not the state for t<0.
+25. **Test CircuiTikZ compilation before embedding** — always compile `.tex` → SVG and visually inspect before base64-encoding into XML. LaTeX errors (missing packages, font issues, coordinate mistakes) produce no SVG output, and a broken base64 string renders as nothing in Moodle.
+26. **Use `standalone` document class with `border=10pt`** — ensures tight cropping around the diagram with consistent padding. Without `border`, some components (especially labels and arrows) get clipped at the SVG edges.
 
 ## Last Updated
 
-2026-03-07 (session 2: syntax hints, exact arithmetic, switch elements, PRT fallback patterns)
+2026-03-07 (session 3: PRT validation methodology, CircuiTikZ migration lessons, progressive hint unlocking roadmap)

@@ -116,6 +116,16 @@ Each question has 4 scaffolded subparts (A-D) mixing STACK auto-graded and Essay
 - Clear English (international student cohort — no idioms).
 - Explicit current arrows and voltage polarities on all circuit diagrams.
 
+## Quality Assurance
+
+All STACK XML content must pass the **multi-tiered PRT validation** (documented in CLAUDE.md) before committing:
+- **Tier 1 — Structural:** Node chains, orphan nodes, feedbackvariable definitions
+- **Tier 2 — Grading:** NumAbsolute for zero, NumRelative fallback, score consistency
+- **Tier 3 — XML/CAS:** CDATA wrapping, insertstars, exact arithmetic
+- **Tier 4 — Pedagogical:** Syntax hints, progressive hints, diagram-text sync, no answer leaks
+
+**Week 10 status:** All 5 questions (38 PRTs) passed full validation (2026-03-07).
+
 ## Never Suggest
 
 - Including RLC second-order transient content in the Week 9 exam (explicitly excluded from exam scope).
@@ -127,6 +137,8 @@ Each question has 4 scaffolded subparts (A-D) mixing STACK auto-graded and Essay
 - Reducing the exam pool to fewer than 15 variants (instructor requirement).
 - Using `AlgEquiv` for numerical answers that could be 0 (use `NumAbsolute` instead).
 - Using `type="radio"` for classification MCQs — shows "Clear my choice" clutter. Use `type="dropdown"` instead.
+- Mixing Schemdraw and CircuiTikZ diagrams in the same content set (visual inconsistency).
+- Skipping PRT validation before committing STACK XML.
 
 ## Last Updated
 2026-03-07
