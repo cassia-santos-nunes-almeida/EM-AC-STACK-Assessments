@@ -1,9 +1,9 @@
 ---
-name: rlc-circuit-drawing-generator
-description: Generates RLC circuit diagrams from text descriptions using CircuiTikZ/TikZ (LaTeX). Use this skill when the user wants to create circuit drawings for educational purposes, particularly for AC/DC circuits with resistors, capacitors, inductors, switches, and power sources.
+name: circuitikz-latex-circuit-diagrams
+description: Generates circuit diagrams from text descriptions using CircuiTikZ/TikZ (LaTeX). Use this skill when the user wants to create circuit drawings for educational purposes, particularly for AC/DC circuits with resistors, capacitors, inductors, switches, and power sources. GitHub: https://github.com/cassia-santos-nunes-almeida/Testing-Codes
 ---
 
-# RLC Circuit Drawing Generator
+# CircuiTikZ LaTeX Circuit Diagrams
 
 This skill generates professional circuit diagrams from natural language descriptions using CircuiTikZ (LaTeX) for circuit schematics and TikZ for physical/geometric diagrams (e.g., magnetic core cross-sections).
 
