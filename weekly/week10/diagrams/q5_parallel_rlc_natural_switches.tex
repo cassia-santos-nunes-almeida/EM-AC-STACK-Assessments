@@ -1,0 +1,97 @@
+% Q5: Parallel RLC Natural Response — Four SPST switches (Nilsson P8.11 style)
+%
+% Topology (left to right on top rail):
+%   Is || Ra  [SW1]  L  [SW2]  R(v_o)  [SW3]  C  [SW4]  Rb--Vdc
+%
+% t < 0: SW1,SW4 closed; SW2,SW3 open
+% t = 0: all switches change state → source-free parallel RLC
+\documentclass[border=10pt]{standalone}
+\usepackage[american voltages, american currents]{circuitikz}
+\usepackage{amsmath}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{circuitikz}[
+    line width=0.8pt,
+    every node/.style={font=\sffamily},
+    switch label/.style={font=\sffamily\small, above, yshift=4pt},
+    switch name/.style={font=\sffamily\small\itshape, below, yshift=-4pt}
+]
+
+% === Left section: Is and Ra in parallel ===
+
+% Current source (arrow up)
+\draw (0,0) to[I, l=$I_s$] (0,4);
+
+% Top rail to Ra junction
+\draw (0,4) -- (2,4);
+\fill (2,4) circle (2pt);
+
+% Ra (vertical, parallel to Is)
+\draw (2,4) to[R, l_=$R_a$] (2,0);
+
+% Bottom rail under Is and Ra
+\draw (0,0) -- (2,0);
+
+% === SW1: closed, opens at t=0 ===
+\draw (2,4) -- (3,4)
+      to[closing switch, l={\shortstack{$t{=}0$\\(opens)}}, switch name/.append style={}] (5,4);
+\node[switch name] at (4,4) {\textit{SW1}};
+
+% Junction for L branch
+\draw (5,4) -- (5.5,4);
+\fill (5.5,4) circle (2pt);
+
+% L branch (vertical)
+\draw (5.5,4) to[L, l_=$L$] (5.5,0);
+
+% Bottom rail extension
+\draw (2,0) -- (5.5,0);
+
+% === SW2: open, closes at t=0 ===
+\draw (5.5,4) -- (6.5,4)
+      to[opening switch, l={\shortstack{$t{=}0$\\(closes)}}] (8.5,4);
+\node[switch name] at (7.5,4) {\textit{SW2}};
+
+% Junction for R branch
+\draw (8.5,4) -- (9,4);
+\fill (9,4) circle (2pt);
+
+% R branch (vertical) with v_o(t) polarity
+\draw (9,4) to[R, l_=$R$, v^=$v_o(t)$] (9,0);
+
+% Bottom rail extension
+\draw (5.5,0) -- (9,0);
+
+% === SW3: open, closes at t=0 ===
+\draw (9,4) -- (10,4)
+      to[opening switch, l={\shortstack{$t{=}0$\\(closes)}}] (12,4);
+\node[switch name] at (11,4) {\textit{SW3}};
+
+% Junction for C branch
+\draw (12,4) -- (12.5,4);
+\fill (12.5,4) circle (2pt);
+
+% C branch (vertical)
+\draw (12.5,4) to[C, l_=$C$] (12.5,0);
+
+% Bottom rail extension
+\draw (9,0) -- (12.5,0);
+
+% === SW4: closed, opens at t=0 ===
+\draw (12.5,4) -- (13.5,4)
+      to[closing switch, l={\shortstack{$t{=}0$\\(opens)}}] (15.5,4);
+\node[switch name] at (14.5,4) {\textit{SW4}};
+
+% === Right section: Rb and Vdc ===
+% Rb (horizontal on top rail)
+\draw (15.5,4) to[R, l=$R_b$] (18,4);
+
+% Vdc (vertical, + on top)
+\draw (18,4) to[V, v_=$V_{dc}$] (18,0);
+
+% Bottom rail extension
+\draw (12.5,0) -- (18,0);
+
+\end{circuitikz}
+\end{document}

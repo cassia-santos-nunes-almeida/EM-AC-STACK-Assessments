@@ -1,0 +1,47 @@
+% Q2: Parallel RLC Step Response — Current source with R, L, C in parallel
+\documentclass[border=10pt]{standalone}
+\usepackage[american voltages, american currents]{circuitikz}
+\usepackage{amsmath}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{circuitikz}[
+    line width=0.8pt,
+    every node/.style={font=\sffamily}
+]
+
+% Current source (left, vertical, arrow pointing up)
+\draw (0,0) to[I, l=$I_s$] (0,4);
+
+% Top rail
+\draw (0,4) -- (2,4);
+
+% Junction dots
+\fill (2,4) circle (2pt);
+\fill (5,4) circle (2pt);
+\fill (8,4) circle (2pt);
+
+% Branch 1: Resistor
+\draw (2,4) to[R, l_=$R$] (2,0);
+
+% Branch 2: Inductor with current label
+\draw (5,4) to[L, l_=$L$, i>_=$i_L$] (5,0);
+
+% Branch 3: Capacitor
+\draw (8,4) to[C, l_=$C$] (8,0);
+
+% Top rail connections
+\draw (2,4) -- (5,4) -- (8,4);
+
+% Bottom rail
+\draw (0,0) -- (2,0) -- (5,0) -- (8,0);
+
+% Bottom rail dots
+\fill (2,0) circle (2pt);
+\fill (5,0) circle (2pt);
+
+% Voltage polarity v(t) — gap between source and R
+\draw (1,4) to[open, v^=$v(t)$] (1,0);
+
+\end{circuitikz}
+\end{document}

@@ -1,0 +1,38 @@
+% CircuiTikZ Template — Testing-Codes project
+% Compile: pdflatex → pdf2svg  (or use shared/scripts/render_circuitikz.py)
+\documentclass[border=10pt]{standalone}
+\usepackage[american voltages, american currents]{circuitikz}
+\usepackage{amsmath}
+
+% Sans-serif font (matches project convention)
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{circuitikz}[
+    line width=0.8pt,
+    every node/.style={font=\sffamily}
+]
+
+% === Example: Series RLC with switch ===
+
+% Voltage source (left, vertical)
+\draw (0,0) to[V, v=$V_s$] (0,4);
+
+% Top rail with switch
+\draw (0,4) -- (2,4)
+      to[opening switch, l=$t{=}0$] (4,4)
+      -- (6,4);
+
+% Series R-L-C going down
+\draw (6,4) to[R, l=$R$, v=$v_R$] (6,2.5)
+            to[L, l=$L$] (6,1)
+            to[C, l=$C$, v=$v_C$] (6,0);
+
+% Bottom return
+\draw (6,0) -- (0,0);
+
+% Current arrow
+\draw[->, >=stealth] (4.2,4.3) -- (5.5,4.3) node[midway, above]{$i(t)$};
+
+\end{circuitikz}
+\end{document}

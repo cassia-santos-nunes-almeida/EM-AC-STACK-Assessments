@@ -207,5 +207,24 @@ Each entry: `[date] — Decision` followed by reasoning and rejected alternative
 
 ---
 
+### 2026-03-07 — Migrate from Schemdraw to CircuiTikZ as sole diagram tool
+
+**Reason:** Schemdraw (pure Python) lacked native SPST/SPDT switch elements with open/closed visual states, requiring a custom `draw_switch` matplotlib helper. CircuiTikZ provides native `opening switch`/`closing switch` elements, a much larger component library (European symbols, transformers, etc.), and eliminates the need for workarounds. The trade-off (LaTeX dependency + compilation step) is acceptable since all diagrams are pre-compiled to SVG for Moodle embedding.
+
+**Migration approach:**
+- Existing Schemdraw `.py` and `.svg` files renamed with `_schemdraw` suffix (preserved, not deleted)
+- 7 new `.tex` files created for week 10 diagrams using CircuiTikZ/TikZ
+- Compilation pipeline: `.tex` → `pdflatex` → PDF → `pdf2svg` → SVG
+- New `shared/scripts/render_circuitikz.py` handles compilation (single file or batch)
+- New `shared/templates/circuitikz_template.tex` provides starter template
+
+**System dependencies added:** `texlive-latex-base`, `texlive-pictures`, `texlive-latex-recommended`, `texlive-latex-extra`, `pdf2svg`
+
+**Supersedes:** 2026-02-22 decision noting "LaTeX TikZ (not directly embeddable in Moodle STACK question text)" as a rejected alternative — this is still true, but we now pre-compile to SVG instead of trying to embed TikZ directly.
+
+**Alternatives rejected:** Keeping both tools (visual inconsistency, two pipelines to maintain, decision overhead), staying with Schemdraw only (continued need for workarounds on switches and limited component library).
+
+---
+
 ## Last Updated
-2026-03-06
+2026-03-07

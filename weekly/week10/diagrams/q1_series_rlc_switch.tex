@@ -1,0 +1,34 @@
+% Q1: Series RLC Natural Response — Switch opens at t=0
+\documentclass[border=10pt]{standalone}
+\usepackage[american voltages, american currents]{circuitikz}
+\usepackage{amsmath}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{circuitikz}[
+    line width=0.8pt,
+    every node/.style={font=\sffamily}
+]
+
+% Voltage source (left, vertical, positive on top)
+\draw (0,0) to[V, v=$V_s$] (0,4);
+
+% Top rail with switch (opens at t=0)
+\draw (0,4) -- (2,4)
+      to[opening switch, l=$t{=}0$ (opens)] (4,4)
+      -- (6,4);
+
+% Series R-L-C going down on the right
+\draw (6,4) to[R, l_=$R$] (6,2.7)
+            to[L, l_=$L$] (6,1.3)
+            to[C, l_=$C$, v^=$v_C$] (6,0);
+
+% Bottom return
+\draw (6,0) -- (0,0);
+
+% Current arrow on top rail
+\draw[->, >=stealth, thick] (4.3,4.3) -- (5.5,4.3)
+    node[midway, above]{$i(t)$};
+
+\end{circuitikz}
+\end{document}

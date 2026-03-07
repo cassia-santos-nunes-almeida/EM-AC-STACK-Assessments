@@ -1,0 +1,31 @@
+% Q3: Toroidal Core — Reluctance equivalent circuit
+\documentclass[border=10pt]{standalone}
+\usepackage[american voltages, american currents]{circuitikz}
+\usepackage{amsmath}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{circuitikz}[
+    line width=0.8pt,
+    every node/.style={font=\sffamily}
+]
+
+% MMF source (voltage source in reluctance analogy)
+\draw (0,0) to[V, v=$NI$ (MMF)] (0,4);
+
+% Top rail
+\draw (0,4) -- (7,4);
+
+% Core reluctance (going down)
+\draw (7,4) to[R, i>^=$\Phi$] (7,2);
+\node[right, xshift=6pt] at (7,3) {$\mathcal{R}_{\mathrm{core}} = \dfrac{\ell_1}{\mu_r \mu_0 A}$};
+
+% Air gap reluctance (going down)
+\draw (7,2) to[R] (7,0);
+\node[right, xshift=6pt] at (7,1) {$\mathcal{R}_{\mathrm{gap}} = \dfrac{\ell_2}{\mu_0 A}$};
+
+% Bottom return
+\draw (7,0) -- (0,0);
+
+\end{circuitikz}
+\end{document}
