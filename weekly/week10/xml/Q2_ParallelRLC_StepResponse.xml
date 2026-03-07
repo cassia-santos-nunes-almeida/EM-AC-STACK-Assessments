@@ -95,7 +95,8 @@ and <code>t</code>. Example: <code>0.5 + 0.02*exp(-200*t)*sin(980*t) - 0.01*exp(
 <p>Find \(v(t)\) for \(t \geq 0\) using the relation \(v(t) = L \cdot \frac{di_L}{dt}\).</p>
 <p>Differentiate your \(i_L(t)\) expression and multiply by \(L = {@L_val@}\;\text{H}\).</p>
 <p>\(v(t) = \) [[input:ans6]] V [[validation:ans6]]</p>
-<p><em>Syntax hint: Differentiate term by term. Remember the product rule for terms
+<p><em>Syntax hint: Use <code>exp(...)</code>, <code>sin(...)</code>, <code>cos(...)</code>,
+and <code>t</code>. Differentiate term by term; remember the product rule for terms
 like \(t \cdot e^{-\alpha t}\).</em></p>
 
 <hr />

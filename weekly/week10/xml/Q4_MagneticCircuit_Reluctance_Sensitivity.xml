@@ -70,7 +70,8 @@ An \(N = {@N_val@}\)-turn coil is wound around the core.</p>
 <p><em>Use variable names: <code>lc</code> for \(\ell_c\), <code>mur</code> for \(\mu_r\),
 <code>mu0</code> for \(\mu_0\), <code>Ac</code> for \(A_c\).</em></p>
 <p>\(\mathcal{R}_\text{core} = \) [[input:ans2]] H\(^{-1}\) [[validation:ans2]]</p>
-<p><em>Syntax hint: Reluctance of a section = \(\ell/(\mu \cdot A)\), so write <code>lc/(mur*mu0*Ac)</code>.</em></p>
+<p><em>Syntax hint: Use <code>mu0</code> for \(\mu_0\), <code>mur</code> for \(\mu_r\).
+Reluctance of a section = \(\ell/(\mu \cdot A)\), so write <code>lc/(mur*mu0*Ac)</code>.</em></p>
 
 <hr />
 
@@ -80,7 +81,7 @@ Air has \(\mu = \mu_0\) (\(\mu_r = 1\)).</p>
 <p><em>Use variable names: <code>lg</code> for \(\ell_g\), <code>mu0</code> for \(\mu_0\),
 <code>Ac</code> for \(A_c\).</em></p>
 <p>\(\mathcal{R}_\text{gap} = \) [[input:ans3]] H\(^{-1}\) [[validation:ans3]]</p>
-<p><em>Syntax hint: Write <code>lg/(mu0*Ac)</code></em></p>
+<p><em>Syntax hint: Use <code>mu0</code> for \(\mu_0\). Write <code>lg/(mu0*Ac)</code></em></p>
 
 <hr />
 
@@ -106,7 +107,8 @@ Show that \(L\) <em>decreases</em> as \(\ell_g\) increases (the expression shoul
 then differentiate using \(\frac{d}{dx}\big(1/f(x)\big) = -f'(x)/f(x)^2\).</em></p>
 <p><em>Syntax: Use <code>N</code>, <code>mu0</code>, <code>Ac</code>, <code>lc</code>, <code>mur</code>, <code>lg</code>.</em></p>
 <p>\(\frac{dL}{d\ell_g} = \) [[input:ans6]] H/m [[validation:ans6]]</p>
-<p><em>Syntax hint: Write <code>-N^2*mu0*Ac/(lc/mur + lg)^2</code>. Note the negative sign.</em></p>
+<p><em>Syntax hint: Use <code>mu0</code> for \(\mu_0\), <code>mur</code> for \(\mu_r\).
+Write <code>-N^2*mu0*Ac/(lc/mur + lg)^2</code>. Note the negative sign.</em></p>
 
 <p><strong>(e2)</strong> Using your derivative, estimate the approximate <strong>percentage change</strong> in \(L\)
 if the air gap \(\ell_g\) increases by 10% (i.e.&nbsp;\(\Delta\ell_g = 0.1 \cdot \ell_g\)).
