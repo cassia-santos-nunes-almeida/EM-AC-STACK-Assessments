@@ -1,4 +1,4 @@
-% Q2: Parallel RLC Step Response — Current source with R, L, C in parallel
+% Q2: Parallel RLC Step Response — Current source switched on at t=0
 \documentclass[border=10pt]{standalone}
 \usepackage[american voltages, american currents]{circuitikz}
 \usepackage{amsmath}
@@ -10,8 +10,11 @@
     every node/.style={font=\sffamily}
 ]
 
-% Current source (left, vertical, arrow pointing up)
-\draw (0,0) to[I, l=$I_s$] (0,4);
+% Current source (left, vertical, arrow pointing up) with closing switch SW1
+\draw (0,0) to[I, l=$I_s$] (0,2.2);
+\draw (0,2.2) to[closing switch] (0,4);
+\node[left, font=\sffamily\footnotesize] at (-0.3,3.1) {$t{=}0$};
+\node[right, xshift=6pt, font=\sffamily\itshape] at (0,3.1) {SW1};
 
 % Top rail
 \draw (0,4) -- (2,4);
