@@ -1,158 +1,116 @@
 ---
 name: rlc-circuit-drawing-generator
-description: Generates RLC circuit diagrams from text descriptions using Schemdraw. Use this skill when the user wants to create circuit drawings for educational purposes, particularly for AC/DC circuits with resistors, capacitors, inductors, and power sources.
+description: Generates RLC circuit diagrams from text descriptions using CircuiTikZ/TikZ (LaTeX). Use this skill when the user wants to create circuit drawings for educational purposes, particularly for AC/DC circuits with resistors, capacitors, inductors, switches, and power sources.
 ---
 
 # RLC Circuit Drawing Generator
 
-This skill generates professional circuit diagrams from natural language descriptions using Python's Schemdraw library.
+This skill generates professional circuit diagrams from natural language descriptions using CircuiTikZ (LaTeX) for circuit schematics and TikZ for physical/geometric diagrams (e.g., magnetic core cross-sections).
 
 ## When to Use This Skill
 
 - User asks to draw or create a circuit diagram
-- User describes a circuit with resistors, capacitors, inductors, or power sources
+- User describes a circuit with resistors, capacitors, inductors, switches, or power sources
 - User needs an educational circuit illustration
 - User wants to visualize an RLC circuit topology
+- User needs a magnetic circuit or physical core diagram
 
 ## Workflow
 
 1. **Parse the circuit description** - Identify components, values, and topology
 2. **Determine layout** - Series, parallel, or mixed arrangement
-3. **Generate Schemdraw code** - Create Python script using library conventions
-4. **Render to image** - Execute script to produce SVG output
+3. **Generate CircuiTikZ `.tex` file** - Create LaTeX source using project conventions
+4. **Compile to SVG** - Run `shared/scripts/render_circuitikz.py`
 
 ## Input Format
 
 Users can describe circuits in natural language:
 - "Draw a series RLC circuit with R=100Ω, L=10mH, C=1μF powered by 12V DC"
-- "Create an RC low-pass filter with a 10kΩ resistor and 100nF capacitor"
-- "Show a parallel LC circuit with L=1mH and C=100pF"
+- "Create a parallel RLC with a switch that opens at t=0"
+- "Show a toroidal core with N turns and an air gap"
+
+## .tex File Structure
+
+```latex
+\documentclass[border=10pt]{standalone}
+\usepackage[american voltages, american currents]{circuitikz}
+\usepackage{amsmath}
+\renewcommand{\familydefault}{\sfdefault}  % sans-serif
+
+\begin{document}
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+  % Circuit drawing commands here
+\end{circuitikz}
+\end{document}
+```
+
+For physical/geometric diagrams (toroid cross-sections, C-cores), use `\usepackage{tikz}` instead.
 
 ## Layout Convention
 
 **Preferred layout**: Vertical component arrangement on the right side.
 
-```
-    ┌───────────────────┐
-    │                   │
-   (+)                [R₁]
-  (SRC)                 │
-   (-)                [L₁]
-    │                   │
-    └────────⏚────────[C₁]
-           (GND)        │
-                        │
-```
-
 - **Power source**: Vertical on left side, positive terminal on top
-- **Components**: Arranged vertically on the right side using `.down()`
-- **Ground**: Reference point on the return path (bottom)
-- **Labels**: Include component designators and values (R₁  10kΩ) - use explicit positioning with `ofst` to avoid overlap (see below)
+- **Components**: Arranged vertically on the right side
+- **Current arrows and voltage polarities**: Explicit on every circuit
+- **Sans-serif fonts**: `\sffamily` throughout
+- **American style**: `[american voltages, american currents]`
 
-## Label Positioning (CRITICAL)
+## Key CircuiTikZ Components
 
-Schemdraw's default label placement overlaps with element symbols on vertical components.
-**Always use explicit `loc` and `ofst` parameters** for vertical elements.
+| Component | Syntax |
+|-----------|--------|
+| Resistor | `to[R, l=$R$]` |
+| Inductor | `to[L, l=$L$]` |
+| Capacitor | `to[C, l=$C$]` |
+| Voltage source | `to[V, v=$V_s$]` |
+| Current source | `to[I, l=$I_s$]` |
+| SPST switch (open) | `to[opening switch, l=$t{=}0$]` |
+| SPST switch (closed) | `to[closing switch, l=$t{=}0$]` |
+| Voltage label | `v=$v_C$` or `v^=$v_o(t)$` |
+| Current arrow | `i>^=$\Phi$` |
+| Junction dot | `\fill (x,y) circle (2pt);` |
 
-**IMPORTANT**: For vertical elements, `loc='top'` and `loc='bottom'` place labels **perpendicular
-to the element AND vertically centered on the element body**. In contrast, `loc='left'` and
-`loc='right'` place labels at element **endpoints** (start/end), NOT centered — avoid these for
-vertical elements.
+## Important: Complex Math Labels
 
-For **both** UP and DOWN elements, the mapping to screen position is:
-- `loc='top'` → screen-LEFT (centered on body)
-- `loc='bottom'` → screen-RIGHT (centered on body)
+CircuiTikZ's `l=` parameter doesn't handle `\dfrac` well. For labels with fractions, use separate `\node` elements:
 
-| Element direction | Goal | Code |
-|---|---|---|
-| `.down()` → label screen-RIGHT | `loc='bottom', ofst=0.15` |
-| `.down()` → label screen-LEFT  | `loc='top', ofst=0.15` |
-| `.up()` → label screen-LEFT    | `loc='top', ofst=0.15` |
-| `.up()` → label screen-RIGHT   | `loc='bottom', ofst=0.15` |
-| `.right()` → label above       | default (no `ofst` needed) |
-| `.left()` → label above        | default (no `ofst` needed) |
-
-**For the standard layout** (source UP on left, components DOWN on right):
-```python
-source = d.add(elm.SourceV().up().label('Vs', loc='top', ofst=0.15))
-d += elm.Resistor().down().label('R₁', loc='bottom', ofst=0.15)
-d += elm.Capacitor().down().label('C₁', loc='bottom', ofst=0.15)
+```latex
+\draw (6,4) to[R] (6,2);
+\node[right, xshift=6pt] at (6,3) {$\mathcal{R} = \dfrac{\ell}{\mu_r \mu_0 A}$};
 ```
 
-## Schemdraw Code Generation
-
-Use the bundled references for syntax:
-- `references/schemdraw-guide.md` - Component elements and methods
-- `references/circuit-patterns.md` - Common topology templates
-
-### Basic Structure (Vertical Layout - Preferred)
-
-**Important**: The ground must be connected to the source negative terminal to form a complete circuit.
-
-**Labeling**: Always use explicit `loc` and `ofst` for vertical elements (see Label Positioning section above).
-
-```python
-import schemdraw
-import schemdraw.elements as elm
-
-with schemdraw.Drawing() as d:
-    d.config(unit=3, fontsize=12)
-
-    # Source: UP → label screen-LEFT with loc='top'
-    source = d.add(elm.SourceV().up().label('V₁\n12V', loc='top', ofst=0.15))
-
-    # Top rail to the right
-    d += elm.Line().right().length(5).at(source.end)
-
-    # Components DOWN → label screen-RIGHT with loc='bottom'
-    d += elm.Resistor().down().label('R₁  100Ω', loc='bottom', ofst=0.15)
-    d += elm.Inductor().down().label('L₁  10mH', loc='bottom', ofst=0.15)
-    d += elm.Capacitor().down().label('C₁  1μF', loc='bottom', ofst=0.15)
-
-    # Return path with ground
-    d += elm.Line().left().length(3)
-    d += elm.Ground()
-
-    # Connect back to source negative terminal
-    d += elm.Line().left().tox(source.start)
-    d += elm.Line().up().toy(source.start)
-
-    d.save('circuit.svg')
-```
-
-## Rendering
-
-After generating the Schemdraw code, save it to a `.py` file and render:
+## Compilation
 
 ```bash
-python scripts/render_circuit.py circuit_code.py output.svg
+# Single file
+python shared/scripts/render_circuitikz.py diagram.tex [output.svg]
+
+# Batch (all .tex in a directory)
+python shared/scripts/render_circuitikz.py --all weekly/week10/diagrams/
 ```
 
-Or run the generated Python directly if Schemdraw is installed.
-
-## Components Reference
-
-| Component | Element | Typical Values |
-|-----------|---------|----------------|
-| DC Source | `elm.SourceV()` | 1V - 24V |
-| AC Source | `elm.SourceSin()` | 120V, 60Hz |
-| Battery | `elm.Battery()` | 1.5V, 9V, 12V |
-| Resistor | `elm.Resistor()` | Ω, kΩ, MΩ |
-| Capacitor | `elm.Capacitor()` | pF, nF, μF |
-| Inductor | `elm.Inductor()` | μH, mH, H |
-| Ground | `elm.Ground()` | - |
+**System dependencies:** `texlive-latex-base`, `texlive-pictures`, `texlive-latex-recommended`, `texlive-latex-extra`, `pdf2svg`
 
 ## Output
 
-- **Default format**: SVG (scalable, web-friendly)
-- **Alternatives**: PNG, PDF (specify in render command)
-- **Location**: Same directory as the Schemdraw script, or user-specified path
+- **Format**: SVG (compiled from PDF via pdf2svg)
+- **Embedding**: Base64 data URI in weekly XML, text placeholders for exams
+- **Template**: See `shared/templates/circuitikz_template.tex`
 
-## Example Files
+## Reference Files
 
-See `assets/examples/` for working templates:
-- `simple-resistive.py` - Basic resistor circuit
-- `rc-series.py` - RC series circuit
-- `rl-series.py` - RL series circuit
-- `rlc-series.py` - Full RLC series circuit
-- `rlc-parallel.py` - Parallel RLC circuit
+- `references/circuitikz-guide.md` - CircuiTikZ component syntax and conventions
+- `references/circuit-patterns.md` - Common topology templates (CircuiTikZ)
+- `assets/examples/` - Legacy Schemdraw examples (kept for reference)
+
+## Example Files (Week 10)
+
+See `weekly/week10/diagrams/` for working CircuiTikZ examples:
+- `q1_series_rlc_switch.tex` - Series RLC with opening switch
+- `q2_parallel_rlc_step.tex` - Parallel RLC step response
+- `q3_toroid_physical.tex` - Toroid physical drawing (TikZ)
+- `q3_toroid_reluctance.tex` - Reluctance equivalent circuit
+- `q4_ccore_physical.tex` - C-core physical drawing (TikZ)
+- `q4_ccore_reluctance.tex` - Reluctance equivalent circuit
+- `q5_parallel_rlc_natural_switches.tex` - 4-switch parallel RLC with native switch elements

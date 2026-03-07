@@ -7,7 +7,7 @@ This project produces **Moodle STACK assessment content** for an undergraduate E
 1. **Exams** — Midterm/final exams with randomized variants and AI-resistance features (e.g., `exams/midterm-week9/`)
 2. **Weekly practice** — Topic-specific question sets for formative assessment (e.g., `weekly/week10/`)
 
-All content is delivered through **Moodle** using the **STACK** question type plugin (Maxima CAS for auto-grading). Circuit diagrams are generated with Python **Schemdraw**.
+All content is delivered through **Moodle** using the **STACK** question type plugin (Maxima CAS for auto-grading). Circuit diagrams are generated with **CircuiTikZ/TikZ** (LaTeX), compiled to SVG via `pdflatex` + `pdf2svg`.
 
 **This is NOT a coding project.** It is an educational assessment design project. The "code" is Moodle STACK XML (containing embedded Maxima CAS code) and SVG circuit diagrams.
 
@@ -21,6 +21,7 @@ All content is delivered through **Moodle** using the **STACK** question type pl
 | **STACK plugin** | Auto-grading engine for mathematical questions (numerical, algebraic, MCQ) |
 | **Maxima CAS** | Computer algebra system embedded in STACK for randomization and grading |
 | **Moodle XML** | Import format for all questions (STACK, Essay, File Upload) |
+| **CircuiTikZ/TikZ** | LaTeX packages for circuit diagrams (`.tex` → SVG via pdflatex + pdf2svg) |
 | **SVG + PNG** | Circuit diagram formats — SVG as source, PNG exports for Moodle upload |
 | **Git** | Version control for all exam artifacts |
 | **CC0 License** | Public domain dedication — no restrictions on reuse |
@@ -35,19 +36,22 @@ Testing-Codes/
 │   ├── 00_prompt_evaluation.md        # Analysis of original exam prompt + corrections
 │   └── 01_exam_overview.md            # Complete exam specification
 ├── shared/
-│   └── scripts/                       # Reusable utilities across all content
-│       ├── render_all.py              # Batch Schemdraw rendering
-│       └── embed_images_in_xml.py     # Base64 SVG embedding for weekly questions
+│   ├── scripts/                       # Reusable utilities across all content
+│   │   ├── render_circuitikz.py       # .tex → .svg compilation (pdflatex + pdf2svg)
+│   │   ├── render_all.py              # Batch Schemdraw rendering (legacy)
+│   │   └── embed_images_in_xml.py     # Base64 SVG embedding for exam questions
+│   └── templates/
+│       └── circuitikz_template.tex    # Starter template for new diagrams
 ├── exams/
 │   └── midterm-week9/                 # Week 9 midterm (50 pts, 120 min, 15 variants)
 │       ├── xml/                       # pool_q1-q4 + upload_questions.xml
 │       └── diagrams/
 │           ├── q1/ q2/ q3/ q4/        # Exported SVG + PNG per variant
-│           └── scripts/               # Schemdraw .py source files
+│           └── scripts/               # Schemdraw .py source files (legacy)
 ├── weekly/
 │   └── week10/                        # RLC 2nd-order + magnetic circuits practice
 │       ├── xml/                       # Q1-Q5 STACK questions
-│       └── diagrams/                  # Schemdraw .py + .svg per question
+│       └── diagrams/                  # CircuiTikZ .tex + .svg per question
 └── LICENSE                            # CC0 1.0 Universal
 ```
 
@@ -125,4 +129,4 @@ Each question has 4 scaffolded subparts (A-D) mixing STACK auto-graded and Essay
 - Using `type="radio"` for classification MCQs — shows "Clear my choice" clutter. Use `type="dropdown"` instead.
 
 ## Last Updated
-2026-03-06
+2026-03-07
