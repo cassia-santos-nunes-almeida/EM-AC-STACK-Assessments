@@ -213,12 +213,12 @@ ta_phi:   float(ta_B * Ac_val);
 ta_law:    2;
 ta_design: 2;
 
-mcq_law: [[1, false, "Biot\u2013Savart law (integration over current elements)"],
-          [2, true, "Amp\u00e8re\u2019s circuital law"],
-          [3, false, "Faraday\u2019s law"]];
+mcq_law: [[1, false, "Biot-Savart law (integration over current elements)"],
+          [2, true, "Ampere's circuital law"],
+          [3, false, "Faraday's law"]];
 
-mcq_design: [[1, false, "The transformer \u2014 the gap increases flux linkage between primary and secondary"],
-             [2, true, "The power inductor \u2014 the gap reduces effective permeability, preventing core saturation and allowing more energy storage"]];
+mcq_design: [[1, false, "The transformer - the gap increases flux linkage between primary and secondary"],
+             [2, true, "The power inductor - the gap reduces effective permeability, preventing core saturation and allowing more energy storage"]];
 
 /* ===== Teacher answers ===== */
 ta1: mcq_law;
