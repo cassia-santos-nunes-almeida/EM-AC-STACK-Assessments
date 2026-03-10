@@ -1,0 +1,36 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[american voltages, american currents]{circuitikz}
+\usepackage{amsmath}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+
+% Coil 1 (left)
+\draw (0,3) to[L, l=$L_1$, i>^=$i_1$, o-] (0,0);
+\node[circle, fill=black, inner sep=1.5pt] at (-0.3, 2.7) {};
+\node[left] at (-0.5, 2.7) {$\bullet$};
+
+% Coil 2 (right)
+\draw (3,3) to[L, l_=$L_2$, i>^=$i_2$, o-] (3,0);
+\node[circle, fill=black, inner sep=1.5pt] at (3.3, 2.7) {};
+\node[right] at (3.5, 2.7) {$\bullet$};
+
+% Coupling indication
+\draw[<->, thick, dashed] (0.5, 1.5) -- (2.5, 1.5) node[midway, above] {$M = k\sqrt{L_1 L_2}$};
+
+% Dot labels
+\node[above left] at (0, 3) {dot};
+
+% Current directions
+\node[left, blue] at (-0.3, 1.5) {$i_1$ enters dot};
+\node[right, blue] at (3.3, 1.5) {$i_2$ enters undot};
+
+% Port labels
+\node[above] at (0, 3.2) {$+$};
+\node[below] at (0, -0.2) {$-$};
+\node[above] at (3, 3.2) {$+$};
+\node[below] at (3, -0.2) {$-$};
+
+\end{circuitikz}
+\end{document}
