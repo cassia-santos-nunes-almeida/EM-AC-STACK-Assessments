@@ -37,8 +37,14 @@ Testing-Codes/
 │           ├── q1/ q2/ q3/ q4/        # Exported SVG + PNG per variant
 │           └── scripts/               # Schemdraw .py source files (legacy)
 └── weekly/
-    └── week10/                        # RLC 2nd-order + magnetic circuits practice
-        ├── xml/                       # Q1-Q5 STACK questions
+    ├── week10/                        # RLC 2nd-order + magnetic circuits practice
+    │   ├── xml/                       # Q1-Q5 STACK questions
+    │   └── diagrams/                  # CircuiTikZ .tex + .svg per question
+    ├── week11/                        # Electromagnetic induction (Faraday's law, motional EMF)
+    │   ├── xml/                       # Q1-Q2 STACK questions
+    │   └── diagrams/                  # TikZ/CircuiTikZ .tex + .svg per question
+    └── week12/                        # Coupled inductors & ideal transformers
+        ├── xml/                       # Q3-Q4 STACK questions
         └── diagrams/                  # CircuiTikZ .tex + .svg per question
 ```
 
@@ -307,4 +313,4 @@ Hard-won lessons from sessions 1-3. **Do not repeat these errors.**
 
 ## Last Updated
 
-2026-03-07 (session 3: consolidated lessons 1-20, PRT validation methodology, progressive hint unlocking roadmap)
+2026-03-10 (session 4: added Week 11-12 exercises — Faraday's law, motional EMF, coupling coefficient/T-equivalent, ideal transformer/impedance matching)

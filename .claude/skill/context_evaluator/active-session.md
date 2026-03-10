@@ -1,7 +1,7 @@
 # Active Session — STACK Exam & Practice Question Builder
 
 ## Current Milestone
-**Week 10 Q1-Q5 content complete. CircuiTikZ migration done. Full PRT validation passed.** All 5 questions validated across 38 PRTs — node chains, feedbackvariables, CDATA wrapping, scoring, and pedagogical quality all confirmed correct. Session 3 closed (2026-03-07).
+**Weeks 10-12 content complete.** Week 11 (Q1 Faraday's Law, Q2 Motional EMF) and Week 12 (Q3 Coupling Coefficient/T-Equivalent, Q4 Ideal Transformer/Impedance Matching) — 4 new exercises with 18 PRTs, 5 CircuiTikZ/TikZ diagrams, full self-verification passed. Session 4 closed (2026-03-10).
 
 ## Pending Tasks (Prioritized)
 
@@ -16,6 +16,17 @@
 - [ ] **Moodle test import** — Import weekly/week10 XML files into sandbox, verify base64 SVGs render
 
 ## Completed Tasks
+
+### Session 4: Weeks 11-12 Exercises (2026-03-10)
+- [x] Created 5 diagram .tex files (q1_coil_bfield, q2_sliding_bar_rails, q3_coupled_coils_dots, q3_t_equivalent, q4_transformer_matching)
+- [x] Compiled all diagrams to SVG via pdflatex + pdf2svg
+- [x] Created Q1_FaradayLaw_EMF.xml — 3 inputs (numerical + 2 radio), 3 PRTs with common-error detection (forgot ω, N, π)
+- [x] Created Q2_MotionalEMF_SlidingBar.xml — 4 inputs (3 numerical + 1 radio), 4 PRTs with common-error detection (I·R vs I²·R)
+- [x] Created Q3_CouplingCoefficient_TEquivalent.xml — 6 inputs (4 numerical + 2 radio), 6 PRTs; special NumAbsolute handling for near-zero La; conditional MCQ for La negativity
+- [x] Created Q4_IdealTransformer_ImpedanceMatching.xml — 5 inputs (3 numerical + 2 radio), 5 PRTs; inverted ratio and V²/R common-error detection
+- [x] Self-verification: xmllint (4/4 pass), PRT node chains (18 PRTs all valid), numerical spot-checks (33/33 pass across 12 parameter sets), pedagogical quality (hints, syntax hints, penalties all correct)
+- [x] Updated CLAUDE.md with Week 11-12 in repo structure
+- [x] Updated context files (active-session.md, decisions-log.md)
 
 ### Session 3: PRT Validation & Session Close (2026-03-07)
 - [x] Multi-tiered PRT validation of all 5 questions (38 PRTs total) — all passed
@@ -60,8 +71,8 @@
 ## Next Steps (Ordered)
 1. **Progressive hint unlocking** — Research and implement STACK conditional hint reveal
 2. **Visual review** — Check CircuiTikZ SVGs match original circuit topologies
-3. **Moodle test import** — Import weekly/week10 XML files into sandbox
-4. **Add more weeks** — Create `weekly/week11/`, `weekly/week12/` as course progresses
+3. **Moodle test import** — Import weekly/week10-12 XML files into sandbox
+4. **Add more weeks** — Create `weekly/week13/` etc. as course progresses
 5. **Migrate exam diagrams** — Optionally redraw exam diagrams in CircuiTikZ
 
 ## External Skill Updates Needed (my-claude-skill GitHub)
@@ -93,4 +104,4 @@ The following updates should be applied to the **my-claude-skill** repository ne
 - **Moodle instance access needed** — Cannot validate XML imports without a STACK-enabled Moodle sandbox
 
 ## Last Updated
-2026-03-07
+2026-03-10

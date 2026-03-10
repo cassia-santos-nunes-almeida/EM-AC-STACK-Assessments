@@ -1,0 +1,51 @@
+% Q2: Motional EMF — Sliding bar on parallel rails with resistor
+\documentclass[border=10pt]{standalone}
+\usepackage[american voltages, american currents]{circuitikz}
+\usepackage{amsmath}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{circuitikz}[
+    line width=0.8pt,
+    every node/.style={font=\sffamily}
+]
+
+% Top rail
+\draw[thick] (0,4) -- (7,4);
+% Bottom rail
+\draw[thick] (0,0) -- (7,0);
+
+% Resistor on left side closing the circuit
+\draw (0,4) to[R, l=$R$] (0,0);
+
+% Sliding bar (vertical, at x=5)
+\draw[very thick, blue!70!black] (5,0) -- (5,4);
+
+% Bar length label
+\draw[<->, >=stealth] (5.4,0) -- (5.4,4)
+    node[midway, right] {$\ell$};
+
+% Velocity arrow
+\draw[->, >=stealth, very thick, red!70!black] (5,2) -- (6.5,2)
+    node[above] {$\mathbf{v}$};
+
+% B field symbols (into page — X marks)
+\foreach \x in {1.5, 2.5, 3.5} {
+    \foreach \y in {1.0, 2.0, 3.0} {
+        \node[gray!60!black] at (\x, \y) {$\times$};
+    }
+}
+
+% B field label
+\node[gray!60!black] at (2.5, -0.6) {$\mathbf{B}$ (into page)};
+
+% Current direction arrow (counterclockwise in this view)
+\draw[->, >=stealth, thick, green!50!black] (1.0, 3.6) -- (3.5, 3.6)
+    node[midway, above] {$I$};
+
+% Rail terminations (dots at sliding contact)
+\fill (5,4) circle (2pt);
+\fill (5,0) circle (2pt);
+
+\end{circuitikz}
+\end{document}

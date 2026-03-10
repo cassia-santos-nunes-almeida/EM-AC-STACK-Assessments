@@ -250,5 +250,40 @@ Each entry: `[date] — Decision` followed by reasoning and rejected alternative
 
 ---
 
+---
+
+### 2026-03-10 — Override SigFigsStrict with NumRelative for all Week 11-12 exercises
+
+**Reason:** The spec suggested `SigFigsStrict` for some answer tests, but CLAUDE.md lesson #2 explicitly prohibits this: "No SigFigsStrict as a scoring gate — penalizes formatting, not understanding." All numerical PRTs in Weeks 11-12 use `NumRelative` (5% tolerance) with tiered scoring (1.0/0.7/0.3/0.0). CLAUDE.md conventions always win over spec suggestions.
+
+**Alternatives rejected:** SigFigsStrict (penalizes significant figure formatting rather than physics understanding), AlgEquiv alone (too strict for floating-point numerical answers).
+
+---
+
+### 2026-03-10 — Fix Q3 dot convention: both currents enter dotted terminals (aiding case)
+
+**Reason:** The original plan described i₂ entering the undotted terminal (opposing flux) but used the aiding T-equivalent formulas (La = L₁ - M). These were physically inconsistent. The aiding case (both i₁ and i₂ entering dotted terminals) was chosen because:
+1. It correctly produces La = L₁ - M, which goes negative when k > √(L₁/L₂) — a pedagogically rich scenario
+2. The aiding configuration is the standard textbook convention for defining M as positive
+3. All 3 parameter sets produce negative La values, making the conditional MCQ (ans6) consistently test whether students recognize this
+
+**Alternatives rejected:** Opposing convention with Lb = L₂ + M formulas (La would always be positive, losing the pedagogical value of the negative inductance discussion).
+
+---
+
+### 2026-03-10 — Use NumAbsolute for Q3 prt3 when La is near zero
+
+**Reason:** In the T-equivalent circuit, La = L₁ - M can be very close to zero (e.g., -2 mH). NumRelative with 5% tolerance on a value near zero produces an extremely tight absolute band, potentially rejecting correct student answers. The PRT uses feedbackvariables to detect |La| < 1 mH and routes to a NumAbsolute(0.01) node instead of NumRelative. This follows CLAUDE.md's rule: "Answer is 0: Use NumAbsolute with tolerance 0.01."
+
+**Alternatives rejected:** NumRelative for all values (fails near zero), fixed NumAbsolute everywhere (too generous for large values).
+
+---
+
+### 2026-03-10 — Use radio (type="radio") instead of dropdown for long MCQ options in Weeks 11-12
+
+**Reason:** MCQ options in the new exercises contain full descriptive sentences (e.g., "Counterclockwise — opposing the increase in flux through the loop (Lenz's law)"). These exceed ~40 characters and would be truncated in a dropdown. Radio buttons display the full option text. This follows CLAUDE.md's rule: `type="radio"` for long descriptive options.
+
+**Alternatives rejected:** Dropdown (truncates long text), algebraic input (error-prone for concept questions).
+
 ## Last Updated
-2026-03-07
+2026-03-10
