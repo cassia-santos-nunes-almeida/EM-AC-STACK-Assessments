@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ============================================================ -->
+<!-- Week 11 - Q2: Motional EMF — Sliding Bar on Rails            -->
+<!-- Course: Electromagnetism and Circuit Analysis, LUT University  -->
+<!-- Topics: Motional EMF, Lenz's law, power dissipation           -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Week 11 – Q2: Motional EMF — Sliding Bar on Rails</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Week 11 &ndash; Q2: Motional EMF &mdash; Sliding Bar on Rails</h3>
+<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
+<p><strong>Total: 4 points | Penalty per wrong attempt: 0%</strong></p>
+
+<hr />
+
+<p>A conducting bar of length \(\ell = {@ell_cm@}\;\text{cm}\) slides along two parallel conducting rails
+at a constant velocity \(v = {@v@}\;\text{m/s}\) to the right. A uniform magnetic field
+\(\mathbf{B} = {@B@}\;\text{T}\) points <strong>into the page</strong>. The rails are connected at the left end
+by a resistor \(R = {@R@}\;\Omega\).</p>
+
+<p style="text-align:center;">
+  <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjI1LjQ5OSIgaGVpZ2h0PSIxNjEuMTMiIHZpZXdCb3g9IjAgMCAyMjUuNDk5IDE2MS4xMyI+CjxkZWZzPgo8Zz4KPGcgaWQ9ImdseXBoLTAtMCI+CjxwYXRoIGQ9Ik0gMy43MzQzNzUgLTYuMTI1IEMgMy43OTY4NzUgLTYuMzU5Mzc1IDMuODI4MTI1IC02LjQ1MzEyNSA0LjAxNTYyNSAtNi40ODQzNzUgQyA0LjEwOTM3NSAtNi41IDQuNDIxODc1IC02LjUgNC42MjUgLTYuNSBDIDUuMzI4MTI1IC02LjUgNi40Mzc1IC02LjUgNi40Mzc1IC01LjUxNTYyNSBDIDYuNDM3NSAtNS4xNzE4NzUgNi4yODEyNSAtNC40ODQzNzUgNS44OTA2MjUgLTQuMDkzNzUgQyA1LjYyNSAtMy44NDM3NSA1LjEwOTM3NSAtMy41MTU2MjUgNC4yMDMxMjUgLTMuNTE1NjI1IEwgMy4wOTM3NSAtMy41MTU2MjUgWiBNIDUuMTcxODc1IC0zLjM5MDYyNSBDIDYuMTg3NSAtMy42MDkzNzUgNy4zNTkzNzUgLTQuMzEyNSA3LjM1OTM3NSAtNS4zMTI1IEMgNy4zNTkzNzUgLTYuMTcxODc1IDYuNDY4NzUgLTYuODEyNSA1LjE1NjI1IC02LjgxMjUgTCAyLjMyODEyNSAtNi44MTI1IEMgMi4xMjUgLTYuODEyNSAyLjAzMTI1IC02LjgxMjUgMi4wMzEyNSAtNi42MDkzNzUgQyAyLjAzMTI1IC02LjUgMi4xMjUgLTYuNSAyLjMxMjUgLTYuNSBDIDIuMzI4MTI1IC02LjUgMi41MTU2MjUgLTYuNSAyLjY4NzUgLTYuNDg0Mzc1IEMgMi44NzUgLTYuNDUzMTI1IDIuOTUzMTI1IC02LjQ1MzEyNSAyLjk1MzEyNSAtNi4zMTI1IEMgMi45NTMxMjUgLTYuMjgxMjUgMi45NTMxMjUgLTYuMjUgMi45MjE4NzUgLTYuMTI1IEwgMS41NzgxMjUgLTAuNzgxMjUgQyAxLjQ4NDM3NSAtMC4zOTA2MjUgMS40Njg3NSAtMC4zMTI1IDAuNjcxODc1IC0wLjMxMjUgQyAwLjUgLTAuMzEyNSAwLjQwNjI1IC0wLjMxMjUgMC40MDYyNSAtMC4xMDkzNzUgQyAwLjQwNjI1IDAgMC41MzEyNSAwIDAuNTQ2ODc1IDAgQyAwLjgyODEyNSAwIDEuNTMxMjUgLTAuMDMxMjUgMS43OTY4NzUgLTAuMDMxMjUgQyAyLjA3ODEyNSAtMC4wMzEyNSAyLjc5Njg3NSAwIDMuMDc4MTI1IDAgQyAzLjE1NjI1IDAgMy4yNjU2MjUgMCAzLjI2NTYyNSAtMC4yMDMxMjUgQyAzLjI2NTYyNSAtMC4zMTI1IDMuMTg3NSAtMC4zMTI1IDIuOTg0Mzc1IC0wLjMxMjUgQyAyLjYyNSAtMC4zMTI1IDIuMzQzNzUgLTAuMzEyNSAyLjM0Mzc1IC0wLjQ4NDM3NSBDIDIuMzQzNzUgLTAuNTQ2ODc1IDIuMzU5Mzc1IC0wLjU5Mzc1IDIuMzc1IC0wLjY1NjI1IEwgMy4wMzEyNSAtMy4yOTY4NzUgTCA0LjIxODc1IC0zLjI5Njg3NSBDIDUuMTI1IC0zLjI5Njg3NSA1LjI5Njg3NSAtMi43MzQzNzUgNS4yOTY4NzUgLTIuMzkwNjI1IEMgNS4yOTY4NzUgLTIuMjUgNS4yMTg3NSAtMS45Mzc1IDUuMTU2MjUgLTEuNzAzMTI1IEMgNS4wOTM3NSAtMS40MjE4NzUgNSAtMS4wNjI1IDUgLTAuODU5Mzc1IEMgNSAwLjIxODc1IDYuMjAzMTI1IDAuMjE4NzUgNi4zMjgxMjUgMC4yMTg3NSBDIDcuMTcxODc1IDAuMjE4NzUgNy41MzEyNSAtMC43ODEyNSA3LjUzMTI1IC0wLjkyMTg3NSBDIDcuNTMxMjUgLTEuMDQ2ODc1IDcuNDIxODc1IC0xLjA0Njg3NSA3LjQwNjI1IC0xLjA0Njg3NSBDIDcuMzEyNSAtMS4wNDY4NzUgNy4yOTY4NzUgLTAuOTg0Mzc1IDcuMjgxMjUgLTAuOTA2MjUgQyA3LjAzMTI1IC0wLjE3MTg3NSA2LjU5Mzc1IDAgNi4zNzUgMCBDIDYuMDQ2ODc1IDAgNS45Njg3NSAtMC4yMTg3NSA1Ljk2ODc1IC0wLjYwOTM3NSBDIDUuOTY4NzUgLTAuOTIxODc1IDYuMDMxMjUgLTEuNDIxODc1IDYuMDc4MTI1IC0xLjc1IEMgNi4wOTM3NSAtMS44OTA2MjUgNi4xMDkzNzUgLTIuMDc4MTI1IDYuMTA5Mzc1IC0yLjIxODc1IEMgNi4xMDkzNzUgLTIuOTg0Mzc1IDUuNDM3NSAtMy4yOTY4NzUgNS4xNzE4NzUgLTMuMzkwNjI1IFogTSA1LjE3MTg3NSAtMy4zOTA2MjUgIi8+CjwvZz4KPGcgaWQ9ImdseXBoLTAtMSI+CjxwYXRoIGQ9Ik0gMC4xNTYyNSAtMC45ODQzNzUgQyAwLjE0MDYyNSAtMC45NTMxMjUgMC4xMDkzNzUgLTAuOTIxODc1IDAuMTA5Mzc1IC0wLjg5MDYyNSBDIDAuMTA5Mzc1IC0wLjg0Mzc1IDAuMTcxODc1IC0wLjc1IDAuMjM0Mzc1IC0wLjc1IEMgMC4yODEyNSAtMC43NSAwLjMxMjUgLTAuNzgxMjUgMC41OTM3NSAtMS4wNjI1IEMgMC42NzE4NzUgLTEuMTQwNjI1IDAuODc1IC0xLjMyODEyNSAwLjk1MzEyNSAtMS40MDYyNSBDIDEuMDQ2ODc1IC0wLjYyNSAxLjMyODEyNSAwLjEyNSAyLjA2MjUgMC4xMjUgQyAyLjQ2ODc1IDAuMTI1IDIuODEyNSAtMC4xMDkzNzUgMy4wMTU2MjUgLTAuMjY1NjI1IEMgMy4xNTYyNSAtMC4zNTkzNzUgMy42MjUgLTAuNzUgMy42MjUgLTAuODQzNzUgQyAzLjYyNSAtMC44NzUgMy41OTM3NSAtMC45Njg3NSAzLjUxNTYyNSAtMC45Njg3NSBDIDMuNDg0Mzc1IC0wLjk2ODc1IDMuNDY4NzUgLTAuOTUzMTI1IDMuMzc1IC0wLjg3NSBDIDIuNzM0Mzc1IC0wLjI1IDIuMzc1IC0wLjA5Mzc1IDIuMDc4MTI1IC0wLjA5Mzc1IEMgMS42NDA2MjUgLTAuMDkzNzUgMS40Njg3NSAtMC42MjUgMS40Njg3NSAtMS4zOTA2MjUgQyAxLjQ2ODc1IC0xLjQ1MzEyNSAxLjUgLTEuOTA2MjUgMS41MzEyNSAtMS45Njg3NSBDIDEuNTQ2ODc1IC0yIDEuNTQ2ODc1IC0yLjAxNTYyNSAxLjc1IC0yLjIxODc1IEMgMi41NDY4NzUgLTMuMDE1NjI1IDMuOTY4NzUgLTQuNzAzMTI1IDMuOTY4NzUgLTYuMjUgQyAzLjk2ODc1IC02LjQyMTg3NSAzLjk2ODc1IC03LjAzMTI1IDMuMzc1IC03LjAzMTI1IEMgMi41NDY4NzUgLTcuMDMxMjUgMS44MTI1IC01LjM5MDYyNSAxLjcxODc1IC01LjE1NjI1IEMgMS4yMzQzNzUgLTQuMDYyNSAwLjkyMTg3NSAtMi45MDYyNSAwLjkyMTg3NSAtMS43MTg3NSBaIE0gMS41NzgxMjUgLTIuMzc1IEMgMS41OTM3NSAtMi41IDIuMDMxMjUgLTQuNzAzMTI1IDIuNTkzNzUgLTUuODc1IEMgMi44NTkzNzUgLTYuNDA2MjUgMy4wNzgxMjUgLTYuODEyNSAzLjM5MDYyNSAtNi44MTI1IEMgMy43MzQzNzUgLTYuODEyNSAzLjczNDM3NSAtNi40NTMxMjUgMy43MzQzNzUgLTYuMjk2ODc1IEMgMy43MzQzNzUgLTQuNjI1IDIuMDQ2ODc1IC0yLjg3NSAxLjU3ODEyNSAtMi4zNzUgWiBNIDEuNTc4MTI1IC0yLjM3NSAiLz4KPC9nPgo8ZyBpZD0iZ2x5cGgtMC0yIj4KPHBhdGggZD0iTSAzLjczNDM3NSAtNi4wNDY4NzUgQyAzLjgxMjUgLTYuNDA2MjUgMy44NDM3NSAtNi41IDQuNjQwNjI1IC02LjUgQyA0Ljg3NSAtNi41IDQuOTUzMTI1IC02LjUgNC45NTMxMjUgLTYuNjg3NSBDIDQuOTUzMTI1IC02LjgxMjUgNC44NDM3NSAtNi44MTI1IDQuODEyNSAtNi44MTI1IEMgNC41MTU2MjUgLTYuODEyNSAzLjc4MTI1IC02Ljc4MTI1IDMuNDg0Mzc1IC02Ljc4MTI1IEMgMy4xODc1IC02Ljc4MTI1IDIuNDY4NzUgLTYuODEyNSAyLjE1NjI1IC02LjgxMjUgQyAyLjA5Mzc1IC02LjgxMjUgMS45Njg3NSAtNi44MTI1IDEuOTY4NzUgLTYuNjA5Mzc1IEMgMS45Njg3NSAtNi41IDIuMDQ2ODc1IC02LjUgMi4yNSAtNi41IEMgMi42NTYyNSAtNi41IDIuOTM3NSAtNi41IDIuOTM3NSAtNi4zMTI1IEMgMi45Mzc1IC02LjI2NTYyNSAyLjkzNzUgLTYuMjM0Mzc1IDIuOTA2MjUgLTYuMTU2MjUgTCAxLjU2MjUgLTAuNzgxMjUgQyAxLjQ2ODc1IC0wLjQwNjI1IDEuNDUzMTI1IC0wLjMxMjUgMC42NTYyNSAtMC4zMTI1IEMgMC40MjE4NzUgLTAuMzEyNSAwLjM0Mzc1IC0wLjMxMjUgMC4zNDM3NSAtMC4xMDkzNzUgQyAwLjM0Mzc1IDAgMC40NTMxMjUgMCAwLjQ4NDM3NSAwIEMgMC43ODEyNSAwIDEuNSAtMC4wMzEyNSAxLjc5Njg3NSAtMC4wMzEyNSBDIDIuMDkzNzUgLTAuMDMxMjUgMi44MjgxMjUgMCAzLjEyNSAwIEMgMy4yMDMxMjUgMCAzLjMyODEyNSAwIDMuMzI4MTI1IC0wLjE4NzUgQyAzLjMyODEyNSAtMC4zMTI1IDMuMjUgLTAuMzEyNSAzLjAzMTI1IC0wLjMxMjUgQyAyLjg0Mzc1IC0wLjMxMjUgMi43OTY4NzUgLTAuMzEyNSAyLjYwOTM3NSAtMC4zMjgxMjUgQyAyLjM5MDYyNSAtMC4zNDM3NSAyLjM1OTM3NSAtMC4zOTA2MjUgMi4zNTkzNzUgLTAuNSBDIDIuMzU5Mzc1IC0wLjU3ODEyNSAyLjM3NSAtMC42NTYyNSAyLjM5MDYyNSAtMC43MzQzNzUgWiBNIDMuNzM0Mzc1IC02LjA0Njg3NSAiLz4KPC9nPgo8ZyBpZD0iZ2x5cGgtMS0wIj4KPHBhdGggZD0iTSA1LjA0Njg3NSAtMy43NSBDIDUuMTA5Mzc1IC0zLjg5MDYyNSA1LjE0MDYyNSAtMy45NTMxMjUgNS43ODEyNSAtMy45NTMxMjUgTCA1Ljc4MTI1IC00LjQyMTg3NSBDIDUuNTMxMjUgLTQuNDA2MjUgNS4yNSAtNC4zOTA2MjUgNSAtNC4zOTA2MjUgQyA0Ljc1IC00LjM5MDYyNSA0LjI5Njg3NSAtNC40MjE4NzUgNC4wOTM3NSAtNC40MjE4NzUgTCA0LjA5Mzc1IC0zLjk1MzEyNSBDIDQuMjgxMjUgLTMuOTUzMTI1IDQuNTYyNSAtMy45MjE4NzUgNC41NjI1IC0zLjg0Mzc1IEMgNC41NjI1IC0zLjg0Mzc1IDQuNTYyNSAtMy44MTI1IDQuNTE1NjI1IC0zLjczNDM3NSBMIDMuMzU5Mzc1IC0xLjIzNDM3NSBMIDIuMDkzNzUgLTMuOTUzMTI1IEwgMi42MjUgLTMuOTUzMTI1IEwgMi42MjUgLTQuNDIxODc1IEMgMi4yOTY4NzUgLTQuNDA2MjUgMS40MDYyNSAtNC4zOTA2MjUgMS4zOTA2MjUgLTQuMzkwNjI1IEMgMS4xMDkzNzUgLTQuMzkwNjI1IDAuNjcxODc1IC00LjQyMTg3NSAwLjI2NTYyNSAtNC40MjE4NzUgTCAwLjI2NTYyNSAtMy45NTMxMjUgTCAwLjg5MDYyNSAtMy45NTMxMjUgTCAyLjY0MDYyNSAtMC4yMDMxMjUgQyAyLjc2NTYyNSAwLjA0Njg3NSAyLjg5MDYyNSAwLjA0Njg3NSAzLjAxNTYyNSAwLjA0Njg3NSBDIDMuMTg3NSAwLjA0Njg3NSAzLjI5Njg3NSAwLjAxNTYyNSAzLjM5MDYyNSAtMC4yMDMxMjUgWiBNIDUuMDQ2ODc1IC0zLjc1ICIvPgo8L2c+CjxnIGlkPSJnbHlwaC0xLTEiPgo8cGF0aCBkPSJNIDIuNzY1NjI1IC0zLjczNDM3NSBMIDIuNzY1NjI1IC02LjM3NSBMIDQuNTc4MTI1IC02LjM3NSBDIDUuNTkzNzUgLTYuMzc1IDUuNzY1NjI1IC01LjU3ODEyNSA1Ljc2NTYyNSAtNS4xMjUgQyA1Ljc2NTYyNSAtNC4zNTkzNzUgNS4yOTY4NzUgLTMuNzM0Mzc1IDQuMzI4MTI1IC0zLjczNDM3NSBaIE0gNS40Njg3NSAtMy41NjI1IEMgNi41NDY4NzUgLTMuNzY1NjI1IDcuMTg3NSAtNC4zNTkzNzUgNy4xODc1IC01LjEyNSBDIDcuMTg3NSAtNi4wNDY4NzUgNi4zMTI1IC02Ljg0Mzc1IDQuNzE4NzUgLTYuODQzNzUgTCAwLjM5MDYyNSAtNi44NDM3NSBMIDAuMzkwNjI1IC02LjM3NSBMIDEuNDY4NzUgLTYuMzc1IEwgMS40Njg3NSAtMC40Njg3NSBMIDAuMzkwNjI1IC0wLjQ2ODc1IEwgMC4zOTA2MjUgMCBMIDUuMDE1NjI1IDAgQyA2LjY3MTg3NSAwIDcuNSAtMC44NzUgNy41IC0xLjg1OTM3NSBDIDcuNSAtMi44MTI1IDYuNjU2MjUgLTMuNDg0Mzc1IDUuNDY4NzUgLTMuNTYyNSBaIE0gNC42MDkzNzUgLTAuNDY4NzUgTCAyLjc2NTYyNSAtMC40Njg3NSBMIDIuNzY1NjI1IC0zLjM3NSBMIDQuNzAzMTI1IC0zLjM3NSBDIDQuOTA2MjUgLTMuMzc1IDUuMzc1IC0zLjM3NSA1LjcxODc1IC0yLjk1MzEyNSBDIDYuMDQ2ODc1IC0yLjUzMTI1IDYuMDQ2ODc1IC0xLjk2ODc1IDYuMDQ2ODc1IC0xLjg1OTM3NSBDIDYuMDQ2ODc1IC0xLjc1IDYuMDQ2ODc1IC0wLjQ2ODc1IDQuNjA5Mzc1IC0wLjQ2ODc1IFogTSA0LjYwOTM3NSAtMC40Njg3NSAiLz4KPC9nPgo8ZyBpZD0iZ2x5cGgtMi0wIj4KPHBhdGggZD0iTSAzLjg3NSAtMi43NjU2MjUgTCAxLjg5MDYyNSAtNC43NSBDIDEuNzY1NjI1IC00Ljg3NSAxLjc1IC00Ljg5MDYyNSAxLjY3MTg3NSAtNC44OTA2MjUgQyAxLjU2MjUgLTQuODkwNjI1IDEuNDY4NzUgLTQuODEyNSAxLjQ2ODc1IC00LjY4NzUgQyAxLjQ2ODc1IC00LjYyNSAxLjQ4NDM3NSAtNC42MDkzNzUgMS41OTM3NSAtNC41IEwgMy41OTM3NSAtMi41IEwgMS41OTM3NSAtMC40ODQzNzUgQyAxLjQ4NDM3NSAtMC4zNzUgMS40Njg3NSAtMC4zNTkzNzUgMS40Njg3NSAtMC4yOTY4NzUgQyAxLjQ2ODc1IC0wLjE3MTg3NSAxLjU2MjUgLTAuMDkzNzUgMS42NzE4NzUgLTAuMDkzNzUgQyAxLjc1IC0wLjA5Mzc1IDEuNzY1NjI1IC0wLjEwOTM3NSAxLjg5MDYyNSAtMC4yMzQzNzUgTCAzLjg3NSAtMi4yMTg3NSBMIDUuOTM3NSAtMC4xNTYyNSBDIDUuOTUzMTI1IC0wLjE0MDYyNSA2LjAxNTYyNSAtMC4wOTM3NSA2LjA3ODEyNSAtMC4wOTM3NSBDIDYuMjAzMTI1IC0wLjA5Mzc1IDYuMjgxMjUgLTAuMTcxODc1IDYuMjgxMjUgLTAuMjk2ODc1IEMgNi4yODEyNSAtMC4zMTI1IDYuMjgxMjUgLTAuMzQzNzUgNi4yNSAtMC40MDYyNSBDIDYuMjM0Mzc1IC0wLjQyMTg3NSA0LjY1NjI1IC0xLjk4NDM3NSA0LjE1NjI1IC0yLjUgTCA1Ljk4NDM3NSAtNC4zMTI1IEMgNi4wMzEyNSAtNC4zNzUgNi4xODc1IC00LjUgNi4yMzQzNzUgLTQuNTYyNSBDIDYuMjM0Mzc1IC00LjU3ODEyNSA2LjI4MTI1IC00LjYyNSA2LjI4MTI1IC00LjY4NzUgQyA2LjI4MTI1IC00LjgxMjUgNi4yMDMxMjUgLTQuODkwNjI1IDYuMDc4MTI1IC00Ljg5MDYyNSBDIDYgLTQuODkwNjI1IDUuOTY4NzUgLTQuODU5Mzc1IDUuODU5Mzc1IC00Ljc1IFogTSAzLjg3NSAtMi43NjU2MjUgIi8+CjwvZz4KPGcgaWQ9ImdseXBoLTMtMCI+CjxwYXRoIGQ9Ik0gMi43MDMxMjUgLTcuNDg0Mzc1IEMgMi4zNzUgLTcuMTcxODc1IDEuNzE4NzUgLTYuNTYyNSAxLjI1IC01LjM0Mzc1IEMgMC44NTkzNzUgLTQuMjgxMjUgMC43ODEyNSAtMy4yMTg3NSAwLjc4MTI1IC0yLjUgQyAwLjc4MTI1IDAuNzM0Mzc1IDIuMjE4NzUgMi4wNDY4NzUgMi43MDMxMjUgMi41IEwgMy4zMTI1IDIuNSBDIDIuODI4MTI1IDIuMDE1NjI1IDEuNTYyNSAwLjczNDM3NSAxLjU2MjUgLTIuNSBDIDEuNTYyNSAtMy4wNDY4NzUgMS41OTM3NSAtNC4yMTg3NSAyIC01LjM5MDYyNSBDIDIuNDA2MjUgLTYuNTQ2ODc1IDIuOTg0Mzc1IC03LjE0MDYyNSAzLjMxMjUgLTcuNDg0Mzc1IFogTSAyLjcwMzEyNSAtNy40ODQzNzUgIi8+CjwvZz4KPGcgaWQ9ImdseXBoLTMtMSI+CjxwYXRoIGQ9Ik0gMS42MjUgLTYuNzgxMjUgTCAwLjczNDM3NSAtNi43ODEyNSBMIDAuNzM0Mzc1IC01Ljg5MDYyNSBMIDEuNjI1IC01Ljg5MDYyNSBaIE0gMS41NjI1IC00LjQyMTg3NSBMIDAuODEyNSAtNC40MjE4NzUgTCAwLjgxMjUgMCBMIDEuNTYyNSAwIFogTSAxLjU2MjUgLTQuNDIxODc1ICIvPgo8L2c+CjxnIGlkPSJnbHlwaC0zLTIiPgo8cGF0aCBkPSJNIDQuMzQzNzUgLTIuOTY4NzUgQyA0LjM0Mzc1IC0zLjYyNSA0LjE4NzUgLTQuNTMxMjUgMi45Njg3NSAtNC41MzEyNSBDIDIuMDc4MTI1IC00LjUzMTI1IDEuNTc4MTI1IC0zLjg1OTM3NSAxLjUzMTI1IC0zLjc4MTI1IEwgMS41MzEyNSAtNC40ODQzNzUgTCAwLjgxMjUgLTQuNDg0Mzc1IEwgMC44MTI1IDAgTCAxLjU3ODEyNSAwIEwgMS41NzgxMjUgLTIuNDM3NSBDIDEuNTc4MTI1IC0zLjA5Mzc1IDEuODI4MTI1IC0zLjkyMTg3NSAyLjU5Mzc1IC0zLjkyMTg3NSBDIDMuNTQ2ODc1IC0zLjkyMTg3NSAzLjU2MjUgLTMuMjE4NzUgMy41NjI1IC0yLjkwNjI1IEwgMy41NjI1IDAgTCA0LjM0Mzc1IDAgWiBNIDQuMzQzNzUgLTIuOTY4NzUgIi8+CjwvZz4KPGcgaWQ9ImdseXBoLTMtMyI+CjxwYXRoIGQ9Ik0gMS43NSAtMy44NDM3NSBMIDMuMTU2MjUgLTMuODQzNzUgTCAzLjE1NjI1IC00LjQyMTg3NSBMIDEuNzUgLTQuNDIxODc1IEwgMS43NSAtNS42ODc1IEwgMS4wNjI1IC01LjY4NzUgTCAxLjA2MjUgLTQuNDIxODc1IEwgMC4xODc1IC00LjQyMTg3NSBMIDAuMTg3NSAtMy44NDM3NSBMIDEuMDMxMjUgLTMuODQzNzUgTCAxLjAzMTI1IC0xLjE4NzUgQyAxLjAzMTI1IC0wLjU5Mzc1IDEuMTcxODc1IDAuMTA5Mzc1IDEuODU5Mzc1IDAuMTA5Mzc1IEMgMi41NDY4NzUgMC4xMDkzNzUgMy4wNjI1IC0wLjE0MDYyNSAzLjMxMjUgLTAuMjY1NjI1IEwgMy4xNTYyNSAtMC44NTkzNzUgQyAyLjg5MDYyNSAtMC42NDA2MjUgMi41NzgxMjUgLTAuNTMxMjUgMi4yNSAtMC41MzEyNSBDIDEuODkwNjI1IC0wLjUzMTI1IDEuNzUgLTAuODI4MTI1IDEuNzUgLTEuMzU5Mzc1IFogTSAxLjc1IC0zLjg0Mzc1ICIvPgo8L2c+CjxnIGlkPSJnbHlwaC0zLTQiPgo8cGF0aCBkPSJNIDQuNjcxODc1IC0yLjE4NzUgQyA0LjY3MTg3NSAtMy41MzEyNSAzLjY3MTg3NSAtNC41OTM3NSAyLjUgLTQuNTkzNzUgQyAxLjI2NTYyNSAtNC41OTM3NSAwLjI5Njg3NSAtMy41IDAuMjk2ODc1IC0yLjE4NzUgQyAwLjI5Njg3NSAtMC44NzUgMS4zMTI1IDAuMTA5Mzc1IDIuNDg0Mzc1IDAuMTA5Mzc1IEMgMy42NzE4NzUgMC4xMDkzNzUgNC42NzE4NzUgLTAuODkwNjI1IDQuNjcxODc1IC0yLjE4NzUgWiBNIDIuNDg0Mzc1IC0wLjUzMTI1IEMgMS43OTY4NzUgLTAuNTMxMjUgMS4wNzgxMjUgLTEuMDkzNzUgMS4wNzgxMjUgLTIuMjk2ODc1IEMgMS4wNzgxMjUgLTMuNSAxLjgyODEyNSAtMy45ODQzNzUgMi40ODQzNzUgLTMuOTg0Mzc1IEMgMy4xODc1IC0zLjk4NDM3NSAzLjg5MDYyNSAtMy40Njg3NSAzLjg5MDYyNSAtMi4yOTY4NzUgQyAzLjg5MDYyNSAtMS4xMDkzNzUgMy4yMTg3NSAtMC41MzEyNSAyLjQ4NDM3NSAtMC41MzEyNSBaIE0gMi40ODQzNzUgLTAuNTMxMjUgIi8+CjwvZz4KPGcgaWQ9ImdseXBoLTMtNSI+CjxwYXRoIGQ9Ik0gMS41OTM3NSAtMC40NTMxMjUgQyAxLjkwNjI1IC0wLjE3MTg3NSAyLjM0Mzc1IDAuMTA5Mzc1IDIuOTM3NSAwLjEwOTM3NSBDIDMuOTA2MjUgMC4xMDkzNzUgNC43ODEyNSAtMC44NzUgNC43ODEyNSAtMi4yMTg3NSBDIDQuNzgxMjUgLTMuNDIxODc1IDQuMTU2MjUgLTQuNTMxMjUgMy4yMDMxMjUgLTQuNTMxMjUgQyAyLjYwOTM3NSAtNC41MzEyNSAyLjAzMTI1IC00LjMyODEyNSAxLjU2MjUgLTMuOTM3NSBMIDEuNTYyNSAtNC40MjE4NzUgTCAwLjgxMjUgLTQuNDIxODc1IEwgMC44MTI1IDEuOTM3NSBMIDEuNTkzNzUgMS45Mzc1IFogTSAxLjU5Mzc1IC0zLjMxMjUgQyAxLjgyODEyNSAtMy42NzE4NzUgMi4yMTg3NSAtMy44OTA2MjUgMi42NTYyNSAtMy44OTA2MjUgQyAzLjQwNjI1IC0zLjg5MDYyNSA0IC0zLjE0MDYyNSA0IC0yLjIxODc1IEMgNCAtMS4yMDMxMjUgMy4yOTY4NzUgLTAuNSAyLjU0Njg3NSAtMC41IEMgMi4xNTYyNSAtMC41IDEuODkwNjI1IC0wLjcwMzEyNSAxLjY4NzUgLTAuOTY4NzUgQyAxLjU5Mzc1IC0xLjEwOTM3NSAxLjU5Mzc1IC0xLjE0MDYyNSAxLjU5Mzc1IC0xLjMxMjUgWiBNIDEuNTkzNzUgLTMuMzEyNSAiLz4KPC9nPgo8ZyBpZD0iZ2x5cGgtMy02Ij4KPHBhdGggZD0iTSAzLjk4NDM3NSAtMi44NzUgQyAzLjk4NDM3NSAtMy44OTA2MjUgMy4yNSAtNC41OTM3NSAyLjMyODEyNSAtNC41OTM3NSBDIDEuNjg3NSAtNC41OTM3NSAxLjIzNDM3NSAtNC40Mzc1IDAuNzY1NjI1IC00LjE3MTg3NSBMIDAuODI4MTI1IC0zLjUxNTYyNSBDIDEuMzQzNzUgLTMuODc1IDEuODQzNzUgLTQgMi4zMjgxMjUgLTQgQyAyLjc5Njg3NSAtNCAzLjIwMzEyNSAtMy42MDkzNzUgMy4yMDMxMjUgLTIuODc1IEwgMy4yMDMxMjUgLTIuNDM3NSBDIDEuNzAzMTI1IC0yLjQyMTg3NSAwLjQzNzUgLTIgMC40Mzc1IC0xLjEyNSBDIDAuNDM3NSAtMC43MDMxMjUgMC43MDMxMjUgMC4xMDkzNzUgMS41NzgxMjUgMC4xMDkzNzUgQyAxLjcxODc1IDAuMTA5Mzc1IDIuNjU2MjUgMC4wOTM3NSAzLjIzNDM3NSAtMC4zNTkzNzUgTCAzLjIzNDM3NSAwIEwgMy45ODQzNzUgMCBaIE0gMy4yMDMxMjUgLTEuMzEyNSBDIDMuMjAzMTI1IC0xLjEyNSAzLjIwMzEyNSAtMC44NzUgMi44NTkzNzUgLTAuNjg3NSBDIDIuNTc4MTI1IC0wLjUxNTYyNSAyLjE4NzUgLTAuNSAyLjA3ODEyNSAtMC41IEMgMS42MDkzNzUgLTAuNSAxLjE1NjI1IC0wLjczNDM3NSAxLjE1NjI1IC0xLjE0MDYyNSBDIDEuMTU2MjUgLTEuODQzNzUgMi43NjU2MjUgLTEuOTA2MjUgMy4yMDMxMjUgLTEuOTM3NSBaIE0gMy4yMDMxMjUgLTEuMzEyNSAiLz4KPC9nPgo8ZyBpZD0iZ2x5cGgtMy03Ij4KPHBhdGggZD0iTSAzLjUxNTYyNSAtMy44OTA2MjUgQyAzLjczNDM3NSAtMy44OTA2MjUgNCAtMy45Mzc1IDQuMjUgLTMuOTM3NSBDIDQuNDIxODc1IC0zLjkzNzUgNC44MTI1IC0zLjkwNjI1IDQuODI4MTI1IC0zLjkwNjI1IEwgNC43MTg3NSAtNC41MzEyNSBDIDQuMDMxMjUgLTQuNTMxMjUgMy40NTMxMjUgLTQuMzQzNzUgMy4xNTYyNSAtNC4yMTg3NSBDIDIuOTM3NSAtNC4zOTA2MjUgMi42MDkzNzUgLTQuNTMxMjUgMi4yMDMxMjUgLTQuNTMxMjUgQyAxLjM0Mzc1IC00LjUzMTI1IDAuNjI1IC0zLjgxMjUgMC42MjUgLTIuOTA2MjUgQyAwLjYyNSAtMi41NDY4NzUgMC43NSAtMi4xODc1IDAuOTUzMTI1IC0xLjkyMTg3NSBDIDAuNjU2MjUgLTEuNTE1NjI1IDAuNjU2MjUgLTEuMTI1IDAuNjU2MjUgLTEuMDc4MTI1IEMgMC42NTYyNSAtMC44MTI1IDAuNzUgLTAuNTMxMjUgMC45MjE4NzUgLTAuMzEyNSBDIDAuNDA2MjUgLTAuMDE1NjI1IDAuMjgxMjUgMC40NTMxMjUgMC4yODEyNSAwLjcwMzEyNSBDIDAuMjgxMjUgMS40NTMxMjUgMS4yNjU2MjUgMi4wNDY4NzUgMi40ODQzNzUgMi4wNDY4NzUgQyAzLjcwMzEyNSAyLjA0Njg3NSA0LjY4NzUgMS40Njg3NSA0LjY4NzUgMC43MDMxMjUgQyA0LjY4NzUgLTAuNjg3NSAzLjAzMTI1IC0wLjY4NzUgMi42NDA2MjUgLTAuNjg3NSBMIDEuNzY1NjI1IC0wLjY4NzUgQyAxLjY0MDYyNSAtMC42ODc1IDEuMTg3NSAtMC42ODc1IDEuMTg3NSAtMS4yMTg3NSBDIDEuMTg3NSAtMS4zMjgxMjUgMS4yMTg3NSAtMS40ODQzNzUgMS4yOTY4NzUgLTEuNTc4MTI1IEMgMS41IC0xLjQyMTg3NSAxLjgyODEyNSAtMS4yODEyNSAyLjIwMzEyNSAtMS4yODEyNSBDIDMuMDkzNzUgLTEuMjgxMjUgMy43OTY4NzUgLTIuMDMxMjUgMy43OTY4NzUgLTIuOTA2MjUgQyAzLjc5Njg3NSAtMy4zOTA2MjUgMy41NzgxMjUgLTMuNzY1NjI1IDMuNDY4NzUgLTMuOTA2MjUgWiBNIDIuMjAzMTI1IC0xLjg1OTM3NSBDIDEuODI4MTI1IC0xLjg1OTM3NSAxLjMxMjUgLTIuMDc4MTI1IDEuMzEyNSAtMi45MDYyNSBDIDEuMzEyNSAtMy43MzQzNzUgMS44MjgxMjUgLTMuOTY4NzUgMi4yMDMxMjUgLTMuOTY4NzUgQyAyLjYyNSAtMy45Njg3NSAzLjA5Mzc1IC0zLjY4NzUgMy4wOTM3NSAtMi45MDYyNSBDIDMuMDkzNzUgLTIuMTQwNjI1IDIuNjI1IC0xLjg1OTM3NSAyLjIwMzEyNSAtMS44NTkzNzUgWiBNIDIuNjU2MjUgMC4wMzEyNSBDIDIuODc1IDAuMDMxMjUgNCAwLjAzMTI1IDQgMC43MTg3NSBDIDQgMS4xNTYyNSAzLjMxMjUgMS40ODQzNzUgMi41IDEuNDg0Mzc1IEMgMS42ODc1IDEuNDg0Mzc1IDAuOTg0Mzc1IDEuMTcxODc1IDAuOTg0Mzc1IDAuNzAzMTI1IEMgMC45ODQzNzUgMC42NzE4NzUgMC45ODQzNzUgMC4wMzEyNSAxLjc1IDAuMDMxMjUgWiBNIDIuNjU2MjUgMC4wMzEyNSAiLz4KPC9nPgo8ZyBpZD0iZ2x5cGgtMy04Ij4KPHBhdGggZD0iTSA0LjEyNSAtMi4xODc1IEMgNC4xMjUgLTIuNTE1NjI1IDQuMTA5Mzc1IC0zLjI2NTYyNSAzLjczNDM3NSAtMy44NzUgQyAzLjMxMjUgLTQuNDg0Mzc1IDIuNzE4NzUgLTQuNTkzNzUgMi4zNTkzNzUgLTQuNTkzNzUgQyAxLjI1IC00LjU5Mzc1IDAuMzQzNzUgLTMuNTMxMjUgMC4zNDM3NSAtMi4yNSBDIDAuMzQzNzUgLTAuOTM3NSAxLjMxMjUgMC4xMDkzNzUgMi41IDAuMTA5Mzc1IEMgMy4xMjUgMC4xMDkzNzUgMy43MDMxMjUgLTAuMTI1IDQuMDkzNzUgLTAuNDA2MjUgTCA0LjAzMTI1IC0xLjA2MjUgQyAzLjQwNjI1IC0wLjUzMTI1IDIuNzM0Mzc1IC0wLjUgMi41MTU2MjUgLTAuNSBDIDEuNzE4NzUgLTAuNSAxLjA3ODEyNSAtMS4yMDMxMjUgMS4wNDY4NzUgLTIuMTg3NSBaIE0gMS4wOTM3NSAtMi43MzQzNzUgQyAxLjI1IC0zLjQ4NDM3NSAxLjc4MTI1IC0zLjk4NDM3NSAyLjM1OTM3NSAtMy45ODQzNzUgQyAyLjg3NSAtMy45ODQzNzUgMy40MjE4NzUgLTMuNjU2MjUgMy41NjI1IC0yLjczNDM3NSBaIE0gMS4wOTM3NSAtMi43MzQzNzUgIi8+CjwvZz4KPGcgaWQ9ImdseXBoLTMtOSI+CjxwYXRoIGQ9Ik0gMS4xNzE4NzUgMi41IEMgMS40ODQzNzUgMi4xODc1IDIuMTU2MjUgMS41NzgxMjUgMi42MDkzNzUgMC4zNTkzNzUgQyAzLjAxNTYyNSAtMC43MDMxMjUgMy4wNzgxMjUgLTEuNzY1NjI1IDMuMDc4MTI1IC0yLjUgQyAzLjA3ODEyNSAtNS43MTg3NSAxLjY0MDYyNSAtNy4wMzEyNSAxLjE3MTg3NSAtNy40ODQzNzUgTCAwLjU2MjUgLTcuNDg0Mzc1IEMgMS4wMzEyNSAtNyAyLjI5Njg3NSAtNS43MTg3NSAyLjI5Njg3NSAtMi41IEMgMi4yOTY4NzUgLTEuOTM3NSAyLjI2NTYyNSAtMC43NjU2MjUgMS44NTkzNzUgMC40MDYyNSBDIDEuNDUzMTI1IDEuNTYyNSAwLjg5MDYyNSAyLjE1NjI1IDAuNTYyNSAyLjUgWiBNIDEuMTcxODc1IDIuNSAiLz4KPC9nPgo8L2c+CjwvZGVmcz4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIwLjc5NzAxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlPSJyZ2IoMCUsIDAlLCAwJSkiIHN0cm9rZS1vcGFjaXR5PSIxIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGQ9Ik0gLTAuMDAxMDYyNSAxMTMuMzg4MjUgTCAxOTguNDI4NjI1IDExMy4zODgyNSAiIHRyYW5zZm9ybT0ibWF0cml4KDEsIDAsIDAsIC0xLCAxNi43MTIsIDEyNS44NTcpIi8+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iMC43OTcwMSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIHN0cm9rZT0icmdiKDAlLCAwJSwgMCUpIiBzdHJva2Utb3BhY2l0eT0iMSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNIC0wLjAwMTA2MjUgMC4wMDE1MzEyNSBMIDE5OC40Mjg2MjUgMC4wMDE1MzEyNSAiIHRyYW5zZm9ybT0ibWF0cml4KDEsIDAsIDAsIC0xLCAxNi43MTIsIDEyNS44NTcpIi8+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iMC43OTcwMSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIHN0cm9rZT0icmdiKDAlLCAwJSwgMCUpIiBzdHJva2Utb3BhY2l0eT0iMSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNIC0wLjAwMTA2MjUgMTEzLjM4ODI1IEwgLTAuMDAxMDYyNSA3Mi41Njc5MzcgTSAtMC4wMDEwNjI1IDQwLjgxNzkzNyBMIC0wLjAwMTA2MjUgMC4wMDE1MzEyNSAiIHRyYW5zZm9ybT0ibWF0cml4KDEsIDAsIDAsIC0xLCAxNi43MTIsIDEyNS44NTcpIi8+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iMS41OTQwNCIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiIHN0cm9rZT0icmdiKDAlLCAwJSwgMCUpIiBzdHJva2Utb3BhY2l0eT0iMSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNIC0wLjAwMTA2MjUgNzMuMzY0ODEyIEwgNS45NTIwNjMgNjkuODU3IEwgLTUuOTU0MTg3IDY0LjQzMTIxOSBMIDUuOTUyMDYzIDU5LjAwNTQzNyBMIC01Ljk1NDE4NyA1My41ODM1NjIgTCA1Ljk1MjA2MyA0OC4xNTc3ODEgTCAtNS45NTQxODcgNDIuNzM1OTA2IEwgLTAuMDAxMDYyNSA0MC4wMjEwNjIgIiB0cmFuc2Zvcm09Im1hdHJpeCgxLCAwLCAwLCAtMSwgMTYuNzEyLCAxMjUuODU3KSIvPgo8ZyBmaWxsPSJyZ2IoMCUsIDAlLCAwJSkiIGZpbGwtb3BhY2l0eT0iMSI+Cjx1c2UgeGxpbms6aHJlZj0iI2dseXBoLTAtMCIgeD0iMjQuOTIxIiB5PSI3MS4zNzgiLz4KPC9nPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjEuMTk1NTMiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2U9InJnYigwJSwgMCUsIDY5Ljk5OTY5NSUpIiBzdHJva2Utb3BhY2l0eT0iMSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNIDE0MS43MzMzMTMgMC4wMDE1MzEyNSBMIDE0MS43MzMzMTMgMTEzLjM4ODI1ICIgdHJhbnNmb3JtPSJtYXRyaXgoMSwgMCwgMCwgLTEsIDE2LjcxMiwgMTI1Ljg1NykiLz4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIwLjc5NzAxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlPSJyZ2IoMCUsIDAlLCAwJSkiIHN0cm9rZS1vcGFjaXR5PSIxIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGQ9Ik0gMTUzLjA3MzE1NiAyLjU5MTM3NSBMIDE1My4wNzMxNTYgMTEwLjc5ODQwNiAiIHRyYW5zZm9ybT0ibWF0cml4KDEsIDAsIDAsIC0xLCAxNi43MTIsIDEyNS44NTcpIi8+CjxwYXRoIGZpbGwtcnVsZT0ibm9uemVybyIgZmlsbD0icmdiKDAlLCAwJSwgMCUpIiBmaWxsLW9wYWNpdHk9IjEiIGQ9Ik0gMTY5Ljc4NTE1NiAxMjUuODU1NDY5IEwgMTcxLjg1NTQ2OSAxMjEuNzEwOTM4IEwgMTY5Ljc4NTE1NiAxMjMuMjY1NjI1IEwgMTY3LjcxMDkzOCAxMjEuNzEwOTM4ICIvPgo8cGF0aCBmaWxsLXJ1bGU9Im5vbnplcm8iIGZpbGw9InJnYigwJSwgMCUsIDAlKSIgZmlsbC1vcGFjaXR5PSIxIiBkPSJNIDE2OS43ODUxNTYgMTIuNDY4NzUgTCAxNjcuNzEwOTM4IDE2LjYxMzI4MSBMIDE2OS43ODUxNTYgMTUuMDU4NTk0IEwgMTcxLjg1NTQ2OSAxNi42MTMyODEgIi8+CjxnIGZpbGw9InJnYigwJSwgMCUsIDAlKSIgZmlsbC1vcGFjaXR5PSIxIj4KPHVzZSB4bGluazpocmVmPSIjZ2x5cGgtMC0xIiB4PSIxNzMuNTAyIiB5PSI3Mi42MjQiLz4KPC9nPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjEuMTk1NTMiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2U9InJnYig2OS45OTk2OTUlLCAwJSwgMCUpIiBzdHJva2Utb3BhY2l0eT0iMSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNIDE0MS43MzMzMTMgNTYuNjkyOTM3IEwgMTgxLjA2NTM0NCA1Ni42OTI5MzcgIiB0cmFuc2Zvcm09Im1hdHJpeCgxLCAwLCAwLCAtMSwgMTYuNzEyLCAxMjUuODU3KSIvPgo8cGF0aCBmaWxsLXJ1bGU9Im5vbnplcm8iIGZpbGw9InJnYig2OS45OTk2OTUlLCAwJSwgMCUpIiBmaWxsLW9wYWNpdHk9IjEiIGQ9Ik0gMjAwLjk2NDg0NCA2OS4xNjQwNjIgTCAxOTUuODY3MTg4IDY2LjYxMzI4MSBMIDE5Ny43NzczNDQgNjkuMTY0MDYyIEwgMTk1Ljg2NzE4OCA3MS43MTQ4NDQgIi8+CjxnIGZpbGw9InJnYig2OS45OTk2OTUlLCAwJSwgMCUpIiBmaWxsLW9wYWNpdHk9IjEiPgo8dXNlIHhsaW5rOmhyZWY9IiNnbHlwaC0xLTAiIHg9IjE5Ny44NjEiIHk9IjY1LjI0NiIvPgo8L2c+CjxnIGZpbGw9InJnYigyOS45OTg3NzklLCAyOS45OTg3NzklLCAyOS45OTg3NzklKSIgZmlsbC1vcGFjaXR5PSIxIj4KPHVzZSB4bGluazpocmVmPSIjZ2x5cGgtMi0wIiB4PSI1NS4zNTgiIHk9IjEwMC4wMDIiLz4KPC9nPgo8ZyBmaWxsPSJyZ2IoMjkuOTk4Nzc5JSwgMjkuOTk4Nzc5JSwgMjkuOTk4Nzc5JSkiIGZpbGwtb3BhY2l0eT0iMSI+Cjx1c2UgeGxpbms6aHJlZj0iI2dseXBoLTItMCIgeD0iNTUuMzU4IiB5PSI3MS42NTUiLz4KPC9nPgo8ZyBmaWxsPSJyZ2IoMjkuOTk4Nzc5JSwgMjkuOTk4Nzc5JSwgMjkuOTk4Nzc5JSkiIGZpbGwtb3BhY2l0eT0iMSI+Cjx1c2UgeGxpbms6aHJlZj0iI2dseXBoLTItMCIgeD0iNTUuMzU4IiB5PSI0My4zMDkiLz4KPC9nPgo8ZyBmaWxsPSJyZ2IoMjkuOTk4Nzc5JSwgMjkuOTk4Nzc5JSwgMjkuOTk4Nzc5JSkiIGZpbGwtb3BhY2l0eT0iMSI+Cjx1c2UgeGxpbms6aHJlZj0iI2dseXBoLTItMCIgeD0iODMuNzA0IiB5PSIxMDAuMDAyIi8+CjwvZz4KPGcgZmlsbD0icmdiKDI5Ljk5ODc3OSUsIDI5Ljk5ODc3OSUsIDI5Ljk5ODc3OSUpIiBmaWxsLW9wYWNpdHk9IjEiPgo8dXNlIHhsaW5rOmhyZWY9IiNnbHlwaC0yLTAiIHg9IjgzLjcwNCIgeT0iNzEuNjU1Ii8+CjwvZz4KPGcgZmlsbD0icmdiKDI5Ljk5ODc3OSUsIDI5Ljk5ODc3OSUsIDI5Ljk5ODc3OSUpIiBmaWxsLW9wYWNpdHk9IjEiPgo8dXNlIHhsaW5rOmhyZWY9IiNnbHlwaC0yLTAiIHg9IjgzLjcwNCIgeT0iNDMuMzA5Ii8+CjwvZz4KPGcgZmlsbD0icmdiKDI5Ljk5ODc3OSUsIDI5Ljk5ODc3OSUsIDI5Ljk5ODc3OSUpIiBmaWxsLW9wYWNpdHk9IjEiPgo8dXNlIHhsaW5rOmhyZWY9IiNnbHlwaC0yLTAiIHg9IjExMi4wNTEiIHk9IjEwMC4wMDIiLz4KPC9nPgo8ZyBmaWxsPSJyZ2IoMjkuOTk4Nzc5JSwgMjkuOTk4Nzc5JSwgMjkuOTk4Nzc5JSkiIGZpbGwtb3BhY2l0eT0iMSI+Cjx1c2UgeGxpbms6aHJlZj0iI2dseXBoLTItMCIgeD0iMTEyLjA1MSIgeT0iNzEuNjU1Ii8+CjwvZz4KPGcgZmlsbD0icmdiKDI5Ljk5ODc3OSUsIDI5Ljk5ODc3OSUsIDI5Ljk5ODc3OSUpIiBmaWxsLW9wYWNpdHk9IjEiPgo8dXNlIHhsaW5rOmhyZWY9IiNnbHlwaC0yLTAiIHg9IjExMi4wNTEiIHk9IjQzLjMwOSIvPgo8L2c+CjxnIGZpbGw9InJnYigyOS45OTg3NzklLCAyOS45OTg3NzklLCAyOS45OTg3NzklKSIgZmlsbC1vcGFjaXR5PSIxIj4KPHVzZSB4bGluazpocmVmPSIjZ2x5cGgtMS0xIiB4PSI1OC41ODMiIHk9IjE0NS4zNTYiLz4KPC9nPgo8ZyBmaWxsPSJyZ2IoMjkuOTk4Nzc5JSwgMjkuOTk4Nzc5JSwgMjkuOTk4Nzc5JSkiIGZpbGwtb3BhY2l0eT0iMSI+Cjx1c2UgeGxpbms6aHJlZj0iI2dseXBoLTMtMCIgeD0iNzAuMDU0IiB5PSIxNDUuMzU2Ii8+Cjx1c2UgeGxpbms6aHJlZj0iI2dseXBoLTMtMSIgeD0iNzMuOTI4NDU1IiB5PSIxNDUuMzU2Ii8+Cjx1c2UgeGxpbms6aHJlZj0iI2dseXBoLTMtMiIgeD0iNzYuMzA4NTIiIHk9IjE0NS4zNTYiLz4KPHVzZSB4bGluazpocmVmPSIjZ2x5cGgtMy0zIiB4PSI4MS40NTYxOTYiIHk9IjE0NS4zNTYiLz4KPHVzZSB4bGluazpocmVmPSIjZ2x5cGgtMy00IiB4PSI4NS4wNTM2OTEiIHk9IjE0NS4zNTYiLz4KPC9nPgo8ZyBmaWxsPSJyZ2IoMjkuOTk4Nzc5JSwgMjkuOTk4Nzc5JSwgMjkuOTk4Nzc5JSkiIGZpbGwtb3BhY2l0eT0iMSI+Cjx1c2UgeGxpbms6aHJlZj0iI2dseXBoLTMtNSIgeD0iOTMuMzUyNTM2IiB5PSIxNDUuMzU2Ii8+Cjx1c2UgeGxpbms6aHJlZj0iI2dseXBoLTMtNiIgeD0iOTguNTAwMjEyIiB5PSIxNDUuMzU2Ii8+Cjx1c2UgeGxpbms6aHJlZj0iI2dseXBoLTMtNyIgeD0iMTAzLjI4ODIzNyIgeT0iMTQ1LjM1NiIvPgo8dXNlIHhsaW5rOmhyZWY9IiNnbHlwaC0zLTgiIHg9IjEwOC4yNjk1MzciIHk9IjE0NS4zNTYiLz4KPHVzZSB4bGluazpocmVmPSIjZ2x5cGgtMy05IiB4PSIxMTIuNjk2OTE3IiB5PSIxNDUuMzU2Ii8+CjwvZz4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIwLjc5NzAxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlPSJyZ2IoMCUsIDUwJSwgMCUpIiBzdHJva2Utb3BhY2l0eT0iMSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNIDI4LjM0NjU5NCAxMDIuMDQ4NDA2IEwgOTYuNjIzOTM3IDEwMi4wNDg0MDYgIiB0cmFuc2Zvcm09Im1hdHJpeCgxLCAwLCAwLCAtMSwgMTYuNzEyLCAxMjUuODU3KSIvPgo8cGF0aCBmaWxsLXJ1bGU9Im5vbnplcm8iIGZpbGw9InJnYigwJSwgNTAlLCAwJSkiIGZpbGwtb3BhY2l0eT0iMSIgZD0iTSAxMTUuOTI1NzgxIDIzLjgwODU5NCBMIDExMS43ODEyNSAyMS43MzQzNzUgTCAxMTMuMzM1OTM4IDIzLjgwODU5NCBMIDExMS43ODEyNSAyNS44Nzg5MDYgIi8+CjxnIGZpbGw9InJnYigwJSwgNTAlLCAwJSkiIGZpbGwtb3BhY2l0eT0iMSI+Cjx1c2UgeGxpbms6aHJlZj0iI2dseXBoLTAtMiIgeD0iNzcuOTExIiB5PSIyMC4wOTEiLz4KPC9nPgo8cGF0aCBmaWxsLXJ1bGU9Im5vbnplcm8iIGZpbGw9InJnYigwJSwgMCUsIDAlKSIgZmlsbC1vcGFjaXR5PSIxIiBkPSJNIDE2MC40Mzc1IDEyLjQ2ODc1IEMgMTYwLjQzNzUgMTEuMzcxMDk0IDE1OS41NDY4NzUgMTAuNDc2NTYyIDE1OC40NDUzMTIgMTAuNDc2NTYyIEMgMTU3LjM0Mzc1IDEwLjQ3NjU2MiAxNTYuNDUzMTI1IDExLjM3MTA5NCAxNTYuNDUzMTI1IDEyLjQ2ODc1IEMgMTU2LjQ1MzEyNSAxMy41NzAzMTIgMTU3LjM0Mzc1IDE0LjQ2MDkzOCAxNTguNDQ1MzEyIDE0LjQ2MDkzOCBDIDE1OS41NDY4NzUgMTQuNDYwOTM4IDE2MC40Mzc1IDEzLjU3MDMxMiAxNjAuNDM3NSAxMi40Njg3NSBaIE0gMTYwLjQzNzUgMTIuNDY4NzUgIi8+CjxwYXRoIGZpbGwtcnVsZT0ibm9uemVybyIgZmlsbD0icmdiKDAlLCAwJSwgMCUpIiBmaWxsLW9wYWNpdHk9IjEiIGQ9Ik0gMTYwLjQzNzUgMTI1Ljg1NTQ2OSBDIDE2MC40Mzc1IDEyNC43NTc4MTIgMTU5LjU0Njg3NSAxMjMuODYzMjgxIDE1OC40NDUzMTIgMTIzLjg2MzI4MSBDIDE1Ny4zNDM3NSAxMjMuODYzMjgxIDE1Ni40NTMxMjUgMTI0Ljc1NzgxMiAxNTYuNDUzMTI1IDEyNS44NTU0NjkgQyAxNTYuNDUzMTI1IDEyNi45NTcwMzEgMTU3LjM0Mzc1IDEyNy44NDc2NTYgMTU4LjQ0NTMxMiAxMjcuODQ3NjU2IEMgMTU5LjU0Njg3NSAxMjcuODQ3NjU2IDE2MC40Mzc1IDEyNi45NTcwMzEgMTYwLjQzNzUgMTI1Ljg1NTQ2OSBaIE0gMTYwLjQzNzUgMTI1Ljg1NTQ2OSAiLz4KPC9zdmc+Cg==" alt="Sliding bar on parallel rails with resistor" style="max-width:500px;" />
+</p>
+
+<hr />
+
+<h4>Part (a) &mdash; Motional EMF (1 point)</h4>
+
+<p>Calculate the magnitude of the motional EMF induced in the sliding bar.</p>
+
+<p>\(\varepsilon = \) [[input:ans1]] V</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>1.20</code></em></p>
+
+<h4>Part (b) &mdash; Current (1 point)</h4>
+
+<p>Calculate the magnitude of the current flowing through the circuit.</p>
+
+<p>\(I = \) [[input:ans2]] A</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0.200</code></em></p>
+
+<h4>Part (c) &mdash; Power Dissipated (1 point)</h4>
+
+<p>Calculate the electrical power dissipated in the resistor.</p>
+
+<p>\(P = \) [[input:ans3]] W</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0.240</code></em></p>
+
+<h4>Part (d) &mdash; Current Direction (1 point)</h4>
+
+<p>Using Lenz&rsquo;s law, determine the direction of the induced current through the resistor.</p>
+
+<p>[[input:ans4]]</p>
+
+]]></text>
+  </questiontext>
+
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h3>Worked Solution</h3>
+
+<h4>Step 1: Motional EMF</h4>
+<p>As the bar moves to the right with velocity \(v\), it sweeps out new area at a rate
+\(\frac{dA}{dt} = \ell \cdot v\). The flux through the circuit increases as:
+\(\frac{d\Phi}{dt} = B \cdot \ell \cdot v\).</p>
+<p>By Faraday&rsquo;s law:</p>
+<p>\[|\varepsilon| = B \ell v = {@B@} \times {@ell@} \times {@v@} = {@ta1@}\;\text{V}\]</p>
+
+<h4>Step 2: Current</h4>
+<p>By Ohm&rsquo;s law:</p>
+<p>\[I = \frac{\varepsilon}{R} = \frac{{@ta1@}}{{@R@}} = {@ta2@}\;\text{A}\]</p>
+
+<h4>Step 3: Power Dissipated</h4>
+<p>The electrical power dissipated in the resistor equals the mechanical power required to push the bar:</p>
+<p>\[P = I^2 R = ({@ta2@})^2 \times {@R@} = {@ta3@}\;\text{W}\]</p>
+<p>(Equivalently: \(P = \varepsilon \cdot I = {@ta1@} \times {@ta2@} = {@ta3@}\;\text{W}\))</p>
+
+<h4>Part (d): Current Direction</h4>
+<p>The bar moves right, increasing the enclosed area and thus the flux into the page.
+By Lenz&rsquo;s law, the induced current must create a field that <strong>opposes</strong> this increase,
+so it creates a field <strong>out of the page</strong> inside the loop. By the right-hand rule,
+the current flows <strong>counterclockwise</strong>: upward through the bar and <strong>downward</strong> (from top to bottom)
+through the external resistor.</p>
+
+<hr />
+<h4>Answer Summary</h4>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr><th>Part</th><th>Quantity</th><th>Correct Answer</th></tr>
+  <tr><td>(a)</td><td>\(\varepsilon\)</td><td>{@ta1@} V</td></tr>
+  <tr><td>(b)</td><td>\(I\)</td><td>{@ta2@} A</td></tr>
+  <tr><td>(c)</td><td>\(P\)</td><td>{@ta3@} W</td></tr>
+  <tr><td>(d)</td><td>Current direction</td><td>Counterclockwise (downward through R)</td></tr>
+</table>
+]]></text>
+  </generalfeedback>
+
+  <defaultgrade>4.0000000</defaultgrade>
+  <penalty>0.0000000</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+
+  <stackversion>
+    <text>2024032101</text>
+  </stackversion>
+
+  <questionvariables>
+    <text><![CDATA[
+/* ===== Parameter set selection ===== */
+set: rand(3)+1;
+
+/* ===== Given values ===== */
+ell_cm: if set=1 then 30 else if set=2 then 25 else 40;
+v:      if set=1 then 8  else if set=2 then 5  else 10;
+B:      if set=1 then 0.5 else if set=2 then 0.8 else 0.3;
+R:      if set=1 then 6  else if set=2 then 4  else 5;
+
+/* ===== Derived values ===== */
+ell: ell_cm/100;
+emf_val: float(B*ell*v);
+I_val: float(emf_val/R);
+P_elec: float(I_val^2*R);
+
+/* ===== Common-error reference values ===== */
+P_wrong_IR: float(I_val*R);  /* student computed I*R instead of I^2*R */
+
+/* ===== Teacher answers ===== */
+ta1: float(emf_val);
+ta2: float(I_val);
+ta3: float(P_elec);
+
+/* Part (d) MCQ: Current direction through resistor */
+ta4: [[1, true, "Counterclockwise (downward through R) — opposes increasing flux into the page"],
+      [2, false, "Clockwise (upward through R) — aids the increasing flux into the page"],
+      [3, false, "No current flows — the bar is not part of a closed circuit"],
+      [4, false, "The direction alternates as the bar moves"]];
+ta4_correct: 1;
+]]></text>
+  </questionvariables>
+
+  <specificfeedback format="html">
+    <text><![CDATA[
+<h4>Part (a) &mdash; Motional EMF</h4>
+<div>[[feedback:prt1]]</div>
+
+<h4>Part (b) &mdash; Current</h4>
+<div>[[feedback:prt2]]</div>
+
+<h4>Part (c) &mdash; Power Dissipated</h4>
+<div>[[feedback:prt3]]</div>
+
+<h4>Part (d) &mdash; Current Direction</h4>
+<div>[[feedback:prt4]]</div>
+]]></text>
+  </specificfeedback>
+
+  <questionnote>
+    <text>Set {@set@}: ℓ={@ell_cm@}cm, v={@v@}m/s, B={@B@}T, R={@R@}Ω | ε={@ta1@}V, I={@ta2@}A, P={@ta3@}W</text>
+  </questionnote>
+
+  <questiondescription format="html">
+    <text><![CDATA[<p>Motional EMF — Sliding bar on rails with resistor. Calculate EMF, current, power, and determine current direction via Lenz's law. Week 11 training exercise.</p>]]></text>
+  </questiondescription>
+
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>j</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <!-- ============================================================ -->
+  <!-- INPUTS (4 total)                                              -->
+  <!-- ============================================================ -->
+
+  <input>
+    <name>ans1</name>
+    <type>numerical</type>
+    <tans>ta1</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <input>
+    <name>ans2</name>
+    <type>numerical</type>
+    <tans>ta2</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <input>
+    <name>ans3</name>
+    <type>numerical</type>
+    <tans>ta3</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <input>
+    <name>ans4</name>
+    <type>radio</type>
+    <tans>ta4</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ============================================================ -->
+  <!-- PRTs (4 total)                                                -->
+  <!-- ============================================================ -->
+
+  <!-- prt1: Part (a) — Motional EMF -->
+  <prt>
+    <name>prt1</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa1_float: float(ans1);
+ref1_float: float(ta1);
+prt1_oom_ok: if (abs(ref1_float) > 1.0e-30 and abs(sa1_float) > 1.0e-30 and (abs(sa1_float/ref1_float - 10) < 1.5 or abs(sa1_float/ref1_float - 0.1) < 0.015)) then true else false;
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>ta1</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\varepsilon = B\ell v = {@ta1@}\;\text{V}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>NumRelative 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>ta1</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Check your arithmetic. The answer is {@ta1@} V.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt1-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>OoM fallback</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt1_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by about a factor of 10. Did you forget to convert \(\ell\) from cm to m?</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-2-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The motional EMF is \(\varepsilon = B\ell v = {@B@} \times {@ell@} \times {@v@} = {@ta1@}\;\text{V}\). Remember to convert \(\ell\) from cm to m.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt2: Part (b) — Current -->
+  <prt>
+    <name>prt2</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa2_float: float(ans2);
+ref2_float: float(ta2);
+prt2_oom_ok: if (abs(ref2_float) > 1.0e-30 and abs(sa2_float) > 1.0e-30 and (abs(sa2_float/ref2_float - 10) < 1.5 or abs(sa2_float/ref2_float - 0.1) < 0.015)) then true else false;
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(I = \varepsilon / R = {@ta2@}\;\text{A}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>NumRelative 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Check your arithmetic. The answer is {@ta2@} A.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt2-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>OoM fallback</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt2_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by about a factor of 10. Check your EMF value or unit conversions.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-2-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The current is \(I = \varepsilon / R = {@ta1@} / {@R@} = {@ta2@}\;\text{A}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt3: Part (c) — Power, with I*R vs I^2*R common error -->
+  <prt>
+    <name>prt3</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa3_float: float(ans3);
+ref3_float: float(ta3);
+prt3_oom_ok: if (abs(ref3_float) > 1.0e-30 and abs(sa3_float) > 1.0e-30 and (abs(sa3_float/ref3_float - 10) < 1.5 or abs(sa3_float/ref3_float - 0.1) < 0.015)) then true else false;
+prt3_IR_error: if (abs(P_wrong_IR) > 1.0e-30 and abs(sa3_float) > 1.0e-30 and abs(sa3_float/P_wrong_IR - 1) < 0.05) then true else false;
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(P = I^2 R = {@ta3@}\;\text{W}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>NumRelative 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Check your arithmetic. The answer is {@ta3@} W.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt3-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Check I*R instead of I^2*R common error</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt3_IR_error</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>It looks like you computed \(I \times R\) (which gives voltage, not power). Power is \(P = I^2 R\) or equivalently \(P = \varepsilon \times I\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>3</falsenextnode>
+      <falseanswernote>prt3-2-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>3</name>
+      <description>OoM fallback</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt3_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-3-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by about a factor of 10. Check your unit conversions.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-3-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The power is \(P = I^2 R = ({@ta2@})^2 \times {@R@} = {@ta3@}\;\text{W}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt4: Part (d) — Current direction MCQ -->
+  <prt>
+    <name>prt4</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check current direction MCQ</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans4</sans>
+      <tans>ta4_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The bar moves right, increasing flux into the page. Lenz's law requires the induced current to oppose this increase by creating flux out of the page inside the loop, so the current flows counterclockwise (downward through the resistor).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The bar moves right, increasing the enclosed area and thus the flux into the page. By Lenz's law, the induced current must oppose this increase: the induced field must point <strong>out of the page</strong> inside the loop. By the right-hand rule, the current flows <strong>counterclockwise</strong> (downward through the resistor).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- QUESTION TESTS                                                -->
+  <!-- ============================================================ -->
+
+  <qtest>
+    <testcase>1</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <qtest>
+    <testcase>2</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>0</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>0</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>0</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>2</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-2-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-2-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-3-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-F</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- ============================================================ -->
+  <!-- HINTS (3, progressive)                                        -->
+  <!-- ============================================================ -->
+
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 1 (Intuition):</strong> When a conductor moves through a magnetic field, the free charges inside it experience a force (Lorentz force). This creates an EMF. The faster the conductor moves or the stronger the field, the larger the EMF.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 2 (Formulas):</strong> The motional EMF is \(\varepsilon = B\ell v\), where \(\ell\) is the length of the bar (convert cm to m!), \(v\) is the velocity, and \(B\) is the magnetic field strength. The current is \(I = \varepsilon/R\) and power is \(P = I^2 R\). For Lenz's law: determine how the flux changes as the bar moves, then find the current direction that opposes that change.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 3 (Worked Step):</strong> Convert: \(\ell = {@ell_cm@}\;\text{cm} = {@ell@}\;\text{m}\). Then \(\varepsilon = {@B@} \times {@ell@} \times {@v@}\). Once you have \(\varepsilon\), divide by \(R = {@R@}\;\Omega\) to get \(I\), and compute \(P = I^2 \times R\). For the direction: the bar moves right, the area of the loop increases, so the flux into the page increases. Lenz's law says the current must oppose this by creating flux out of the page (counterclockwise).</p>]]></text>
+  </hint>
+
+</question>
+</quiz>
