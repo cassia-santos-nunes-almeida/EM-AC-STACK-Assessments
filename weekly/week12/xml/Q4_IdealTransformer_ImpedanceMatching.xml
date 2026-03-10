@@ -128,8 +128,8 @@ Without matching, most power would be reflected or dissipated in the wrong eleme
 set: rand(3)+1;
 
 /* ===== Given values ===== */
-Rs: if set=1 then 50  else if set=2 then 75  else 100;
-RL: if set=1 then 8   else if set=2 then 12  else 4;
+Rs: if set=1 then 50  else if set=2 then 48  else 100;
+RL: if set=1 then 8   else if set=2 then 3   else 4;
 Vs: if set=1 then 10  else if set=2 then 15  else 20;
 
 /* ===== Derived values ===== */

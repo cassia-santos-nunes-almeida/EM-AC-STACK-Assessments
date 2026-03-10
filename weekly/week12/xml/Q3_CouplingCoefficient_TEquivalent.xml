@@ -132,9 +132,9 @@ Since \(k = {@k@} {@if is(k > k_threshold_val) then "> " else "\\leq "@} {@k_thr
 set: rand(3)+1;
 
 /* ===== Given values (in mH) ===== */
-L1_mH: if set=1 then 25 else if set=2 then 40 else 20;
-L2_mH: if set=1 then 100 else if set=2 then 90 else 80;
-k:     if set=1 then 0.6 else if set=2 then 0.7 else 0.55;
+L1_mH: if set=1 then 25 else if set=2 then 40 else 80;
+L2_mH: if set=1 then 100 else if set=2 then 90 else 100;
+k:     if set=1 then 0.6 else if set=2 then 0.7 else 0.4;
 
 /* ===== Derived values ===== */
 L1: L1_mH/1000;
