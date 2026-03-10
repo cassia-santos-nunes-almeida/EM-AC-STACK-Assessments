@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ============================================================ -->
+<!-- Week 11 - Q5: Self-Inductance of a Solenoid & Inductor Energy -->
+<!-- Course: Electromagnetism and Circuit Analysis, LUT University  -->
+<!-- Topics: Self-inductance, solenoid, inductor energy storage     -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Week 11 – Q5: Self-Inductance of a Solenoid &amp; Inductor Energy</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Week 11 &ndash; Q5: Self-Inductance of a Solenoid &amp; Inductor Energy</h3>
+<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
+<p><strong>Total: 4 points | Penalty per wrong attempt: 0%</strong></p>
+
+<hr />
+
+<p>A solenoid has \(N = {@N_val@}\) turns, radius \(r = {@r_cm@}\;\text{cm}\), and length \(\ell = {@ell_cm@}\;\text{cm}\).
+It carries a DC current of \(I = {@I_val@}\;\text{A}\).</p>
+
+<p>Assume the magnetic field inside the solenoid is uniform and the permeability is \(\mu_0 = 4\pi \times 10^{-7}\;\text{H/m}\).</p>
+
+<hr />
+
+<p><strong>(a)</strong> [1 pt] Compute the self-inductance \(L\) of the solenoid (in <strong>mH</strong>).</p>
+[[input:ans1]]
+<p><em>Syntax hint: Enter a number in mH, e.g. <code>0.395</code> or <code>3.95e-1</code></em></p>
+[[validation:ans1]]
+
+<p><strong>(b)</strong> [1 pt] Compute the energy stored in the inductor (in <strong>mJ</strong>).</p>
+[[input:ans2]]
+<p><em>Syntax hint: Enter a number in mJ, e.g. <code>0.296</code> or <code>2.96e-1</code></em></p>
+[[validation:ans2]]
+
+<p><strong>(c)</strong> [1 pt] A student computed \(L = {@float(L_wrong_no_N2*1000)@}\;\text{mH}\) for this solenoid.
+What error did they make?</p>
+[[input:ans3]]
+[[validation:ans3]]
+
+<p><strong>(d)</strong> [1 pt] If the current through the solenoid is <em>doubled</em> (from \(I\) to \(2I\)),
+by what factor does the stored energy change?</p>
+[[input:ans4]]
+[[validation:ans4]]
+]]></text>
+  </questiontext>
+
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h4>Worked Solution</h4>
+
+<p><strong>(a) Self-Inductance</strong></p>
+<p>The self-inductance of a solenoid is given by:</p>
+<p>\[L = \frac{\mu_0 N^2 A}{\ell}\]</p>
+<p>where \(A = \pi r^2\) is the cross-sectional area.</p>
+<p>First, convert to SI units:</p>
+<ul>
+  <li>\(r = {@r_cm@}\;\text{cm} = {@r_val@}\;\text{m}\)</li>
+  <li>\(\ell = {@ell_cm@}\;\text{cm} = {@ell_val@}\;\text{m}\)</li>
+</ul>
+<p>Then:</p>
+<p>\[A = \pi r^2 = \pi \times ({@r_val@})^2 = {@A_val@}\;\text{m}^2\]</p>
+<p>\[L = \frac{(4\pi \times 10^{-7}) \times {@N_val@}^2 \times {@A_val@}}{@ell_val@} = {@L_val@}\;\text{H} = {@L_mH@}\;\text{mH}\]</p>
+
+<p><strong>(b) Energy Stored</strong></p>
+<p>The energy stored in an inductor is:</p>
+<p>\[W = \tfrac{1}{2} L I^2 = \tfrac{1}{2} \times {@L_val@} \times {@I_val@}^2 = {@W_val@}\;\text{J} = {@W_mJ@}\;\text{mJ}\]</p>
+
+<p><strong>(c) Debugging</strong></p>
+<p>The student obtained \(L = {@float(L_wrong_no_N2*1000)@}\;\text{mH}\). Comparing with the correct value
+\(L = {@L_mH@}\;\text{mH}\), the ratio is \({@L_mH@} / {@float(L_wrong_no_N2*1000)@} = {@N_val@}\).
+This means the student used \(L = \mu_0 N A / \ell\) instead of \(L = \mu_0 N^2 A / \ell\) &mdash;
+they forgot one factor of \(N\).</p>
+
+<p><strong>(d) Energy Scaling</strong></p>
+<p>Since \(W = \tfrac{1}{2} L I^2\) and \(L\) is independent of the current:</p>
+<p>\[W' = \tfrac{1}{2} L (2I)^2 = \tfrac{1}{2} L \cdot 4I^2 = 4 \times \tfrac{1}{2} L I^2 = 4W\]</p>
+<p>The energy <strong>quadruples</strong> when the current is doubled.</p>
+
+<hr />
+<h4>Answer Summary</h4>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr><th>Part</th><th>Quantity</th><th>Correct Answer</th></tr>
+  <tr><td>(a)</td><td>Self-inductance \(L\)</td><td>{@ta1@} mH</td></tr>
+  <tr><td>(b)</td><td>Stored energy \(W\)</td><td>{@ta2@} mJ</td></tr>
+  <tr><td>(c)</td><td>Error identification</td><td>Used \(N\) instead of \(N^2\)</td></tr>
+  <tr><td>(d)</td><td>Energy scaling factor</td><td>Energy quadruples (\(W \propto I^2\))</td></tr>
+</table>
+]]></text>
+  </generalfeedback>
+
+  <defaultgrade>4.0000000</defaultgrade>
+  <penalty>0.0000000</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+
+  <stackversion>
+    <text>2024032101</text>
+  </stackversion>
+
+  <questionvariables>
+    <text><![CDATA[
+/* ===== Parameter set selection ===== */
+set: rand(3)+1;
+
+/* ===== Given values ===== */
+N_val: if set=1 then 200 else if set=2 then 500 else 300;
+r_cm:  if set=1 then 2   else if set=2 then 1.5 else 3;
+ell_cm: if set=1 then 20  else if set=2 then 10  else 30;
+I_val: if set=1 then 1.5  else if set=2 then 0.8 else 2.0;
+
+/* ===== Derived values ===== */
+mu0: 4*%pi/10^7;
+r_val: r_cm/100;
+ell_val: ell_cm/100;
+A_val: float(%pi*r_val^2);
+L_val: float(mu0*N_val^2*A_val/ell_val);
+W_val: float(0.5*L_val*I_val^2);
+
+/* Display-friendly */
+L_mH: float(L_val*1000);
+W_mJ: float(W_val*1000);
+
+/* ===== Common-error references ===== */
+L_wrong_no_N2: float(mu0*N_val*A_val/ell_val);
+L_wrong_swap_ell_A: float(mu0*N_val^2*ell_val/A_val);
+L_wrong_no_pi: float(mu0*N_val^2*r_val^2/ell_val);
+
+/* ===== Teacher answers ===== */
+ta1: float(L_val*1000);  /* L in mH */
+ta2: float(W_val*1000);  /* W in mJ */
+
+/* Part (c) MCQ: Debug — student computed wrong L, identify error */
+/* L_wrong_no_N2 means they used N instead of N^2 */
+ta3: [[1, true, "They used N instead of N² — the correct formula is L = μ₀N²A/ℓ, not L = μ₀NA/ℓ"],
+      [2, false, "They forgot to convert cm to m in the radius"],
+      [3, false, "They swapped the area and length — using L = μ₀N²ℓ/A"],
+      [4, false, "They forgot to include μ₀ in the formula"]];
+ta3_correct: 1;
+
+/* Part (d) MCQ: If current doubles, energy factor */
+ta4: [[1, false, "The energy doubles (W ∝ I)"],
+      [2, true, "The energy quadruples (W ∝ I²)"],
+      [3, false, "The energy stays the same (L is independent of I)"],
+      [4, false, "The energy increases by a factor of 8 (W ∝ I³)"]];
+ta4_correct: 2;
+]]></text>
+  </questionvariables>
+
+  <specificfeedback format="html">
+    <text><![CDATA[
+<h4>Part (a) &mdash; Self-Inductance</h4>
+<div>[[feedback:prt1]]</div>
+
+<h4>Part (b) &mdash; Stored Energy</h4>
+<div>[[feedback:prt2]]</div>
+
+<h4>Part (c) &mdash; Identify the Error</h4>
+<div>[[feedback:prt3]]</div>
+
+<h4>Part (d) &mdash; Energy Scaling</h4>
+<div>[[feedback:prt4]]</div>
+]]></text>
+  </specificfeedback>
+
+  <questionnote>
+    <text>Set {@set@}: N={@N_val@}, r={@r_cm@}cm, ℓ={@ell_cm@}cm, I={@I_val@}A | L={@ta1@} mH, W={@ta2@} mJ</text>
+  </questionnote>
+
+  <questiondescription format="html">
+    <text><![CDATA[<p>Self-inductance of a solenoid and inductor energy storage — compute L = μ₀N²A/ℓ and W = ½LI², debug a common error, and analyze energy scaling. Week 11 training exercise.</p>]]></text>
+  </questiondescription>
+
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>j</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <!-- ============================================================ -->
+  <!-- INPUTS (4 total)                                              -->
+  <!-- ============================================================ -->
+
+  <!-- ans1: Part (a) — Self-inductance L in mH (numerical) -->
+  <input>
+    <name>ans1</name>
+    <type>numerical</type>
+    <tans>ta1</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans2: Part (b) — Energy W in mJ (numerical) -->
+  <input>
+    <name>ans2</name>
+    <type>numerical</type>
+    <tans>ta2</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans3: Part (c) — Debug MCQ (radio) -->
+  <input>
+    <name>ans3</name>
+    <type>radio</type>
+    <tans>ta3</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans4: Part (d) — Energy scaling MCQ (radio) -->
+  <input>
+    <name>ans4</name>
+    <type>radio</type>
+    <tans>ta4</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ============================================================ -->
+  <!-- PRTs (4 total)                                                -->
+  <!-- ============================================================ -->
+
+  <!-- prt1: Part (a) — Self-inductance L in mH, tiered numerical with common-error nodes -->
+  <prt>
+    <name>prt1</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa1_float: float(ans1);
+ref1_float: float(ta1);
+/* Order-of-magnitude check */
+prt1_oom_ok: if (abs(ref1_float) > 1.0e-30 and abs(sa1_float) > 1.0e-30 and (abs(sa1_float/ref1_float - 10) < 1.5 or abs(sa1_float/ref1_float - 0.1) < 0.015)) then true else false;
+/* Common error checks */
+prt1_forgot_N2: if (abs(L_wrong_no_N2*1000) > 1.0e-30 and abs(sa1_float) > 1.0e-30 and abs(sa1_float/(L_wrong_no_N2*1000) - 1) < 0.05) then true else false;
+prt1_swap_ell_A: if (abs(L_wrong_swap_ell_A*1000) > 1.0e-30 and abs(sa1_float) > 1.0e-30 and abs(sa1_float/(L_wrong_swap_ell_A*1000) - 1) < 0.05) then true else false;
+]]></text>
+    </feedbackvariables>
+    <!-- Node 0: NumRelative 5% — full marks -->
+    <node>
+      <name>0</name>
+      <description>NumRelative check L within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>ta1</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(L = \mu_0 N^2 A / \ell = {@ta1@}\;\text{mH}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <!-- Node 1: NumRelative 15% — partial credit -->
+    <node>
+      <name>1</name>
+      <description>NumRelative check L within 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>ta1</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Your answer is within 15% of the expected value. Check your arithmetic or rounding. The exact answer is {@ta1@} mH.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt1-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <!-- Node 2: Check forgot N² (used N instead of N²) -->
+    <node>
+      <name>2</name>
+      <description>Check if student used N instead of N²</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt1_forgot_N2</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>It looks like you used \(L = \mu_0 N A / \ell\) instead of \(L = \mu_0 N^2 A / \ell\). The inductance depends on \(N^2\), not \(N\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>3</falsenextnode>
+      <falseanswernote>prt1-2-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <!-- Node 3: Check swapped ℓ and A -->
+    <node>
+      <name>3</name>
+      <description>Check if student swapped area and length</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt1_swap_ell_A</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-3-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>It looks like you swapped the cross-sectional area and length. The correct formula is \(L = \mu_0 N^2 A / \ell\), with the area in the numerator and the length in the denominator.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>4</falsenextnode>
+      <falseanswernote>prt1-3-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <!-- Node 4: Order-of-magnitude fallback -->
+    <node>
+      <name>4</name>
+      <description>OoM fallback check</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt1_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-4-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by about a factor of 10. Check your unit conversions (cm to m) or decimal placement.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-4-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The self-inductance is \(L = \mu_0 N^2 A / \ell = {@ta1@}\;\text{mH}\). Make sure to convert the radius and length from cm to m, use \(A = \pi r^2\), and include \(N^2\) (not \(N\)).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt2: Part (b) — Energy W in mJ, tiered numerical -->
+  <prt>
+    <name>prt2</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa2_float: float(ans2);
+ref2_float: float(ta2);
+/* Order-of-magnitude check */
+prt2_oom_ok: if (abs(ref2_float) > 1.0e-30 and abs(sa2_float) > 1.0e-30 and (abs(sa2_float/ref2_float - 10) < 1.5 or abs(sa2_float/ref2_float - 0.1) < 0.015)) then true else false;
+]]></text>
+    </feedbackvariables>
+    <!-- Node 0: NumRelative 5% — full marks -->
+    <node>
+      <name>0</name>
+      <description>NumRelative check W within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(W = \tfrac{1}{2} L I^2 = {@ta2@}\;\text{mJ}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <!-- Node 1: NumRelative 15% — partial credit -->
+    <node>
+      <name>1</name>
+      <description>NumRelative check W within 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close! Your answer is within 15% of the expected value. Check your arithmetic or rounding. The exact answer is {@ta2@} mJ.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt2-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <!-- Node 2: Order-of-magnitude fallback -->
+    <node>
+      <name>2</name>
+      <description>OoM fallback check</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt2_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by about a factor of 10. Check your unit conversions or whether you converted L and W to mH and mJ correctly.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-2-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The stored energy is \(W = \tfrac{1}{2} L I^2 = {@ta2@}\;\text{mJ}\). Use \(L = {@L_val@}\;\text{H}\) and \(I = {@I_val@}\;\text{A}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt3: Part (c) — MCQ debug: identify the error -->
+  <prt>
+    <name>prt3</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check debug MCQ answer</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans3</sans>
+      <tans>ta3_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The student used \(L = \mu_0 N A / \ell\) instead of \(L = \mu_0 N^2 A / \ell\), missing one factor of \(N\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Compare the student's value \({@float(L_wrong_no_N2*1000)@}\;\text{mH}\) with the correct value \({@ta1@}\;\text{mH}\). The ratio is \(N = {@N_val@}\), meaning the student used \(N\) instead of \(N^2\) in the formula.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt4: Part (d) — MCQ energy scaling -->
+  <prt>
+    <name>prt4</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check energy scaling MCQ answer</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans4</sans>
+      <tans>ta4_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! Since \(W = \tfrac{1}{2} L I^2\), doubling \(I\) gives \(W' = \tfrac{1}{2} L (2I)^2 = 4W\). The energy quadruples.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The energy stored in an inductor is \(W = \tfrac{1}{2} L I^2\). Since \(L\) does not depend on \(I\), doubling the current gives \(W' = \tfrac{1}{2} L (2I)^2 = 4 \times \tfrac{1}{2} L I^2 = 4W\). The energy <strong>quadruples</strong>.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- QUESTION TESTS                                                -->
+  <!-- ============================================================ -->
+
+  <!-- Test 1: All correct -->
+  <qtest>
+    <testcase>1</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3_correct</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4_correct</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- Test 2: All wrong -->
+  <qtest>
+    <testcase>2</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>999</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>999</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>3</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-4-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-2-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-F</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- ============================================================ -->
+  <!-- HINTS (3, progressive)                                        -->
+  <!-- ============================================================ -->
+
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 1 (Intuition):</strong> The self-inductance of a solenoid depends on its geometry (length, cross-sectional area) and the number of turns.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 2 (Formulas):</strong> Use \(L = \mu_0 N^2 A / \ell\) where \(A = \pi r^2\). For energy, recall \(W = \tfrac{1}{2} L I^2\). Be careful with unit conversions (cm &rarr; m).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 3 (Worked Step):</strong> First convert \(r\) and \(\ell\) to metres. Then \(A = \pi r^2\) and \(L = (4\pi \times 10^{-7}) \times N^2 \times A / \ell\). Finally \(W = \tfrac{1}{2} \times L \times I^2\).</p>]]></text>
+  </hint>
+
+</question>
+</quiz>

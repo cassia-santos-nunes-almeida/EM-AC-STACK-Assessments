@@ -1,0 +1,1152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ============================================================ -->
+<!-- Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy -->
+<!-- Course: Electromagnetism and Circuit Analysis, LUT University   -->
+<!-- Topics: Opposing dot convention, T-equivalent, coupled energy   -->
+<!-- 7 parts, 7 points total, 0% penalty                            -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Week 12 – Q5: Opposing Dot Convention &amp; Coupled Inductor Energy</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Week 12 – Q5: Opposing Dot Convention &amp; Coupled Inductor Energy</h3>
+<p><em>Course: Electromagnetism and Circuit Analysis — LUT University, Finland</em></p>
+<p><em>This is a training exercise — you may use books, tutors, and AI.</em></p>
+<p><strong>Total: 7 points | Penalty per wrong attempt: 0%</strong></p>
+<hr />
+
+<p>Two coupled inductors have \(L_1 = {@L1_mH@}\;\text{mH}\), \(L_2 = {@L2_mH@}\;\text{mH}\),
+and coupling coefficient \(k = {@k@}\).</p>
+
+<p>Current \(i_1 = {@i1_val@}\;\text{A}\) <strong>enters the dotted terminal</strong> of coil 1,
+and current \(i_2 = {@i2_val@}\;\text{A}\) <strong>enters the undotted terminal</strong> of coil 2.</p>
+
+<hr />
+
+<p><strong>(a)</strong> [1 pt] Is this an aiding or opposing configuration?</p>
+[[input:ans1]]
+[[validation:ans1]]
+
+<p><strong>(b)</strong> [1 pt] Compute the mutual inductance \(M\) (in <strong>mH</strong>).</p>
+[[input:ans2]]
+<p><em>Syntax hint: Enter a number in mH, e.g. <code>31.6</code></em></p>
+[[validation:ans2]]
+
+<p><strong>(c)</strong> [1 pt] For the opposing T-equivalent circuit, compute \(L_a\) (in <strong>mH</strong>).</p>
+[[input:ans3]]
+<p><em>Syntax hint: Enter a number in mH, e.g. <code>81.6</code>. Note: for opposing case, \(L_a = L_1 + M\).</em></p>
+[[validation:ans3]]
+
+<p><strong>(d)</strong> [1 pt] Compute \(L_b\) for the opposing T-equivalent (in <strong>mH</strong>).</p>
+[[input:ans4]]
+<p><em>Syntax hint: Enter a number in mH, e.g. <code>111.6</code></em></p>
+[[validation:ans4]]
+
+<p><strong>(e)</strong> [1 pt] Compute \(L_c\) for the opposing T-equivalent (in <strong>mH</strong>).</p>
+[[input:ans5]]
+<p><em>Syntax hint: Enter a number in mH, e.g. <code>-31.6</code>. Note: negative values are valid here.</em></p>
+[[validation:ans5]]
+
+<p><strong>(f)</strong> [1 pt] Compute the total energy stored in the coupled system (in <strong>mJ</strong>).</p>
+[[input:ans6]]
+<p><em>Syntax hint: Enter a number in mJ, e.g. <code>152.3</code></em></p>
+[[validation:ans6]]
+
+<p><strong>(g)</strong> [1 pt] For a fixed \(i_1 = {@i1_val@}\;\text{A}\), at what value of \(i_2\) is the stored energy minimized?</p>
+[[input:ans7]]
+[[validation:ans7]]
+]]></text>
+  </questiontext>
+
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h3>Worked Solution</h3>
+
+<h4>Step 1: Aiding or Opposing?</h4>
+<p>Current \(i_1\) enters the <strong>dotted</strong> terminal of coil 1, while \(i_2\) enters the
+<strong>undotted</strong> terminal of coil 2. Since one current enters a dotted terminal and the other
+enters an undotted terminal, the mutual flux <strong>opposes</strong> the self-flux. The voltage equations
+use <strong>&minus;M</strong>:</p>
+<p>\[v_1 = L_1 \frac{di_1}{dt} - M \frac{di_2}{dt}, \qquad v_2 = -M \frac{di_1}{dt} + L_2 \frac{di_2}{dt}\]</p>
+
+<h4>Step 2: Mutual Inductance</h4>
+<p>The mutual inductance is:</p>
+<p>\[M = k\sqrt{L_1 L_2} = {@k@} \times \sqrt{{@L1_mH@} \times {@L2_mH@}} = {@k@} \times {@sqrtL1L2_mH@} = {@M_mH@}\;\text{mH}\]</p>
+
+<h4>Step 3: T-Equivalent Circuit (Opposing Case)</h4>
+<p>For the opposing case (\(i_1\) enters dot, \(i_2\) enters undotted terminal), the T-equivalent elements are:</p>
+<p>\[L_a = L_1 + M = {@L1_mH@} + {@M_mH@} = {@La_mH@}\;\text{mH}\]</p>
+<p>\[L_b = L_2 + M = {@L2_mH@} + {@M_mH@} = {@Lb_mH@}\;\text{mH}\]</p>
+<p>\[L_c = -M = -{@M_mH@} = {@Lc_mH@}\;\text{mH}\]</p>
+<p>Note that \(L_c\) is <strong>negative</strong>. This is expected for the opposing T-equivalent &mdash; the negative
+shunt element is mathematically valid in the equivalent circuit model.</p>
+
+<h4>Step 4: Stored Energy</h4>
+<p>For the opposing coupling, the energy is:</p>
+<p>\[W = \tfrac{1}{2}L_1 i_1^2 + \tfrac{1}{2}L_2 i_2^2 - M\,i_1\,i_2\]</p>
+<p>\[W = \tfrac{1}{2}({@L1@})({@i1_val@})^2 + \tfrac{1}{2}({@L2@})({@i2_val@})^2 - ({@M@})({@i1_val@})({@i2_val@})\]</p>
+<p>\[W = {@W_mJ@}\;\text{mJ}\]</p>
+
+<h4>Step 5: Minimum Energy</h4>
+<p>To find the value of \(i_2\) that minimizes \(W\) (with \(i_1\) fixed), take the derivative and set it to zero:</p>
+<p>\[\frac{dW}{di_2} = L_2\,i_2 - M\,i_1 = 0 \quad \Rightarrow \quad i_2 = \frac{M\,i_1}{L_2}\]</p>
+<p>This is the correct answer because \(\frac{d^2W}{di_2^2} = L_2 > 0\), confirming a minimum.</p>
+<p>Numerically: \(i_2 = \frac{{@M@} \times {@i1_val@}}{{@L2@}} = {@i2_min@}\;\text{A}\).</p>
+
+<hr />
+<h4>Answer Summary</h4>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr><th>Part</th><th>Quantity</th><th>Correct Answer</th></tr>
+  <tr><td>(a)</td><td>Coupling type</td><td>Opposing</td></tr>
+  <tr><td>(b)</td><td>\(M\)</td><td>{@M_mH@} mH</td></tr>
+  <tr><td>(c)</td><td>\(L_a\)</td><td>{@La_mH@} mH</td></tr>
+  <tr><td>(d)</td><td>\(L_b\)</td><td>{@Lb_mH@} mH</td></tr>
+  <tr><td>(e)</td><td>\(L_c\)</td><td>{@Lc_mH@} mH</td></tr>
+  <tr><td>(f)</td><td>\(W\)</td><td>{@W_mJ@} mJ</td></tr>
+  <tr><td>(g)</td><td>Min energy \(i_2\)</td><td>\(i_2 = M\,i_1/L_2 = {@i2_min@}\) A</td></tr>
+</table>
+]]></text>
+  </generalfeedback>
+
+  <defaultgrade>7.0000000</defaultgrade>
+  <penalty>0.0000000</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+
+  <stackversion>
+    <text>2024120900</text>
+  </stackversion>
+
+  <questionvariables>
+    <text><![CDATA[/* ===== Parameter set selection ===== */
+set: rand(3)+1;
+
+/* ===== Given values ===== */
+L1_mH: if set=1 then 50 else if set=2 then 30 else 60;
+L2_mH: if set=1 then 80 else if set=2 then 120 else 100;
+k:     if set=1 then 0.5 else if set=2 then 0.4 else 0.6;
+i1_val: if set=1 then 2.0 else if set=2 then 3.0 else 1.5;
+i2_val: if set=1 then 1.5 else if set=2 then 1.0 else 2.5;
+
+/* ===== Derived values ===== */
+L1: L1_mH/1000;
+L2: L2_mH/1000;
+M: float(k*sqrt(L1*L2));
+M_mH: float(M*1000);
+sqrtL1L2_mH: float(sqrt(L1_mH*L2_mH));
+
+/* ===== T-equivalent for OPPOSING case ===== */
+/* When i1 enters dot and i2 enters undot (opposing): */
+/* v1 = L1 di1/dt - M di2/dt */
+/* v2 = -M di1/dt + L2 di2/dt */
+/* T-equivalent: La = L1 + M, Lb = L2 + M, Lc = -M */
+La: float(L1 + M);
+Lb: float(L2 + M);
+Lc: float(-M);
+La_mH: float(La*1000);
+Lb_mH: float(Lb*1000);
+Lc_mH: float(Lc*1000);
+
+/* ===== Energy in coupled inductors (opposing) ===== */
+/* W = 0.5*L1*i1^2 + 0.5*L2*i2^2 - M*i1*i2 */
+W_val: float(0.5*L1*i1_val^2 + 0.5*L2*i2_val^2 - M*i1_val*i2_val);
+W_mJ: float(W_val*1000);
+
+/* ===== Energy minimization ===== */
+/* dW/di2 = L2*i2 - M*i1 = 0 => i2_min = M*i1/L2 */
+i2_min: float(M*i1_val/L2);
+
+/* ===== Teacher answers ===== */
+/* Part (a) MCQ: Aiding or opposing */
+ta1: [[1, false, "Aiding — both currents enter dotted terminals, so mutual flux reinforces self-flux"],
+      [2, true, "Opposing — i₁ enters the dotted terminal but i₂ enters the undotted terminal"],
+      [3, false, "Cannot determine — need to know the physical winding direction"],
+      [4, false, "Neither — the dot convention does not affect the coupling type"]];
+ta1_correct: 2;
+
+/* Part (b): M in mH */
+ta2: float(M_mH);
+
+/* Part (c): La in mH */
+ta3: float(La_mH);
+
+/* Part (d): Lb in mH */
+ta4: float(Lb_mH);
+
+/* Part (e): Lc in mH */
+ta5: float(Lc_mH);
+
+/* Part (f): Energy W in mJ */
+ta6: float(W_mJ);
+
+/* Part (g) MCQ: At what i2 is energy minimized */
+ta7: [[1, true, sconcat("i₂ = M·i₁/L₂ = ", string(float(i2_min)), " A — from setting dW/di₂ = 0")],
+      [2, false, "i₂ = 0 A — minimum energy occurs when only one current flows"],
+      [3, false, sconcat("i₂ = i₁ = ", string(float(i1_val)), " A — minimum occurs when both currents are equal")],
+      [4, false, "i₂ = L₂·i₁/M — this maximizes the mutual coupling effect"]];
+ta7_correct: 1;]]></text>
+  </questionvariables>
+
+  <specificfeedback format="html">
+    <text><![CDATA[
+<p><strong>(a)</strong> [[feedback:prt1]]</p>
+<p><strong>(b)</strong> [[feedback:prt2]]</p>
+<p><strong>(c)</strong> [[feedback:prt3]]</p>
+<p><strong>(d)</strong> [[feedback:prt4]]</p>
+<p><strong>(e)</strong> [[feedback:prt5]]</p>
+<p><strong>(f)</strong> [[feedback:prt6]]</p>
+<p><strong>(g)</strong> [[feedback:prt7]]</p>
+]]></text>
+  </specificfeedback>
+
+  <questionnote format="html">
+    <text><![CDATA[
+<p>Set={@set@}: L1={@L1_mH@}mH, L2={@L2_mH@}mH, k={@k@}, i1={@i1_val@}A, i2={@i2_val@}A</p>
+<p>M={@M_mH@}mH, La={@La_mH@}mH, Lb={@Lb_mH@}mH, Lc={@Lc_mH@}mH, W={@W_mJ@}mJ, i2_min={@i2_min@}A</p>
+]]></text>
+  </questionnote>
+
+  <questiondescription format="html">
+    <text></text>
+  </questiondescription>
+
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed></variantsselectionseed>
+
+  <!-- ============================================================ -->
+  <!-- INPUTS (7 total)                                              -->
+  <!-- ============================================================ -->
+
+  <input>
+    <name>ans1</name>
+    <type>radio</type>
+    <tans>ta1</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint></syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords></forbidwords>
+    <allowwords></allowwords>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
+    <options></options>
+  </input>
+
+  <input>
+    <name>ans2</name>
+    <type>numerical</type>
+    <tans>ta2</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint></syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords></forbidwords>
+    <allowwords></allowwords>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options></options>
+  </input>
+
+  <input>
+    <name>ans3</name>
+    <type>numerical</type>
+    <tans>ta3</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint></syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords></forbidwords>
+    <allowwords></allowwords>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options></options>
+  </input>
+
+  <input>
+    <name>ans4</name>
+    <type>numerical</type>
+    <tans>ta4</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint></syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords></forbidwords>
+    <allowwords></allowwords>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options></options>
+  </input>
+
+  <input>
+    <name>ans5</name>
+    <type>numerical</type>
+    <tans>ta5</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint></syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords></forbidwords>
+    <allowwords></allowwords>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options></options>
+  </input>
+
+  <input>
+    <name>ans6</name>
+    <type>numerical</type>
+    <tans>ta6</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint></syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords></forbidwords>
+    <allowwords></allowwords>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options></options>
+  </input>
+
+  <input>
+    <name>ans7</name>
+    <type>radio</type>
+    <tans>ta7</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint></syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords></forbidwords>
+    <allowwords></allowwords>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
+    <options></options>
+  </input>
+
+  <!-- ============================================================ -->
+  <!-- PRT 1: Part (a) — Aiding/Opposing MCQ (AlgEquiv, 1 node)     -->
+  <!-- ============================================================ -->
+  <prt>
+    <name>prt1</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check MCQ answer for aiding/opposing</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans1</sans>
+      <tans>ta1_correct</tans>
+      <testoptions></testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! Since \(i_1\) enters the dotted terminal and \(i_2\) enters the undotted terminal, this is the <strong>opposing</strong> configuration.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. When one current enters a dotted terminal and the other enters an undotted terminal, the mutual flux opposes the self-flux — this is the <strong>opposing</strong> configuration.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- PRT 2: Part (b) — M in mH (NumRelative tiered + OoM)         -->
+  <!-- ============================================================ -->
+  <prt>
+    <name>prt2</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[prt2_oom_ok: if (abs(float(ta2)) > 1.0e-30 and abs(float(ans2)) > 1.0e-30 and (abs(float(ans2)/float(ta2) - 10) < 1.5 or abs(float(ans2)/float(ta2) - 0.1) < 0.015)) then true else false;]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check M within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(M = k\sqrt{L_1 L_2} = {@M_mH@}\;\text{mH}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt2-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Check M within 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close but not exact. The expected value is \(M = {@M_mH@}\;\text{mH}\). Check your calculation of \(k\sqrt{L_1 L_2}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt2-2-F</falseanswernote>
+      <falsefeedback format="html">
+        <text></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Order of magnitude check</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt2_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions></testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-3-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by an order of magnitude. Did you forget to convert units? The expected value is \({@M_mH@}\;\text{mH}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-3-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Use \(M = k\sqrt{L_1 L_2}\). The expected value is \({@M_mH@}\;\text{mH}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- PRT 3: Part (c) — La in mH (NumRelative tiered + aiding chk) -->
+  <!-- ============================================================ -->
+  <prt>
+    <name>prt3</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[La_aiding_mH: float(L1_mH - M_mH);
+prt3_used_aiding: if (abs(La_aiding_mH) > 1.0e-30 and abs(float(ans3)) > 1.0e-30 and abs(float(ans3)/La_aiding_mH - 1) < 0.05) then true else false;
+prt3_oom_ok: if (abs(float(ta3)) > 1.0e-30 and abs(float(ans3)) > 1.0e-30 and (abs(float(ans3)/float(ta3) - 10) < 1.5 or abs(float(ans3)/float(ta3) - 0.1) < 0.015)) then true else false;]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check La within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(L_a = L_1 + M = {@La_mH@}\;\text{mH}\) for the opposing T-equivalent.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt3-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Check La within 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close but not exact. The expected value is \(L_a = {@La_mH@}\;\text{mH}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt3-2-F</falseanswernote>
+      <falsefeedback format="html">
+        <text></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Check if student used aiding formula La = L1 - M</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt3_used_aiding</sans>
+      <tans>true</tans>
+      <testoptions></testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-3-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>You used the <em>aiding</em> formula \(L_a = L_1 - M\). For the <strong>opposing</strong> case, \(L_a = L_1 + M = {@La_mH@}\;\text{mH}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>3</falsenextnode>
+      <falseanswernote>prt3-3-F</falseanswernote>
+      <falsefeedback format="html">
+        <text></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>3</name>
+      <description>Order of magnitude check</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt3_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions></testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-4-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by an order of magnitude. The expected value is \(L_a = {@La_mH@}\;\text{mH}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-4-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. For the opposing T-equivalent, \(L_a = L_1 + M = {@La_mH@}\;\text{mH}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- PRT 4: Part (d) — Lb in mH (NumRelative tiered + aiding chk) -->
+  <!-- ============================================================ -->
+  <prt>
+    <name>prt4</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[Lb_aiding_mH: float(L2_mH - M_mH);
+prt4_used_aiding: if (abs(Lb_aiding_mH) > 1.0e-30 and abs(float(ans4)) > 1.0e-30 and abs(float(ans4)/Lb_aiding_mH - 1) < 0.05) then true else false;
+prt4_oom_ok: if (abs(float(ta4)) > 1.0e-30 and abs(float(ans4)) > 1.0e-30 and (abs(float(ans4)/float(ta4) - 10) < 1.5 or abs(float(ans4)/float(ta4) - 0.1) < 0.015)) then true else false;]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check Lb within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(L_b = L_2 + M = {@Lb_mH@}\;\text{mH}\) for the opposing T-equivalent.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt4-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Check Lb within 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close but not exact. The expected value is \(L_b = {@Lb_mH@}\;\text{mH}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt4-2-F</falseanswernote>
+      <falsefeedback format="html">
+        <text></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Check if student used aiding formula Lb = L2 - M</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt4_used_aiding</sans>
+      <tans>true</tans>
+      <testoptions></testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-3-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>You used the <em>aiding</em> formula \(L_b = L_2 - M\). For the <strong>opposing</strong> case, \(L_b = L_2 + M = {@Lb_mH@}\;\text{mH}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>3</falsenextnode>
+      <falseanswernote>prt4-3-F</falseanswernote>
+      <falsefeedback format="html">
+        <text></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>3</name>
+      <description>Order of magnitude check</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt4_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions></testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-4-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by an order of magnitude. The expected value is \(L_b = {@Lb_mH@}\;\text{mH}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-4-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. For the opposing T-equivalent, \(L_b = L_2 + M = {@Lb_mH@}\;\text{mH}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- PRT 5: Part (e) — Lc in mH (NumRelative + forgot-negative)   -->
+  <!-- ============================================================ -->
+  <prt>
+    <name>prt5</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[prt5_forgot_negative: if (abs(float(M_mH)) > 1.0e-30 and abs(float(ans5)) > 1.0e-30 and abs(float(ans5)/float(M_mH) - 1) < 0.05) then true else false;]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check Lc within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(L_c = -M = {@Lc_mH@}\;\text{mH}\) for the opposing T-equivalent.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt5-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Check Lc within 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close but not exact. The expected value is \(L_c = {@Lc_mH@}\;\text{mH}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt5-2-F</falseanswernote>
+      <falsefeedback format="html">
+        <text></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Check if student forgot the negative sign (gave +M)</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt5_forgot_negative</sans>
+      <tans>true</tans>
+      <testoptions></testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-3-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>You gave \(L_c = +M\), but for the <strong>opposing</strong> case \(L_c = -M\). The shunt element is negative: \(L_c = {@Lc_mH@}\;\text{mH}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-3-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. For the opposing T-equivalent, \(L_c = -M = {@Lc_mH@}\;\text{mH}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- PRT 6: Part (f) — Energy W in mJ (NumRelative + aiding chk)  -->
+  <!-- ============================================================ -->
+  <prt>
+    <name>prt6</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[W_aiding_mJ: float((0.5*L1*i1_val^2 + 0.5*L2*i2_val^2 + M*i1_val*i2_val)*1000);
+prt6_used_aiding: if (abs(W_aiding_mJ) > 1.0e-30 and abs(float(ans6)) > 1.0e-30 and abs(float(ans6)/W_aiding_mJ - 1) < 0.05) then true else false;
+prt6_oom_ok: if (abs(float(ta6)) > 1.0e-30 and abs(float(ans6)) > 1.0e-30 and (abs(float(ans6)/float(ta6) - 10) < 1.5 or abs(float(ans6)/float(ta6) - 0.1) < 0.015)) then true else false;]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check W within 5%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans6</sans>
+      <tans>ta6</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(W = \tfrac{1}{2}L_1 i_1^2 + \tfrac{1}{2}L_2 i_2^2 - M i_1 i_2 = {@W_mJ@}\;\text{mJ}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt6-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Check W within 15%</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans6</sans>
+      <tans>ta6</tans>
+      <testoptions>0.15</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.7000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Close but not exact. The expected value is \(W = {@W_mJ@}\;\text{mJ}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt6-2-F</falseanswernote>
+      <falsefeedback format="html">
+        <text></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>Check if student used aiding energy formula (+M)</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt6_used_aiding</sans>
+      <tans>true</tans>
+      <testoptions></testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-3-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>You used the <em>aiding</em> energy formula with \(+M i_1 i_2\). For the <strong>opposing</strong> case, use \(W = \tfrac{1}{2}L_1 i_1^2 + \tfrac{1}{2}L_2 i_2^2 - M i_1 i_2 = {@W_mJ@}\;\text{mJ}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>3</falsenextnode>
+      <falseanswernote>prt6-3-F</falseanswernote>
+      <falsefeedback format="html">
+        <text></text>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>3</name>
+      <description>Order of magnitude check</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>prt6_oom_ok</sans>
+      <tans>true</tans>
+      <testoptions></testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-4-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is off by an order of magnitude. The expected value is \(W = {@W_mJ@}\;\text{mJ}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt6-4-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. For the opposing case, \(W = \tfrac{1}{2}L_1 i_1^2 + \tfrac{1}{2}L_2 i_2^2 - M i_1 i_2 = {@W_mJ@}\;\text{mJ}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- PRT 7: Part (g) — Energy minimization MCQ (AlgEquiv, 1 node) -->
+  <!-- ============================================================ -->
+  <prt>
+    <name>prt7</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check MCQ answer for energy minimization</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans7</sans>
+      <tans>ta7_correct</tans>
+      <testoptions></testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty></truepenalty>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! Setting \(\frac{dW}{di_2} = L_2 i_2 - M i_1 = 0\) gives \(i_2 = \frac{M i_1}{L_2} = {@i2_min@}\;\text{A}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty></falsepenalty>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. To minimize \(W\) with respect to \(i_2\), set \(\frac{dW}{di_2} = L_2 i_2 - M i_1 = 0\), giving \(i_2 = \frac{M i_1}{L_2} = {@i2_min@}\;\text{A}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- DEPLOYED SEEDS                                                -->
+  <!-- ============================================================ -->
+  <deployedseed>12345</deployedseed>
+  <deployedseed>23456</deployedseed>
+  <deployedseed>34567</deployedseed>
+
+  <!-- ============================================================ -->
+  <!-- HINTS (3, progressive)                                        -->
+  <!-- ============================================================ -->
+  <hint format="html">
+    <text><![CDATA[<p>In the dot convention, if one current enters the dotted terminal and the other enters the undotted terminal, the mutual flux opposes the self-flux.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p>For the opposing T-equivalent: \(L_a = L_1 + M\), \(L_b = L_2 + M\), \(L_c = -M\). For energy: \(W = \tfrac{1}{2}L_1 i_1^2 + \tfrac{1}{2}L_2 i_2^2 - M i_1 i_2\).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p>To find the minimum energy, treat \(W\) as a function of \(i_2\) and set \(\frac{dW}{di_2} = 0\).</p>]]></text>
+  </hint>
+
+  <!-- ============================================================ -->
+  <!-- QUESTION TESTS (2)                                            -->
+  <!-- ============================================================ -->
+
+  <!-- qtest 1: Set 1 all correct -->
+  <qtest>
+    <testcase>1</testcase>
+    <description>Set 1: All correct answers</description>
+    <testinput>
+      <name>ans1</name>
+      <value>2</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>31.623</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>81.623</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>111.623</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>-31.623</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>95.132</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>1</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-1-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-1-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- qtest 2: All wrong -->
+  <qtest>
+    <testcase>2</testcase>
+    <description>All wrong answers</description>
+    <testinput>
+      <name>ans1</name>
+      <value>1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>999</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>999</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>999</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>999</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>999</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>3</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-1-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-3-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-4-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-4-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-3-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-4-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-1-F</expectedanswernote>
+    </expected>
+  </qtest>
+
+</question>
+</quiz>

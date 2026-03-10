@@ -15,7 +15,7 @@
 <h3>Week 11 &ndash; Q1: Faraday&rsquo;s Law &mdash; EMF from Time-Varying B Field</h3>
 <p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
 <p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
-<p><strong>Total: 3 points | Penalty per wrong attempt: 0%</strong></p>
+<p><strong>Total: 4 points | Penalty per wrong attempt: 0%</strong></p>
 
 <hr />
 
@@ -54,6 +54,14 @@ what happens to the peak EMF?</p>
 
 <p>[[input:ans3]]</p>
 
+<h4>Part (d) &mdash; Identify the Error (1 point)</h4>
+
+<p>A student attempted to compute the peak EMF for this coil and obtained
+\(\varepsilon_{\text{peak}} = {@emf_no_omega@}\;\text{V}\).
+What factor did the student most likely forget to include?</p>
+
+<p>[[input:ans4]]</p>
+
 ]]></text>
   </questiontext>
 
@@ -85,6 +93,14 @@ By the right-hand rule, the current flows <strong>clockwise</strong> when viewed
 <p>Since \(\varepsilon_{\text{peak}} = N \omega B_0 \pi r^2\) and \(\omega = 2\pi f\), doubling \(f\) doubles \(\omega\),
 which <strong>doubles</strong> the peak EMF. The EMF is directly proportional to frequency.</p>
 
+<h4>Part (d): Identifying the Error</h4>
+<p>The student obtained \(\varepsilon = {@emf_no_omega@}\;\text{V}\), which equals \(N \cdot B_0 \cdot \pi r^2\)
+(without the \(\omega\) factor). Comparing with the correct formula
+\(\varepsilon_{\text{peak}} = N \omega B_0 \pi r^2\), the student forgot to include
+the angular frequency \(\omega = 2\pi f\) when differentiating the flux.</p>
+<p>This is a common error: students sometimes compute the peak <em>flux</em> (N&middot;B₀&middot;A)
+instead of the peak <em>EMF</em>, forgetting that the time derivative introduces an extra factor of \(\omega\).</p>
+
 <hr />
 <h4>Answer Summary</h4>
 <table border="1" cellpadding="5" cellspacing="0">
@@ -92,11 +108,12 @@ which <strong>doubles</strong> the peak EMF. The EMF is directly proportional to
   <tr><td>(a)</td><td>\(\varepsilon_{\text{peak}}\)</td><td>{@ta1@} V</td></tr>
   <tr><td>(b)</td><td>Current direction</td><td>Clockwise (viewed from B direction)</td></tr>
   <tr><td>(c)</td><td>Effect of doubling f</td><td>Peak EMF doubles</td></tr>
+  <tr><td>(d)</td><td>Missing factor</td><td>Angular frequency \(\omega\)</td></tr>
 </table>
 ]]></text>
   </generalfeedback>
 
-  <defaultgrade>3.0000000</defaultgrade>
+  <defaultgrade>4.0000000</defaultgrade>
   <penalty>0.0000000</penalty>
   <hidden>0</hidden>
   <idnumber/>
@@ -147,6 +164,14 @@ ta3: [[1, false, "The peak EMF stays the same (frequency does not affect EMF)"],
       [3, false, "The peak EMF quadruples (EMF is proportional to ω²)"],
       [4, false, "The peak EMF halves (higher frequency means less time for flux change)"]];
 ta3_correct: 2;
+
+/* Part (d) MCQ: Identify the missing factor (debug task) */
+/* emf_no_omega = N*B0*A = peak_emf / omega — student forgot omega */
+ta4: [[1, true, "The angular frequency ω — they computed N·B₀·πr² instead of N·ω·B₀·πr²"],
+      [2, false, "The number of turns N — they computed ω·B₀·πr²"],
+      [3, false, "The factor π in the area — they computed N·ω·B₀·r² instead of N·ω·B₀·πr²"],
+      [4, false, "The magnetic field B₀ — they forgot to include the field strength"]];
+ta4_correct: 1;
 ]]></text>
   </questionvariables>
 
@@ -160,6 +185,9 @@ ta3_correct: 2;
 
 <h4>Part (c) &mdash; Doubling Frequency</h4>
 <div>[[feedback:prt3]]</div>
+
+<h4>Part (d) &mdash; Identify the Error</h4>
+<div>[[feedback:prt4]]</div>
 ]]></text>
   </specificfeedback>
 
@@ -259,8 +287,28 @@ ta3_correct: 2;
     <options/>
   </input>
 
+  <!-- ans4: Part (d) — Identify the error MCQ (radio) -->
+  <input>
+    <name>ans4</name>
+    <type>radio</type>
+    <tans>ta4</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
   <!-- ============================================================ -->
-  <!-- PRTs (3 total)                                                -->
+  <!-- PRTs (4 total)                                                -->
   <!-- ============================================================ -->
 
   <!-- prt1: Part (a) — Peak EMF, tiered numerical with common-error nodes -->
@@ -511,6 +559,42 @@ prt1_forgot_pi: if (abs(emf_no_pi) > 1.0e-30 and abs(sa1_float) > 1.0e-30 and ab
     </node>
   </prt>
 
+  <!-- prt4: Part (d) — Identify the error MCQ -->
+  <prt>
+    <name>prt4</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check error identification MCQ answer</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans4</sans>
+      <tans>ta4_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The student computed \(N B_0 \pi r^2 = {@emf_no_omega@}\;\text{V}\) but forgot the \(\omega\) factor from the time derivative of \(\sin(\omega t)\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Compare the student's answer \({@emf_no_omega@}\;\text{V}\) with the correct formula \(\varepsilon_{\text{peak}} = N \omega B_0 \pi r^2 = {@ta1@}\;\text{V}\). The ratio is \(\varepsilon_{\text{correct}} / \varepsilon_{\text{student}} = \omega = {@omega_disp@}\). The student forgot to include \(\omega\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
   <!-- ============================================================ -->
   <!-- QUESTION TESTS                                                -->
   <!-- ============================================================ -->
@@ -530,6 +614,10 @@ prt1_forgot_pi: if (abs(emf_no_pi) > 1.0e-30 and abs(sa1_float) > 1.0e-30 and ab
       <name>ans3</name>
       <value>ta3</value>
     </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
     <expected>
       <name>prt1</name>
       <expectedscore>1.0000000</expectedscore>
@@ -548,6 +636,12 @@ prt1_forgot_pi: if (abs(emf_no_pi) > 1.0e-30 and abs(sa1_float) > 1.0e-30 and ab
       <expectedpenalty>0.0000000</expectedpenalty>
       <expectedanswernote>prt3-0-T</expectedanswernote>
     </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
+    </expected>
   </qtest>
 
   <!-- Test 2: All wrong -->
@@ -564,6 +658,10 @@ prt1_forgot_pi: if (abs(emf_no_pi) > 1.0e-30 and abs(sa1_float) > 1.0e-30 and ab
     <testinput>
       <name>ans3</name>
       <value>1</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>2</value>
     </testinput>
     <expected>
       <name>prt1</name>
@@ -582,6 +680,12 @@ prt1_forgot_pi: if (abs(emf_no_pi) > 1.0e-30 and abs(sa1_float) > 1.0e-30 and ab
       <expectedscore>0.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
       <expectedanswernote>prt3-0-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-F</expectedanswernote>
     </expected>
   </qtest>
 

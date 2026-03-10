@@ -1,0 +1,32 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[american voltages, american currents]{circuitikz}
+\usepackage{amsmath}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+
+% T-equivalent circuit for opposing case
+% La = L1 + M (series, left branch)
+\draw (0,2) to[L, l=$L_a{=}L_1{+}M$, i>^=$i_1$] (3,2);
+
+% Lc = -M (shunt element, center)
+\draw (3,2) to[L, l_=$L_c{=}{-}M$] (3,0);
+
+% Lb = L2 + M (series, right branch)
+\draw (3,2) to[L, l=$L_b{=}L_2{+}M$, i>^=$i_2$] (6,2);
+
+% Ground/reference connections
+\draw (0,0) -- (6,0);
+\draw (0,0) -- (0,0.2);
+\draw (6,0) -- (6,0.2);
+
+% Port labels
+\node[above] at (0, 2.2) {Port 1};
+\node[above] at (6, 2.2) {Port 2};
+
+% Junction dot
+\filldraw (3,2) circle (2pt);
+
+\end{circuitikz}
+\end{document}

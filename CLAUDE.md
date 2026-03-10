@@ -40,11 +40,11 @@ Testing-Codes/
     ├── week10/                        # RLC 2nd-order + magnetic circuits practice
     │   ├── xml/                       # Q1-Q5 STACK questions
     │   └── diagrams/                  # CircuiTikZ .tex + .svg per question
-    ├── week11/                        # Electromagnetic induction (Faraday's law, motional EMF)
-    │   ├── xml/                       # Q1-Q2 STACK questions
+    ├── week11/                        # Electromagnetic induction (Faraday's law, motional EMF, self-inductance)
+    │   ├── xml/                       # Q1-Q2 (induction) + Q5 (self-inductance & energy)
     │   └── diagrams/                  # TikZ/CircuiTikZ .tex + .svg per question
     └── week12/                        # Coupled inductors & ideal transformers
-        ├── xml/                       # Q3-Q4 STACK questions
+        ├── xml/                       # Q3-Q4 (aiding + transformer) + Q5 (opposing + energy)
         └── diagrams/                  # CircuiTikZ .tex + .svg per question
 ```
 
@@ -313,4 +313,4 @@ Hard-won lessons from sessions 1-3. **Do not repeat these errors.**
 
 ## Last Updated
 
-2026-03-10 (session 4: added Week 11-12 exercises — Faraday's law, motional EMF, coupling coefficient/T-equivalent, ideal transformer/impedance matching)
+2026-03-10 (session 4-5: added Week 11-12 exercises — Faraday's law, motional EMF, self-inductance/energy, coupling coefficient/T-equivalent, ideal transformer/impedance matching, opposing dot convention/coupled energy. Added higher-Bloom debug and analysis tasks to Q1-Q2.)

@@ -15,7 +15,7 @@
 <h3>Week 11 &ndash; Q2: Motional EMF &mdash; Sliding Bar on Rails</h3>
 <p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
 <p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
-<p><strong>Total: 4 points | Penalty per wrong attempt: 0%</strong></p>
+<p><strong>Total: 5 points | Penalty per wrong attempt: 0%</strong></p>
 
 <hr />
 
@@ -57,6 +57,13 @@ by a resistor \(R = {@R@}\;\Omega\).</p>
 
 <p>[[input:ans4]]</p>
 
+<h4>Part (e) &mdash; Parameter Sensitivity (1 point)</h4>
+
+<p>Suppose the bar length is <strong>doubled</strong> (\(\ell \to 2\ell\)) while the velocity is <strong>halved</strong>
+(\(v \to v/2\)). All other parameters remain unchanged. What happens to the power dissipated in the resistor?</p>
+
+<p>[[input:ans5]]</p>
+
 ]]></text>
   </questiontext>
 
@@ -87,6 +94,13 @@ so it creates a field <strong>out of the page</strong> inside the loop. By the r
 the current flows <strong>counterclockwise</strong>: upward through the bar and <strong>downward</strong> (from top to bottom)
 through the external resistor.</p>
 
+<h4>Part (e): Parameter Sensitivity</h4>
+<p>The power dissipated is \(P = I^2 R = \frac{(B \ell v)^2}{R}\). The product \(B \ell v\) determines the EMF.</p>
+<p>If \(\ell \to 2\ell\) and \(v \to v/2\):</p>
+<p>\[\varepsilon' = B \cdot (2\ell) \cdot (v/2) = B \ell v = \varepsilon\]</p>
+<p>The EMF is unchanged, so the current and power are also unchanged. The doubling of \(\ell\) exactly
+compensates the halving of \(v\) because EMF depends on the <strong>product</strong> \(\ell v\).</p>
+
 <hr />
 <h4>Answer Summary</h4>
 <table border="1" cellpadding="5" cellspacing="0">
@@ -95,11 +109,12 @@ through the external resistor.</p>
   <tr><td>(b)</td><td>\(I\)</td><td>{@ta2@} A</td></tr>
   <tr><td>(c)</td><td>\(P\)</td><td>{@ta3@} W</td></tr>
   <tr><td>(d)</td><td>Current direction</td><td>Counterclockwise (downward through R)</td></tr>
+  <tr><td>(e)</td><td>Parameter change</td><td>Power stays the same</td></tr>
 </table>
 ]]></text>
   </generalfeedback>
 
-  <defaultgrade>4.0000000</defaultgrade>
+  <defaultgrade>5.0000000</defaultgrade>
   <penalty>0.0000000</penalty>
   <hidden>0</hidden>
   <idnumber/>
@@ -139,6 +154,14 @@ ta4: [[1, true, "Counterclockwise (downward through R) — opposes increasing fl
       [3, false, "No current flows — the bar is not part of a closed circuit"],
       [4, false, "The direction alternates as the bar moves"]];
 ta4_correct: 1;
+
+/* Part (e) MCQ: What happens to power when ell doubles and v halves? */
+/* P = (B*ell*v)^2/R. With 2*ell and v/2: P' = (B*2*ell*v/2)^2/R = (B*ell*v)^2/R = P unchanged */
+ta5: [[1, true, "The power stays the same — P = (Bℓv)²/R, and doubling ℓ while halving v leaves Bℓv unchanged"],
+      [2, false, "The power doubles — longer bar means more EMF"],
+      [3, false, "The power halves — slower bar means less EMF"],
+      [4, false, "The power quadruples — P is proportional to ℓ²"]];
+ta5_correct: 1;
 ]]></text>
   </questionvariables>
 
@@ -155,6 +178,9 @@ ta4_correct: 1;
 
 <h4>Part (d) &mdash; Current Direction</h4>
 <div>[[feedback:prt4]]</div>
+
+<h4>Part (e) &mdash; Parameter Sensitivity</h4>
+<div>[[feedback:prt5]]</div>
 ]]></text>
   </specificfeedback>
 
@@ -271,7 +297,27 @@ ta4_correct: 1;
   </input>
 
   <!-- ============================================================ -->
-  <!-- PRTs (4 total)                                                -->
+  <!-- ans5: Part (e) — Parameter sensitivity MCQ (radio) -->
+  <input>
+    <name>ans5</name>
+    <type>radio</type>
+    <tans>ta5</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- PRTs (5 total)                                                -->
   <!-- ============================================================ -->
 
   <!-- prt1: Part (a) — Motional EMF -->
@@ -606,6 +652,42 @@ prt3_IR_error: if (abs(P_wrong_IR) > 1.0e-30 and abs(sa3_float) > 1.0e-30 and ab
     </node>
   </prt>
 
+  <!-- prt5: Part (e) — Parameter sensitivity MCQ -->
+  <prt>
+    <name>prt5</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check parameter sensitivity MCQ answer</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans5</sans>
+      <tans>ta5_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! Since \(P = (B\ell v)^2/R\) and the product \(\ell v\) is unchanged when \(\ell\) doubles and \(v\) halves, the power stays the same.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The key insight is that \(P = (B\ell v)^2/R\). The EMF depends on the <strong>product</strong> \(\ell v\). Doubling \(\ell\) and halving \(v\) gives \(2\ell \times v/2 = \ell v\), which is unchanged. Therefore the power stays the same.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
   <!-- ============================================================ -->
   <!-- QUESTION TESTS                                                -->
   <!-- ============================================================ -->
@@ -627,6 +709,10 @@ prt3_IR_error: if (abs(P_wrong_IR) > 1.0e-30 and abs(sa3_float) > 1.0e-30 and ab
     <testinput>
       <name>ans4</name>
       <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
     </testinput>
     <expected>
       <name>prt1</name>
@@ -652,6 +738,12 @@ prt3_IR_error: if (abs(P_wrong_IR) > 1.0e-30 and abs(sa3_float) > 1.0e-30 and ab
       <expectedpenalty>0.0000000</expectedpenalty>
       <expectedanswernote>prt4-0-T</expectedanswernote>
     </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
   </qtest>
 
   <qtest>
@@ -670,6 +762,10 @@ prt3_IR_error: if (abs(P_wrong_IR) > 1.0e-30 and abs(sa3_float) > 1.0e-30 and ab
     </testinput>
     <testinput>
       <name>ans4</name>
+      <value>2</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
       <value>2</value>
     </testinput>
     <expected>
@@ -695,6 +791,12 @@ prt3_IR_error: if (abs(P_wrong_IR) > 1.0e-30 and abs(sa3_float) > 1.0e-30 and ab
       <expectedscore>0.0000000</expectedscore>
       <expectedpenalty>0.0000000</expectedpenalty>
       <expectedanswernote>prt4-0-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-F</expectedanswernote>
     </expected>
   </qtest>
 
