@@ -15,7 +15,7 @@
 <h3>Week 12 &ndash; Q3: Coupling Coefficient, Dot Convention, and T-Equivalent</h3>
 <p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
 <p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
-<p><strong>Total: 6 points | Penalty per wrong attempt: 0%</strong></p>
+<p><strong>Total: 8 points | Penalty per wrong attempt: 0%</strong></p>
 
 <hr />
 
@@ -71,6 +71,21 @@ Does this occur for the given parameters?</p>
 
 <p>[[input:ans6]]</p>
 
+<h4>Part (e) &mdash; Opposing T-Equivalent \(L_c\) (1 point)</h4>
+
+<p>If \(i_2\) instead entered the <strong>undotted</strong> terminal (opposing case), what would \(L_c\) be in the T-equivalent? (in <strong>mH</strong>)</p>
+
+<p>\(L_c\) (opposing) = [[input:ans7]] mH</p>
+<p><em>Syntax hint: Enter a number (may be negative), e.g. <code>-30.0</code> or <code>30.0</code></em></p>
+
+<h4>Part (f) &mdash; Opposing Energy Sign (1 point)</h4>
+
+<p>In the opposing configuration, the energy stored in the coupled system is
+\(W = \tfrac{1}{2}L_1 i_1^2 + \tfrac{1}{2}L_2 i_2^2 + \_\_\_ \cdot M i_1 i_2\).
+What sign fills the blank?</p>
+
+<p>[[input:ans8]]</p>
+
 ]]></text>
   </questiontext>
 
@@ -103,6 +118,23 @@ T-equivalent circuit model. It occurs when \(k > \sqrt{L_1/L_2}\) (i.e., when \(
 Since \(k = {@k@} {@if is(k > k_threshold_val) then "> " else "\\leq "@} {@k_threshold@}\),
 \(L_a\) is {@if is(La_negative=true) then "negative" else "non-negative"@}.</p>
 
+<h4>Step 5: Opposing T-Equivalent</h4>
+<p>If \(i_2\) enters the <strong>undotted</strong> terminal instead, the mutual flux opposes the self-flux.
+The voltage equations become:</p>
+<p>\[v_1 = L_1 \frac{di_1}{dt} - M \frac{di_2}{dt}\]</p>
+<p>\[v_2 = -M \frac{di_1}{dt} + L_2 \frac{di_2}{dt}\]</p>
+<p>The opposing T-equivalent elements are:</p>
+<p>\[L_a = L_1 + M = {@L1_mH@} + {@M_mH@} = {@La_opp_mH@}\;\text{mH}\]</p>
+<p>\[L_b = L_2 + M = {@L2_mH@} + {@M_mH@} = {@Lb_opp_mH@}\;\text{mH}\]</p>
+<p>\[L_c = -M = {@Lc_opp_mH@}\;\text{mH}\]</p>
+<p>Note that \(L_c\) is always negative in the opposing case, while \(L_a\) and \(L_b\) are always positive.</p>
+
+<h4>Step 6: Opposing Energy Expression</h4>
+<p>For the opposing case, the stored energy is:</p>
+<p>\[W = \tfrac{1}{2}L_1 i_1^2 + \tfrac{1}{2}L_2 i_2^2 - M i_1 i_2\]</p>
+<p>The minus sign arises because the opposing mutual flux reduces the total magnetic energy stored
+in the coupled system.</p>
+
 <hr />
 <h4>Answer Summary</h4>
 <table border="1" cellpadding="5" cellspacing="0">
@@ -113,11 +145,13 @@ Since \(k = {@k@} {@if is(k > k_threshold_val) then "> " else "\\leq "@} {@k_thr
   <tr><td>(c2)</td><td>\(L_b\)</td><td>{@Lb_mH@} mH</td></tr>
   <tr><td>(c3)</td><td>\(L_c\)</td><td>{@Lc_mH@} mH</td></tr>
   <tr><td>(d)</td><td>Negative element?</td><td>{@if is(La_negative=true) then "Yes — La is negative" else "No — all elements are non-negative"@}</td></tr>
+  <tr><td>(e)</td><td>\(L_c\) (opposing)</td><td>{@Lc_opp_mH@} mH</td></tr>
+  <tr><td>(f)</td><td>Energy sign</td><td>Minus (&minus;)</td></tr>
 </table>
 ]]></text>
   </generalfeedback>
 
-  <defaultgrade>6.0000000</defaultgrade>
+  <defaultgrade>8.0000000</defaultgrade>
   <penalty>0.0000000</penalty>
   <hidden>0</hidden>
   <idnumber/>
@@ -184,6 +218,20 @@ ta6: if is(La_negative=true) then
         [3, false, "Yes — but only because the coupling coefficient k is invalid (k > 1)"],
         [4, false, "No — negative inductance is impossible in any circuit model"]];
 ta6_correct: if is(La_negative=true) then 1 else 2;
+
+/* ===== Part (e): Opposing T-equivalent Lc ===== */
+/* Opposing case: Lc = -M, La = L1 + M, Lb = L2 + M */
+ta7: float(-M_mH);
+La_opp_mH: float((L1+M)*1000);
+Lb_opp_mH: float((L2+M)*1000);
+Lc_opp_mH: float(-M_mH);
+
+/* ===== Part (f): Opposing energy sign MCQ ===== */
+ta8: [[1, true, "Minus (\u2212) \u2014 opposing mutual flux reduces stored energy"],
+      [2, false, "Plus (+) \u2014 all energy contributions are additive"],
+      [3, false, "Zero \u2014 mutual inductance does not affect stored energy"],
+      [4, false, "It depends on the values of i\u2081 and i\u2082"]];
+ta8_correct: 1;
 ]]></text>
   </questionvariables>
 
@@ -206,11 +254,17 @@ ta6_correct: if is(La_negative=true) then 1 else 2;
 
 <h4>Part (d) &mdash; Negative Inductance</h4>
 <div>[[feedback:prt6]]</div>
+
+<h4>Part (e) &mdash; Opposing \(L_c\)</h4>
+<div>[[feedback:prt7]]</div>
+
+<h4>Part (f) &mdash; Opposing Energy Sign</h4>
+<div>[[feedback:prt8]]</div>
 ]]></text>
   </specificfeedback>
 
   <questionnote>
-    <text>Set {@set@}: L₁={@L1_mH@}mH, L₂={@L2_mH@}mH, k={@k@} | M={@M_mH@}mH, La={@La_mH@}mH, Lb={@Lb_mH@}mH, Lc={@Lc_mH@}mH</text>
+    <text>Set {@set@}: L₁={@L1_mH@}mH, L₂={@L2_mH@}mH, k={@k@} | M={@M_mH@}mH, La={@La_mH@}mH, Lb={@Lb_mH@}mH, Lc={@Lc_mH@}mH | Opposing: Lc_opp={@Lc_opp_mH@}mH</text>
   </questionnote>
 
   <questiondescription format="html">
@@ -359,8 +413,46 @@ ta6_correct: if is(La_negative=true) then 1 else 2;
     <options/>
   </input>
 
+  <input>
+    <name>ans7</name>
+    <type>numerical</type>
+    <tans>ta7</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>0</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <input>
+    <name>ans8</name>
+    <type>radio</type>
+    <tans>ta8</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
+    <options/>
+  </input>
+
   <!-- ============================================================ -->
-  <!-- PRTs (6 total)                                                -->
+  <!-- PRTs (8 total)                                                -->
   <!-- ============================================================ -->
 
   <!-- prt1: Part (a) — Mutual inductance M -->
@@ -847,6 +939,128 @@ prt5_oom_ok: if (abs(ref5_float) > 1.0e-30 and abs(sa5_float) > 1.0e-30 and (abs
     </node>
   </prt>
 
+  <!-- prt7: Part (e) — Opposing Lc value -->
+  <prt>
+    <name>prt7</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative 5% — correct opposing Lc</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans7</sans>
+      <tans>ta7</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! For the opposing case, \(L_c = -M = {@Lc_opp_mH@}\;\text{mH}\). The full opposing T-equivalent is: \(L_a = L_1 + M = {@La_opp_mH@}\;\text{mH}\), \(L_b = L_2 + M = {@Lb_opp_mH@}\;\text{mH}\), \(L_c = -M = {@Lc_opp_mH@}\;\text{mH}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt7-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <description>Check if student gave +M instead of -M</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans7</sans>
+      <tans>float(M_mH)</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-1-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>You gave +M instead of &minus;M. For the opposing case, \(L_c = -M\) because the mutual flux opposes the self-flux. The correct value is {@Lc_opp_mH@} mH.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt7-1-F</falseanswernote>
+      <falsefeedback format="html">
+        <text/>
+      </falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <description>OoM fallback</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans7</sans>
+      <tans>ta7</tans>
+      <testoptions>0.5</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.3000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-2-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Your answer is in the right order of magnitude. For the opposing T-equivalent: \(L_c = -M = {@Lc_opp_mH@}\;\text{mH}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-2-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. For the opposing case (one current enters the undotted terminal), the T-equivalent has \(L_c = -M = {@Lc_opp_mH@}\;\text{mH}\), \(L_a = L_1 + M = {@La_opp_mH@}\;\text{mH}\), \(L_b = L_2 + M = {@Lb_opp_mH@}\;\text{mH}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt8: Part (f) — Opposing energy sign MCQ -->
+  <prt>
+    <name>prt8</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check opposing energy sign MCQ</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans8</sans>
+      <tans>ta8_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt8-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! For the opposing case (&minus;M in voltage equations), the cross-energy term is &minus;M&middot;i&#x2081;&middot;i&#x2082;.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt8-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. When currents create opposing fluxes, the mutual term reduces the total stored energy, giving \(W = \tfrac{1}{2}L_1 i_1^2 + \tfrac{1}{2}L_2 i_2^2 - M i_1 i_2\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
   <!-- ============================================================ -->
   <!-- QUESTION TESTS                                                -->
   <!-- ============================================================ -->
@@ -876,6 +1090,14 @@ prt5_oom_ok: if (abs(ref5_float) > 1.0e-30 and abs(sa5_float) > 1.0e-30 and (abs
     <testinput>
       <name>ans6</name>
       <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <testinput>
+      <name>ans8</name>
+      <value>ta8</value>
     </testinput>
     <expected>
       <name>prt1</name>
@@ -913,6 +1135,18 @@ prt5_oom_ok: if (abs(ref5_float) > 1.0e-30 and abs(sa5_float) > 1.0e-30 and (abs
       <expectedpenalty>0.0000000</expectedpenalty>
       <expectedanswernote>prt6-0-T</expectedanswernote>
     </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt8</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt8-0-T</expectedanswernote>
+    </expected>
   </qtest>
 
   <qtest>
@@ -939,6 +1173,14 @@ prt5_oom_ok: if (abs(ref5_float) > 1.0e-30 and abs(sa5_float) > 1.0e-30 and (abs
     </testinput>
     <testinput>
       <name>ans6</name>
+      <value>3</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>0</value>
+    </testinput>
+    <testinput>
+      <name>ans8</name>
       <value>3</value>
     </testinput>
     <expected>
@@ -977,6 +1219,18 @@ prt5_oom_ok: if (abs(ref5_float) > 1.0e-30 and abs(sa5_float) > 1.0e-30 and (abs
       <expectedpenalty>0.0000000</expectedpenalty>
       <expectedanswernote>prt6-0-F</expectedanswernote>
     </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-2-F</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt8</name>
+      <expectedscore>0.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt8-0-F</expectedanswernote>
+    </expected>
   </qtest>
 
   <!-- ============================================================ -->
@@ -990,7 +1244,7 @@ prt5_oom_ok: if (abs(ref5_float) > 1.0e-30 and abs(sa5_float) > 1.0e-30 and (abs
     <text><![CDATA[<p><strong>Hint 2 (Formulas):</strong> \(M = k\sqrt{L_1 L_2}\). For the dot convention: check whether the currents enter their respective dotted or undotted terminals to determine if fluxes aid or oppose. The T-equivalent element values depend on this convention: \(L_a = L_1 \mp M\), \(L_b = L_2 \mp M\), \(L_c = \pm M\). Consider whether any T-equivalent element could become negative for certain values of \(k\).</p>]]></text>
   </hint>
   <hint format="html">
-    <text><![CDATA[<p><strong>Hint 3 (Worked Step):</strong> First compute \(M = {@k@}\sqrt{{@L1_mH@} \times {@L2_mH@}} = {@k@} \times {@sqrtL1L2_mH@}\). Then for the T-equivalent: \(L_a = {@L1_mH@} - M\), \(L_b = {@L2_mH@} - M\), \(L_c = M\). Check if \(L_a\) is negative by comparing \(k\) with \(\sqrt{L_1/L_2}\).</p>]]></text>
+    <text><![CDATA[<p><strong>Hint 3 (Worked Step):</strong> First compute \(M = {@k@}\sqrt{{@L1_mH@} \times {@L2_mH@}} = {@k@} \times {@sqrtL1L2_mH@}\). Then for the aiding T-equivalent: \(L_a = {@L1_mH@} - M\), \(L_b = {@L2_mH@} - M\), \(L_c = M\). Check if \(L_a\) is negative by comparing \(k\) with \(\sqrt{L_1/L_2}\). For the opposing case, the signs flip: \(L_a = L_1 + M\), \(L_b = L_2 + M\), \(L_c = -M\). The energy cross-term sign matches the voltage equation sign of \(M\).</p>]]></text>
   </hint>
 
 </question>
