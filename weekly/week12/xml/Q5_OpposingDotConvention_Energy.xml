@@ -113,7 +113,7 @@ shunt element is mathematically valid in the equivalent circuit model.</p>
 ]]></text>
   </generalfeedback>
 
-  <defaultgrade>0.0000000</defaultgrade>
+  <defaultgrade>7.0000000</defaultgrade>
   <penalty>0.0000000</penalty>
   <hidden>0</hidden>
   <idnumber></idnumber>
@@ -381,7 +381,7 @@ ta7_correct: 1;]]></text>
   <!-- ============================================================ -->
   <prt>
     <name>prt1</name>
-    <value>0.0000000</value>
+    <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
@@ -419,7 +419,7 @@ ta7_correct: 1;]]></text>
   <!-- ============================================================ -->
   <prt>
     <name>prt2</name>
-    <value>0.0000000</value>
+    <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
@@ -507,7 +507,7 @@ ta7_correct: 1;]]></text>
   <!-- ============================================================ -->
   <prt>
     <name>prt3</name>
-    <value>0.0000000</value>
+    <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
@@ -622,7 +622,7 @@ prt3_oom_ok: if (abs(float(ta3)) > 1.0e-30 and abs(float(ans3)) > 1.0e-30 and (a
   <!-- ============================================================ -->
   <prt>
     <name>prt4</name>
-    <value>0.0000000</value>
+    <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
@@ -737,7 +737,7 @@ prt4_oom_ok: if (abs(float(ta4)) > 1.0e-30 and abs(float(ans4)) > 1.0e-30 and (a
   <!-- ============================================================ -->
   <prt>
     <name>prt5</name>
-    <value>0.0000000</value>
+    <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
@@ -825,7 +825,7 @@ prt4_oom_ok: if (abs(float(ta4)) > 1.0e-30 and abs(float(ans4)) > 1.0e-30 and (a
   <!-- ============================================================ -->
   <prt>
     <name>prt6</name>
-    <value>0.0000000</value>
+    <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
@@ -940,7 +940,7 @@ prt6_oom_ok: if (abs(float(ta6)) > 1.0e-30 and abs(float(ans6)) > 1.0e-30 and (a
   <!-- ============================================================ -->
   <prt>
     <name>prt7</name>
-    <value>0.0000000</value>
+    <value>1.0000000</value>
     <autosimplify>1</autosimplify>
     <feedbackstyle>1</feedbackstyle>
     <feedbackvariables>
