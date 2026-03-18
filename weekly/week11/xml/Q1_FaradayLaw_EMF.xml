@@ -39,6 +39,7 @@ of the induced EMF in the coil.</p>
 
 <p>\(\varepsilon_{\text{peak}} = \) [[input:ans1]] V</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>5.92</code> or <code>5.92e0</code></em></p>
+[[validation:ans1]]
 
 <h4>Part (b) &mdash; Lenz&rsquo;s Law (1 point)</h4>
 
@@ -46,6 +47,7 @@ of the induced EMF in the coil.</p>
 in which direction does the induced current flow when viewed from the direction of \(\mathbf{B}\)?</p>
 
 <p>[[input:ans2]]</p>
+[[validation:ans2]]
 
 <h4>Part (c) &mdash; Effect of Doubling Frequency (1 point)</h4>
 
@@ -53,6 +55,7 @@ in which direction does the induced current flow when viewed from the direction 
 what happens to the peak EMF?</p>
 
 <p>[[input:ans3]]</p>
+[[validation:ans3]]
 
 <h4>Part (d) &mdash; Identify the Error (1 point)</h4>
 
@@ -61,6 +64,7 @@ what happens to the peak EMF?</p>
 What factor did the student most likely forget to include?</p>
 
 <p>[[input:ans4]]</p>
+[[validation:ans4]]
 
 ]]></text>
   </questiontext>

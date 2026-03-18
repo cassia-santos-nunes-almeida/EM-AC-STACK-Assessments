@@ -38,6 +38,7 @@ What turns ratio \(N_1/N_2\) achieves this?</p>
 
 <p>\(N_1/N_2 = \) [[input:ans1]]</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>2.50</code></em></p>
+[[validation:ans1]]
 
 <h4>Part (b) &mdash; Input Impedance (1 point)</h4>
 
@@ -46,6 +47,7 @@ the primary side of the transformer?</p>
 
 <p>\(Z_{\text{in}} = \) [[input:ans2]] &Omega;</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>50.0</code></em></p>
+[[validation:ans2]]
 
 <h4>Part (c) &mdash; Maximum Power to Load (1 point)</h4>
 
@@ -53,6 +55,7 @@ the primary side of the transformer?</p>
 
 <p>\(P_{\max} = \) [[input:ans3]] W</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>0.500</code></em></p>
+[[validation:ans3]]
 
 <h4>Part (d) &mdash; System Efficiency (1 point)</h4>
 
@@ -60,12 +63,14 @@ the primary side of the transformer?</p>
 (ratio of power delivered to load vs. total power from the source)?</p>
 
 <p>[[input:ans4]]</p>
+[[validation:ans4]]
 
 <h4>Part (e) &mdash; Why Use Impedance Matching? (1 point)</h4>
 
 <p>Why is impedance matching with a transformer useful in practice?</p>
 
 <p>[[input:ans5]]</p>
+[[validation:ans5]]
 
 ]]></text>
   </questiontext>

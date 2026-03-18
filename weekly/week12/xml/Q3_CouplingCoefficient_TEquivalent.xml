@@ -37,6 +37,7 @@
 
 <p>\(M = \) [[input:ans1]] mH</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>30.0</code></em></p>
+[[validation:ans1]]
 
 <h4>Part (b) &mdash; Flux Relationship (1 point)</h4>
 
@@ -44,6 +45,7 @@
 <strong>aiding</strong> or <strong>opposing</strong> the self-flux?</p>
 
 <p>[[input:ans2]]</p>
+[[validation:ans2]]
 
 <h4>Part (c) &mdash; T-Equivalent Circuit (3 points)</h4>
 
@@ -57,12 +59,15 @@ and \(L_c\) as a shunt element.</p>
 
 <p>\(L_a = \) [[input:ans3]] mH</p>
 <p><em>Syntax hint: Enter a number (may be negative), e.g. <code>-5.00</code> or <code>70.0</code></em></p>
+[[validation:ans3]]
 
 <p>\(L_b = \) [[input:ans4]] mH</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>70.0</code></em></p>
+[[validation:ans4]]
 
 <p>\(L_c = \) [[input:ans5]] mH</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>30.0</code></em></p>
+[[validation:ans5]]
 
 <h4>Part (d) &mdash; Negative Inductance (1 point)</h4>
 
@@ -70,6 +75,7 @@ and \(L_c\) as a shunt element.</p>
 Does this occur for the given parameters?</p>
 
 <p>[[input:ans6]]</p>
+[[validation:ans6]]
 
 <h4>Part (e) &mdash; Opposing T-Equivalent \(L_c\) (1 point)</h4>
 
@@ -77,6 +83,7 @@ Does this occur for the given parameters?</p>
 
 <p>\(L_c\) (opposing) = [[input:ans7]] mH</p>
 <p><em>Syntax hint: Enter a number (may be negative), e.g. <code>-30.0</code> or <code>30.0</code></em></p>
+[[validation:ans7]]
 
 <h4>Part (f) &mdash; Opposing Energy Sign (1 point)</h4>
 
@@ -85,6 +92,7 @@ Does this occur for the given parameters?</p>
 What sign fills the blank?</p>
 
 <p>[[input:ans8]]</p>
+[[validation:ans8]]
 
 ]]></text>
   </questiontext>
