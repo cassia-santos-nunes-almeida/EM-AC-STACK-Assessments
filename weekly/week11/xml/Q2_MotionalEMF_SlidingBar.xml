@@ -12,7 +12,7 @@
   </name>
   <questiontext format="html">
     <text><![CDATA[
-<h3>Week 11 &ndash; Q2: Motional EMF &mdash; Sliding Bar on Rails</h3>
+<h3>Motional EMF &mdash; Sliding Bar on Rails</h3>
 <p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
 <p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
 <p><strong>Total: 5 points | Penalty per wrong attempt: 0%</strong></p>
@@ -36,6 +36,7 @@ by a resistor \(R = {@R@}\;\Omega\).</p>
 
 <p>\(\varepsilon = \) [[input:ans1]] V</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>1.20</code></em></p>
+[[validation:ans1]]
 
 <h4>Part (b) &mdash; Current (1 point)</h4>
 
@@ -43,6 +44,7 @@ by a resistor \(R = {@R@}\;\Omega\).</p>
 
 <p>\(I = \) [[input:ans2]] A</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>0.200</code></em></p>
+[[validation:ans2]]
 
 <h4>Part (c) &mdash; Power Dissipated (1 point)</h4>
 
@@ -50,12 +52,14 @@ by a resistor \(R = {@R@}\;\Omega\).</p>
 
 <p>\(P = \) [[input:ans3]] W</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>0.240</code></em></p>
+[[validation:ans3]]
 
 <h4>Part (d) &mdash; Current Direction (1 point)</h4>
 
 <p>Using Lenz&rsquo;s law, determine the direction of the induced current through the resistor.</p>
 
 <p>[[input:ans4]]</p>
+[[validation:ans4]]
 
 <h4>Part (e) &mdash; Parameter Sensitivity (1 point)</h4>
 
@@ -63,6 +67,7 @@ by a resistor \(R = {@R@}\;\Omega\).</p>
 (\(v \to v/2\)). All other parameters remain unchanged. What happens to the power dissipated in the resistor?</p>
 
 <p>[[input:ans5]]</p>
+[[validation:ans5]]
 
 ]]></text>
   </questiontext>
