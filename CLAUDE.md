@@ -1,5 +1,108 @@
 # Testing-Codes
 
+<!-- BEGIN GLOBAL RULES -->
+
+## 1. Project Identity
+
+Owner: Cássia Almeida (she/her), Associate Professor, LUT University (Finland)
+Languages: English (primary for technical work), Finnish (institutional), Portuguese (personal)
+Expertise level: Senior — skip fundamentals unless asked. Precision over completeness.
+Role context: Engineering educator building AI-integrated teaching tools, assessment systems, and interactive web applications for electromagnetic theory and circuit analysis students.
+
+Active courses:
+* BL30A0350 — Electromagnetism and Circuit Analysis (EM&AC)
+* LES10A020 — Engineering Physics (EP, co-taught with Mikko Äijälä and Ayesha Sadiqa)
+
+Reference textbooks:
+* Ulaby — Fundamentals of Applied Electromagnetics
+* Ida — Engineering Electromagnetics
+* Nilsson & Riedel — Electric Circuits
+
+Notation conflict (known): Cross-sectional area: A (Nilsson) vs. S (Ulaby). Flux linkage: λ (Nilsson) vs. Λ (Ulaby). Always use the convention of the course being worked on — ask if unclear.
+
+## 2. Behavior Defaults
+
+* Architecture-first: explain structure before writing code.
+* Confirm intent before writing code for any non-trivial task.
+* Flag risks, edge cases, and conflicts proactively — do not wait to be asked.
+* Only modify explicitly requested parts. Leave everything else untouched.
+* When multiple options exist, present them with tradeoffs — let Cássia decide.
+* Never add new ideas to messages or documents. Never remove existing ones. Only adjust what is asked.
+
+Tone: Professional, direct, warm, natural. No flattery. No filler.
+
+Environment:
+* OS: Windows / PowerShell
+* Python: use python — not python3 (not on PATH)
+* Claude Code active — use session teleport when needed; re-authenticate with /login if token expired
+
+## 3. Self-Verification (applies to all tasks)
+
+Before returning any output:
+1. Goal analysis — State the explicit and implicit goals. What does success look like?
+2. Assumption audit — List every inference made that was not directly stated in the input. For each: what was the basis, and what would change if the assumption is wrong?
+3. Gap identification — What is missing, ambiguous, or likely to fall short?
+4. End-to-end self-test — Test output against all stated goals and identified risks. Iterate until requirements are met and output is optimized. Do not return control until this is complete.
+5. Pattern check — Before finalizing, check PATTERNS.md. If the output would trigger a known pattern, apply the documented fix automatically.
+
+## 4. Session Protocols
+
+### Session Open
+At the start of every session, before any task work:
+1. Read CLAUDE.md (this file) — confirm active constraints and project identity.
+2. Read PATTERNS.md — load all accumulated corrections and rules. Treat every entry as a hard constraint, not a suggestion.
+3. Read SESSION.md if present — resume from last known state.
+4. Read `.claude/skill/context_evaluator/context.md` — stable architecture facts.
+5. Confirm readiness: state which skills are relevant to today's work and flag any conflict between loaded files.
+
+Do not begin task work until these steps are confirmed.
+To trigger this protocol, say: **open session** or **load context**.
+
+### Session Close
+At the end of every session, before returning control:
+1. Review the full session for recurring corrections or repeated assumptions — anything said more than once, or any mistake that appeared in more than one place.
+2. For each pattern found:
+   - Produce a concrete rule in plain language.
+   - Add it to PATTERNS.md under the relevant category.
+   - State: "Pattern detected: [X]. Rule added: [Y]."
+3. Write SESSION.md:
+   - What was completed (with file names and locations).
+   - What is in progress (enough context to resume cold).
+   - Open decisions or blockers.
+   - Which PATTERNS.md entries were triggered today.
+4. If any SKILL.md should be updated based on today's work, state the proposed change explicitly and ask for confirmation before writing.
+
+To trigger this protocol, say: **close session** or **wrap up**.
+
+## 5. Cross-Skill Rules
+
+These apply to all skills. Skills do not repeat them.
+
+### Writing and communication
+* Never use: "flagging", "thanks for flagging" — use "thanks for the heads-up" or "thanks for pointing that out"
+* Email sign-off: "Best regards," — never "Best,"
+* Sign as: "Cássia" — never full name in sign-off
+* Anti-AI banned words: "crucial", "vital", "leverage", "delve", "navigate", "landscape", "groundbreaking", "game-changer", "it's worth noting", "at the end of the day", "in conclusion"
+
+### Code
+* Confirm intent before writing non-trivial code
+* Explain architectural choices when making decisions that affect structure
+* Flag performance and edge cases proactively
+
+### Files and structure
+* Check PATTERNS.md before starting any task in a known domain
+* Session state lives in SESSION.md — write it at close, read it at open
+* Never duplicate content between CLAUDE.md and a SKILL.md — reference by name
+
+## 6. Skill Index
+
+| Skill | Trigger | File |
+|-------|---------|------|
+| context-evaluator | STACK, Moodle, session management, context loading | .claude/skill/context_evaluator/SKILL.md |
+| circuitikz-circuit-diagrams | circuit diagram, draw circuit, CircuiTikZ, LaTeX circuit | .claude/skill/circuitikz-latex-circuit-diagrams/SKILL.md |
+
+<!-- END GLOBAL RULES -->
+
 ## Project Overview
 
 Educational assessment content for an undergraduate Electromagnetism & Circuit Analysis course. Two content types:
@@ -16,7 +119,9 @@ All content is **Moodle STACK XML** (containing embedded Maxima CAS code) with *
 
 ```
 Testing-Codes/
-├── CLAUDE.md                          # This file — repo-level rules and lessons learned
+├── CLAUDE.md                          # This file — global rules + repo-specific conventions
+├── PATTERNS.md                        # Accumulated corrections and rules (living memory)
+├── SESSION.md                         # Current session state (overwritten each close)
 ├── .claude/skill/
 │   ├── context_evaluator/             # Project management context (session tracking, decisions)
 │   └── circuitikz-latex-circuit-diagrams/ # Circuit diagram generation skill + references
@@ -269,48 +374,6 @@ Before committing any STACK XML, validate **every PRT** using this checklist:
 - **Scope:** Apply to all weekly questions first (Q1-Q5), then evaluate for exam use.
 - **Status:** Not yet started — planned for next session.
 
-## Common Mistakes to Avoid
-
-Hard-won lessons from sessions 1-3. **Do not repeat these errors.**
-
-### PRT / Grading
-
-1. **`NumAbsolute` for zero, `NumRelative` fallback for symbolic** — When the reference value is 0, use `NumAbsolute` (tolerance 0.01); `NumRelative` divides by zero. When a PRT uses `AlgEquiv` on an expression that evaluates to a number (possibly containing `%pi`), always add a fallback node with `NumRelative` (5%) against `float()` to catch decimal approximations.
-2. **No `SigFigsStrict` as a scoring gate** — penalizes formatting, not understanding.
-3. **No `{@ansN@}` in `<specificfeedback>`** — STACK renders these as CAS variable symbols. Use `[[feedback:prtN]]` only.
-4. **Wrap feedbackvariables containing `<` in CDATA** — XML parsers interpret bare `<` as tag openers. Always use `<![CDATA[ ... ]]>`.
-5. **Validate PRT node chains before committing** — use the multi-tiered validation methodology (see above). A single broken `truenextnode` reference silently skips grading nodes.
-
-### Maxima / CAS
-
-6. **Exact arithmetic for symbolic constants** — write `mu0: 4*%pi/10^7;` (exact rational), **never** `4*%pi*1e-7` (float). Floats cause `AlgEquiv` failures on symbolic expressions like `0.2*%pi`.
-7. **Verify and test all parameter set variants** — check that `alpha` vs `omega0` produces the intended damping regime for every variant. A single untested variant can produce wrong answers or degenerate cases.
-8. **`insertstars=1`** on all algebraic inputs — without it, `2t` is rejected instead of interpreted as `2*t`.
-
-### Syntax Hints & Answer Security
-
-9. **Syntax hints must define aliases and explain every symbol** — if a hint tells students to type `N`, `l1`, `mur`, etc., `questionvariables` must define matching aliases (`N: N_val;` etc.). Always state how to type special symbols: `mu0` for μ₀, `mur` for μᵣ, `%pi` for π, `j` for imaginary unit, `exp()`/`sin()`/`cos()` for functions. Show a complete typed example.
-10. **Don't leak answers** via `syntaxhint`, textarea placeholder text, or overly specific hint content. In unsupervised exams, even structural hints narrow the solution space.
-
-### MCQ / Input Types
-
-11. **Match MCQ type to option length** — `type="dropdown"` for short classification labels (e.g., damping regime); `type="radio"` for long descriptive options (>~40 chars) that would be truncated in a dropdown.
-12. **No dependent sources in Easy questions** — reserve for Difficult (Q4) only.
-
-### Diagram Embedding
-
-13. **No base64 in exam XMLs** — Moodle's HTML sanitizer strips data URIs. Use text placeholders for exams; base64 is fine for weekly practice questions.
-
-### CircuiTikZ / Diagram Rules
-
-14. **Switch element name = action at t=0** — `opening switch` = was closed, now opening (breaking contact). `closing switch` = was open, now closing (making contact). Don't confuse the element name with the state *before* t=0.
-15. **Name every switch; use "open"/"closed" for SPST** — use SW1, SW2, … in both diagram and XML text. Don't use abstract "position a/b" labels — those only apply to SPDT switches.
-16. **Keep diagram labels and XML text in sync** — if the diagram shows SW1–SW4, the questiontext, generalfeedback, and hints must all use the same names.
-17. **No `\dfrac` inside CircuiTikZ `l=` labels** — causes "Extra \endgroup" errors. Use a separate `\node` element for complex math labels.
-18. **Leave adequate spacing between adjacent vertical components** — voltage/polarity labels need clear visual separation from neighboring components.
-19. **Don't mix diagram tools in the same content set** — visual inconsistency confuses students. Use CircuiTikZ for all new content. Legacy Schemdraw files preserved with `_schemdraw` suffix.
-20. **Test compilation before embedding; use `standalone` with `border=10pt`** — always compile `.tex` → SVG and visually inspect before base64-encoding. Without `border`, labels and arrows get clipped at SVG edges.
-
 ## Workflow Guidelines — Task Decomposition
 
 **Always plan before building.** Before starting any question set, create a plan first (use the Plan agent or outline the structure). Then execute in small, parallelizable chunks.
@@ -368,4 +431,4 @@ Before creating any diagram or visual content, read these files:
 
 ## Last Updated
 
-2026-03-19 (session 5-6: added workflow/task-decomposition guidelines)
+2026-03-20 (session 5: integrated 3-file context system — CLAUDE.md, PATTERNS.md, SESSION.md)
