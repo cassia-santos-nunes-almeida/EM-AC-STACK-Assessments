@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ============================================================ -->
+<!-- Week 13 - Q1: Lumped vs Distributed Model Identification     -->
+<!-- Course: Electromagnetism and Circuit Analysis, LUT University -->
+<!-- Topics: Transmission lines, lumped vs distributed models,    -->
+<!--         wavelength, electrical length                        -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Week 13 – Q1: Lumped vs Distributed Model Identification</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Lumped vs Distributed Model Identification</h3>
+<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
+<p><strong>Total: 7 points (7 parts, 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
+
+<hr />
+
+<p>A transmission line of length \(\ell = {@l_cm@}\;\text{cm}\) carries a signal at frequency
+\(f = {@f_disp@}\). The phase velocity on the line is
+\(v_p = {@vp_disp@} \times 10^8\;\text{m/s}\).</p>
+
+<p>To decide whether a <strong>lumped-element</strong> or <strong>distributed</strong> (transmission-line) model is
+appropriate, we compare the physical length of the line to the signal wavelength.
+The rule of thumb is:</p>
+
+<p style="text-align:center;">
+If \(\displaystyle \frac{\ell}{\lambda} \ge 0.01\), use the <strong>distributed</strong> model; otherwise the <strong>lumped</strong> model suffices.
+</p>
+
+<hr />
+
+<h4>Part&nbsp;(a) &mdash; Wavelength (1&nbsp;pt)</h4>
+<p>Compute the wavelength \(\lambda = v_p / f\). Give your answer in <strong>metres</strong>.</p>
+<p>\(\lambda = \) [[input:ans1]] [[validation:ans1]] m</p>
+<p><em>Hint: \(\lambda = v_p / f\). Enter a numerical value (scientific notation accepted, e.g. 2e5).</em></p>
+
+<h4>Part&nbsp;(b) &mdash; Electrical length ratio (1&nbsp;pt)</h4>
+<p>Compute the ratio \(\ell / \lambda\).</p>
+<p>\(\ell / \lambda = \) [[input:ans2]] [[validation:ans2]]</p>
+<p><em>Hint: Dimensionless ratio. Scientific notation accepted.</em></p>
+
+<h4>Part&nbsp;(c) &mdash; Threshold check (1&nbsp;pt)</h4>
+<p>Is \(\ell / \lambda \ge 0.01\)?</p>
+<p>[[input:ans3]] [[validation:ans3]]</p>
+<p><em>Select Yes or No from the dropdown.</em></p>
+
+<h4>Part&nbsp;(d) &mdash; Model selection (1&nbsp;pt)</h4>
+<p>Based on your answer above, which model is appropriate at frequency \(f = {@f_disp@}\)?</p>
+<p>[[input:ans4]] [[validation:ans4]]</p>
+<p><em>Select Lumped or Distributed from the dropdown.</em></p>
+
+<h4>Part&nbsp;(e) &mdash; Higher frequency (1&nbsp;pt)</h4>
+<p>Now suppose the frequency is increased by a factor of 100 (i.e. \(f_{\text{new}} = 100\,f\)),
+while the line length and phase velocity remain the same.
+Compute the new ratio \(\ell / \lambda_{\text{new}}\).</p>
+<p>\(\ell / \lambda_{\text{new}} = \) [[input:ans5]] [[validation:ans5]]</p>
+<p><em>Hint: How does wavelength change when frequency increases? Scientific notation accepted.</em></p>
+
+<h4>Part&nbsp;(f) &mdash; Model at higher frequency (1&nbsp;pt)</h4>
+<p>At the higher frequency, which model is appropriate?</p>
+<p>[[input:ans6]] [[validation:ans6]]</p>
+<p><em>Select Lumped or Distributed from the dropdown.</em></p>
+
+<h4>Part&nbsp;(g) &mdash; Physical insight (1&nbsp;pt)</h4>
+<p>Which statement best explains why increasing the frequency can change the modelling paradigm
+from lumped to distributed?</p>
+<p>[[input:ans7]] [[validation:ans7]]</p>
+<p><em>Select the most physically accurate explanation.</em></p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h3>Worked Solution</h3>
+
+<h4>Part (a) &mdash; Wavelength</h4>
+<p>The wavelength is:</p>
+<p>\[\lambda = \frac{v_p}{f} = \frac{{@vp@}}{{@f_Hz@}} = {@ta1@}\;\text{m}\]</p>
+
+<h4>Part (b) &mdash; Electrical length ratio</h4>
+<p>The ratio of line length to wavelength:</p>
+<p>\[\frac{\ell}{\lambda} = \frac{{@l_m@}}{{@ta1@}} = {@ta2@}\]</p>
+
+<h4>Part (c) &mdash; Threshold check</h4>
+<p>We compare \(\ell/\lambda = {@ta2@}\) to the threshold \(0.01\).</p>
+<p>Since \(\ell/\lambda {@if is_distributed then "\\ge" else "<"@} 0.01\),
+the answer is <strong>{@if is_distributed then "Yes" else "No"@}</strong>.</p>
+
+<h4>Part (d) &mdash; Model selection</h4>
+<p>Since \(\ell/\lambda {@if is_distributed then "\\ge" else "<"@} 0.01\),
+we use the <strong>{@if is_distributed then "Distributed" else "Lumped"@}</strong> model.</p>
+
+<h4>Part (e) &mdash; Higher frequency</h4>
+<p>When frequency increases by a factor of 100, the wavelength shrinks by 100, so \(\ell/\lambda\) increases by 100:</p>
+<p>\[\frac{\ell}{\lambda_{\text{new}}} = 100 \times {@ta2@} = {@ta5@}\]</p>
+
+<h4>Part (f) &mdash; Model at higher frequency</h4>
+<p>Now \(\ell/\lambda_{\text{new}} = {@ta5@}\), which is
+{@if is_distributed_high then "\\ge" else "<"@} \(0.01\),
+so the <strong>{@if is_distributed_high then "Distributed" else "Lumped"@}</strong> model applies.</p>
+
+<h4>Part (g) &mdash; Physical insight</h4>
+<p>The correct explanation is: <em>At higher frequencies, the wavelength shrinks and becomes comparable
+to the line length, so wave propagation effects matter.</em></p>
+<p>The key idea is that when the physical length of the line is a significant fraction of the wavelength,
+voltages and currents vary along the line and the lumped approximation (uniform V and I) breaks down.</p>
+
+<hr />
+<h4>Answer Summary</h4>
+<table border="1" cellpadding="5" cellspacing="0">
+<tr><th>Part</th><th>Answer</th></tr>
+<tr><td>(a) &lambda;</td><td>{@ta1@} m</td></tr>
+<tr><td>(b) l/&lambda;</td><td>{@ta2@}</td></tr>
+<tr><td>(c) &ge; 0.01?</td><td>{@if is_distributed then "Yes" else "No"@}</td></tr>
+<tr><td>(d) Model</td><td>{@if is_distributed then "Distributed" else "Lumped"@}</td></tr>
+<tr><td>(e) l/&lambda; at 100f</td><td>{@ta5@}</td></tr>
+<tr><td>(f) Model at 100f</td><td>{@if is_distributed_high then "Distributed" else "Lumped"@}</td></tr>
+<tr><td>(g) Insight</td><td>Wavelength shrinks, becomes comparable to line length</td></tr>
+</table>
+]]></text>
+  </generalfeedback>
+  <defaultgrade>7.0000000</defaultgrade>
+  <penalty>0.0000000</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+  <stackversion>
+    <text>2024032101</text>
+  </stackversion>
+  <questionvariables>
+    <text><![CDATA[
+/* Random set selection: 1..4 */
+set: rand(4)+1;
+
+/* Frequency in Hz */
+f_Hz: if set=1 then 1e3 else if set=2 then 100e6 else if set=3 then 10e6 else 1e9;
+
+/* Line length in metres */
+l_m: if set=1 then 0.05 else if set=2 then 0.30 else if set=3 then 0.05 else 0.02;
+
+/* Phase velocity in m/s */
+vp: if set=1 then 2e8 else if set=2 then 3e8 else if set=3 then 2e8 else 2e8;
+
+/* Display-friendly strings */
+f_disp: if set=1 then "1 kHz" else if set=2 then "100 MHz" else if set=3 then "10 MHz" else "1 GHz";
+l_cm: float(l_m * 100);
+vp_disp: if set=1 then "2" else if set=2 then "3" else if set=3 then "2" else "2";
+
+/* --- Teacher answers --- */
+
+/* Part (a): wavelength in metres */
+ta1: float(vp / f_Hz);
+
+/* Part (b): electrical length ratio */
+ta2: float(l_m / ta1);
+
+/* Part (e): l/lambda when frequency is multiplied by 100 */
+ratio_high: float(ta2 * 100);
+
+/* Logical flags for threshold comparison */
+is_distributed: is(ta2 >= 0.01);
+is_distributed_high: is(ratio_high >= 0.01);
+
+/* Part (c): dropdown Yes/No — Is l/lambda >= 0.01? */
+ta3: [[1, is(ta2 >= 0.01), "Yes"], [2, is(ta2 < 0.01), "No"]];
+ta3_correct: if is(ta2 >= 0.01) then 1 else 2;
+
+/* Part (d): dropdown Distributed/Lumped */
+ta4: [[1, is(ta2 >= 0.01), "Distributed"], [2, is(ta2 < 0.01), "Lumped"]];
+ta4_correct: if is(ta2 >= 0.01) then 1 else 2;
+
+/* Part (e) teacher answer */
+ta5: float(ratio_high);
+
+/* Part (f): dropdown Distributed/Lumped at higher freq */
+ta6: [[1, is(ratio_high >= 0.01), "Distributed"], [2, is(ratio_high < 0.01), "Lumped"]];
+ta6_correct: if is(ratio_high >= 0.01) then 1 else 2;
+
+/* Part (g): radio — 4 options, option 1 always correct */
+ta7: [[1,true,"At higher frequencies, the wavelength shrinks and becomes comparable to the line length, so wave propagation effects matter"],[2,false,"Higher frequencies increase the resistance of the line, requiring distributed analysis"],[3,false,"The speed of light decreases at higher frequencies"],[4,false,"Higher frequencies make the line physically longer"]];
+ta7_correct: 1;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html">
+    <text><![CDATA[
+<h4>Part (a) &mdash; Wavelength</h4>
+<div>[[feedback:prt1]]</div>
+
+<h4>Part (b) &mdash; Electrical length ratio</h4>
+<div>[[feedback:prt2]]</div>
+
+<h4>Part (c) &mdash; Threshold check</h4>
+<div>[[feedback:prt3]]</div>
+
+<h4>Part (d) &mdash; Model selection</h4>
+<div>[[feedback:prt4]]</div>
+
+<h4>Part (e) &mdash; Higher frequency ratio</h4>
+<div>[[feedback:prt5]]</div>
+
+<h4>Part (f) &mdash; Model at higher frequency</h4>
+<div>[[feedback:prt6]]</div>
+
+<h4>Part (g) &mdash; Physical insight</h4>
+<div>[[feedback:prt7]]</div>
+]]></text>
+  </specificfeedback>
+  <questionnote>
+    <text>Set {@set@}: f={@f_disp@}, l={@l_cm@} cm, vp={@vp_disp@}×10⁸ m/s | λ={@ta1@} m, l/λ={@ta2@}</text>
+  </questionnote>
+  <questiondescription format="html">
+    <text><![CDATA[<p>Lumped vs distributed model identification — Week 13 training exercise.</p>]]></text>
+  </questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>j</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <!-- ============================================================ -->
+  <!-- INPUTS                                                       -->
+  <!-- ============================================================ -->
+
+  <!-- ans1: numerical — wavelength -->
+  <input>
+    <name>ans1</name>
+    <type>numerical</type>
+    <tans>ta1</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans2: numerical — l/lambda -->
+  <input>
+    <name>ans2</name>
+    <type>numerical</type>
+    <tans>ta2</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans3: dropdown — Is l/lambda >= 0.01? -->
+  <input>
+    <name>ans3</name>
+    <type>dropdown</type>
+    <tans>ta3</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans4: dropdown — Lumped or Distributed -->
+  <input>
+    <name>ans4</name>
+    <type>dropdown</type>
+    <tans>ta4</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans5: numerical — l/lambda at 100x freq -->
+  <input>
+    <name>ans5</name>
+    <type>numerical</type>
+    <tans>ta5</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans6: dropdown — Lumped or Distributed at higher freq -->
+  <input>
+    <name>ans6</name>
+    <type>dropdown</type>
+    <tans>ta6</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans7: radio — Physical insight -->
+  <input>
+    <name>ans7</name>
+    <type>radio</type>
+    <tans>ta7</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ============================================================ -->
+  <!-- PRTs                                                         -->
+  <!-- ============================================================ -->
+
+  <!-- prt1: Part (a) — wavelength (NumRelative 0.05) -->
+  <prt>
+    <name>prt1</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (a): wavelength</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>ta1</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The wavelength is \(\lambda = {@ta1@}\;\text{m}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Use \(\lambda = v_p / f = {@vp@} / {@f_Hz@} = {@ta1@}\;\text{m}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt2: Part (b) — l/lambda (NumRelative 0.05) -->
+  <prt>
+    <name>prt2</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (b): l/lambda ratio</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The electrical length ratio is \(\ell/\lambda = {@ta2@}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Use \(\ell/\lambda = {@l_m@} / {@ta1@} = {@ta2@}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt3: Part (c) — Is l/lambda >= 0.01? (AlgEquiv dropdown) -->
+  <prt>
+    <name>prt3</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (c): threshold comparison</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans3</sans>
+      <tans>ta3_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\ell/\lambda = {@ta2@}\) is {@if is_distributed then "greater than or equal to" else "less than"@} 0.01.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Compare \(\ell/\lambda = {@ta2@}\) to the threshold 0.01.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt4: Part (d) — Lumped or Distributed (AlgEquiv dropdown) -->
+  <prt>
+    <name>prt4</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (d): model selection</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans4</sans>
+      <tans>ta4_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! At this frequency, the {@if is_distributed then "distributed" else "lumped"@} model is appropriate.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Since \(\ell/\lambda = {@ta2@}\) is {@if is_distributed then "&#8805;" else "&lt;"@} 0.01, the {@if is_distributed then "distributed" else "lumped"@} model applies.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt5: Part (e) — l/lambda at 100x freq (NumRelative 0.05) -->
+  <prt>
+    <name>prt5</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (e): l/lambda at 100x frequency</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! At 100 times the frequency, \(\ell/\lambda_{\text{new}} = {@ta5@}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. When frequency increases by 100, wavelength decreases by 100, so \(\ell/\lambda\) increases by 100: \({@ta2@} \times 100 = {@ta5@}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt6: Part (f) — Model at higher freq (AlgEquiv dropdown) -->
+  <prt>
+    <name>prt6</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (f): model at higher frequency</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans6</sans>
+      <tans>ta6_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! At the higher frequency, the {@if is_distributed_high then "distributed" else "lumped"@} model is appropriate.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt6-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. At the higher frequency, \(\ell/\lambda_{\text{new}} = {@ta5@}\), which is {@if is_distributed_high then "&#8805;" else "&lt;"@} 0.01, so the {@if is_distributed_high then "distributed" else "lumped"@} model applies.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt7: Part (g) — Physical insight (AlgEquiv radio) -->
+  <prt>
+    <name>prt7</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (g): physical insight</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans7</sans>
+      <tans>ta7_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! When frequency increases, the wavelength decreases. Once the line length becomes a significant fraction of the wavelength, voltage and current vary along the line and wave propagation effects (reflections, standing waves) become important.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The correct reasoning is: at higher frequencies the wavelength shrinks and becomes comparable to the line length, so wave propagation effects (reflections, standing waves, spatial variation of V and I) become significant, requiring the distributed model.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- DEPLOYED SEEDS                                                -->
+  <!-- ============================================================ -->
+  <deployedseed>12345</deployedseed>
+  <deployedseed>23456</deployedseed>
+  <deployedseed>34567</deployedseed>
+  <deployedseed>45678</deployedseed>
+
+  <!-- ============================================================ -->
+  <!-- QTEST: teacher answers                                        -->
+  <!-- ============================================================ -->
+  <qtest>
+    <testcase>1</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- ============================================================ -->
+  <!-- HINTS                                                        -->
+  <!-- ============================================================ -->
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 1:</strong> The wavelength of a signal on a transmission line is \(\lambda = v_p / f\), where \(v_p\) is the phase velocity and \(f\) is the frequency. Start by computing this value.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 2:</strong> The rule of thumb for choosing between lumped and distributed models is based on the ratio \(\ell/\lambda\). If this ratio is at least 0.01 (i.e. the line is at least 1% of a wavelength long), the distributed model is needed because voltage and current vary appreciably along the line.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 3:</strong> When the frequency increases by a factor of 100, the wavelength decreases by the same factor (since \(\lambda = v_p/f\) and \(v_p\) is unchanged). Therefore \(\ell/\lambda\) increases by 100. This can push a line that was safely "lumped" into the distributed regime &mdash; the paradigm shift occurs because the physical length has not changed, but the electrical length (measured in wavelengths) has grown.</p>]]></text>
+  </hint>
+
+</question>
+</quiz>

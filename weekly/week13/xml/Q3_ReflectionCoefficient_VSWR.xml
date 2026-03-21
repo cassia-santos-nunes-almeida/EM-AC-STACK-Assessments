@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ============================================================ -->
+<!-- Week 13 - Q3: Reflection Coefficient, VSWR, and Standing     -->
+<!--               Wave Locations                                  -->
+<!-- Course: Electromagnetism and Circuit Analysis, LUT University -->
+<!-- Topics: Reflection coefficient, VSWR, voltage maxima/minima  -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Week 13 – Q3: Reflection Coefficient, VSWR, and Standing Wave Locations</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Reflection Coefficient, VSWR, and Standing Wave Locations</h3>
+<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
+<p><strong>Total: 7 points (7 parts, 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
+
+<hr />
+
+<p>A lossless transmission line with characteristic impedance \(Z_0 = {@Z0_disp@}\;\Omega\) is terminated
+by a load impedance \(Z_L = {@RL_disp@} {@if is(XL >= 0) then "+" else "-"@} j{@abs(XL_disp)@}\;\Omega\).
+The operating wavelength is \(\lambda = {@lambda_disp@}\;\text{cm}\).</p>
+
+<p>Compute the reflection coefficient, VSWR, and locations of the first voltage maximum and minimum
+from the load.</p>
+
+<hr />
+
+<h4>Part&nbsp;(a) &mdash; Magnitude of the reflection coefficient (1&nbsp;pt)</h4>
+<p>Compute \(|\Gamma|\).</p>
+<p>\(|\Gamma| = \) [[input:ans1]] [[validation:ans1]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0.447</code></em></p>
+
+<h4>Part&nbsp;(b) &mdash; Phase of the reflection coefficient (1&nbsp;pt)</h4>
+<p>Compute the phase angle \(\theta_\Gamma\) in <strong>degrees</strong>.</p>
+<p>\(\theta_\Gamma = \) [[input:ans2]] [[validation:ans2]] &deg;</p>
+<p><em>Syntax hint: Enter the angle in degrees, e.g. <code>-26.57</code></em></p>
+
+<h4>Part&nbsp;(c) &mdash; VSWR (1&nbsp;pt)</h4>
+<p>Compute the voltage standing wave ratio (VSWR).</p>
+<p>VSWR \(= \) [[input:ans3]] [[validation:ans3]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>2.618</code></em></p>
+
+<h4>Part&nbsp;(d) &mdash; First voltage maximum distance from load (1&nbsp;pt)</h4>
+<p>Find the distance of the <strong>first voltage maximum</strong> from the load, \(d_{\max}\), in <strong>metres</strong>.</p>
+<p>\(d_{\max} = \) [[input:ans4]] [[validation:ans4]] m</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0.0382</code></em></p>
+
+<h4>Part&nbsp;(e) &mdash; First voltage minimum distance from load (1&nbsp;pt)</h4>
+<p>Find the distance of the <strong>first voltage minimum</strong> from the load, \(d_{\min}\), in <strong>metres</strong>.</p>
+<p>\(d_{\min} = \) [[input:ans5]] [[validation:ans5]] m</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0.1582</code></em></p>
+
+<h4>Part&nbsp;(f) &mdash; Matched load reflection coefficient (1&nbsp;pt)</h4>
+<p>If the load impedance equals the characteristic impedance (\(Z_L = Z_0\)), what is \(|\Gamma|\)?</p>
+<p>[[input:ans6]] [[validation:ans6]]</p>
+<p><em>Select the correct value from the dropdown.</em></p>
+
+<h4>Part&nbsp;(g) &mdash; Physical meaning of VSWR = 1 (1&nbsp;pt)</h4>
+<p>What does VSWR = 1 mean physically?</p>
+<p>[[input:ans7]] [[validation:ans7]]</p>
+<p><em>Select the most physically accurate explanation.</em></p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h3>Worked Solution</h3>
+
+<h4>Part (a) &mdash; Magnitude of the reflection coefficient</h4>
+<p>The reflection coefficient is:</p>
+<p>\[\Gamma = \frac{Z_L - Z_0}{Z_L + Z_0} = \frac{({@RL_disp@} {@if is(XL >= 0) then "+" else "-"@} j{@abs(XL_disp)@}) - {@Z0_disp@}}{({@RL_disp@} {@if is(XL >= 0) then "+" else "-"@} j{@abs(XL_disp)@}) + {@Z0_disp@}}\]</p>
+<p>Its magnitude is:</p>
+<p>\[|\Gamma| = {@ta1@}\]</p>
+
+<h4>Part (b) &mdash; Phase of the reflection coefficient</h4>
+<p>The phase angle (argument) of the complex reflection coefficient is:</p>
+<p>\[\theta_\Gamma = {@ta2@}^\circ\]</p>
+
+<h4>Part (c) &mdash; VSWR</h4>
+<p>The voltage standing wave ratio is:</p>
+<p>\[\text{VSWR} = \frac{1 + |\Gamma|}{1 - |\Gamma|} = \frac{1 + {@ta1@}}{1 - {@ta1@}} = {@ta3@}\]</p>
+
+<h4>Part (d) &mdash; First voltage maximum</h4>
+<p>The first voltage maximum occurs at a distance from the load:</p>
+<p>\[d_{\max} = \frac{\theta_\Gamma}{2\beta}\]</p>
+<p>where \(\beta = 2\pi/\lambda\). If the result is negative, add \(\lambda/2\).</p>
+<p>\[d_{\max} = {@ta4@}\;\text{m}\]</p>
+
+<h4>Part (e) &mdash; First voltage minimum</h4>
+<p>The first voltage minimum is separated from the first maximum by \(\lambda/4\):</p>
+<p>\[d_{\min} = d_{\max} + \frac{\lambda}{4} \pmod{\lambda/2}\]</p>
+<p>If the result exceeds \(\lambda/2\), subtract \(\lambda/2\) to get the first occurrence.</p>
+<p>\[d_{\min} = {@ta5@}\;\text{m}\]</p>
+
+<h4>Part (f) &mdash; Matched load</h4>
+<p>When \(Z_L = Z_0\), the numerator \(Z_L - Z_0 = 0\), so \(|\Gamma| = 0\). There is no reflection &mdash; all power is absorbed by the load.</p>
+
+<h4>Part (g) &mdash; VSWR = 1</h4>
+<p>VSWR = 1 means \(|\Gamma| = 0\): the line is perfectly matched, no reflections occur, and all incident power is delivered to the load. The voltage amplitude is constant along the line.</p>
+
+<hr />
+<h4>Answer Summary</h4>
+<table border="1" cellpadding="5" cellspacing="0">
+<tr><th>Part</th><th>Answer</th></tr>
+<tr><td>(a) |&Gamma;|</td><td>{@ta1@}</td></tr>
+<tr><td>(b) &theta;<sub>&Gamma;</sub></td><td>{@ta2@}&deg;</td></tr>
+<tr><td>(c) VSWR</td><td>{@ta3@}</td></tr>
+<tr><td>(d) d<sub>max</sub></td><td>{@ta4@} m</td></tr>
+<tr><td>(e) d<sub>min</sub></td><td>{@ta5@} m</td></tr>
+<tr><td>(f) |&Gamma;| when Z<sub>L</sub>=Z<sub>0</sub></td><td>0</td></tr>
+<tr><td>(g) VSWR=1 meaning</td><td>Perfectly matched &mdash; no reflections</td></tr>
+</table>
+]]></text>
+  </generalfeedback>
+  <defaultgrade>7.0000000</defaultgrade>
+  <penalty>0.0000000</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+  <stackversion>
+    <text>2024032101</text>
+  </stackversion>
+  <questionvariables>
+    <text><![CDATA[
+/* Random set selection: 1..4 */
+set: rand(4)+1;
+
+Z0: if set=1 then 50 else if set=2 then 75 else if set=3 then 100 else 50;
+RL: if set=1 then 100 else if set=2 then 30 else if set=3 then 200 else 25;
+XL: if set=1 then 50 else if set=2 then -40 else if set=3 then 100 else -25;
+lambda_m: if set=1 then 0.48 else if set=2 then 0.36 else if set=3 then 0.60 else 0.72;
+
+/* Complex load */
+ZL: RL + %i*XL;
+
+/* Reflection coefficient */
+Gamma_complex: (ZL - Z0) / (ZL + Z0);
+ta1: float(abs(Gamma_complex));                           /* |Gamma| */
+ta2: float(carg(Gamma_complex) * 180 / %pi);             /* theta_Gamma in degrees */
+
+/* VSWR */
+ta3: float((1 + ta1) / (1 - ta1));
+
+/* Phase constant */
+beta: float(2 * %pi / lambda_m);
+
+/* First voltage maximum from load: d_max = theta_Gamma/(2*beta) if theta_Gamma > 0, else (theta_Gamma+2*pi)/(2*beta) */
+theta_rad: float(carg(Gamma_complex));
+ta4_raw: float(theta_rad / (2 * beta));
+ta4: if is(ta4_raw >= 0) then ta4_raw else float(ta4_raw + lambda_m/2);   /* ensure positive */
+
+/* First voltage minimum: d_min = d_max + lambda/4 (mod lambda/2) or d_max - lambda/4 */
+ta5_raw: float(ta4 + lambda_m/4);
+ta5: if is(ta5_raw >= lambda_m/2) then float(ta5_raw - lambda_m/2) else ta5_raw;
+
+/* Display variables */
+Z0_disp: float(Z0);
+RL_disp: float(RL);
+XL_disp: float(XL);
+lambda_disp: float(lambda_m * 100);  /* in cm */
+
+/* MCQ Part (f): If Z_L = Z_0, |Gamma| = ? */
+ta6: [[1, true, "0"], [2, false, "0.5"], [3, false, "1"], [4, false, "Undefined"]];
+ta6_correct: 1;
+
+/* MCQ Part (g): What does VSWR=1 mean? */
+ta7: [[1, true, "The line is perfectly matched — no reflections occur and all power is delivered to the load"], [2, false, "The line has maximum reflections and no power reaches the load"], [3, false, "The characteristic impedance equals zero"], [4, false, "The line is open-circuited"]];
+ta7_correct: 1;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html">
+    <text><![CDATA[
+<h4>Part (a) &mdash; |&Gamma;|</h4>
+<div>[[feedback:prt1]]</div>
+
+<h4>Part (b) &mdash; &theta;<sub>&Gamma;</sub></h4>
+<div>[[feedback:prt2]]</div>
+
+<h4>Part (c) &mdash; VSWR</h4>
+<div>[[feedback:prt3]]</div>
+
+<h4>Part (d) &mdash; First voltage maximum</h4>
+<div>[[feedback:prt4]]</div>
+
+<h4>Part (e) &mdash; First voltage minimum</h4>
+<div>[[feedback:prt5]]</div>
+
+<h4>Part (f) &mdash; Matched load |&Gamma;|</h4>
+<div>[[feedback:prt6]]</div>
+
+<h4>Part (g) &mdash; VSWR = 1 meaning</h4>
+<div>[[feedback:prt7]]</div>
+]]></text>
+  </specificfeedback>
+  <questionnote>
+    <text>Set {@set@}: Z0={@Z0_disp@} Ω, ZL={@RL_disp@}+j{@XL_disp@} Ω, λ={@lambda_disp@} cm | |Γ|={@ta1@}, θ={@ta2@}°, VSWR={@ta3@}, dmax={@ta4@} m, dmin={@ta5@} m</text>
+  </questionnote>
+  <questiondescription format="html">
+    <text><![CDATA[<p>Reflection coefficient, VSWR, and standing wave locations — Week 13 training exercise.</p>]]></text>
+  </questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>j</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <!-- ============================================================ -->
+  <!-- INPUTS                                                       -->
+  <!-- ============================================================ -->
+
+  <!-- ans1: numerical — |Gamma| -->
+  <input>
+    <name>ans1</name>
+    <type>numerical</type>
+    <tans>ta1</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans2: numerical — theta_Gamma in degrees -->
+  <input>
+    <name>ans2</name>
+    <type>numerical</type>
+    <tans>ta2</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans3: numerical — VSWR -->
+  <input>
+    <name>ans3</name>
+    <type>numerical</type>
+    <tans>ta3</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans4: numerical — d_max in metres -->
+  <input>
+    <name>ans4</name>
+    <type>numerical</type>
+    <tans>ta4</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans5: numerical — d_min in metres -->
+  <input>
+    <name>ans5</name>
+    <type>numerical</type>
+    <tans>ta5</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans6: dropdown — If Z_L = Z_0, |Gamma| = ? -->
+  <input>
+    <name>ans6</name>
+    <type>dropdown</type>
+    <tans>ta6</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans7: radio — What does VSWR=1 mean? -->
+  <input>
+    <name>ans7</name>
+    <type>radio</type>
+    <tans>ta7</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ============================================================ -->
+  <!-- PRTs                                                         -->
+  <!-- ============================================================ -->
+
+  <!-- prt1: Part (a) — |Gamma| (NumRelative 0.05) -->
+  <prt>
+    <name>prt1</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (a): |Gamma|</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>ta1</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The reflection coefficient magnitude is \(|\Gamma| = {@ta1@}\). This tells us that {@decimalplaces(ta1*100, 1)@}% of the incident voltage wave is reflected back toward the source.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The reflection coefficient is \(\Gamma = (Z_L - Z_0)/(Z_L + Z_0)\). With \(Z_L = {@RL_disp@} + j({@XL_disp@})\;\Omega\) and \(Z_0 = {@Z0_disp@}\;\Omega\), compute the complex ratio and take its magnitude. The correct answer is \(|\Gamma| = {@ta1@}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt2: Part (b) — theta_Gamma in degrees (NumRelative 0.05) -->
+  <prt>
+    <name>prt2</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (b): theta_Gamma in degrees</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The phase angle of the reflection coefficient is \(\theta_\Gamma = {@ta2@}^\circ\). This phase determines the positions of voltage maxima and minima along the line.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Compute \(\Gamma = (Z_L - Z_0)/(Z_L + Z_0)\) as a complex number and find its argument (angle) in degrees. The correct answer is \(\theta_\Gamma = {@ta2@}^\circ\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt3: Part (c) — VSWR (NumRelative 0.05) -->
+  <prt>
+    <name>prt3</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (c): VSWR</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! VSWR \(= {@ta3@}\). This means the ratio of maximum to minimum voltage amplitude on the line is {@ta3@}:1. A VSWR of 1 would indicate a perfect match.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. VSWR is computed from the reflection coefficient magnitude: \(\text{VSWR} = (1 + |\Gamma|)/(1 - |\Gamma|) = (1 + {@ta1@})/(1 - {@ta1@}) = {@ta3@}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt4: Part (d) — d_max (NumRelative 0.05) -->
+  <prt>
+    <name>prt4</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (d): first voltage maximum distance</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The first voltage maximum is at \(d_{\max} = {@ta4@}\;\text{m}\) from the load. Voltage maxima occur where the incident and reflected waves add constructively.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The first voltage maximum occurs at \(d_{\max} = \theta_\Gamma / (2\beta)\), where \(\beta = 2\pi/\lambda\). If this value is negative, add \(\lambda/2\) to obtain the first positive distance. The correct answer is \(d_{\max} = {@ta4@}\;\text{m}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt5: Part (e) — d_min (NumRelative 0.05) -->
+  <prt>
+    <name>prt5</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (e): first voltage minimum distance</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The first voltage minimum is at \(d_{\min} = {@ta5@}\;\text{m}\) from the load. Voltage minima occur where the incident and reflected waves interfere destructively, and are always separated from maxima by \(\lambda/4\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The first voltage minimum is at \(d_{\min} = d_{\max} + \lambda/4\), reduced modulo \(\lambda/2\) if it exceeds \(\lambda/2\). The correct answer is \(d_{\min} = {@ta5@}\;\text{m}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt6: Part (f) — |Gamma| when Z_L = Z_0 (AlgEquiv dropdown) -->
+  <prt>
+    <name>prt6</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (f): |Gamma| for matched load</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans6</sans>
+      <tans>ta6_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! When \(Z_L = Z_0\), \(\Gamma = (Z_0 - Z_0)/(Z_0 + Z_0) = 0\). A matched load absorbs all incident power with no reflection.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt6-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. When \(Z_L = Z_0\), the numerator of \(\Gamma = (Z_L - Z_0)/(Z_L + Z_0)\) is zero, so \(|\Gamma| = 0\). This is the matched condition &mdash; no reflected wave exists.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt7: Part (g) — VSWR=1 meaning (AlgEquiv radio) -->
+  <prt>
+    <name>prt7</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (g): VSWR=1 physical meaning</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans7</sans>
+      <tans>ta7_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! VSWR = 1 means \(|\Gamma| = 0\): the transmission line is perfectly matched to its load. There are no reflections, and the voltage amplitude is uniform along the entire line. All incident power is delivered to the load.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. VSWR = 1 corresponds to \(|\Gamma| = 0\), which means the line is perfectly matched &mdash; no reflections occur and all incident power is delivered to the load. The voltage envelope is constant along the line (no standing wave pattern).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- DEPLOYED SEEDS                                                -->
+  <!-- ============================================================ -->
+  <deployedseed>12345</deployedseed>
+  <deployedseed>23456</deployedseed>
+  <deployedseed>34567</deployedseed>
+  <deployedseed>45678</deployedseed>
+
+  <!-- ============================================================ -->
+  <!-- QTEST: teacher answers                                        -->
+  <!-- ============================================================ -->
+  <qtest>
+    <testcase>1</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- ============================================================ -->
+  <!-- HINTS                                                        -->
+  <!-- ============================================================ -->
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 1:</strong> The reflection coefficient \(\Gamma\) measures the mismatch between the load impedance and the characteristic impedance. Start with \(\Gamma = (Z_L - Z_0)/(Z_L + Z_0)\). Since \(Z_L\) is complex, \(\Gamma\) will also be complex &mdash; you need both its magnitude and phase.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 2:</strong> To compute \(|\Gamma|\), find the magnitude of the complex ratio. For the phase, use the argument (angle) of the complex number and convert to degrees. VSWR follows directly: \(\text{VSWR} = (1 + |\Gamma|)/(1 - |\Gamma|)\). The phase constant is \(\beta = 2\pi/\lambda\).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 3:</strong> The first voltage maximum occurs at \(d_{\max} = \theta_\Gamma/(2\beta)\) from the load (if \(\theta_\Gamma > 0\); otherwise add \(\lambda/2\)). The first voltage minimum is at \(d_{\min} = d_{\max} + \lambda/4\), reduced by \(\lambda/2\) if it exceeds \(\lambda/2\). Maxima and minima always alternate every \(\lambda/4\) along the line.</p>]]></text>
+  </hint>
+
+</question>
+</quiz>

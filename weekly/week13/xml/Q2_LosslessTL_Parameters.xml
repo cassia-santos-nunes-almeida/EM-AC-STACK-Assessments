@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ============================================================ -->
+<!-- Week 13 - Q2: Lossless Transmission Line Parameters           -->
+<!-- Course: Electromagnetism and Circuit Analysis, LUT University -->
+<!-- Topics: Lossless coaxial line, phase velocity, distributed    -->
+<!--         inductance, characteristic impedance, wavelength,     -->
+<!--         phase constant, dispersion                            -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Week 13 – Q2: Lossless Transmission Line Parameters</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Lossless Transmission Line Parameters</h3>
+<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
+<p><strong>Total: 7 points (7 parts, 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
+
+<hr />
+
+<p>A lossless coaxial transmission line has a dielectric material (<strong>{@mat_name@}</strong>) with
+relative permittivity \(\varepsilon_r = {@eps_r_disp@}\) and distributed capacitance
+\(C' = {@Cp_disp@}\;\text{pF/m}\). The line operates at frequency
+\(f = {@f_disp_MHz@}\;\text{MHz}\).</p>
+
+<p>For a lossless line, the phase velocity is \(v_p = c_0 / \sqrt{\varepsilon_r}\), where
+\(c_0 = 3 \times 10^8\;\text{m/s}\). Determine the following line parameters.</p>
+
+<hr />
+
+<h4>Part&nbsp;(a) &mdash; Phase velocity (1&nbsp;pt)</h4>
+<p>Compute the phase velocity \(v_p = c_0 / \sqrt{\varepsilon_r}\). Give your answer in <strong>m/s</strong>.</p>
+<p>\(v_p = \) [[input:ans1]] [[validation:ans1]] m/s</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>2.07e8</code> or <code>207000000</code></em></p>
+
+<h4>Part&nbsp;(b) &mdash; Distributed inductance (1&nbsp;pt)</h4>
+<p>Using \(v_p = 1/\sqrt{L'C'}\), compute the distributed inductance \(L'\). Give your answer in <strong>H/m</strong>.</p>
+<p>\(L' = \) [[input:ans2]] [[validation:ans2]] H/m</p>
+<p><em>Syntax hint: Enter in H/m, e.g. <code>2.5e-7</code></em></p>
+
+<h4>Part&nbsp;(c) &mdash; Characteristic impedance (1&nbsp;pt)</h4>
+<p>Compute the characteristic impedance \(Z_0 = \sqrt{L'/C'}\). Give your answer in <strong>&Omega;</strong>.</p>
+<p>\(Z_0 = \) [[input:ans3]] [[validation:ans3]] &Omega;</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>50</code> or <code>7.25e1</code></em></p>
+
+<h4>Part&nbsp;(d) &mdash; Wavelength (1&nbsp;pt)</h4>
+<p>Compute the wavelength \(\lambda = v_p / f\). Give your answer in <strong>metres</strong>.</p>
+<p>\(\lambda = \) [[input:ans4]] [[validation:ans4]] m</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0.414</code> or <code>4.14e-1</code></em></p>
+
+<h4>Part&nbsp;(e) &mdash; Phase constant (1&nbsp;pt)</h4>
+<p>Compute the phase constant \(\beta = 2\pi / \lambda\). Give your answer in <strong>rad/m</strong>.</p>
+<p>\(\beta = \) [[input:ans5]] [[validation:ans5]] rad/m</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>15.2</code> or <code>1.52e1</code>. You may also use <code>%pi</code> for &pi;, e.g. <code>2*%pi/0.414</code>.</em></p>
+
+<h4>Part&nbsp;(f) &mdash; Dispersion (1&nbsp;pt)</h4>
+<p>Is a lossless transmission line dispersive?</p>
+<p>[[input:ans6]] [[validation:ans6]]</p>
+<p><em>Select Yes or No from the dropdown.</em></p>
+
+<h4>Part&nbsp;(g) &mdash; Effect of doubling &epsilon;<sub>r</sub> on Z<sub>0</sub> (1&nbsp;pt)</h4>
+<p>If the relative permittivity \(\varepsilon_r\) is doubled (while \(C'\) remains the same), what happens to \(Z_0\)?</p>
+<p>[[input:ans7]] [[validation:ans7]]</p>
+<p><em>Select from the dropdown.</em></p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h3>Worked Solution</h3>
+
+<h4>Part (a) &mdash; Phase velocity</h4>
+<p>The phase velocity on a lossless line filled with dielectric of relative permittivity \(\varepsilon_r\) is:</p>
+<p>\[v_p = \frac{c_0}{\sqrt{\varepsilon_r}} = \frac{3 \times 10^8}{\sqrt{{@eps_r_disp@}}} = {@ta1@}\;\text{m/s}\]</p>
+
+<h4>Part (b) &mdash; Distributed inductance</h4>
+<p>From \(v_p = 1/\sqrt{L'C'}\), we solve for \(L'\):</p>
+<p>\[L' = \frac{1}{v_p^2 \, C'} = \frac{1}{({@ta1@})^2 \times {@Cp@}} = {@ta2@}\;\text{H/m} \approx {@ta2_nH@}\;\text{nH/m}\]</p>
+
+<h4>Part (c) &mdash; Characteristic impedance</h4>
+<p>The characteristic impedance of a lossless line is:</p>
+<p>\[Z_0 = \sqrt{\frac{L'}{C'}} = \sqrt{\frac{{@ta2@}}{{@Cp@}}} = {@ta3@}\;\Omega\]</p>
+
+<h4>Part (d) &mdash; Wavelength</h4>
+<p>The wavelength at frequency \(f\) is:</p>
+<p>\[\lambda = \frac{v_p}{f} = \frac{{@ta1@}}{{@f_Hz@}} = {@ta4@}\;\text{m}\]</p>
+
+<h4>Part (e) &mdash; Phase constant</h4>
+<p>The phase constant is:</p>
+<p>\[\beta = \frac{2\pi}{\lambda} = \frac{2\pi}{{@ta4@}} = {@ta5@}\;\text{rad/m}\]</p>
+
+<h4>Part (f) &mdash; Dispersion</h4>
+<p><strong>No.</strong> A lossless transmission line is <em>non-dispersive</em>. The phase velocity
+\(v_p = 1/\sqrt{L'C'}\) is independent of frequency, so all frequency components travel
+at the same speed. Dispersion occurs only when the line has losses (especially frequency-dependent losses).</p>
+
+<h4>Part (g) &mdash; Effect of doubling &epsilon;<sub>r</sub></h4>
+<p><strong>Increases.</strong> The characteristic impedance can be written as:</p>
+<p>\[Z_0 = \sqrt{\frac{L'}{C'}} = \frac{1}{v_p \, C'} = \frac{\sqrt{\varepsilon_r}}{c_0 \, C'}\]</p>
+<p>Since \(v_p = c_0/\sqrt{\varepsilon_r}\), we have \(Z_0 = \sqrt{\varepsilon_r}/(c_0 C')\).
+If \(\varepsilon_r\) doubles (with \(C'\) constant), \(Z_0\) increases by a factor of \(\sqrt{2}\).</p>
+
+<hr />
+<h4>Answer Summary</h4>
+<table border="1" cellpadding="5" cellspacing="0">
+<tr><th>Part</th><th>Quantity</th><th>Answer</th></tr>
+<tr><td>(a)</td><td>\(v_p\)</td><td>{@ta1@} m/s</td></tr>
+<tr><td>(b)</td><td>\(L'\)</td><td>{@ta2@} H/m ({@ta2_nH@} nH/m)</td></tr>
+<tr><td>(c)</td><td>\(Z_0\)</td><td>{@ta3@} &Omega;</td></tr>
+<tr><td>(d)</td><td>\(\lambda\)</td><td>{@ta4@} m</td></tr>
+<tr><td>(e)</td><td>\(\beta\)</td><td>{@ta5@} rad/m</td></tr>
+<tr><td>(f)</td><td>Dispersive?</td><td>No</td></tr>
+<tr><td>(g)</td><td>\(\varepsilon_r\) doubles &rarr; \(Z_0\)</td><td>Increases</td></tr>
+</table>
+]]></text>
+  </generalfeedback>
+  <defaultgrade>7.0000000</defaultgrade>
+  <penalty>0.0000000</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+  <stackversion>
+    <text>2024032101</text>
+  </stackversion>
+  <questionvariables>
+    <text><![CDATA[
+/* Random set selection: 1..4 */
+set: rand(4)+1;
+c0: 3e8;
+
+/* Dielectric parameters */
+eps_r: if set=1 then 2.1 else if set=2 then 2.25 else if set=3 then 4.0 else 9.8;
+Cp_pF: if set=1 then 100 else if set=2 then 80 else if set=3 then 120 else 50;
+f_Hz: if set=1 then 500e6 else if set=2 then 1e9 else if set=3 then 100e6 else 500e6;
+
+/* Capacitance in F/m */
+Cp: Cp_pF * 1e-12;
+
+/* Display-friendly values */
+eps_r_disp: float(eps_r);
+Cp_disp: float(Cp_pF);
+f_disp_MHz: float(f_Hz / 1e6);
+mat_name: if set=1 then "PTFE" else if set=2 then "polyethylene" else if set=3 then "FR-4" else "alumina";
+
+/* --- Teacher answers --- */
+
+/* Part (a): phase velocity v_p = c0 / sqrt(eps_r) */
+ta1: float(c0 / sqrt(eps_r));
+
+/* Part (b): distributed inductance L' = 1/(v_p^2 * C') */
+ta2: float(1 / (ta1^2 * Cp));
+
+/* Part (c): characteristic impedance Z0 = sqrt(L'/C') */
+ta3: float(sqrt(ta2 / Cp));
+
+/* Part (d): wavelength lambda = v_p / f */
+ta4: float(ta1 / f_Hz);
+
+/* Part (e): phase constant beta = 2*pi/lambda */
+ta5: float(2 * %pi / ta4);
+
+/* Display helper: L' in nH/m */
+ta2_nH: float(ta2 * 1e9);
+
+/* Part (f): Is a lossless line dispersive? No */
+ta6: [[1, false, "Yes"], [2, true, "No"]];
+ta6_correct: 2;
+
+/* Part (g): If eps_r doubles, Z0 = sqrt(eps_r)/(c0*C') increases */
+ta7: [[1, true, "Increases"], [2, false, "Decreases"], [3, false, "Unchanged"]];
+ta7_correct: 1;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html">
+    <text><![CDATA[
+<h4>Part (a) &mdash; Phase velocity</h4>
+<div>[[feedback:prt1]]</div>
+
+<h4>Part (b) &mdash; Distributed inductance</h4>
+<div>[[feedback:prt2]]</div>
+
+<h4>Part (c) &mdash; Characteristic impedance</h4>
+<div>[[feedback:prt3]]</div>
+
+<h4>Part (d) &mdash; Wavelength</h4>
+<div>[[feedback:prt4]]</div>
+
+<h4>Part (e) &mdash; Phase constant</h4>
+<div>[[feedback:prt5]]</div>
+
+<h4>Part (f) &mdash; Dispersion</h4>
+<div>[[feedback:prt6]]</div>
+
+<h4>Part (g) &mdash; Effect of doubling &epsilon;<sub>r</sub></h4>
+<div>[[feedback:prt7]]</div>
+]]></text>
+  </specificfeedback>
+  <questionnote>
+    <text>Set {@set@}: {@ mat_name @}, εr={@eps_r_disp@}, C'={@Cp_disp@} pF/m, f={@f_disp_MHz@} MHz | vp={@ta1@} m/s, L'={@ta2@} H/m, Z0={@ta3@} Ω, λ={@ta4@} m, β={@ta5@} rad/m</text>
+  </questionnote>
+  <questiondescription format="html">
+    <text><![CDATA[<p>Lossless transmission line parameters — Week 13 training exercise.</p>]]></text>
+  </questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>j</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <!-- ============================================================ -->
+  <!-- INPUTS                                                       -->
+  <!-- ============================================================ -->
+
+  <!-- ans1: numerical — phase velocity v_p -->
+  <input>
+    <name>ans1</name>
+    <type>numerical</type>
+    <tans>ta1</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans2: numerical — distributed inductance L' -->
+  <input>
+    <name>ans2</name>
+    <type>numerical</type>
+    <tans>ta2</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans3: numerical — characteristic impedance Z0 -->
+  <input>
+    <name>ans3</name>
+    <type>numerical</type>
+    <tans>ta3</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans4: numerical — wavelength lambda -->
+  <input>
+    <name>ans4</name>
+    <type>numerical</type>
+    <tans>ta4</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans5: numerical — phase constant beta -->
+  <input>
+    <name>ans5</name>
+    <type>numerical</type>
+    <tans>ta5</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans6: dropdown — Is the line dispersive? -->
+  <input>
+    <name>ans6</name>
+    <type>dropdown</type>
+    <tans>ta6</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans7: dropdown — Effect of doubling eps_r on Z0 -->
+  <input>
+    <name>ans7</name>
+    <type>dropdown</type>
+    <tans>ta7</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ============================================================ -->
+  <!-- PRTs                                                         -->
+  <!-- ============================================================ -->
+
+  <!-- prt1: Part (a) — phase velocity (NumRelative 0.05) -->
+  <prt>
+    <name>prt1</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (a): phase velocity</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>ta1</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The phase velocity is \(v_p = c_0/\sqrt{\varepsilon_r} = {@ta1@}\;\text{m/s}\). In a dielectric-filled line, the wave travels slower than the speed of light by a factor of \(\sqrt{\varepsilon_r}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Use \(v_p = c_0/\sqrt{\varepsilon_r} = 3\times10^8 / \sqrt{{@eps_r_disp@}} = {@ta1@}\;\text{m/s}\). The dielectric slows the wave by a factor of \(\sqrt{\varepsilon_r}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt2: Part (b) — distributed inductance L' (NumRelative 0.05) -->
+  <prt>
+    <name>prt2</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (b): distributed inductance</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(L' = 1/(v_p^2 C') = {@ta2@}\;\text{H/m}\) (approximately {@ta2_nH@} nH/m). The distributed inductance and capacitance together determine both the wave speed and impedance.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. From \(v_p = 1/\sqrt{L'C'}\), solve for \(L' = 1/(v_p^2 \cdot C')\). Remember to convert \(C'\) from pF/m to F/m: \({@Cp_disp@}\;\text{pF/m} = {@Cp@}\;\text{F/m}\). The answer is \(L' = {@ta2@}\;\text{H/m}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt3: Part (c) — characteristic impedance Z0 (NumRelative 0.05) -->
+  <prt>
+    <name>prt3</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (c): characteristic impedance</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(Z_0 = \sqrt{L'/C'} = {@ta3@}\;\Omega\). The characteristic impedance is a real number for a lossless line, meaning voltage and current are in phase for a travelling wave.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Use \(Z_0 = \sqrt{L'/C'} = \sqrt{{@ta2@}/{@Cp@}} = {@ta3@}\;\Omega\). For a lossless line, \(Z_0\) is purely real.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt4: Part (d) — wavelength lambda (NumRelative 0.05) -->
+  <prt>
+    <name>prt4</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (d): wavelength</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\lambda = v_p/f = {@ta4@}\;\text{m}\). The wavelength on the line is shorter than the free-space wavelength by a factor of \(\sqrt{\varepsilon_r}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Use \(\lambda = v_p/f = {@ta1@}/{@f_Hz@} = {@ta4@}\;\text{m}\). Make sure the frequency is in Hz (not MHz).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt5: Part (e) — phase constant beta (NumRelative 0.05) -->
+  <prt>
+    <name>prt5</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (e): phase constant</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\beta = 2\pi/\lambda = {@ta5@}\;\text{rad/m}\). The phase constant tells you how many radians of phase shift occur per metre of line.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Use \(\beta = 2\pi/\lambda = 2\pi/{@ta4@} = {@ta5@}\;\text{rad/m}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt6: Part (f) — Is the line dispersive? (AlgEquiv dropdown) -->
+  <prt>
+    <name>prt6</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (f): dispersion</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans6</sans>
+      <tans>ta6_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! A lossless transmission line is non-dispersive. The phase velocity \(v_p = 1/\sqrt{L'C'}\) does not depend on frequency, so all spectral components of a signal travel at the same speed and the waveform shape is preserved.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt6-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. A lossless line is <strong>non-dispersive</strong> because \(v_p = 1/\sqrt{L'C'}\) is independent of frequency. Dispersion only arises when the propagation parameters (R', G') introduce frequency-dependent losses.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt7: Part (g) — Effect of doubling eps_r on Z0 (AlgEquiv dropdown) -->
+  <prt>
+    <name>prt7</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (g): effect of doubling eps_r</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans7</sans>
+      <tans>ta7_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! When \(\varepsilon_r\) doubles, \(v_p\) decreases (since \(v_p = c_0/\sqrt{\varepsilon_r}\)), which increases \(L' = 1/(v_p^2 C')\). Since \(C'\) is unchanged, \(Z_0 = \sqrt{L'/C'}\) increases. Equivalently, \(Z_0 = \sqrt{\varepsilon_r}/(c_0 C')\), which grows with \(\sqrt{\varepsilon_r}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Write \(Z_0 = 1/(v_p C') = \sqrt{\varepsilon_r}/(c_0 C')\). Since \(C'\) is held constant and \(Z_0 \propto \sqrt{\varepsilon_r}\), doubling \(\varepsilon_r\) <strong>increases</strong> \(Z_0\) by a factor of \(\sqrt{2}\). The key insight is that a higher \(\varepsilon_r\) slows the wave, increasing the per-unit-length inductance while capacitance is fixed.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- DEPLOYED SEEDS                                                -->
+  <!-- ============================================================ -->
+  <deployedseed>12345</deployedseed>
+  <deployedseed>23456</deployedseed>
+  <deployedseed>34567</deployedseed>
+  <deployedseed>45678</deployedseed>
+
+  <!-- ============================================================ -->
+  <!-- QTEST: teacher answers                                        -->
+  <!-- ============================================================ -->
+  <qtest>
+    <testcase>1</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- ============================================================ -->
+  <!-- HINTS                                                        -->
+  <!-- ============================================================ -->
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 1:</strong> Start with the phase velocity: for a lossless line in a medium with relative permittivity \(\varepsilon_r\), the wave travels at \(v_p = c_0/\sqrt{\varepsilon_r}\). This is slower than the speed of light because the dielectric stores energy in its electric field, effectively slowing the wave.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 2:</strong> The key relationships for a lossless transmission line are:
+\(v_p = 1/\sqrt{L'C'}\) and \(Z_0 = \sqrt{L'/C'}\). From the first, you can find \(L'\) once you know \(v_p\) and \(C'\). The wavelength is \(\lambda = v_p/f\) and the phase constant is \(\beta = 2\pi/\lambda = \omega/v_p\).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 3:</strong> For the conceptual parts: a lossless line has frequency-independent \(v_p\), making it non-dispersive. For part (g), express \(Z_0\) in terms of \(\varepsilon_r\): since \(v_p = c_0/\sqrt{\varepsilon_r}\) and \(L' = 1/(v_p^2 C')\), we get \(Z_0 = \sqrt{L'/C'} = 1/(v_p C') = \sqrt{\varepsilon_r}/(c_0 C')\). So \(Z_0\) grows as \(\sqrt{\varepsilon_r}\) when \(C'\) is held constant.</p>]]></text>
+  </hint>
+
+</question>
+</quiz>

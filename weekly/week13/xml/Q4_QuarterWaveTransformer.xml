@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ============================================================ -->
+<!-- Week 13 - Q4: Quarter-Wave Transformer Design                 -->
+<!-- Course: Electromagnetism and Circuit Analysis, LUT University  -->
+<!-- Topics: Quarter-wave transformer, impedance matching, Γ       -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Week 13 – Q4: Quarter-Wave Transformer Design</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Quarter-Wave Transformer Design</h3>
+<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
+<p><strong>Total: 7 points | Penalty per wrong attempt: 0%</strong></p>
+
+<hr />
+
+<p>A lossless transmission line with characteristic impedance \(Z_0 = {@Z0@}\;\Omega\) feeds a purely resistive
+load \(Z_L = {@ZL@}\;\Omega\). You are asked to design a <strong>quarter-wave transformer</strong> to match the
+line to the load at a design frequency \(f = {@f_GHz@}\;\text{GHz}\).</p>
+
+<p>The quarter-wave transformer section is filled with a dielectric of relative permittivity
+\(\varepsilon_r = {@eps_r@}\).</p>
+
+<p>The speed of light in vacuum is \(c_0 = 3 \times 10^8\;\text{m/s}\).</p>
+
+<hr />
+
+<p><strong>(a)</strong> What is the characteristic impedance of the quarter-wave transformer section?</p>
+<p>\(Z_{\text{QWT}} = \) [[input:ans1]] \(\Omega\) [[validation:ans1]]</p>
+<p><em>Syntax hint: Enter a number in Ohms, e.g. <code>86.6</code></em></p>
+
+<p><strong>(b)</strong> What is the physical length \(\ell\) of the quarter-wave section (in metres)?</p>
+<p>\(\ell = \) [[input:ans2]] m [[validation:ans2]]</p>
+<p><em>Syntax hint: Enter a number in metres, e.g. <code>0.025</code> or <code>2.5e-2</code></em></p>
+
+<p><strong>(c)</strong> What is the electrical length of the transformer section at the design frequency (in degrees)?</p>
+<p>\(\theta = \) [[input:ans3]] &deg; [[validation:ans3]]</p>
+<p><em>Syntax hint: Enter a number in degrees, e.g. <code>90</code></em></p>
+
+<p><strong>(d)</strong> What is the magnitude of the reflection coefficient \(|\Gamma|\) at the input of the transformer at the design frequency?</p>
+<p>\(|\Gamma| = \) [[input:ans4]] [[validation:ans4]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0</code> or <code>0.05</code></em></p>
+
+<hr />
+
+<p>Now suppose the operating frequency shifts to \(f' = 1.1 \times f = {@f_new_GHz@}\;\text{GHz}\).</p>
+
+<p><strong>(e)</strong> Is the line still matched to the load at the shifted frequency?</p>
+<p>[[input:ans5]] [[validation:ans5]]</p>
+
+<p><strong>(f)</strong> What is \(|\Gamma|\) at the input of the transformer at the shifted frequency \(f'\)?</p>
+<p>\(|\Gamma| = \) [[input:ans6]] [[validation:ans6]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0.05</code></em></p>
+
+<p><strong>(g)</strong> What fraction of the incident power is reflected at the shifted frequency? (i.e., \(|\Gamma|^2\))</p>
+<p>\(|\Gamma|^2 = \) [[input:ans7]] [[validation:ans7]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0.003</code></em></p>
+]]></text>
+  </questiontext>
+
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h3>Worked Solution</h3>
+
+<h4>Step 1: Quarter-Wave Transformer Impedance</h4>
+<p>The characteristic impedance of a quarter-wave transformer that matches \(Z_0\) to \(Z_L\) is:</p>
+<p>\[Z_{\text{QWT}} = \sqrt{Z_0 \cdot Z_L} = \sqrt{{@Z0@} \times {@ZL@}} = {@ta1@}\;\Omega\]</p>
+
+<h4>Step 2: Physical Length</h4>
+<p>The phase velocity in the transformer section is:</p>
+<p>\[v_p = \frac{c_0}{\sqrt{\varepsilon_r}} = \frac{3 \times 10^8}{\sqrt{{@eps_r@}}} = {@vp@}\;\text{m/s}\]</p>
+<p>The wavelength at the design frequency is \(\lambda = v_p / f\), and a quarter-wave section has length:</p>
+<p>\[\ell = \frac{\lambda}{4} = \frac{v_p}{4f} = \frac{{@vp@}}{4 \times {@f_Hz@}} = {@ta2@}\;\text{m}\]</p>
+
+<h4>Step 3: Electrical Length</h4>
+<p>By definition, a quarter-wave transformer has an electrical length of:</p>
+<p>\[\theta = \beta \ell = \frac{2\pi}{\lambda} \cdot \frac{\lambda}{4} = \frac{\pi}{2} = 90°\]</p>
+
+<h4>Step 4: Reflection Coefficient at Design Frequency</h4>
+<p>At the design frequency, the quarter-wave transformer transforms \(Z_L\) to exactly \(Z_0\) at the input,
+so the line is perfectly matched:</p>
+<p>\[|\Gamma| = 0\]</p>
+
+<h4>Step 5: Off-Frequency Behaviour</h4>
+<p>At \(f' = 1.1 f = {@f_new_GHz@}\;\text{GHz}\), the electrical length is no longer \(90°\):</p>
+<p>\[\theta' = 1.1 \times 90° = 99°\]</p>
+<p>The transformer no longer provides a perfect match, so the answer to part (e) is <strong>No</strong>.</p>
+
+<h4>Step 6: Reflection at Shifted Frequency</h4>
+<p>The input impedance of the transformer section at the shifted frequency is:</p>
+<p>\[Z_{\text{in}} = Z_{\text{QWT}} \cdot \frac{Z_L + j\,Z_{\text{QWT}}\tan\theta'}{Z_{\text{QWT}} + j\,Z_L\tan\theta'}\]</p>
+<p>The reflection coefficient is then:</p>
+<p>\[\Gamma = \frac{Z_{\text{in}} - Z_0}{Z_{\text{in}} + Z_0}\]</p>
+<p>\[|\Gamma| = {@ta6@}\]</p>
+
+<h4>Step 7: Reflected Power Fraction</h4>
+<p>The fraction of incident power that is reflected is:</p>
+<p>\[|\Gamma|^2 = {@ta7@}\]</p>
+
+<hr />
+<h4>Answer Summary</h4>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr><th>Part</th><th>Quantity</th><th>Correct Answer</th></tr>
+  <tr><td>(a)</td><td>\(Z_{\text{QWT}}\)</td><td>{@ta1@} &Omega;</td></tr>
+  <tr><td>(b)</td><td>\(\ell\)</td><td>{@ta2@} m</td></tr>
+  <tr><td>(c)</td><td>\(\theta\)</td><td>{@ta3@}&deg;</td></tr>
+  <tr><td>(d)</td><td>\(|\Gamma|\) at design freq</td><td>{@ta4@}</td></tr>
+  <tr><td>(e)</td><td>Still matched?</td><td>No</td></tr>
+  <tr><td>(f)</td><td>\(|\Gamma|\) at shifted freq</td><td>{@ta6@}</td></tr>
+  <tr><td>(g)</td><td>\(|\Gamma|^2\) at shifted freq</td><td>{@ta7@}</td></tr>
+</table>
+]]></text>
+  </generalfeedback>
+
+  <defaultgrade>7.0000000</defaultgrade>
+  <penalty>0.0000000</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+
+  <stackversion>
+    <text>2024032101</text>
+  </stackversion>
+
+  <questionvariables>
+    <text><![CDATA[
+/* ===== Parameter set selection ===== */
+set: rand(4)+1;
+
+/* ===== Given values ===== */
+Z0: if set=1 then 50 else if set=2 then 75 else if set=3 then 100 else 50;
+ZL: if set=1 then 100 else if set=2 then 200 else if set=3 then 25 else 150;
+f_GHz: if set=1 then 2 else if set=2 then 1 else if set=3 then 5 else 2;
+eps_r: if set=1 then 2.25 else if set=2 then 1 else if set=3 then 4 else 2.25;
+
+c0: 3e8;
+f_Hz: float(f_GHz * 1e9);
+vp: float(c0 / sqrt(eps_r));
+
+/* ===== Teacher answers ===== */
+
+/* (a) QWT characteristic impedance */
+ta1: float(sqrt(Z0 * ZL));
+
+/* (b) Physical length in metres */
+ta2: float(vp / (4 * f_Hz));
+
+/* (c) Electrical length in degrees */
+ta3: 90;
+
+/* (d) |Γ| at design frequency — exactly 0 */
+ta4: 0;
+
+/* (e) MCQ: still matched at 1.1f? — No */
+ta5: [[1, false, "Yes"], [2, true, "No"]];
+ta5_correct: 2;
+
+/* ===== Off-frequency analysis ===== */
+f_new: float(1.1 * f_Hz);
+f_new_GHz: float(1.1 * f_GHz);
+beta_new: float(2 * %pi * f_new / vp);
+l_qwt: ta2;
+theta_new: float(beta_new * l_qwt);
+
+/* Z_in at shifted frequency */
+tan_theta: float(tan(theta_new));
+Z_in_num: float(rectform(ZL + %i * ta1 * tan_theta));
+Z_in_den: float(rectform(ta1 + %i * ZL * tan_theta));
+Z_in: float(rectform(Z_in_num / Z_in_den));
+
+/* Gamma at shifted frequency */
+Gamma_shifted: float(rectform((Z_in - Z0) / (Z_in + Z0)));
+
+/* (f) |Γ| at shifted frequency */
+ta6: float(cabs(Gamma_shifted));
+
+/* (g) Reflected power fraction */
+ta7: float(ta6^2);
+]]></text>
+  </questionvariables>
+
+  <specificfeedback format="html">
+    <text><![CDATA[
+<h4>Part (a) &mdash; QWT Impedance</h4>
+<div>[[feedback:prt1]]</div>
+
+<h4>Part (b) &mdash; Physical Length</h4>
+<div>[[feedback:prt2]]</div>
+
+<h4>Part (c) &mdash; Electrical Length</h4>
+<div>[[feedback:prt3]]</div>
+
+<h4>Part (d) &mdash; |&Gamma;| at Design Frequency</h4>
+<div>[[feedback:prt4]]</div>
+
+<h4>Part (e) &mdash; Still Matched?</h4>
+<div>[[feedback:prt5]]</div>
+
+<h4>Part (f) &mdash; |&Gamma;| at Shifted Frequency</h4>
+<div>[[feedback:prt6]]</div>
+
+<h4>Part (g) &mdash; Reflected Power Fraction</h4>
+<div>[[feedback:prt7]]</div>
+]]></text>
+  </specificfeedback>
+
+  <questionnote>
+    <text>Set {@set@}: Z0={@Z0@}Ω, ZL={@ZL@}Ω, f={@f_GHz@}GHz, εr={@eps_r@} | Z_QWT={@ta1@}Ω, l={@ta2@}m, |Γ|_shifted={@ta6@}</text>
+  </questionnote>
+
+  <questiondescription format="html">
+    <text><![CDATA[<p>Quarter-wave transformer design — compute transformer impedance, physical and electrical length, verify matching at design frequency, and analyse off-frequency performance. Week 13 training exercise.</p>]]></text>
+  </questiondescription>
+
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>j</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <!-- ============================================================ -->
+  <!-- INPUTS (7 total)                                              -->
+  <!-- ============================================================ -->
+
+  <!-- ans1: Part (a) — Z_QWT (numerical) -->
+  <input>
+    <name>ans1</name>
+    <type>numerical</type>
+    <tans>ta1</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans2: Part (b) — physical length (numerical) -->
+  <input>
+    <name>ans2</name>
+    <type>numerical</type>
+    <tans>ta2</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans3: Part (c) — electrical length in degrees (numerical) -->
+  <input>
+    <name>ans3</name>
+    <type>numerical</type>
+    <tans>ta3</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans4: Part (d) — |Γ| at design frequency (numerical, answer is 0) -->
+  <input>
+    <name>ans4</name>
+    <type>numerical</type>
+    <tans>ta4</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans5: Part (e) — still matched? (dropdown) -->
+  <input>
+    <name>ans5</name>
+    <type>dropdown</type>
+    <tans>ta5</tans>
+    <boxsize>3</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans6: Part (f) — |Γ| at shifted frequency (numerical) -->
+  <input>
+    <name>ans6</name>
+    <type>numerical</type>
+    <tans>ta6</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans7: Part (g) — reflected power fraction (numerical) -->
+  <input>
+    <name>ans7</name>
+    <type>numerical</type>
+    <tans>ta7</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ============================================================ -->
+  <!-- PRTs (7 total)                                                -->
+  <!-- ============================================================ -->
+
+  <!-- prt1: Part (a) — Z_QWT, NumRelative 5% -->
+  <prt>
+    <name>prt1</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa1_float: float(ans1);
+ref1_float: float(ta1);
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative 5% for Z_QWT</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>ta1</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(Z_{\text{QWT}} = \sqrt{Z_0 \cdot Z_L} = {@ta1@}\;\Omega\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The quarter-wave transformer impedance is \(Z_{\text{QWT}} = \sqrt{Z_0 \cdot Z_L} = \sqrt{{@Z0@} \times {@ZL@}} = {@ta1@}\;\Omega\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt2: Part (b) — physical length, NumRelative 5% -->
+  <prt>
+    <name>prt2</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa2_float: float(ans2);
+ref2_float: float(ta2);
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative 5% for physical length</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\ell = v_p / (4f) = {@ta2@}\;\text{m}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The phase velocity is \(v_p = c_0/\sqrt{\varepsilon_r} = {@vp@}\;\text{m/s}\), and the length is \(\ell = v_p/(4f) = {@ta2@}\;\text{m}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt3: Part (c) — electrical length, NumRelative 5% -->
+  <prt>
+    <name>prt3</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text/></feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative 5% for electrical length</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! A quarter-wave section has electrical length \(\theta = 90°\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. By definition, a quarter-wave transformer has electrical length \(\theta = \beta\ell = \pi/2 = 90°\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt4: Part (d) — |Γ| at design freq = 0, MUST use NumAbsolute 0.01 -->
+  <prt>
+    <name>prt4</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text/></feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumAbsolute 0.01 because answer is 0</description>
+      <answertest>NumAbsolute</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>0.01</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! At the design frequency the quarter-wave transformer provides a perfect match, so \(|\Gamma| = 0\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. At the design frequency, the quarter-wave transformer transforms \(Z_L\) to exactly \(Z_0\), giving a perfect match with \(|\Gamma| = 0\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt5: Part (e) — still matched? dropdown, AlgEquiv -->
+  <prt>
+    <name>prt5</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text/></feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check MCQ answer — AlgEquiv</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans5</sans>
+      <tans>ta5_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The quarter-wave transformer only provides a perfect match at the design frequency. At \(f' = 1.1f\), the electrical length is no longer \(90°\), so the match is imperfect.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. A quarter-wave transformer provides a perfect match only at the design frequency. When the frequency shifts by 10%, the electrical length becomes \(99°\) instead of \(90°\), so the match is no longer perfect.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt6: Part (f) — |Γ| at shifted frequency, NumRelative 5% -->
+  <prt>
+    <name>prt6</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa6_float: float(ans6);
+ref6_float: float(ta6);
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative 5% for |Γ| at shifted freq</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans6</sans>
+      <tans>ta6</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(|\Gamma| = {@ta6@}\) at the shifted frequency.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt6-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. At \(f' = 1.1f\), the electrical length shifts to \(\theta' = 1.1 \times 90° = 99°\). Use the transmission-line input impedance formula with the QWT parameters and compute \(\Gamma\). The correct answer is \(|\Gamma| = {@ta6@}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt7: Part (g) — reflected power fraction |Γ|², NumRelative 5% -->
+  <prt>
+    <name>prt7</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa7_float: float(ans7);
+ref7_float: float(ta7);
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative 5% for reflected power fraction</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans7</sans>
+      <tans>ta7</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The reflected power fraction is \(|\Gamma|^2 = {@ta7@}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The reflected power fraction is simply \(|\Gamma|^2 = ({@ta6@})^2 = {@ta7@}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- DEPLOYED SEEDS                                                -->
+  <!-- ============================================================ -->
+  <deployedseed>12345</deployedseed>
+  <deployedseed>23456</deployedseed>
+  <deployedseed>34567</deployedseed>
+  <deployedseed>45678</deployedseed>
+
+  <!-- ============================================================ -->
+  <!-- QTEST: teacher answers                                        -->
+  <!-- ============================================================ -->
+  <qtest>
+    <testcase>1</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>ta6</value>
+    </testinput>
+    <testinput>
+      <name>ans7</name>
+      <value>ta7</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt7</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt7-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- ============================================================ -->
+  <!-- HINTS (3, progressive)                                        -->
+  <!-- ============================================================ -->
+
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 1 (Concept):</strong> A quarter-wave transformer is a transmission-line section whose characteristic impedance is chosen so that the input impedance looking into the section (when terminated by \(Z_L\)) equals \(Z_0\). The key formula is \(Z_{\text{QWT}} = \sqrt{Z_0 \cdot Z_L}\). The physical length is one quarter of the wavelength in the dielectric medium.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 2 (Formulas):</strong> The phase velocity in the dielectric is \(v_p = c_0 / \sqrt{\varepsilon_r}\). The wavelength is \(\lambda = v_p / f\), so the quarter-wave length is \(\ell = \lambda/4 = v_p/(4f)\). At the design frequency, the electrical length is exactly \(90°\) and the reflection coefficient is zero. When the frequency changes, the electrical length scales linearly: \(\theta' = (f'/f) \times 90°\).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 3 (Off-frequency calculation):</strong> At the shifted frequency \(f' = 1.1f\), the electrical length is \(\theta' = 99°\). Use the transmission-line input impedance formula:</p>
+<p>\[Z_{\text{in}} = Z_{\text{QWT}} \cdot \frac{Z_L + j\,Z_{\text{QWT}}\tan\theta'}{Z_{\text{QWT}} + j\,Z_L\tan\theta'}\]</p>
+<p>Then compute \(\Gamma = (Z_{\text{in}} - Z_0)/(Z_{\text{in}} + Z_0)\) and take its magnitude. The reflected power fraction is simply \(|\Gamma|^2\).</p>]]></text>
+  </hint>
+
+</question>
+
+</quiz>

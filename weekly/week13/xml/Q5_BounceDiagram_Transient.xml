@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ============================================================ -->
+<!-- Week 13 - Q5: Bounce Diagram Transient Analysis               -->
+<!-- Course: Electromagnetism and Circuit Analysis, LUT University  -->
+<!-- Topics: Bounce diagram, transient analysis, reflection coeff.  -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Week 13 – Q5: Bounce Diagram Transient Analysis</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Bounce Diagram &mdash; Transient Analysis</h3>
+<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
+<p><strong>Total: 7 points (6 parts: a&ndash;e worth 1 pt each, f worth 2 pts) | Penalty per wrong attempt: 0%</strong></p>
+
+<hr />
+
+<p>A lossless transmission line has characteristic impedance \(Z_0 = {@Z0@}\;\Omega\), length
+\(\ell = {@l_m@}\;\text{m}\), and phase velocity
+\(v_p = {@vp_disp@} \times 10^{8}\;\text{m/s}\).</p>
+
+<p>A step-function voltage source \(V_g = {@Vg@}\;\text{V}\) with series resistance
+\(R_g = {@Rg@}\;\Omega\) drives the line. The load is a resistor
+\(R_L = {@RL@}\;\Omega\). At \(t = 0\) the switch closes.</p>
+
+<hr />
+
+<h4>Part&nbsp;(a) &mdash; Load reflection coefficient (1&nbsp;pt)</h4>
+<p>Compute the load reflection coefficient:</p>
+<p>\[\Gamma_L = \frac{R_L - Z_0}{R_L + Z_0}\]</p>
+<p>\(\Gamma_L = \) [[input:ans1]] [[validation:ans1]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0.333</code> or <code>-0.5</code></em></p>
+
+<h4>Part&nbsp;(b) &mdash; Source reflection coefficient (1&nbsp;pt)</h4>
+<p>Compute the source (generator) reflection coefficient:</p>
+<p>\[\Gamma_g = \frac{R_g - Z_0}{R_g + Z_0}\]</p>
+<p>\(\Gamma_g = \) [[input:ans2]] [[validation:ans2]]</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>0.333</code> or <code>-0.5</code></em></p>
+
+<h4>Part&nbsp;(c) &mdash; Initial forward voltage wave (1&nbsp;pt)</h4>
+<p>Compute the amplitude of the initial forward-travelling voltage wave:</p>
+<p>\[V_1^{+} = V_g \cdot \frac{Z_0}{R_g + Z_0}\]</p>
+<p>\(V_1^{+} = \) [[input:ans3]] [[validation:ans3]] V</p>
+<p><em>Syntax hint: Enter a number in Volts, e.g. <code>6.667</code></em></p>
+
+<h4>Part&nbsp;(d) &mdash; One-way travel time (1&nbsp;pt)</h4>
+<p>Compute the one-way travel time of the line:</p>
+<p>\[T = \frac{\ell}{v_p}\]</p>
+<p>\(T = \) [[input:ans4]] [[validation:ans4]] s</p>
+<p><em>Syntax hint: Enter in seconds using scientific notation, e.g. <code>5e-9</code></em></p>
+
+<h4>Part&nbsp;(e) &mdash; Steady-state voltage at the load (1&nbsp;pt)</h4>
+<p>Compute the DC steady-state voltage across the load (after all reflections have died out):</p>
+<p>\[V_{\text{ss}} = V_g \cdot \frac{R_L}{R_g + R_L}\]</p>
+<p>\(V_{\text{ss}} = \) [[input:ans5]] [[validation:ans5]] V</p>
+<p><em>Syntax hint: Enter a number in Volts, e.g. <code>8.0</code></em></p>
+
+<hr />
+
+<h4>Part&nbsp;(f) &mdash; Voltage waveform at the load (2&nbsp;pts)</h4>
+<p>Using the bounce diagram, determine the voltage \(V(z = \ell,\, t)\) at the <strong>load</strong> as a function of time.
+Place <strong>exactly 4 points</strong> on the interactive graph below at times \(t = T,\; 3T,\; 5T,\; 7T\),
+each at the correct voltage level for that time interval.</p>
+
+[[jsxgraph input-ref-ans6="ans6Ref" width="680px" height="440px"]]
+(function () {
+    /* ── Configuration ── */
+    var yMax  = {@y_max@};
+    var yMin  = {@y_min@};
+    var Vss   = {@ta5@};
+    var MAX_POINTS = 4;
+    var SNAP  = 0.5;
+
+    /* ── Board setup ── */
+    var board = JXG.JSXGraph.initBoard(divid, {
+        boundingbox: [-0.5, yMax, 8.5, yMin],
+        axis: false,
+        grid: false,
+        showNavigation: false,
+        showCopyright: false,
+        keepaspectratio: false
+    });
+
+    /* ── Axes ── */
+    var xAxis = board.create('axis', [[0, 0], [1, 0]], {
+        ticks: {
+            insertTicks: false,
+            ticksDistance: 1,
+            majorHeight: 8,
+            minorHeight: 0,
+            drawLabels: true,
+            label: { offset: [0, -14], anchorX: 'middle', fontSize: 13 }
+        },
+        strokeColor: '#333',
+        strokeWidth: 1.5
+    });
+    var yAxis = board.create('axis', [[0, 0], [0, 1]], {
+        ticks: {
+            insertTicks: false,
+            ticksDistance: 2,
+            majorHeight: 8,
+            minorHeight: 0,
+            drawLabels: true,
+            label: { offset: [-30, 0], anchorX: 'right', fontSize: 13 }
+        },
+        strokeColor: '#333',
+        strokeWidth: 1.5
+    });
+
+    /* Axis labels */
+    board.create('text', [8, yMin + (yMax - yMin) * 0.06, 't / T'], {
+        anchorX: 'right', fontSize: 14, fixed: true
+    });
+    board.create('text', [-(0.35), yMax - 2, 'V (V)'], {
+        anchorX: 'right', fontSize: 14, fixed: true
+    });
+
+    /* ── Reference lines ── */
+    /* Dashed horizontal line at V_ss */
+    board.create('line', [[0, Vss], [1, Vss]], {
+        strokeColor: '#999',
+        strokeWidth: 1.5,
+        dash: 3,
+        straightFirst: true,
+        straightLast: true,
+        fixed: true,
+        highlight: false
+    });
+    board.create('text', [8.2, Vss, 'V<sub>ss</sub>'], {
+        anchorX: 'left', fontSize: 12, fixed: true, cssStyle: 'color:#888;'
+    });
+
+    /* Vertical dashed guides at t/T = 1, 3, 5, 7 */
+    [1, 3, 5, 7].forEach(function (tx) {
+        board.create('line', [[tx, 0], [tx, 1]], {
+            strokeColor: '#ccc',
+            strokeWidth: 1,
+            dash: 2,
+            straightFirst: true,
+            straightLast: true,
+            fixed: true,
+            highlight: false
+        });
+    });
+
+    /* ── Point management ── */
+    var pts = [];
+
+    function snapVal(v) {
+        return Math.round(v / SNAP) * SNAP;
+    }
+
+    function serializePoints() {
+        var data = pts.map(function (p) {
+            return [snapVal(p.X()), snapVal(p.Y())];
+        });
+        /* Sort by x (time) */
+        data.sort(function (a, b) { return a[0] - b[0]; });
+        return JSON.stringify(data);
+    }
+
+    function pushToInput() {
+        var el = document.getElementById(ans6Ref);
+        if (el) {
+            el.value = serializePoints();
+            /* Dispatch change event so STACK registers the update */
+            var evt = new Event('change', { bubbles: true });
+            el.dispatchEvent(evt);
+        }
+    }
+
+    function updateLabel(p) {
+        var sx = snapVal(p.X()).toFixed(1);
+        var sy = snapVal(p.Y()).toFixed(1);
+        p.setName('(' + sx + ', ' + sy + ')');
+    }
+
+    function addPoint(x, y) {
+        if (pts.length >= MAX_POINTS) return null;
+        var snx = snapVal(x);
+        var sny = snapVal(y);
+        var p = board.create('point', [snx, sny], {
+            size: 5,
+            strokeColor: '#0055d4',
+            fillColor: '#3388ff',
+            snapSizeX: SNAP,
+            snapSizeY: SNAP,
+            snapToGrid: true,
+            label: { offset: [10, 10], fontSize: 11 }
+        });
+        updateLabel(p);
+
+        p.on('drag', function () {
+            updateLabel(p);
+            pushToInput();
+        });
+
+        pts.push(p);
+        pushToInput();
+        return p;
+    }
+
+    /* ── Click to place points ── */
+    board.on('down', function (evt) {
+        if (pts.length >= MAX_POINTS) return;
+        var coords = board.getUsrCoordsOfMouse(evt);
+        var x = coords[0];
+        var y = coords[1];
+        /* Ignore clicks too close to axes edges */
+        if (x < 0 || x > 8 || y < yMin || y > yMax) return;
+        addPoint(x, y);
+        board.update();
+    });
+
+    /* ── Reset button ── */
+    var resetBtn = board.create('button', [5.5, yMax - 1.2, 'Reset Points', function () {
+        pts.forEach(function (p) { board.removeObject(p); });
+        pts = [];
+        pushToInput();
+        board.update();
+    }], {
+        fixed: true
+    });
+
+    /* ── Restore state from saved answer ── */
+    var el = document.getElementById(ans6Ref);
+    if (el && el.value && el.value.length > 2) {
+        try {
+            var saved = JSON.parse(el.value);
+            if (Array.isArray(saved)) {
+                saved.forEach(function (pair) {
+                    if (Array.isArray(pair) && pair.length === 2) {
+                        addPoint(pair[0], pair[1]);
+                    }
+                });
+                board.update();
+            }
+        } catch (e) {
+            /* ignore parse errors on reload */
+        }
+    }
+})();
+[[/jsxgraph]]
+
+<p>Click on the graph to place <strong>4 key points</strong> showing the voltage \(V(t)\) at the load.
+Place points at times \(t = T,\; 3T,\; 5T,\; 7T\) with the correct voltage level at each step.
+You can drag points to adjust. The dashed grey line shows the steady-state voltage
+\(V_{\text{ss}} = {@ta5@}\;\text{V}\).</p>
+
+<p>[[input:ans6]] [[validation:ans6]]</p>
+<p><em>Syntax hint: This input is filled automatically by the interactive graph above.</em></p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h3>Worked Solution</h3>
+
+<h4>Step 1: Load Reflection Coefficient \(\Gamma_L\)</h4>
+<p>The load reflection coefficient is:</p>
+<p>\[\Gamma_L = \frac{R_L - Z_0}{R_L + Z_0} = \frac{{@RL@} - {@Z0@}}{{@RL@} + {@Z0@}} = {@ta1@}\]</p>
+
+<h4>Step 2: Generator Reflection Coefficient \(\Gamma_g\)</h4>
+<p>The generator (source) reflection coefficient is:</p>
+<p>\[\Gamma_g = \frac{R_g - Z_0}{R_g + Z_0} = \frac{{@Rg@} - {@Z0@}}{{@Rg@} + {@Z0@}} = {@ta2@}\]</p>
+
+<h4>Step 3: Initial Forward Voltage Wave \(V_1^{+}\)</h4>
+<p>At \(t = 0\), the source drives the line through a voltage divider formed by \(R_g\) and \(Z_0\):</p>
+<p>\[V_1^{+} = V_g \cdot \frac{Z_0}{R_g + Z_0} = {@Vg@} \cdot \frac{{@Z0@}}{{@Rg@} + {@Z0@}} = {@ta3@}\;\text{V}\]</p>
+
+<h4>Step 4: One-Way Travel Time \(T\)</h4>
+<p>The one-way travel time is simply the line length divided by the phase velocity:</p>
+<p>\[T = \frac{\ell}{v_p} = \frac{{@l_m@}}{{@vp@}} = {@ta4@}\;\text{s} \approx {@T_ns@}\;\text{ns}\]</p>
+
+<h4>Step 5: Steady-State Voltage \(V_{\text{ss}}\)</h4>
+<p>After all reflections have died out, the transmission line behaves as a simple wire.
+The DC steady-state voltage across the load is a resistive divider:</p>
+<p>\[V_{\text{ss}} = V_g \cdot \frac{R_L}{R_g + R_L} = {@Vg@} \cdot \frac{{@RL@}}{{@Rg@} + {@RL@}} = {@ta5@}\;\text{V}\]</p>
+
+<h4>Step 6: Bounce Diagram &mdash; Voltage at the Load \(V(z = \ell,\, t)\)</h4>
+<p>At the load (\(z = \ell\)), the voltage changes at odd multiples of the one-way travel time: \(t = T, 3T, 5T, 7T, \ldots\)</p>
+
+<p>The initial forward wave \(V_1^{+}\) arrives at the load at \(t = T\). At each subsequent bounce,
+the reflected and re-reflected waves accumulate. The voltage at the load after each bounce is:</p>
+
+<ul>
+  <li><strong>At \(t = T\):</strong> The first wave arrives.
+    \[V(T) = V_1^{+}(1 + \Gamma_L) = {@ta3@} \times (1 + {@ta1@}) = {@V_step1@}\;\text{V}\]</li>
+  <li><strong>At \(t = 3T\):</strong> After one round trip (reflection at source, then back to load).
+    \[V(3T) = V(T) + V_1^{+} \cdot \Gamma_L \Gamma_g (1 + \Gamma_L) = {@V_step2@}\;\text{V}\]</li>
+  <li><strong>At \(t = 5T\):</strong> Second round-trip reflection.
+    \[V(5T) = V(3T) + V_1^{+} \cdot (\Gamma_L \Gamma_g)^2 (1 + \Gamma_L) = {@V_step3@}\;\text{V}\]</li>
+  <li><strong>At \(t = 7T\):</strong> Third round-trip reflection.
+    \[V(7T) = V(5T) + V_1^{+} \cdot (\Gamma_L \Gamma_g)^3 (1 + \Gamma_L) = {@V_step4@}\;\text{V}\]</li>
+</ul>
+
+<p>As the bounces continue, the voltage converges to \(V_{\text{ss}} = {@ta5@}\;\text{V}\).</p>
+
+<hr />
+<h4>Answer Summary</h4>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr><th>Part</th><th>Quantity</th><th>Correct Answer</th></tr>
+  <tr><td>(a)</td><td>\(\Gamma_L\)</td><td>{@ta1@}</td></tr>
+  <tr><td>(b)</td><td>\(\Gamma_g\)</td><td>{@ta2@}</td></tr>
+  <tr><td>(c)</td><td>\(V_1^{+}\)</td><td>{@ta3@} V</td></tr>
+  <tr><td>(d)</td><td>\(T\)</td><td>{@ta4@} s</td></tr>
+  <tr><td>(e)</td><td>\(V_{\text{ss}}\)</td><td>{@ta5@} V</td></tr>
+  <tr><td>(f)</td><td>V(t) at load</td><td>Points at (T, {@V_step1@}), (3T, {@V_step2@}), (5T, {@V_step3@}), (7T, {@V_step4@})</td></tr>
+</table>
+]]></text>
+  </generalfeedback>
+
+  <defaultgrade>7.0000000</defaultgrade>
+  <penalty>0.0000000</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+
+  <stackversion>
+    <text>2024032101</text>
+  </stackversion>
+
+  <questionvariables>
+    <text><![CDATA[
+/* ===== Parameter set selection ===== */
+set: rand(4)+1;
+
+/* ===== Given values per set ===== */
+/*  Set | Z0 | Rg  | RL  | Vg  | l_m  */
+/*  1   | 50 | 150 | 150 | 60  | 1.0  */
+/*  2   | 50 | 100 | 25  | 30  | 1.5  */
+/*  3   | 75 | 150 | 25  | 60  | 1.0  */
+/*  4   | 50 | 150 | 25  | 100 | 0.5  */
+
+Z0:  if set=1 then 50  else if set=2 then 50  else if set=3 then 75  else 50;
+Rg:  if set=1 then 150 else if set=2 then 100 else if set=3 then 150 else 150;
+RL:  if set=1 then 150 else if set=2 then 25  else if set=3 then 25  else 25;
+Vg:  if set=1 then 60  else if set=2 then 30  else if set=3 then 60  else 100;
+l_m: if set=1 then 1.0 else if set=2 then 1.5 else if set=3 then 1.0 else 0.5;
+
+/* ===== Constants ===== */
+vp: 2e8;   /* 2c/3 */
+
+/* ===== Teacher answers ===== */
+
+/* (a) Gamma_L — load reflection coefficient */
+ta1: float((RL - Z0)/(RL + Z0));
+
+/* (b) Gamma_g — generator reflection coefficient */
+ta2: float((Rg - Z0)/(Rg + Z0));
+
+/* (c) V1plus — initial forward-travelling voltage wave */
+ta3: float(Vg * Z0 / (Rg + Z0));
+
+/* (d) T_val — one-way travel time */
+ta4: float(l_m / vp);
+
+/* (e) Vss — steady-state voltage at load */
+ta5: float(Vg * RL / (Rg + RL));
+
+/* ===== Display variables ===== */
+T_ns: float(ta4 * 1e9);
+vp_disp: 2;   /* for showing "2 × 10^8 m/s" */
+
+/* ===== Bounce diagram voltage steps at load (z = l) ===== */
+/* Voltage changes at odd multiples of T: T, 3T, 5T, 7T */
+V_step1: float(ta3 * (1 + ta1));
+V_step2: float(V_step1 + ta3 * ta1 * ta2 * (1 + ta1));
+V_step3: float(V_step2 + ta3 * (ta1 * ta2)^2 * (1 + ta1));
+V_step4: float(V_step3 + ta3 * (ta1 * ta2)^3 * (1 + ta1));
+
+/* ===== Correct points for JSXGraph grading (t-axis in units of T) ===== */
+correct_points: [[1, V_step1], [3, V_step2], [5, V_step3], [7, V_step4]];
+
+/* ===== Y-axis bounds for JSXGraph ===== */
+y_max: float(max(Vg, V_step1, V_step2, V_step3, V_step4) * 1.2);
+y_min: float(min(0, V_step1, V_step2, V_step3, V_step4) * 1.2 - 2);
+
+/* ===== Grading tolerances ===== */
+y_tol: float(max(1.0, 0.05 * Vg));
+]]></text>
+  </questionvariables>
+
+  <specificfeedback format="html">
+    <text><![CDATA[
+<h4>Part (a) — Γ_L</h4><div>[[feedback:prt1]]</div>
+<h4>Part (b) — Γ_g</h4><div>[[feedback:prt2]]</div>
+<h4>Part (c) — V₁⁺</h4><div>[[feedback:prt3]]</div>
+<h4>Part (d) — Travel Time T</h4><div>[[feedback:prt4]]</div>
+<h4>Part (e) — Steady-State V_ss</h4><div>[[feedback:prt5]]</div>
+<h4>Part (f) — V(t) at Load (JSXGraph)</h4><div>[[feedback:prt6]]</div>
+]]></text>
+  </specificfeedback>
+
+  <questionnote>
+    <text>Set {@set@}: Z0={@Z0@}&#937;, Rg={@Rg@}&#937;, RL={@RL@}&#937;, Vg={@Vg@}V | &#915;_L={@ta1@}, V_ss={@ta5@}</text>
+  </questionnote>
+
+  <questiondescription format="html">
+    <text><![CDATA[<p>Bounce diagram transient analysis — compute reflection coefficients, initial forward wave, travel time, steady-state voltage, and plot the voltage waveform at the load using an interactive JSXGraph. Week 13 training exercise.</p>]]></text>
+  </questiondescription>
+
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>j</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+
+  <!-- ans1: Part (a) — Gamma_L (numerical) -->
+  <input>
+    <name>ans1</name>
+    <type>numerical</type>
+    <tans>ta1</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans2: Part (b) — Gamma_g (numerical) -->
+  <input>
+    <name>ans2</name>
+    <type>numerical</type>
+    <tans>ta2</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans3: Part (c) — V1plus (numerical) -->
+  <input>
+    <name>ans3</name>
+    <type>numerical</type>
+    <tans>ta3</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans4: Part (d) — T_val, one-way travel time (numerical) -->
+  <input>
+    <name>ans4</name>
+    <type>numerical</type>
+    <tans>ta4</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans5: Part (e) — Vss, steady-state voltage (numerical) -->
+  <input>
+    <name>ans5</name>
+    <type>numerical</type>
+    <tans>ta5</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans6: Part (f) — JSXGraph bounce diagram points (algebraic, hidden) -->
+  <input>
+    <name>ans6</name>
+    <type>algebraic</type>
+    <tans>correct_points</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>0</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
+    <options>hideanswer</options>
+  </input>
+
+  <!-- prt1: Part (a) — Gamma_L, NumRelative 5% -->
+  <prt>
+    <name>prt1</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa1_float: float(ans1);
+ref1_float: float(ta1);
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative 5% for Gamma_L</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>ta1</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\Gamma_L = {@ta1@}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The load reflection coefficient is \(\Gamma_L = \dfrac{R_L - Z_0}{R_L + Z_0} = \dfrac{{@RL@} - {@Z0@}}{{@RL@} + {@Z0@}} = {@ta1@}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt2: Part (b) — Gamma_g, NumRelative 5% -->
+  <prt>
+    <name>prt2</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa2_float: float(ans2);
+ref2_float: float(ta2);
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative 5% for Gamma_g</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>ta2</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(\Gamma_g = {@ta2@}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The generator reflection coefficient is \(\Gamma_g = \dfrac{R_g - Z_0}{R_g + Z_0} = \dfrac{{@Rg@} - {@Z0@}}{{@Rg@} + {@Z0@}} = {@ta2@}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt3: Part (c) — V1plus, NumRelative 5% -->
+  <prt>
+    <name>prt3</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa3_float: float(ans3);
+ref3_float: float(ta3);
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative 5% for V1plus</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>ta3</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(V_1^{+} = {@ta3@}\;\text{V}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The initial forward wave is found from the voltage divider at the source: \(V_1^{+} = V_g \cdot \dfrac{Z_0}{R_g + Z_0} = {@Vg@} \cdot \dfrac{{@Z0@}}{{@Rg@} + {@Z0@}} = {@ta3@}\;\text{V}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt4: Part (d) — T_val (travel time), NumRelative 5% -->
+  <prt>
+    <name>prt4</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa4_float: float(ans4);
+ref4_float: float(ta4);
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative 5% for travel time T</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>ta4</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(T = {@ta4@}\;\text{s}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The one-way travel time is \(T = \dfrac{\ell}{v_p} = \dfrac{{@l_m@}}{{@vp@}} = {@ta4@}\;\text{s}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt5: Part (e) — Vss (steady-state voltage), NumRelative 5% -->
+  <prt>
+    <name>prt5</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+sa5_float: float(ans5);
+ref5_float: float(ta5);
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>NumRelative 5% for Vss</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans5</sans>
+      <tans>ta5</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! \(V_{\text{ss}} = {@ta5@}\;\text{V}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. In the DC steady state, the transmission line acts as a simple wire. The voltage across the load is a resistive divider: \(V_{\text{ss}} = V_g \cdot \dfrac{R_L}{R_g + R_L} = {@Vg@} \cdot \dfrac{{@RL@}}{{@Rg@} + {@RL@}} = {@ta5@}\;\text{V}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt6: Part (f) — JSXGraph bounce diagram point placement, value 2.0 -->
+  <prt>
+    <name>prt6</name>
+    <value>2.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text><![CDATA[
+/* Point Placement Grading — Adapted from graph-presets.js */
+/* correct_points is defined in questionvariables as:
+   [[1, V_step1], [3, V_step2], [5, V_step3], [7, V_step4]] */
+
+/* Convert student answer from matrix to list of lists for safe indexing.
+   Maxima parses [[1,2],[3,4]] as matrix([1,2],[3,4]), not a nested list.
+   args() extracts the matrix rows as a plain list. */
+student_raw: ans6;
+student_pts: if matrixp(student_raw) then args(student_raw) else student_raw;
+
+/* Check that student placed the correct number of points */
+student_count: length(student_pts);
+correct_count: is(student_count = 4);
+
+/* Tolerances for point matching */
+x_tol: 0.8;
+/* y_tol is defined in questionvariables: max(1.0, 0.05*Vg) */
+
+/* Use nearest-point matching: for each expected point, find the closest student point.
+   This avoids order-dependency — students don't need to place points in a specific order. */
+matched_expected: makelist(false, i, 1, 4);
+matched_student: makelist(false, i, 1, student_count);
+/* Track actual match pairing: which student index was matched to each expected point */
+match_pair: makelist(0, i, 1, 4);
+
+/* For each expected point, find the closest unmatched student point */
+match_results: block([],
+    for ei: 1 thru 4 do (
+        block([best_dist, best_si, ex, ey, sx, sy, dx, dy],
+            ex: correct_points[ei][1],
+            ey: correct_points[ei][2],
+            best_dist: 99999,
+            best_si: 0,
+            for si: 1 thru student_count do (
+                if not matched_student[si] then (
+                    sx: student_pts[si][1],
+                    sy: student_pts[si][2],
+                    dx: abs(sx - ex),
+                    dy: abs(sy - ey),
+                    if is(dx < x_tol) and is(dy < y_tol) then (
+                        block([d],
+                            d: sqrt(dx^2 + dy^2),
+                            if is(d < best_dist) then (best_dist: d, best_si: si)
+                        )
+                    )
+                )
+            ),
+            if is(best_si > 0) then (
+                matched_expected[ei]: true,
+                matched_student[best_si]: true,
+                match_pair[ei]: best_si
+            )
+        )
+    ),
+    matched_expected
+);
+
+/* Count how many expected points were matched */
+pt_checks: makelist(if matched_expected[i] then 1 else 0, i, 1, 4);
+num_correct: apply("+", pt_checks);
+all_correct: is(num_correct >= 3);
+
+/* Build detailed feedback table showing which points matched.
+   Uses match_pair to look up the actual paired student point for each expected point. */
+feedback_parts: makelist(
+    sconcat(
+        "<tr><td>", i, "</td>",
+        "<td>(", string(correct_points[i][1]), ", ", string(correct_points[i][2]), ")</td>",
+        "<td>",
+        if is(match_pair[i] > 0) then
+            sconcat("(", string(student_pts[match_pair[i]][1]), ", ", string(student_pts[match_pair[i]][2]), ")")
+        else "no match",
+        "</td>",
+        "<td>", if is(pt_checks[i] = 1) then "&#10004;" else "&#10008;", "</td></tr>"
+    ),
+    i, 1, 4
+);
+
+feedback_msg: sconcat(
+    "<strong>", string(num_correct), " / 4 points correct</strong>",
+    "<table border='1' cellpadding='4' style='border-collapse:collapse;margin-top:8px'>",
+    "<tr><th>#</th><th>Expected (t/T, V)</th><th>Your closest</th><th>Result</th></tr>",
+    simplode(feedback_parts, ""),
+    "</table>"
+);
+]]></text>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>AlgEquiv check — need at least 3 of 4 points correct</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>all_correct</sans>
+      <tans>true</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Well done! Your V(t) plot is correct.</p><div>{@feedback_msg@}</div>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt6-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Not quite right. Check the voltage levels at each bounce.</p><div>{@feedback_msg@}</div>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- ============================================================ -->
+  <!-- DEPLOYED SEEDS                                                -->
+  <!-- ============================================================ -->
+  <deployedseed>12345</deployedseed>
+  <deployedseed>23456</deployedseed>
+  <deployedseed>34567</deployedseed>
+  <deployedseed>45678</deployedseed>
+
+  <!-- ============================================================ -->
+  <!-- QTEST: teacher answers                                        -->
+  <!-- ============================================================ -->
+  <qtest>
+    <testcase>1</testcase>
+    <testinput>
+      <name>ans1</name>
+      <value>ta1</value>
+    </testinput>
+    <testinput>
+      <name>ans2</name>
+      <value>ta2</value>
+    </testinput>
+    <testinput>
+      <name>ans3</name>
+      <value>ta3</value>
+    </testinput>
+    <testinput>
+      <name>ans4</name>
+      <value>ta4</value>
+    </testinput>
+    <testinput>
+      <name>ans5</name>
+      <value>ta5</value>
+    </testinput>
+    <testinput>
+      <name>ans6</name>
+      <value>correct_points</value>
+    </testinput>
+    <expected>
+      <name>prt1</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt1-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt2</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt2-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt3</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt3-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt4</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt4-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt5</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt5-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt6</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt6-0-T</expectedanswernote>
+    </expected>
+  </qtest>
+
+  <!-- ============================================================ -->
+  <!-- HINTS (3, progressive)                                        -->
+  <!-- ============================================================ -->
+
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 1 (Concept):</strong> When a step-function voltage source drives a transmission line through a series resistance, the initial voltage wave is determined by the voltage divider between \(R_g\) and \(Z_0\). Each time the wave reaches a discontinuity (load or source), it partially reflects. The reflection coefficients \(\Gamma_L\) and \(\Gamma_g\) control the amplitude of each reflected wave. Over time, the superposition of all waves converges to the DC steady-state value.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 2 (Formulas):</strong> The key formulas are:</p>
+<ul>
+  <li>\(\Gamma_L = (R_L - Z_0)/(R_L + Z_0)\) &mdash; can be positive or negative</li>
+  <li>\(\Gamma_g = (R_g - Z_0)/(R_g + Z_0)\)</li>
+  <li>\(V_1^{+} = V_g \cdot Z_0 / (R_g + Z_0)\) &mdash; voltage divider at source</li>
+  <li>\(T = \ell / v_p\) &mdash; one-way travel time</li>
+  <li>\(V_{\text{ss}} = V_g \cdot R_L / (R_g + R_L)\) &mdash; DC voltage divider (line is transparent)</li>
+</ul>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p><strong>Hint 3 (Bounce diagram steps):</strong> At the load (\(z = \ell\)), voltage changes at \(t = T, 3T, 5T, 7T, \ldots\):</p>
+<ol>
+  <li>At \(t = T\): \(V = V_1^{+}(1 + \Gamma_L)\)</li>
+  <li>At \(t = 3T\): Add the contribution \(V_1^{+} \cdot \Gamma_L \Gamma_g (1 + \Gamma_L)\)</li>
+  <li>At \(t = 5T\): Add \(V_1^{+} \cdot (\Gamma_L \Gamma_g)^2 (1 + \Gamma_L)\)</li>
+  <li>At \(t = 7T\): Add \(V_1^{+} \cdot (\Gamma_L \Gamma_g)^3 (1 + \Gamma_L)\)</li>
+</ol>
+<p>Each successive bounce adds a factor of \(\Gamma_L \Gamma_g\) (which has magnitude &lt; 1), so the steps get progressively smaller and converge to \(V_{\text{ss}}\).</p>]]></text>
+  </hint>
+
+</question>
+
+</quiz>
