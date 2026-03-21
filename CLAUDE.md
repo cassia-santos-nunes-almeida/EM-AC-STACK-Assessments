@@ -36,7 +36,38 @@ Environment:
 * Python: use python — not python3 (not on PATH)
 * Claude Code active — use session teleport when needed; re-authenticate with /login if token expired
 
-## 3. Self-Verification (applies to all tasks)
+## 3. Task Decomposition and Execution Strategy
+
+Before starting any non-trivial task, assess scope:
+
+**Step 1 — Size check**
+If a task has more than 3 distinct deliverables, affects more than 2 files,
+or requires more than one skill — it is too large to execute as one unit.
+Decompose it before starting. Never attempt a large task as a single block.
+
+**Step 2 — Dependency map**
+For each subtask, determine:
+- Does it depend on the output of another subtask? → sequential
+- Can it proceed independently? → parallel candidate
+
+**Step 3 — Execution order**
+Sequential: use when subtask B needs output from A.
+  Example: generate Maxima CAS code → then build XML wrapper around it.
+Parallel: use when subtasks share no inputs/outputs.
+  Example: draft 3 STACK questions on different topics simultaneously.
+Batched parallel: group independent subtasks, execute the batch, then proceed.
+  Example: generate all randomization blocks → then all PRT trees → then all XML wrappers.
+
+**Step 4 — Confirm before executing**
+Present the subtask list and proposed execution order BEFORE starting work.
+Wait for confirmation unless the task is clearly routine.
+
+**Step 5 — Report at each boundary**
+At the end of each subtask or batch: report what was completed, what comes
+next, and any blocker or decision needed before proceeding.
+Do not silently chain subtasks without a checkpoint.
+
+## 4. Self-Verification (applies to all tasks)
 
 Before returning any output:
 1. Goal analysis — State the explicit and implicit goals. What does success look like?
@@ -45,7 +76,7 @@ Before returning any output:
 4. End-to-end self-test — Test output against all stated goals and identified risks. Iterate until requirements are met and output is optimized. Do not return control until this is complete.
 5. Pattern check — Before finalizing, check PATTERNS.md. If the output would trigger a known pattern, apply the documented fix automatically.
 
-## 4. Session Protocols
+## 5. Session Protocols
 
 ### Session Open
 At the start of every session, before any task work:
@@ -74,7 +105,7 @@ At the end of every session, before returning control:
 
 To trigger this protocol, say: **close session** or **wrap up**.
 
-## 5. Cross-Skill Rules
+## 6. Cross-Skill Rules
 
 These apply to all skills. Skills do not repeat them.
 
@@ -94,7 +125,7 @@ These apply to all skills. Skills do not repeat them.
 * Session state lives in SESSION.md — write it at close, read it at open
 * Never duplicate content between CLAUDE.md and a SKILL.md — reference by name
 
-## 6. Skill Index
+## 7. Skill Index
 
 | Skill | Trigger | File |
 |-------|---------|------|

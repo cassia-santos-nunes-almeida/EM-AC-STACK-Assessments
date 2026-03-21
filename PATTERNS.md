@@ -212,6 +212,20 @@ When a rule is superseded, mark it `[RETIRED]` but keep it in place.
 
 ---
 
+## Execution
+
+### P-EXEC-01 — Large tasks must be decomposed before starting
+
+**Pattern:** Large tasks attempted as a single block produced incomplete or
+inconsistent output requiring full rework.
+**Rule:** Any task with 3+ deliverables, 2+ files, or 2+ skills required must
+be decomposed into subtasks with an explicit dependency map before any work
+begins. Present the plan and wait for confirmation. Never start without this step.
+**Scope:** All sessions, all skills.
+**First seen:** Workflow optimization session, March 2026.
+
+---
+
 ## Template for New Entries
 
 ```markdown
