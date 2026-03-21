@@ -79,7 +79,7 @@ var board = JXG.JSXGraph.initBoard(divid, {
     boundingbox: [-0.5, yMax, 8.5, yMin],
     axis: true,
     grid: true,
-    showNavigation: false,
+    showNavigation: true,
     showCopyright: false
 });
 
@@ -215,8 +215,7 @@ Place points at times \(t = T,\; 3T,\; 5T,\; 7T\) with the correct voltage level
 You can drag points to adjust. The dashed grey line shows the steady-state voltage
 \(V_{\text{ss}} = {@ta5@}\;\text{V}\).</p>
 
-<p>[[input:ans6]] [[validation:ans6]]</p>
-<p><em>Syntax hint: This input is filled automatically by the interactive graph above.</em></p>
+<p style="display:none">[[input:ans6]] [[validation:ans6]]</p>
 ]]></text>
   </questiontext>
   <generalfeedback format="html">
@@ -339,8 +338,9 @@ V_step4: float(V_step3 + ta3 * (ta1 * ta2)^3 * (1 + ta1));
 correct_points: [[1, V_step1], [3, V_step2], [5, V_step3], [7, V_step4]];
 
 /* ===== Y-axis bounds for JSXGraph ===== */
-y_max: float(max(Vg, V_step1, V_step2, V_step3, V_step4) * 1.2);
-y_min: float(min(0, V_step1, V_step2, V_step3, V_step4) * 1.2 - 2);
+/* ceiling/floor guarantee clean integer output for JS interpolation */
+y_max: ceiling(float(max(Vg, V_step1, V_step2, V_step3, V_step4)) * 1.2);
+y_min: floor(float(min(0, V_step1, V_step2, V_step3, V_step4)) * 1.2 - 2);
 
 /* ===== Grading tolerances ===== */
 y_tol: float(max(1.0, 0.05 * Vg));
@@ -497,7 +497,7 @@ y_tol: float(max(1.0, 0.05 * Vg));
     <type>algebraic</type>
     <tans>correct_points</tans>
     <boxsize>15</boxsize>
-    <strictsyntax>0</strictsyntax>
+    <strictsyntax>1</strictsyntax>
     <insertstars>0</insertstars>
     <syntaxhint/>
     <syntaxattribute>0</syntaxattribute>
