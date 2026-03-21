@@ -16,7 +16,7 @@
 <h3>Lumped vs Distributed Model Identification</h3>
 <p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
 <p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
-<p><strong>Total: 7 points (7 parts, 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
+<p><strong>Total: 8 points (8 parts, 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
 
 <hr />
 
@@ -71,6 +71,14 @@ Compute the new ratio \(\ell / \lambda_{\text{new}}\).</p>
 from lumped to distributed?</p>
 <p>[[input:ans7]] [[validation:ans7]]</p>
 <p><em>Select the most physically accurate explanation.</em></p>
+
+<h4>Part&nbsp;(h) &mdash; Design: minimum frequency for distributed model (1&nbsp;pt)</h4>
+<p>Suppose you are designing a system using this same interconnect (length \(\ell = {@l_cm@}\;\text{cm}\),
+phase velocity \(v_p = {@vp_disp@} \times 10^8\;\text{m/s}\)).
+<strong>What is the minimum signal frequency</strong> at which you must use the distributed model?</p>
+<p>Use the same threshold: \(\ell/\lambda \ge 0.01\). Give your answer in <strong>Hz</strong>.</p>
+<p>\(f_{\min} = \) [[input:ans8]] [[validation:ans8]] Hz</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>2e7</code>. Scientific notation accepted.</em></p>
 ]]></text>
   </questiontext>
   <generalfeedback format="html">
@@ -109,6 +117,10 @@ to the line length, so wave propagation effects matter.</em></p>
 <p>The key idea is that when the physical length of the line is a significant fraction of the wavelength,
 voltages and currents vary along the line and the lumped approximation (uniform V and I) breaks down.</p>
 
+<h4>Part (h) &mdash; Minimum frequency for distributed model</h4>
+<p>We need \(\ell/\lambda \ge 0.01\). Since \(\lambda = v_p/f\), this gives:</p>
+<p>\[\frac{\ell}{v_p/f} \ge 0.01 \implies f \ge \frac{0.01 \cdot v_p}{\ell} = \frac{0.01 \times {@vp@}}{{@l_m@}} = {@ta8@}\;\text{Hz}\]</p>
+
 <hr />
 <h4>Answer Summary</h4>
 <table border="1" cellpadding="5" cellspacing="0">
@@ -120,10 +132,11 @@ voltages and currents vary along the line and the lumped approximation (uniform 
 <tr><td>(e) l/&lambda; at 100f</td><td>{@ta5@}</td></tr>
 <tr><td>(f) Model at 100f</td><td>{@if is_distributed_high then "Distributed" else "Lumped"@}</td></tr>
 <tr><td>(g) Insight</td><td>Wavelength shrinks, becomes comparable to line length</td></tr>
+<tr><td>(h) f<sub>min</sub></td><td>{@ta8@} Hz</td></tr>
 </table>
 ]]></text>
   </generalfeedback>
-  <defaultgrade>7.0000000</defaultgrade>
+  <defaultgrade>8.0000000</defaultgrade>
   <penalty>0.0000000</penalty>
   <hidden>0</hidden>
   <idnumber/>
@@ -182,6 +195,9 @@ ta6_correct: if is(ratio_high >= 0.01) then 1 else 2;
 /* Part (g): radio — 4 options, option 1 always correct */
 ta7: [[1,true,"At higher frequencies, the wavelength shrinks and becomes comparable to the line length, so wave propagation effects matter"],[2,false,"Higher frequencies increase the resistance of the line, requiring distributed analysis"],[3,false,"The speed of light decreases at higher frequencies"],[4,false,"Higher frequencies make the line physically longer"]];
 ta7_correct: 1;
+
+/* Part (h): minimum frequency for distributed model */
+ta8: float(0.01 * vp / l_m);
 ]]></text>
   </questionvariables>
   <specificfeedback format="html">
@@ -206,10 +222,13 @@ ta7_correct: 1;
 
 <h4>Part (g) &mdash; Physical insight</h4>
 <div>[[feedback:prt7]]</div>
+
+<h4>Part (h) &mdash; Minimum frequency</h4>
+<div>[[feedback:prt8]]</div>
 ]]></text>
   </specificfeedback>
   <questionnote>
-    <text>Set {@set@}: f={@f_disp@}, l={@l_cm@} cm, vp={@vp_disp@}×10⁸ m/s | λ={@ta1@} m, l/λ={@ta2@}</text>
+    <text>Set {@set@}: f={@f_disp@}, l={@l_cm@} cm, vp={@vp_disp@}×10⁸ m/s | λ={@ta1@} m, l/λ={@ta2@} | f_min={@ta8@} Hz</text>
   </questionnote>
   <questiondescription format="html">
     <text><![CDATA[<p>Lumped vs distributed model identification — Week 13 training exercise.</p>]]></text>
@@ -373,6 +392,26 @@ ta7_correct: 1;
     <forbidwords/>
     <allowwords/>
     <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans8: numerical — minimum frequency for distributed model -->
+  <input>
+    <name>ans8</name>
+    <type>numerical</type>
+    <tans>ta8</tans>
+    <boxsize>12</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
     <requirelowestterms>0</requirelowestterms>
     <checkanswertype>0</checkanswertype>
     <mustverify>1</mustverify>
@@ -636,6 +675,42 @@ ta7_correct: 1;
     </node>
   </prt>
 
+  <!-- prt8: Part (h) — minimum frequency (NumRelative 0.05) -->
+  <prt>
+    <name>prt8</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (h): minimum frequency</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans8</sans>
+      <tans>ta8</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt8-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The minimum frequency for the distributed model is \(f_{\min} = {@ta8@}\;\text{Hz}\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt8-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. From the threshold \(\ell/\lambda \ge 0.01\) and \(\lambda = v_p/f\), solve for \(f\): \(f_{\min} = 0.01 \cdot v_p / \ell = {@ta8@}\;\text{Hz}\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
   <!-- ============================================================ -->
   <!-- DEPLOYED SEEDS                                                -->
   <!-- ============================================================ -->
@@ -676,6 +751,10 @@ ta7_correct: 1;
     <testinput>
       <name>ans7</name>
       <value>ta7</value>
+    </testinput>
+    <testinput>
+      <name>ans8</name>
+      <value>ta8</value>
     </testinput>
     <expected>
       <name>prt1</name>
@@ -719,6 +798,12 @@ ta7_correct: 1;
       <expectedpenalty>0.0000000</expectedpenalty>
       <expectedanswernote>prt7-0-T</expectedanswernote>
     </expected>
+    <expected>
+      <name>prt8</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt8-0-T</expectedanswernote>
+    </expected>
   </qtest>
 
   <!-- ============================================================ -->
@@ -731,7 +816,8 @@ ta7_correct: 1;
     <text><![CDATA[<p><strong>Hint 2:</strong> The rule of thumb for choosing between lumped and distributed models is based on the ratio \(\ell/\lambda\). If this ratio is at least 0.01 (i.e. the line is at least 1% of a wavelength long), the distributed model is needed because voltage and current vary appreciably along the line.</p>]]></text>
   </hint>
   <hint format="html">
-    <text><![CDATA[<p><strong>Hint 3:</strong> When the frequency increases by a factor of 100, the wavelength decreases by the same factor (since \(\lambda = v_p/f\) and \(v_p\) is unchanged). Therefore \(\ell/\lambda\) increases by 100. This can push a line that was safely "lumped" into the distributed regime &mdash; the paradigm shift occurs because the physical length has not changed, but the electrical length (measured in wavelengths) has grown.</p>]]></text>
+    <text><![CDATA[<p><strong>Hint 3:</strong> When the frequency increases by a factor of 100, the wavelength decreases by the same factor (since \(\lambda = v_p/f\) and \(v_p\) is unchanged). Therefore \(\ell/\lambda\) increases by 100. This can push a line that was safely "lumped" into the distributed regime &mdash; the paradigm shift occurs because the physical length has not changed, but the electrical length (measured in wavelengths) has grown.</p>
+<p>For part (h), rearrange the threshold condition \(\ell/\lambda \ge 0.01\) with \(\lambda = v_p/f\) to solve for the minimum frequency \(f\).</p>]]></text>
   </hint>
 
 </question>

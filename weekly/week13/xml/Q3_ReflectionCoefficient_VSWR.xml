@@ -16,7 +16,7 @@
 <h3>Reflection Coefficient, VSWR, and Standing Wave Locations</h3>
 <p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
 <p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
-<p><strong>Total: 7 points (7 parts, 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
+<p><strong>Total: 8 points (8 parts, 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
 
 <hr />
 
@@ -63,6 +63,14 @@ from the load.</p>
 <p>What does VSWR = 1 mean physically?</p>
 <p>[[input:ans7]] [[validation:ans7]]</p>
 <p><em>Select the most physically accurate explanation.</em></p>
+
+<h4>Part&nbsp;(h) &mdash; Design constraint: maximum load resistance for VSWR &le; 2 (1&nbsp;pt)</h4>
+<p>Now consider a different scenario: a <strong>purely resistive</strong> load \(R_L\) is connected to a
+transmission line with characteristic impedance \(Z_0 = {@Z0_disp@}\;\Omega\).</p>
+<p>What is the <strong>maximum</strong> value of \(R_L\) (assuming \(R_L > Z_0\)) that keeps
+\(\text{VSWR} \le 2\)?</p>
+<p>\(R_{L,\max} = \) [[input:ans8]] [[validation:ans8]] &Omega;</p>
+<p><em>Syntax hint: Enter a number, e.g. <code>100</code></em></p>
 ]]></text>
   </questiontext>
   <generalfeedback format="html">
@@ -101,6 +109,11 @@ from the load.</p>
 <h4>Part (g) &mdash; VSWR = 1</h4>
 <p>VSWR = 1 means \(|\Gamma| = 0\): the line is perfectly matched, no reflections occur, and all incident power is delivered to the load. The voltage amplitude is constant along the line.</p>
 
+<h4>Part (h) &mdash; Maximum load resistance for VSWR &le; 2</h4>
+<p>For a purely resistive load with \(R_L > Z_0\):</p>
+<p>\[\text{VSWR} = \frac{R_L}{Z_0} \le 2 \implies R_L \le 2 Z_0 = 2 \times {@Z0_disp@} = {@ta8@}\;\Omega\]</p>
+<p>Equivalently, from \(|\Gamma| = (R_L - Z_0)/(R_L + Z_0) \le 1/3\), solving gives \(R_L \le 2 Z_0\).</p>
+
 <hr />
 <h4>Answer Summary</h4>
 <table border="1" cellpadding="5" cellspacing="0">
@@ -112,10 +125,11 @@ from the load.</p>
 <tr><td>(e) d<sub>min</sub></td><td>{@ta5@} m</td></tr>
 <tr><td>(f) |&Gamma;| when Z<sub>L</sub>=Z<sub>0</sub></td><td>0</td></tr>
 <tr><td>(g) VSWR=1 meaning</td><td>Perfectly matched &mdash; no reflections</td></tr>
+<tr><td>(h) R<sub>L,max</sub> for VSWR&le;2</td><td>{@ta8@} &Omega;</td></tr>
 </table>
 ]]></text>
   </generalfeedback>
-  <defaultgrade>7.0000000</defaultgrade>
+  <defaultgrade>8.0000000</defaultgrade>
   <penalty>0.0000000</penalty>
   <hidden>0</hidden>
   <idnumber/>
@@ -168,6 +182,9 @@ ta6_correct: 1;
 /* MCQ Part (g): What does VSWR=1 mean? */
 ta7: [[1, true, "The line is perfectly matched — no reflections occur and all power is delivered to the load"], [2, false, "The line has maximum reflections and no power reaches the load"], [3, false, "The characteristic impedance equals zero"], [4, false, "The line is open-circuited"]];
 ta7_correct: 1;
+
+/* Part (h): maximum RL for VSWR <= 2 (purely resistive, RL > Z0) */
+ta8: float(2 * Z0);
 ]]></text>
   </questionvariables>
   <specificfeedback format="html">
@@ -192,10 +209,13 @@ ta7_correct: 1;
 
 <h4>Part (g) &mdash; VSWR = 1 meaning</h4>
 <div>[[feedback:prt7]]</div>
+
+<h4>Part (h) &mdash; Max R<sub>L</sub> for VSWR &le; 2</h4>
+<div>[[feedback:prt8]]</div>
 ]]></text>
   </specificfeedback>
   <questionnote>
-    <text>Set {@set@}: Z0={@Z0_disp@} Ω, ZL={@RL_disp@}+j{@XL_disp@} Ω, λ={@lambda_disp@} cm | |Γ|={@ta1@}, θ={@ta2@}°, VSWR={@ta3@}, dmax={@ta4@} m, dmin={@ta5@} m</text>
+    <text>Set {@set@}: Z0={@Z0_disp@} Ω, ZL={@RL_disp@}+j{@XL_disp@} Ω, λ={@lambda_disp@} cm | |Γ|={@ta1@}, θ={@ta2@}°, VSWR={@ta3@}, dmax={@ta4@} m, dmin={@ta5@} m | RL_max={@ta8@}</text>
   </questionnote>
   <questiondescription format="html">
     <text><![CDATA[<p>Reflection coefficient, VSWR, and standing wave locations — Week 13 training exercise.</p>]]></text>
@@ -359,6 +379,26 @@ ta7_correct: 1;
     <forbidwords/>
     <allowwords/>
     <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans8: numerical — maximum RL for VSWR <= 2 -->
+  <input>
+    <name>ans8</name>
+    <type>numerical</type>
+    <tans>ta8</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
     <requirelowestterms>0</requirelowestterms>
     <checkanswertype>0</checkanswertype>
     <mustverify>1</mustverify>
@@ -622,6 +662,42 @@ ta7_correct: 1;
     </node>
   </prt>
 
+  <!-- prt8: Part (h) — max RL for VSWR <= 2 (NumRelative 0.05) -->
+  <prt>
+    <name>prt8</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (h): max RL for VSWR &lt;= 2</description>
+      <answertest>NumRelative</answertest>
+      <sans>ans8</sans>
+      <tans>ta8</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt8-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The maximum purely resistive load for VSWR &le; 2 is \(R_{L,\max} = 2 Z_0 = {@ta8@}\;\Omega\).</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt8-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. For a purely resistive load with \(R_L > Z_0\), VSWR \(= R_L / Z_0\). Setting VSWR \(\le 2\) gives \(R_L \le 2 Z_0 = {@ta8@}\;\Omega\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
   <!-- ============================================================ -->
   <!-- DEPLOYED SEEDS                                                -->
   <!-- ============================================================ -->
@@ -662,6 +738,10 @@ ta7_correct: 1;
     <testinput>
       <name>ans7</name>
       <value>ta7</value>
+    </testinput>
+    <testinput>
+      <name>ans8</name>
+      <value>ta8</value>
     </testinput>
     <expected>
       <name>prt1</name>
@@ -705,6 +785,12 @@ ta7_correct: 1;
       <expectedpenalty>0.0000000</expectedpenalty>
       <expectedanswernote>prt7-0-T</expectedanswernote>
     </expected>
+    <expected>
+      <name>prt8</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt8-0-T</expectedanswernote>
+    </expected>
   </qtest>
 
   <!-- ============================================================ -->
@@ -717,7 +803,8 @@ ta7_correct: 1;
     <text><![CDATA[<p><strong>Hint 2:</strong> To compute \(|\Gamma|\), find the magnitude of the complex ratio. For the phase, use the argument (angle) of the complex number and convert to degrees. VSWR follows directly: \(\text{VSWR} = (1 + |\Gamma|)/(1 - |\Gamma|)\). The phase constant is \(\beta = 2\pi/\lambda\).</p>]]></text>
   </hint>
   <hint format="html">
-    <text><![CDATA[<p><strong>Hint 3:</strong> The first voltage maximum occurs at \(d_{\max} = \theta_\Gamma/(2\beta)\) from the load (if \(\theta_\Gamma > 0\); otherwise add \(\lambda/2\)). The first voltage minimum is at \(d_{\min} = d_{\max} + \lambda/4\), reduced by \(\lambda/2\) if it exceeds \(\lambda/2\). Maxima and minima always alternate every \(\lambda/4\) along the line.</p>]]></text>
+    <text><![CDATA[<p><strong>Hint 3:</strong> The first voltage maximum occurs at \(d_{\max} = \theta_\Gamma/(2\beta)\) from the load (if \(\theta_\Gamma > 0\); otherwise add \(\lambda/2\)). The first voltage minimum is at \(d_{\min} = d_{\max} + \lambda/4\), reduced by \(\lambda/2\) if it exceeds \(\lambda/2\). Maxima and minima always alternate every \(\lambda/4\) along the line.</p>
+<p>For part (h), start from the VSWR definition for a purely resistive load: VSWR \(= R_L/Z_0\) when \(R_L > Z_0\). Set VSWR \(\le 2\) and solve for \(R_L\).</p>]]></text>
   </hint>
 
 </question>
