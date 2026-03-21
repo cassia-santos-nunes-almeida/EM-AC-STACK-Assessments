@@ -67,9 +67,9 @@ Place <strong>exactly 4 points</strong> on the interactive graph below at times 
 each at the correct voltage level for that time interval.</p>
 
 [[jsxgraph input-ref-ans6="ans6Ref" width="680px" height="440px"]]
-var yMax  = {@y_max@};
-var yMin  = {@y_min@};
-var Vss   = {@ta5@};
+var yMax  = {#y_max#};
+var yMin  = {#y_min#};
+var Vss   = {#ta5#};
 var MAX_POINTS = 4;
 var SNAP  = 0.5;
 
