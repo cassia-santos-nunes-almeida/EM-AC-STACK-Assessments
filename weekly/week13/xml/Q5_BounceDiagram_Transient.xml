@@ -15,7 +15,7 @@
 <h3>Bounce Diagram &mdash; Transient Analysis</h3>
 <p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
 <p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
-<p><strong>Total: 8 points (7 parts: a&ndash;e worth 1 pt each, f worth 2 pts, g worth 1 pt) | Penalty per wrong attempt: 0%</strong></p>
+<p><strong>Total: 10 points (9 parts: a&ndash;e worth 1 pt each, f worth 2 pts, g&ndash;i worth 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
 
 <hr />
 
@@ -67,6 +67,10 @@ Place <strong>exactly 4 points</strong> on the interactive graph below at times 
 each at the correct voltage level for that time interval.</p>
 
 [[jsxgraph input-ref-ans6="ans6Ref" width="680px" height="440px"]]
+/* ================================================================
+   Bounce-diagram point-placement graph.
+   Uses stack_jxg.custom_bind for proper STACK-JS iframe binding.
+   ================================================================ */
 var yMax  = {#y_max#};
 var yMin  = {#y_min#};
 var Vss   = {#ta5#};
@@ -107,25 +111,56 @@ for (var gi = 0; gi < guides.length; gi++) {
     });
 }
 
-/* Point management */
+/* ---- Point management ---- */
 var pts = [];
 var labels = [];
-var stateInput = document.getElementById(ans6Ref);
 
+/* Hidden anchor point — used as the watch target for custom_bind.
+   Board-level 'update' events on this object trigger serialization. */
+var syncAnchor = board.create('point', [0, 0], {
+    visible: false, fixed: true, name: '', withLabel: false
+});
+
+/* ---- Dynamic table (inside JSXGraph iframe scope) ---- */
+var tableHTML =
+    '<div style="margin:10px 0">' +
+    '<p style="font-weight:bold;margin-bottom:4px;">Your placed points</p>' +
+    '<table border="1" cellpadding="6" cellspacing="0" ' +
+    'style="border-collapse:collapse;font-family:sans-serif;">' +
+    '<tr style="background:#e8e8e8;"><th>Point</th><th>t / T</th><th>Voltage</th></tr>' +
+    '<tr><td>P1</td><td class="q5-cx" data-i="0"><em>\u2014</em></td>' +
+    '<td class="q5-cy" data-i="0"><em>\u2014</em></td></tr>' +
+    '<tr><td>P2</td><td class="q5-cx" data-i="1"><em>\u2014</em></td>' +
+    '<td class="q5-cy" data-i="1"><em>\u2014</em></td></tr>' +
+    '<tr><td>P3</td><td class="q5-cx" data-i="2"><em>\u2014</em></td>' +
+    '<td class="q5-cy" data-i="2"><em>\u2014</em></td></tr>' +
+    '<tr><td>P4</td><td class="q5-cx" data-i="3"><em>\u2014</em></td>' +
+    '<td class="q5-cy" data-i="3"><em>\u2014</em></td></tr>' +
+    '</table></div>';
+var boardDiv = document.getElementById(divid);
+var tableWrapper = document.createElement('div');
+tableWrapper.innerHTML = tableHTML;
+boardDiv.parentNode.insertBefore(tableWrapper, boardDiv.nextSibling);
+
+/* Cache cell references using class+data-attribute (avoids ID collisions
+   across multiple question instances on the same page). */
+var xCells = tableWrapper.querySelectorAll('.q5-cx');
+var yCells = tableWrapper.querySelectorAll('.q5-cy');
+
+/* ---- Helpers ---- */
 function snapVal(v) {
     return Math.round(v / SNAP) * SNAP;
 }
 
-function serializePoints() {
-    if (pts.length === 0) {
-        stateInput.value = '[]';
-    } else {
-        var parts = [];
-        var sorted = pts.slice().sort(function(a, b) { return a.X() - b.X(); });
-        for (var i = 0; i < sorted.length; i++) {
-            parts.push('[' + snapVal(sorted[i].X()) + ',' + snapVal(sorted[i].Y()) + ']');
+function updateTable() {
+    for (var i = 0; i < MAX_POINTS; i++) {
+        if (i < pts.length) {
+            xCells[i].textContent = snapVal(pts[i].X()).toString();
+            yCells[i].textContent = snapVal(pts[i].Y()).toString() + ' V';
+        } else {
+            xCells[i].innerHTML = '<em>\u2014</em>';
+            yCells[i].innerHTML = '<em>\u2014</em>';
         }
-        stateInput.value = '[' + parts.join(',') + ']';
     }
 }
 
@@ -147,8 +182,9 @@ function addPoint(x, y) {
         function() { return 'P' + (idx+1) + ' (' + snapVal(p.X()) + ', ' + snapVal(p.Y()) + ')'; }
     ], { fontSize: 11, color: '#0055d4', fixed: true, highlight: false });
     p.on('drag', function() {
-        serializePoints();
         updateTable();
+        /* board.update() fires automatically after drag, triggering
+           the custom_bind serializer via the syncAnchor watcher. */
     });
     pts.push(p);
     labels.push(lbl);
@@ -164,22 +200,7 @@ function getMouseCoords(e) {
     return new JXG.Coords(JXG.COORDS_BY_SCREEN, [dx, dy], board);
 }
 
-/* Restore state */
-if (stateInput && stateInput.value && stateInput.value !== '[]') {
-    var matches = stateInput.value.match(/\[(-?[\d.]+),\s*(-?[\d.]+)\]/g);
-    if (matches) {
-        for (var i = 0; i < matches.length && i < MAX_POINTS; i++) {
-            var nums = matches[i].match(/(-?[\d.]+)/g);
-            if (nums && nums.length >= 2) {
-                addPoint(parseFloat(nums[0]), parseFloat(nums[1]));
-            }
-        }
-        serializePoints();
-        updateTable();
-    }
-}
-
-/* Click handler */
+/* ---- Click handler ---- */
 board.on('down', function(e) {
     if (e[JXG.touchProperty]) return;
 
@@ -202,26 +223,10 @@ board.on('down', function(e) {
     if (x < 0 || x > 8 || y < yMin || y > yMax) return;
 
     addPoint(x, y);
-    serializePoints();
+    board.update();   /* triggers custom_bind serializer */
 });
 
-function updateTable() {
-    for (var i = 0; i < MAX_POINTS; i++) {
-        var xCell = document.getElementById('q5-p' + (i+1) + '-x');
-        var yCell = document.getElementById('q5-p' + (i+1) + '-y');
-        if (xCell && yCell) {
-            if (i < pts.length) {
-                xCell.textContent = snapVal(pts[i].X()).toString();
-                yCell.textContent = snapVal(pts[i].Y()).toString() + ' V';
-            } else {
-                xCell.innerHTML = '<em>\u2014</em>';
-                yCell.innerHTML = '<em>\u2014</em>';
-            }
-        }
-    }
-}
-
-/* Reset button */
+/* ---- Reset button ---- */
 board.create('button', [5.5, yMax - 1.5, 'Reset', function() {
     for (var i = pts.length - 1; i >= 0; i--) {
         board.removeObject(labels[i]);
@@ -229,20 +234,63 @@ board.create('button', [5.5, yMax - 1.5, 'Reset', function() {
     }
     pts = [];
     labels = [];
-    board.update();
-    serializePoints();
     updateTable();
+    board.update();   /* triggers custom_bind serializer */
 }]);
+
+/* ================================================================
+   STACK binding via stack_jxg.custom_bind
+   - Serializer: reads pts[] and returns Maxima-compatible list string
+   - Deserializer: parses saved string and recreates points
+   - Watch list: [syncAnchor] — any board.update() triggers serialization
+   ================================================================ */
+stack_jxg.custom_bind(
+    ans6Ref,
+    /* serializer */
+    function() {
+        if (pts.length === 0) return '[]';
+        var sorted = pts.slice().sort(function(a, b) { return a.X() - b.X(); });
+        var parts = [];
+        for (var i = 0; i < sorted.length; i++) {
+            parts.push('[' + snapVal(sorted[i].X()) + ',' + snapVal(sorted[i].Y()) + ']');
+        }
+        return '[' + parts.join(',') + ']';
+    },
+    /* deserializer — called by custom_bind on page load if input has a value */
+    function(data) {
+        /* Clear any existing points */
+        board.suspendUpdate();
+        for (var i = pts.length - 1; i >= 0; i--) {
+            board.removeObject(labels[i]);
+            board.removeObject(pts[i]);
+        }
+        pts = [];
+        labels = [];
+
+        if (data && data !== '[]') {
+            var matches = data.match(/\[(-?[\d.]+),\s*(-?[\d.]+)\]/g);
+            if (matches) {
+                for (var i = 0; i < matches.length && i < MAX_POINTS; i++) {
+                    var nums = matches[i].match(/(-?[\d.]+)/g);
+                    if (nums && nums.length >= 2) {
+                        addPoint(parseFloat(nums[0]), parseFloat(nums[1]));
+                    }
+                }
+            }
+        }
+        board.unsuspendUpdate();
+        updateTable();
+    },
+    [syncAnchor]
+);
+
+/* Clear the initial-value guard so the first click triggers serialization
+   (otherwise custom_bind skips if the serializer returns the same value
+   as the initial snapshot, which is '[]'). */
+stack_jxg.clear_initial(syncAnchor);
 [[/jsxgraph]]
 
-<table border="1" cellpadding="6" cellspacing="0" style="margin:10px 0; border-collapse:collapse; font-family:sans-serif;">
-<caption style="font-weight:bold; margin-bottom:4px;">Your placed points</caption>
-<tr style="background:#e8e8e8;"><th>Point</th><th>t / T</th><th>Voltage</th></tr>
-<tr><td>P1</td><td id="q5-p1-x"><em>&mdash;</em></td><td id="q5-p1-y"><em>&mdash;</em></td></tr>
-<tr><td>P2</td><td id="q5-p2-x"><em>&mdash;</em></td><td id="q5-p2-y"><em>&mdash;</em></td></tr>
-<tr><td>P3</td><td id="q5-p3-x"><em>&mdash;</em></td><td id="q5-p3-y"><em>&mdash;</em></td></tr>
-<tr><td>P4</td><td id="q5-p4-x"><em>&mdash;</em></td><td id="q5-p4-y"><em>&mdash;</em></td></tr>
-</table>
+<!-- Table is now created dynamically inside the JSXGraph block above -->
 
 <p>Click on the graph to place <strong>4 key points</strong> showing the voltage \(V(t)\) at the load.
 Place points at times \(t = T,\; 3T,\; 5T,\; 7T\) with the correct voltage level at each step.
@@ -252,6 +300,9 @@ You can drag points to adjust. The dashed grey line shows the steady-state volta
 <p style="display:none">[[input:ans6]] [[validation:ans6]]</p>
 
 <h4>Part&nbsp;(g) &mdash; Settling analysis (1&nbsp;pt)</h4>
+<p>Look at the voltage values you placed in Part (f). Notice how each successive voltage step gets smaller
+as the reflections decay &mdash; this is because each round trip multiplies the wave amplitude by
+\(\Gamma_L \cdot \Gamma_g\).</p>
 <p>After how many <strong>wave arrivals at the load</strong> does the voltage \(V(z = \ell)\) settle to
 within 5% of the steady-state value \(V_{\text{ss}}\)?</p>
 <p>In other words, find the smallest integer \(n\) such that
@@ -259,6 +310,23 @@ within 5% of the steady-state value \(V_{\text{ss}}\)?</p>
 load after the \(n\)-th wave arrival (at time \(t = (2n-1)T\)).</p>
 <p>\(n = \) [[input:ans7]] [[validation:ans7]]</p>
 <p><em>Syntax hint: Enter an integer, e.g. <code>3</code></em></p>
+
+<h4>Part&nbsp;(h) &mdash; Comparing settling behaviour (1&nbsp;pt)</h4>
+<p>In this circuit, \(\Gamma_L = {@ta1@}\) and \(\Gamma_g = {@ta2@}\), so the round-trip
+reflection product is \(\Gamma_L \cdot \Gamma_g = {@settle_product_disp@}\).</p>
+<p>A colleague designs a <strong>different</strong> transmission line system where
+\(\Gamma_L \cdot \Gamma_g = 0.9\) (both source and load are heavily mismatched).
+Compared to your system, how would the settling behaviour differ?</p>
+<p>[[input:ans8]] [[validation:ans8]]</p>
+<p><em>Select the most physically accurate comparison.</em></p>
+
+<h4>Part&nbsp;(i) &mdash; Design constraint for fast settling (1&nbsp;pt)</h4>
+<p>If you wanted the voltage at the load to settle within 5% of \(V_{\text{ss}}\) after
+<strong>exactly 2 wave arrivals</strong> (\(n = 2\)), what constraint does this place on
+the product \(|\Gamma_L \cdot \Gamma_g|\)?
+Show your reasoning.</p>
+<p>[[input:ans9]] [[validation:ans9]]</p>
+<p><em>Write a brief derivation. This part is graded for completion; a model answer is provided after submission.</em></p>
 ]]></text>
   </questiontext>
   <generalfeedback format="html">
@@ -312,6 +380,23 @@ We look for the first \(n\) where \(|V_n - V_{\text{ss}}| &lt; 0.05 \cdot |V_{\t
 <p>Since \(|\Gamma_L \Gamma_g| = {@abs(settle_product)@} &lt; 1\), the increments decay geometrically.
 The voltage settles within 5% of \(V_{\text{ss}}\) after \(n = {@ta7@}\) wave arrivals at the load.</p>
 
+<h4>Step 8: Comparing Settling Behaviour</h4>
+<p>The product \(\Gamma_L \cdot \Gamma_g = {@settle_product_disp@}\) controls how quickly the bouncing voltage converges.
+A product close to 0 means rapid convergence (each bounce is much smaller than the previous).
+A product close to 1 (or &minus;1) means slow convergence (each bounce retains most of its amplitude).</p>
+<p>With \(\Gamma_L \cdot \Gamma_g = 0.9\), each round-trip reflection retains 90% of the wave amplitude.
+This is <strong>much slower</strong> settling than your system (where the product is {@settle_product_disp@}).
+The voltage would oscillate many more times before converging to \(V_{\text{ss}}\).</p>
+<p>Note: \(|\Gamma_L \cdot \Gamma_g| &lt; 1\) is always true for passive loads, so the system <em>will</em> eventually settle &mdash; it is not unstable.</p>
+
+<h4>Step 9: Design Constraint for Fast Settling</h4>
+<p>After the \(n\)-th wave arrival at the load, the remaining error is proportional to \(|\Gamma_L \Gamma_g|^n\).
+For settling within 5% after \(n = 2\) arrivals:</p>
+<p>\[|\Gamma_L \Gamma_g|^2 &lt; 0.05 \implies |\Gamma_L \Gamma_g| &lt; \sqrt{0.05} \approx 0.224\]</p>
+<p>This means both the source and load must be reasonably well-matched to the line &mdash;
+for example, \(|\Gamma_L| \approx 0.47\) and \(|\Gamma_g| \approx 0.47\), or one very well matched
+and the other less so.</p>
+
 <hr />
 <h4>Answer Summary</h4>
 <table border="1" cellpadding="5" cellspacing="0">
@@ -323,11 +408,13 @@ The voltage settles within 5% of \(V_{\text{ss}}\) after \(n = {@ta7@}\) wave ar
   <tr><td>(e)</td><td>\(V_{\text{ss}}\)</td><td>{@ta5@} V</td></tr>
   <tr><td>(f)</td><td>V(t) at load</td><td>Points at (T, {@V_step1@}), (3T, {@V_step2@}), (5T, {@V_step3@}), (7T, {@V_step4@})</td></tr>
   <tr><td>(g)</td><td>Settling bounces</td><td>{@ta7@} wave arrivals</td></tr>
+  <tr><td>(h)</td><td>Settling comparison</td><td>Much slower settling (retains 90% per bounce)</td></tr>
+  <tr><td>(i)</td><td>Design constraint</td><td>\(|\Gamma_L \Gamma_g| &lt; \sqrt{0.05} \approx 0.224\)</td></tr>
 </table>
 ]]></text>
   </generalfeedback>
 
-  <defaultgrade>8.0000000</defaultgrade>
+  <defaultgrade>10.0000000</defaultgrade>
   <penalty>0.0000000</penalty>
   <hidden>0</hidden>
   <idnumber/>
@@ -410,6 +497,16 @@ ta7: block([V_accum, n_settle, k],
     ),
     n_settle
 );
+
+/* Display-friendly settle_product (rounded) */
+settle_product_disp: float(round(settle_product * 1000) / 1000);
+
+/* Part (h): radio MCQ — comparing settling behaviour */
+ta8_q5: [[1,true,"Much slower settling — the voltage would oscillate many more times before converging, because each round-trip retains 90% of the wave amplitude"],[2,false,"Faster settling — larger reflections mean more energy is transferred to the load per bounce"],[3,false,"Same settling time — settling depends only on |Γ_L|, not on the product Γ_L·Γ_g"],[4,false,"The voltage would never settle — Γ_L·Γ_g = 0.9 means the system is unstable"]];
+ta8_q5_correct: 1;
+
+/* Part (i): notes input — design constraint (auto-pass) */
+ta9_q5: "See model answer in the worked solution.";
 ]]></text>
   </questionvariables>
 
@@ -422,11 +519,17 @@ ta7: block([V_accum, n_settle, k],
 <h4>Part (e) — Steady-State V_ss</h4><div>[[feedback:prt5]]</div>
 <h4>Part (f) — V(t) at Load (JSXGraph)</h4><div>[[feedback:prt6]]</div>
 <h4>Part (g) — Settling bounces</h4><div>[[feedback:prt7]]</div>
+
+<h4>Part (h) &mdash; Settling comparison</h4>
+<div>[[feedback:prt8]]</div>
+
+<h4>Part (i) &mdash; Design constraint</h4>
+<div>[[feedback:prt9]]</div>
 ]]></text>
   </specificfeedback>
 
   <questionnote>
-    <text>Set {@set@}: Z0={@Z0@}&#937;, Rg={@Rg@}&#937;, RL={@RL@}&#937;, Vg={@Vg@}V | &#915;_L={@ta1@}, V_ss={@ta5@} | n_settle={@ta7@}</text>
+    <text>Set {@set@}: Z0={@Z0@}&#937;, Rg={@Rg@}&#937;, RL={@RL@}&#937;, Vg={@Vg@}V | &#915;_L={@ta1@}, V_ss={@ta5@} | n_settle={@ta7@} | settle_product={@settle_product_disp@}</text>
   </questionnote>
 
   <questiondescription format="html">
@@ -595,6 +698,46 @@ ta7: block([V_accum, n_settle, k],
     <checkanswertype>0</checkanswertype>
     <mustverify>1</mustverify>
     <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans8: radio — settling comparison -->
+  <input>
+    <name>ans8</name>
+    <type>radio</type>
+    <tans>ta8_q5</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans9: notes — design constraint derivation -->
+  <input>
+    <name>ans9</name>
+    <type>notes</type>
+    <tans>ta9_q5</tans>
+    <boxsize>35</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint>Think about what |Gamma_L * Gamma_g|^n &lt; 0.05 implies when n = 2.</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
     <options/>
   </input>
 
@@ -951,6 +1094,78 @@ feedback_msg: sconcat(
     </node>
   </prt>
 
+  <!-- prt8: Part (h) — settling comparison (AlgEquiv radio) -->
+  <prt>
+    <name>prt8</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (h): settling comparison radio</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans8</sans>
+      <tans>ta8_q5_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt8-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! With \(\Gamma_L \cdot \Gamma_g = 0.9\), each round-trip retains 90% of the wave amplitude. This gives much slower convergence than your system where \(\Gamma_L \cdot \Gamma_g = {@settle_product_disp@}\). The system is not unstable — it converges, but very slowly.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt8-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. The product \(\Gamma_L \cdot \Gamma_g\) controls the convergence rate: each successive bounce multiplies the voltage increment by this factor. A value of 0.9 means 90% of the wave amplitude survives each round trip — much more than your system (where the product is {@settle_product_disp@}). The system <em>does</em> converge (it is not unstable), but much more slowly.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt9: Part (i) — notes (always awards 1 pt for completion) -->
+  <prt>
+    <name>prt9</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Notes input — always pass</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>1</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt9-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Thank you for your derivation. Compare your reasoning with the model answer in the worked solution above.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>1.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt9-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Thank you for your derivation. Compare your reasoning with the model answer in the worked solution above.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
   <!-- ============================================================ -->
   <!-- DEPLOYED SEEDS                                                -->
   <!-- ============================================================ -->
@@ -991,6 +1206,14 @@ feedback_msg: sconcat(
     <testinput>
       <name>ans7</name>
       <value>ta7</value>
+    </testinput>
+    <testinput>
+      <name>ans8</name>
+      <value>ta8_q5</value>
+    </testinput>
+    <testinput>
+      <name>ans9</name>
+      <value>ta9_q5</value>
     </testinput>
     <expected>
       <name>prt1</name>
@@ -1034,6 +1257,18 @@ feedback_msg: sconcat(
       <expectedpenalty>0.0000000</expectedpenalty>
       <expectedanswernote>prt7-0-T</expectedanswernote>
     </expected>
+    <expected>
+      <name>prt8</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt8-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt9</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt9-0-T</expectedanswernote>
+    </expected>
   </qtest>
 
   <!-- ============================================================ -->
@@ -1062,7 +1297,9 @@ feedback_msg: sconcat(
   <li>At \(t = 7T\): Add \(V_1^{+} \cdot (\Gamma_L \Gamma_g)^3 (1 + \Gamma_L)\)</li>
 </ol>
 <p>Each successive bounce adds a factor of \(\Gamma_L \Gamma_g\) (which has magnitude &lt; 1), so the steps get progressively smaller and converge to \(V_{\text{ss}}\).</p>
-<p>For part (g), note that each round-trip multiplies the voltage increment by \(\Gamma_L \Gamma_g\). Compute the cumulative voltage at the load after each wave arrival and check when it first comes within 5% of \(V_{\text{ss}}\).</p>]]></text>
+<p>For part (g), note that each round-trip multiplies the voltage increment by \(\Gamma_L \Gamma_g\). Compute the cumulative voltage at the load after each wave arrival and check when it first comes within 5% of \(V_{\text{ss}}\).</p>
+<p>For part (h), think about what \(\Gamma_L \cdot \Gamma_g\) controls: it determines how much of each bounce survives. A value of 0.9 means 90% survives each round trip. Compare this to your system's value.</p>
+<p>For part (i), the error after \(n\) arrivals is proportional to \(|\Gamma_L \Gamma_g|^n\). Set this less than 0.05 with \(n = 2\) and solve for \(|\Gamma_L \Gamma_g|\).</p>]]></text>
   </hint>
 
 </question>

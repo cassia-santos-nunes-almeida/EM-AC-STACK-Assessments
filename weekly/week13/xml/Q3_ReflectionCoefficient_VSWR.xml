@@ -16,7 +16,7 @@
 <h3>Reflection Coefficient, VSWR, and Standing Wave Locations</h3>
 <p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
 <p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
-<p><strong>Total: 8 points (8 parts, 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
+<p><strong>Total: 10 points (10 parts, 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
 
 <hr />
 
@@ -65,12 +65,30 @@ from the load.</p>
 <p><em>Select the most physically accurate explanation.</em></p>
 
 <h4>Part&nbsp;(h) &mdash; Design constraint: maximum load resistance for VSWR &le; 2 (1&nbsp;pt)</h4>
-<p>Now consider a different scenario: a <strong>purely resistive</strong> load \(R_L\) is connected to a
-transmission line with characteristic impedance \(Z_0 = {@Z0_disp@}\;\Omega\).</p>
+<p>In parts (a)&ndash;(e) you analysed a complex load. Now consider a <strong>simplified design scenario</strong>:
+a <strong>purely resistive</strong> load \(R_L\) (no reactance) is connected to a
+transmission line with characteristic impedance \(Z_0 = {@Z0_disp@}\;\Omega\).
+This simplification is common in initial design stages before fine-tuning with matching networks.</p>
 <p>What is the <strong>maximum</strong> value of \(R_L\) (assuming \(R_L > Z_0\)) that keeps
 \(\text{VSWR} \le 2\)?</p>
 <p>\(R_{L,\max} = \) [[input:ans8]] [[validation:ans8]] &Omega;</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>100</code></em></p>
+
+<h4>Part&nbsp;(i) &mdash; Connecting back: does the complex load meet the VSWR constraint? (1&nbsp;pt)</h4>
+<p>You found that the maximum purely resistive \(R_L\) for VSWR \(\le 2\) is \({@ta8@}\;\Omega\).</p>
+<p>Now look back at your results from parts (a)&ndash;(c): the <em>complex</em> load
+\(Z_L = {@RL_disp@} {@if is(XL >= 0) then "+" else "-"@} j{@abs(XL_disp)@}\;\Omega\)
+gave \(|\Gamma| = {@ta1@}\) and \(\text{VSWR} = {@ta3_disp@}\).</p>
+<p><strong>Does this complex load satisfy the VSWR \(\le 2\) constraint?</strong></p>
+<p>[[input:ans9]] [[validation:ans9]]</p>
+<p><em>Select the statement that correctly uses your earlier results.</em></p>
+
+<h4>Part&nbsp;(j) &mdash; Why the resistive formula is not enough (1&nbsp;pt)</h4>
+<p>Explain in 1&ndash;2 sentences: why does the purely resistive formula \(R_L \le 2 Z_0\) <em>not</em>
+guarantee VSWR \(\le 2\) when the load has a reactive component \(jX_L\)?
+What role does \(X_L\) play?</p>
+<p>[[input:ans10]] [[validation:ans10]]</p>
+<p><em>Write a brief explanation. This part is graded for completion; a model answer is provided after submission.</em></p>
 ]]></text>
   </questiontext>
   <generalfeedback format="html">
@@ -114,6 +132,17 @@ transmission line with characteristic impedance \(Z_0 = {@Z0_disp@}\;\Omega\).</
 <p>\[\text{VSWR} = \frac{R_L}{Z_0} \le 2 \implies R_L \le 2 Z_0 = 2 \times {@Z0_disp@} = {@ta8@}\;\Omega\]</p>
 <p>Equivalently, from \(|\Gamma| = (R_L - Z_0)/(R_L + Z_0) \le 1/3\), solving gives \(R_L \le 2 Z_0\).</p>
 
+<h4>Part (i) &mdash; Complex load vs. VSWR constraint</h4>
+<p>The VSWR of the complex load was computed in part (c): VSWR \(= {@ta3@}\).</p>
+<p>{@if is(ta3 <= 2.0) then "Since VSWR = " else "Since VSWR = "@}{@ta3_disp@}{@if is(ta3 <= 2.0) then " &le; 2, the constraint <strong>is satisfied</strong>." else " > 2, the constraint is <strong>not satisfied</strong> — a matching network would be needed."@}</p>
+<p>Note: the resistive formula \(R_L \le 2 Z_0\) cannot be applied to a complex load. The full VSWR must be computed from \(|\Gamma|\).</p>
+
+<h4>Part (j) &mdash; Role of reactance</h4>
+<p>The formula \(R_L \le 2 Z_0\) assumes \(X_L = 0\). When \(X_L \ne 0\), the reflection coefficient magnitude depends on <em>both</em> \(R_L\) and \(X_L\):</p>
+<p>\[|\Gamma| = \frac{|Z_L - Z_0|}{|Z_L + Z_0|} = \frac{\sqrt{(R_L - Z_0)^2 + X_L^2}}{\sqrt{(R_L + Z_0)^2 + X_L^2}}\]</p>
+<p>The reactive component \(X_L\) increases the numerator more than the denominator, which increases \(|\Gamma|\) and therefore VSWR.
+A load with \(R_L &lt; 2 Z_0\) can still have VSWR \(&gt; 2\) if \(|X_L|\) is large enough.</p>
+
 <hr />
 <h4>Answer Summary</h4>
 <table border="1" cellpadding="5" cellspacing="0">
@@ -126,10 +155,12 @@ transmission line with characteristic impedance \(Z_0 = {@Z0_disp@}\;\Omega\).</
 <tr><td>(f) |&Gamma;| when Z<sub>L</sub>=Z<sub>0</sub></td><td>0</td></tr>
 <tr><td>(g) VSWR=1 meaning</td><td>Perfectly matched &mdash; no reflections</td></tr>
 <tr><td>(h) R<sub>L,max</sub> for VSWR&le;2</td><td>{@ta8@} &Omega;</td></tr>
+<tr><td>(i) Complex load VSWR check</td><td>{@if is(ta3 <= 2.0) then "Yes — VSWR &le; 2" else "No — VSWR > 2"@}</td></tr>
+<tr><td>(j) Role of reactance</td><td>See model answer above</td></tr>
 </table>
 ]]></text>
   </generalfeedback>
-  <defaultgrade>8.0000000</defaultgrade>
+  <defaultgrade>10.0000000</defaultgrade>
   <penalty>0.0000000</penalty>
   <hidden>0</hidden>
   <idnumber/>
@@ -185,6 +216,26 @@ ta7_correct: 1;
 
 /* Part (h): maximum RL for VSWR <= 2 (purely resistive, RL > Z0) */
 ta8: float(2 * Z0);
+
+/* Display-friendly VSWR (rounded to 2 decimal places) */
+ta3_disp: float(round(ta3 * 100) / 100);
+
+/* Part (i): radio MCQ — does the complex load satisfy VSWR <= 2? */
+/* Correct answer depends on whether ta3 is actually <= 2 */
+ta9_q3: if is(ta3 <= 2.0) then
+    [[1,true,"Yes — the complex load has VSWR ≤ 2, so the constraint is satisfied"],
+     [2,false,"No — the complex load has VSWR > 2, so matching is needed"],
+     [3,false,"Cannot determine — the formula R_L ≤ 2·Z₀ only applies to resistive loads"],
+     [4,false,"Yes — because the resistive part of Z_L is less than 2·Z₀"]]
+  else
+    [[1,false,"Yes — the complex load has VSWR ≤ 2, so the constraint is satisfied"],
+     [2,true,"No — the complex load has VSWR > 2, so matching is needed"],
+     [3,false,"Cannot determine — the formula R_L ≤ 2·Z₀ only applies to resistive loads"],
+     [4,false,"Yes — because the resistive part of Z_L is less than 2·Z₀"]];
+ta9_q3_correct: if is(ta3 <= 2.0) then 1 else 2;
+
+/* Part (j): notes input — auto-graded as pass */
+ta10_q3: "See model answer in the worked solution.";
 ]]></text>
   </questionvariables>
   <specificfeedback format="html">
@@ -212,10 +263,16 @@ ta8: float(2 * Z0);
 
 <h4>Part (h) &mdash; Max R<sub>L</sub> for VSWR &le; 2</h4>
 <div>[[feedback:prt8]]</div>
+
+<h4>Part (i) &mdash; Complex load VSWR check</h4>
+<div>[[feedback:prt9]]</div>
+
+<h4>Part (j) &mdash; Role of reactance</h4>
+<div>[[feedback:prt10]]</div>
 ]]></text>
   </specificfeedback>
   <questionnote>
-    <text>Set {@set@}: Z0={@Z0_disp@} Ω, ZL={@RL_disp@}+j{@XL_disp@} Ω, λ={@lambda_disp@} cm | |Γ|={@ta1@}, θ={@ta2@}°, VSWR={@ta3@}, dmax={@ta4@} m, dmin={@ta5@} m | RL_max={@ta8@}</text>
+    <text>Set {@set@}: Z0={@Z0_disp@} Ω, ZL={@RL_disp@}+j{@XL_disp@} Ω, λ={@lambda_disp@} cm | |Γ|={@ta1@}, θ={@ta2@}°, VSWR={@ta3@}, dmax={@ta4@} m, dmin={@ta5@} m | RL_max={@ta8@} | VSWR_check={@if is(ta3 &lt;= 2.0) then "Yes" else "No"@}</text>
   </questionnote>
   <questiondescription format="html">
     <text><![CDATA[<p>Reflection coefficient, VSWR, and standing wave locations — Week 13 training exercise.</p>]]></text>
@@ -403,6 +460,46 @@ ta8: float(2 * Z0);
     <checkanswertype>0</checkanswertype>
     <mustverify>1</mustverify>
     <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans9: radio — does complex load meet VSWR <= 2? -->
+  <input>
+    <name>ans9</name>
+    <type>radio</type>
+    <tans>ta9_q3</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans10: notes — explain role of reactance -->
+  <input>
+    <name>ans10</name>
+    <type>notes</type>
+    <tans>ta10_q3</tans>
+    <boxsize>35</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint>Think about how X_L affects the numerator and denominator of |Gamma|.</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
     <options/>
   </input>
 
@@ -698,6 +795,78 @@ ta8: float(2 * Z0);
     </node>
   </prt>
 
+  <!-- prt9: Part (i) — complex load VSWR check (AlgEquiv radio) -->
+  <prt>
+    <name>prt9</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (i): complex load VSWR check</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans9</sans>
+      <tans>ta9_q3_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt9-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! The complex load's VSWR is {@ta3_disp@}, which is {@if is(ta3 <= 2.0) then "&le; 2 — the constraint is met" else "> 2 — a matching network is needed"@}. The key insight is that you must use the actual VSWR from the complex impedance, not the simplified resistive formula.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt9-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Look back at your VSWR from part (c): VSWR \(= {@ta3_disp@}\). Compare this directly to 2. The resistive formula \(R_L \le 2 Z_0\) cannot be applied to complex loads — you must use the actual VSWR computed from \(|\Gamma|\).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
+  <!-- prt10: Part (j) — notes (always awards 1 pt for completion) -->
+  <prt>
+    <name>prt10</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Notes input — always pass</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>1</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt10-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Thank you for your explanation. Compare your reasoning with the model answer in the worked solution above.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>1.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt10-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Thank you for your explanation. Compare your reasoning with the model answer in the worked solution above.</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
   <!-- ============================================================ -->
   <!-- DEPLOYED SEEDS                                                -->
   <!-- ============================================================ -->
@@ -742,6 +911,14 @@ ta8: float(2 * Z0);
     <testinput>
       <name>ans8</name>
       <value>ta8</value>
+    </testinput>
+    <testinput>
+      <name>ans9</name>
+      <value>ta9_q3</value>
+    </testinput>
+    <testinput>
+      <name>ans10</name>
+      <value>ta10_q3</value>
     </testinput>
     <expected>
       <name>prt1</name>
@@ -791,6 +968,18 @@ ta8: float(2 * Z0);
       <expectedpenalty>0.0000000</expectedpenalty>
       <expectedanswernote>prt8-0-T</expectedanswernote>
     </expected>
+    <expected>
+      <name>prt9</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt9-0-T</expectedanswernote>
+    </expected>
+    <expected>
+      <name>prt10</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt10-0-T</expectedanswernote>
+    </expected>
   </qtest>
 
   <!-- ============================================================ -->
@@ -804,7 +993,9 @@ ta8: float(2 * Z0);
   </hint>
   <hint format="html">
     <text><![CDATA[<p><strong>Hint 3:</strong> The first voltage maximum occurs at \(d_{\max} = \theta_\Gamma/(2\beta)\) from the load (if \(\theta_\Gamma > 0\); otherwise add \(\lambda/2\)). The first voltage minimum is at \(d_{\min} = d_{\max} + \lambda/4\), reduced by \(\lambda/2\) if it exceeds \(\lambda/2\). Maxima and minima always alternate every \(\lambda/4\) along the line.</p>
-<p>For part (h), start from the VSWR definition for a purely resistive load: VSWR \(= R_L/Z_0\) when \(R_L > Z_0\). Set VSWR \(\le 2\) and solve for \(R_L\).</p>]]></text>
+<p>For part (h), start from the VSWR definition for a purely resistive load: VSWR \(= R_L/Z_0\) when \(R_L > Z_0\). Set VSWR \(\le 2\) and solve for \(R_L\).</p>
+<p>For part (i), compare the VSWR you calculated in part (c) directly to the threshold of 2. Don't try to use the resistive formula from part (h) — it only applies when \(X_L = 0\).</p>
+<p>For part (j), think about how \(X_L\) appears in the formula \(|\Gamma| = |Z_L - Z_0| / |Z_L + Z_0|\). The numerator and denominator both contain \(X_L\), but which one grows faster?</p>]]></text>
   </hint>
 
 </question>
