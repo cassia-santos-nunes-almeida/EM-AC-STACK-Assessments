@@ -150,6 +150,12 @@ When a rule is superseded, mark it `[RETIRED]` but keep it in place.
 **Scope:** STACK JSXGraph input binding.
 **First seen:** Session 7 (W13 Q5), March 2026.
 
+### P-STACK-21 — Use `snapSizeX`/`snapSizeY` instead of `snapToGrid` in JSXGraph
+**Pattern:** `snapToGrid: true` on JSXGraph points locked them to integer grid coordinates, making it impossible for students to place points at fractional voltage values (e.g., 28.125 V). The custom `snapVal()` function only affected serialization text, not the visual snap behavior.
+**Rule:** Replace `snapToGrid: true` with `snapSizeX` and `snapSizeY` properties set to the desired snap increments (e.g., `snapSizeX: 1` for integer time, `snapSizeY: 0.25` for fine voltage). Ensure the snap granularity is well within the PRT grading tolerance (`y_tol`).
+**Scope:** JSXGraph point creation in STACK questions.
+**First seen:** Session 8 (W13 Q5 snap fix), 2026-03-22.
+
 ---
 
 ## CircuiTikZ / Diagrams
@@ -195,6 +201,12 @@ When a rule is superseded, mark it `[RETIRED]` but keep it in place.
 **Rule:** Always compile `.tex` to SVG and visually inspect before base64-encoding or embedding. Use the `standalone` document class with `border=10pt` to prevent clipping at SVG edges.
 **Scope:** LaTeX-to-SVG diagram pipeline.
 **First seen:** Sessions 1-3 (CM#20).
+
+### P-DIAG-08 — Always merge fix branches before importing to Moodle
+**Pattern:** JSXGraph fix branch (`claude/open-session-7TDcM`) with 7 rounds of fixes was left unmerged. The broken `main` version was imported into Moodle, causing all three original bugs (snap, table, grading) to reappear.
+**Rule:** After fixing any STACK question (especially interactive JSXGraph questions), merge the fix branch to `main` immediately. Verify the import source is `main` after merge. Never leave critical fixes on side branches.
+**Scope:** Git workflow for STACK content.
+**First seen:** Session 8 (W13 Q5), 2026-03-22.
 
 ---
 

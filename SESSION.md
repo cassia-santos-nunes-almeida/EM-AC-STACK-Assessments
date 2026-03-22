@@ -1,93 +1,78 @@
 # SESSION.md — Current State
 
 Overwritten at every session close. Read at every session open.
-Last updated: 2026-03-22 · Session focus: W13 Q5 JSXGraph fix + JSXGraph lessons learned
+Last updated: 2026-03-22 · Session focus: JSXGraph Q5 fix + Week 13 audit + context file migration
 
 ## Completed This Session
 
-* [x] Diagnosed W13 Q5 JSXGraph blank graph and non-functional table — root causes: `{@var@}` inside jsxgraph block, table outside IFRAME scope, missing change event dispatch
-* [x] Fix round 1 (`ab10be2`): replaced `{@var@}` with `{#var#}` inside jsxgraph block
-* [x] Fix rounds 2-4 (`a0ebf83`, `fd9189e`, `e859c08`, `5553800`): iterative fixes matching proven STACK patterns
-* [x] Fix round 5 (`54bf594`): moved table HTML inside jsxgraph block, added `dispatchEvent(new Event('change'))` on all input writes
-* [x] Fix round 6 (`a2ff85c`): complete rewrite using `stack_jxg.custom_bind` — the proper STACK pattern for complex state binding
-* [x] Elevated W13 Q1/Q3/Q5 to higher Bloom's taxonomy with AI-resistant connecting parts (`8445308`)
-* [x] Added JSXGraph UX enhancements and Bloom's depth to W13 (`7fd1b7c`)
-* [x] Documented 5 new JSXGraph patterns in PATTERNS.md (P-STACK-16 through P-STACK-20)
-* [x] All changes committed and pushed to `claude/open-session-7TDcM`
+* [x] Fixed Week 13 Q5 JSXGraph bounce diagram — 3 bugs (snap, table, grading)
+  - Merged unmerged fix branch `claude/open-session-7TDcM` into main
+  - Fixed `snapToGrid: true` → `snapSizeX: 1, snapSizeY: 0.25`
+  - Reduced SNAP from 0.5 to 0.25
+  - Added `stack_jxg.custom_bind` fallback guard for older STACK versions
+* [x] Audited all 15 weekly questions (weeks 10-13) against PATTERNS.md rules
+* [x] Fixed Week 13 Q1-Q4 issues:
+  - Q1: Standardized 3 syntax hints (ans1, ans2, ans5)
+  - Q2: Fixed float literal `1e-12` → `1/10^12` (P-STACK-06)
+  - Q3: Added "Syntax hint:" prefix to 4 dropdown/radio/notes hints
+  - Q4: Added missing syntax hint for dropdown ans5
+* [x] Context file migration (Phases 1-3 per analysis.md):
+  - CLAUDE.md: 465 → 178 lines (eliminated 19 duplications)
+  - context.md: Updated tree, added weeks 11-13 summaries
+  - circuitikz/SKILL.md: Absorbed multi-switch topology + diagram style
+  - stack-xml-generator/SKILL.md: Added JSXGraph Integration section
+  - Created `references/jsxgraph-conventions.md`
+  - decisions-log.md: Added 3 catch-up entries
+  - personal-preferences.md: Cleaned placeholder comment
+* [x] Added P-STACK-21 and P-DIAG-08 to PATTERNS.md
 
 ## In Progress
 
-Task: W13 Q5 JSXGraph — awaiting user testing in Moodle
-Last state: Code rewritten and pushed, not yet tested in live Moodle/STACK environment
-Next step: User imports XML into STACK-enabled Moodle and verifies: (a) graph renders, (b) dragging points updates table, (c) values are submitted to STACK for grading
-Relevant files: `weekly/week13/xml/` (Q5 file)
+Task: Week 13 Q5 — user reported a new problem (not yet described)
+Last state: User mentioned finding a new issue during session close
+Next step: Open next session, ask user to describe the new problem
+
+Task: Weeks 10-12 audit fixes (deferred)
+Last state: Issues identified but deferred per user request
+Next step: Fix when working on those weeks
+Known issues:
+  - Week 10 Q4: `{@ans2@}` and `{@ans3@}` in specificfeedback (P-STACK-03)
+  - Week 10 Q1: Float literal `1e-7` in questionvariables (P-STACK-06)
+  - All weeks 10-12: Missing `<hint>` blocks (15 questions)
 
 Task: Progressive hint unlocking
-Last state: Not started — planned as next feature work
-Next step: Research STACK `[[if test="..."]]` conditional blocks for attempt-gated hints; prototype on Week 10 Q1
-Relevant files: `weekly/week10/xml/Q1_*.xml`, CLAUDE.md (§ Known Issues / Pending Work)
-
-Task: Global CLAUDE.md migration
-Last state: Audit complete, risk flags documented, awaiting decision
-Next step: Decide whether to proceed with migration — 6 risk flags need resolution
-Relevant files: All 3 CLAUDE.md files, `~/.claude/CLAUDE.md` (does not exist yet)
-
-Task: Moodle sandbox import test
-Last state: Blocked — no STACK-enabled Moodle instance available
-Next step: Import weekly/week10-13 XML files into sandbox once access is obtained
-Relevant files: `weekly/week10/xml/`, `weekly/week11/xml/`, `weekly/week12/xml/`, `weekly/week13/xml/`
+Last state: Not started
+Next step: Research STACK `[[if test="..."]]` conditional blocks
 
 ## Open Decisions / Blockers
 
-* [ ] **W13 Q5 JSXGraph testing** — Needs live Moodle/STACK test to confirm the fix works end-to-end
-* [ ] **Global CLAUDE.md migration** — Proceed or defer? 6 risk flags identified
-* [ ] **Moodle instance access needed** — Cannot validate XML imports without a STACK-enabled Moodle sandbox
-* [ ] **Progressive hints for exams?** — Determine if attempt-gated hints are appropriate in exam context
-* [ ] Q4 4th variant (RL with Thevenin reduction) — deferred
-* [ ] Exam diagram migration to CircuiTikZ — lower priority
+* [ ] **New Q5 problem** — user found another issue, not yet described
+* [ ] **Progressive hints for exams?** — TBD
 
 ## Patterns Triggered This Session
 
 | Pattern ID | Triggered? | Applied? |
 |------------|-----------|----------|
-| P-STACK-16 | Created this session | Applied in fix round 1 |
-| P-STACK-17 | Created this session | Applied in fix round 5 |
-| P-STACK-18 | Created this session | Applied in fix round 5 |
-| P-STACK-19 | Created this session | Applied in fix round 6 |
-| P-STACK-20 | Created this session | Applied in all fix rounds |
+| P-DIAG-08 | Created this session | N/A (new) |
+| P-STACK-21 | Created this session | N/A (new) |
+| P-STACK-06 | Triggered by Q2 float literal | Applied |
+| P-STACK-11 | Triggered by missing syntax hints | Applied |
+| P-EXEC-01 | Followed for migration decomposition | Applied |
 
 ## PATTERNS.md Updates This Session
 
-* **Added:** P-STACK-16 — Use `{#var#}` not `{@var@}` inside `[[jsxgraph]]` blocks
-* **Added:** P-STACK-17 — JSXGraph runs in a sandbox IFRAME — no direct DOM access outside the block
-* **Added:** P-STACK-18 — Dispatch `change` event when writing to STACK inputs manually
-* **Added:** P-STACK-19 — Prefer `stack_jxg.custom_bind` for complex JSXGraph state
-* **Added:** P-STACK-20 — Declare `input-ref-X` attributes on `[[jsxgraph]]` tag
+* **Added:** P-STACK-21 — Use `snapSizeX`/`snapSizeY` instead of `snapToGrid`
+* **Added:** P-DIAG-08 — Always merge fix branches before importing to Moodle
 
 ## Skills Used This Session
 
-* [ ] lut-lecture
-* [ ] stack-xml-generator
-* [ ] message-coach
-* [ ] circuitikz-circuit-diagrams
 * [x] context-evaluator
-* [ ] other: ...
-
-## Deferred: External Skill Repo Updates
-
-These updates should be applied to the **my-claude-skill** GitHub repo when next open:
-
-**CircuiTikZ skill** (`circuitikz-latex-circuit-diagrams`):
-- circuit-patterns.md Pattern 6 switch bug: `opening switch`/`closing switch` were reversed. Fixed locally; sync to skill repo.
-- Add compilation testing rule and `border=10pt` note to SKILL.md.
-- Add switch semantics warning to circuitikz-guide.md.
-
-**Context evaluator skill**: Consider adding JSXGraph integration notes to context.md.
+* [ ] circuitikz-circuit-diagrams
+* [x] stack-xml-generator (referenced for dedup)
 
 ## Notes for Next Session
 
-- **Priority 1:** Test W13 Q5 in live Moodle/STACK — the JSXGraph rewrite needs real-environment validation.
-- The 6 fix rounds for Q5 are documented in git history — if the current version still fails, check whether `stack_jxg` library is loaded (it should be automatic in `[[jsxgraph]]` blocks).
-- JSXGraph lessons (P-STACK-16 through P-STACK-20) are now in PATTERNS.md — apply them to any future JSXGraph questions.
-- Progressive hint unlocking is next feature task after Q5 is validated.
-- Weeks 10-13 content is complete. Next content creation would be `weekly/week14/` or exam updates.
+- User found a NEW problem in Week 13 Q5 — investigate first
+- Migration complete (analysis.md fully executed). Those files can be archived.
+- Weeks 10-12 have known audit issues — tackle when in scope
+- New CLAUDE.md (178 lines) + session-open now includes personal-preferences.md as step 5
