@@ -14,11 +14,6 @@
   <questiontext format="html">
     <text><![CDATA[
 <h3>Lumped vs Distributed Model Identification</h3>
-<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
-<p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
-<p><strong>Total: 9 points (9 parts, 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
-
-<hr />
 
 <p>A transmission line of length \(\ell = {@l_cm@}\;\text{cm}\) carries a signal at frequency
 \(f = {@f_disp@}\). The phase velocity on the line is
@@ -36,7 +31,7 @@ If \(\displaystyle \frac{\ell}{\lambda} \ge 0.01\), use the <strong>distributed<
 
 <h4>Part&nbsp;(a) &mdash; Wavelength (1&nbsp;pt)</h4>
 <p>Compute the wavelength \(\lambda = v_p / f\). Give your answer in <strong>metres</strong>.</p>
-<p>\(\lambda = \) [[input:ans1]] [[validation:ans1]] m</p>
+<p>\(\lambda = \) [[input:ans1]] [[validation:ans1]]&nbsp;m</p>
 <p><em>Syntax hint: Enter a number in metres, e.g. <code>200</code> or <code>2e5</code></em></p>
 
 <h4>Part&nbsp;(b) &mdash; Electrical length ratio (1&nbsp;pt)</h4>
@@ -77,7 +72,7 @@ from lumped to distributed?</p>
 phase velocity \(v_p = {@vp_disp@} \times 10^8\;\text{m/s}\)).
 <strong>What is the minimum signal frequency</strong> at which you must use the distributed model?</p>
 <p>Use the same threshold: \(\ell/\lambda \ge 0.01\). Give your answer in <strong>Hz</strong>.</p>
-<p>\(f_{\min} = \) [[input:ans8]] [[validation:ans8]] Hz</p>
+<p>\(f_{\min} = \) [[input:ans8]] [[validation:ans8]]&nbsp;Hz</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>2e7</code>. Scientific notation accepted.</em></p>
 
 <h4>Part&nbsp;(i) &mdash; Sensitivity: what if the phase velocity is lower? (1&nbsp;pt)</h4>

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(///maa1.cc.lut.fi/home/z116447/Documents/GitHub/**)",
+      "Bash(for f:*)",
+      "Bash(do test:*)",
+      "Bash(echo \"  EXISTS: $f\")",
+      "Bash(echo \"  MISSING: $f\")"
+    ]
+  }
+}

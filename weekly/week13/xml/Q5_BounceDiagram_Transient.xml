@@ -13,11 +13,6 @@
   <questiontext format="html">
     <text><![CDATA[
 <h3>Bounce Diagram &mdash; Transient Analysis</h3>
-<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
-<p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
-<p><strong>Total: 10 points (9 parts: a&ndash;e worth 1 pt each, f worth 2 pts, g&ndash;i worth 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
-
-<hr />
 
 <p>A lossless transmission line has characteristic impedance \(Z_0 = {@Z0@}\;\Omega\), length
 \(\ell = {@l_m@}\;\text{m}\), and phase velocity
@@ -44,19 +39,19 @@
 <h4>Part&nbsp;(c) &mdash; Initial forward voltage wave (1&nbsp;pt)</h4>
 <p>Compute the amplitude of the initial forward-travelling voltage wave:</p>
 <p>\[V_1^{+} = V_g \cdot \frac{Z_0}{R_g + Z_0}\]</p>
-<p>\(V_1^{+} = \) [[input:ans3]] [[validation:ans3]] V</p>
+<p>\(V_1^{+} = \) [[input:ans3]] [[validation:ans3]]&nbsp;V</p>
 <p><em>Syntax hint: Enter a number in Volts, e.g. <code>6.667</code></em></p>
 
 <h4>Part&nbsp;(d) &mdash; One-way travel time (1&nbsp;pt)</h4>
 <p>Compute the one-way travel time of the line:</p>
 <p>\[T = \frac{\ell}{v_p}\]</p>
-<p>\(T = \) [[input:ans4]] [[validation:ans4]] s</p>
+<p>\(T = \) [[input:ans4]] [[validation:ans4]]&nbsp;s</p>
 <p><em>Syntax hint: Enter in seconds using scientific notation, e.g. <code>5e-9</code></em></p>
 
 <h4>Part&nbsp;(e) &mdash; Steady-state voltage at the load (1&nbsp;pt)</h4>
 <p>Compute the DC steady-state voltage across the load (after all reflections have died out):</p>
 <p>\[V_{\text{ss}} = V_g \cdot \frac{R_L}{R_g + R_L}\]</p>
-<p>\(V_{\text{ss}} = \) [[input:ans5]] [[validation:ans5]] V</p>
+<p>\(V_{\text{ss}} = \) [[input:ans5]] [[validation:ans5]]&nbsp;V</p>
 <p><em>Syntax hint: Enter a number in Volts, e.g. <code>8.0</code></em></p>
 
 <hr />

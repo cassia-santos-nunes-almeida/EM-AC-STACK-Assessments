@@ -15,11 +15,6 @@
   <questiontext format="html">
     <text><![CDATA[
 <h3>Lossless Transmission Line Parameters</h3>
-<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
-<p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
-<p><strong>Total: 7 points (7 parts, 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
-
-<hr />
 
 <p>A lossless coaxial transmission line has a dielectric material (<strong>{@mat_name@}</strong>) with
 relative permittivity \(\varepsilon_r = {@eps_r_disp@}\) and distributed capacitance
@@ -33,28 +28,28 @@ relative permittivity \(\varepsilon_r = {@eps_r_disp@}\) and distributed capacit
 
 <h4>Part&nbsp;(a) &mdash; Phase velocity (1&nbsp;pt)</h4>
 <p>Compute the phase velocity \(v_p = c_0 / \sqrt{\varepsilon_r}\). Give your answer in <strong>m/s</strong>.</p>
-<p>\(v_p = \) [[input:ans1]] [[validation:ans1]] m/s</p>
-<p><em>Syntax hint: Enter a number, e.g. <code>2.07e8</code> or <code>207000000</code></em></p>
+<p>\(v_p = \) [[input:ans1]] [[validation:ans1]]</p>
+<p><em>Syntax hint: Enter the value with its unit, e.g. <code>2.07e8 m/s</code></em></p>
 
 <h4>Part&nbsp;(b) &mdash; Distributed inductance (1&nbsp;pt)</h4>
 <p>Using \(v_p = 1/\sqrt{L'C'}\), compute the distributed inductance \(L'\). Give your answer in <strong>H/m</strong>.</p>
-<p>\(L' = \) [[input:ans2]] [[validation:ans2]] H/m</p>
-<p><em>Syntax hint: Enter in H/m, e.g. <code>2.5e-7</code></em></p>
+<p>\(L' = \) [[input:ans2]] [[validation:ans2]]</p>
+<p><em>Syntax hint: Enter the value with its unit, e.g. <code>2.5e-7 H/m</code></em></p>
 
 <h4>Part&nbsp;(c) &mdash; Characteristic impedance (1&nbsp;pt)</h4>
 <p>Compute the characteristic impedance \(Z_0 = \sqrt{L'/C'}\). Give your answer in <strong>&Omega;</strong>.</p>
-<p>\(Z_0 = \) [[input:ans3]] [[validation:ans3]] &Omega;</p>
-<p><em>Syntax hint: Enter a number, e.g. <code>50</code> or <code>7.25e1</code></em></p>
+<p>\(Z_0 = \) [[input:ans3]] [[validation:ans3]]</p>
+<p><em>Syntax hint: Enter the value with its unit, e.g. <code>50 ohm</code>. Use <code>ohm</code> for &Omega;.</em></p>
 
 <h4>Part&nbsp;(d) &mdash; Wavelength (1&nbsp;pt)</h4>
 <p>Compute the wavelength \(\lambda = v_p / f\). Give your answer in <strong>metres</strong>.</p>
-<p>\(\lambda = \) [[input:ans4]] [[validation:ans4]] m</p>
-<p><em>Syntax hint: Enter a number, e.g. <code>0.414</code> or <code>4.14e-1</code></em></p>
+<p>\(\lambda = \) [[input:ans4]] [[validation:ans4]]</p>
+<p><em>Syntax hint: Enter the value with its unit, e.g. <code>0.414 m</code></em></p>
 
 <h4>Part&nbsp;(e) &mdash; Phase constant (1&nbsp;pt)</h4>
 <p>Compute the phase constant \(\beta = 2\pi / \lambda\). Give your answer in <strong>rad/m</strong>.</p>
-<p>\(\beta = \) [[input:ans5]] [[validation:ans5]] rad/m</p>
-<p><em>Syntax hint: Enter a number, e.g. <code>15.2</code> or <code>1.52e1</code>. You may also use <code>%pi</code> for &pi;, e.g. <code>2*%pi/0.414</code>.</em></p>
+<p>\(\beta = \) [[input:ans5]] [[validation:ans5]]</p>
+<p><em>Syntax hint: Enter the value with its unit, e.g. <code>15.2 rad/m</code>. You may also use <code>%pi</code> for &pi;, e.g. <code>2*%pi/0.414 rad/m</code>.</em></p>
 
 <h4>Part&nbsp;(f) &mdash; Dispersion (1&nbsp;pt)</h4>
 <p>Is a lossless transmission line dispersive?</p>
@@ -163,6 +158,13 @@ ta5: float(2 * %pi / ta4);
 /* Display helper: L' in nH/m */
 ta2_nH: float(ta2 * 1e9);
 
+/* --- Teacher answers with units (for units input type) --- */
+ta1_u: stackunits(ta1, m/s);
+ta2_u: stackunits(ta2, H/m);
+ta3_u: stackunits(ta3, ohm);
+ta4_u: stackunits(ta4, m);
+ta5_u: stackunits(ta5, rad/m);
+
 /* Part (f): Is a lossless line dispersive? No */
 ta6: [[1, false, "Yes"], [2, true, "No"]];
 ta6_correct: 2;
@@ -228,14 +230,14 @@ ta7_correct: 1;
   <!-- INPUTS                                                       -->
   <!-- ============================================================ -->
 
-  <!-- ans1: numerical — phase velocity v_p -->
+  <!-- ans1: units — phase velocity v_p -->
   <input>
     <name>ans1</name>
-    <type>numerical</type>
-    <tans>ta1</tans>
+    <type>units</type>
+    <tans>ta1_u</tans>
     <boxsize>15</boxsize>
     <strictsyntax>1</strictsyntax>
-    <insertstars>0</insertstars>
+    <insertstars>1</insertstars>
     <syntaxhint/>
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
@@ -248,14 +250,14 @@ ta7_correct: 1;
     <options/>
   </input>
 
-  <!-- ans2: numerical — distributed inductance L' -->
+  <!-- ans2: units — distributed inductance L' -->
   <input>
     <name>ans2</name>
-    <type>numerical</type>
-    <tans>ta2</tans>
+    <type>units</type>
+    <tans>ta2_u</tans>
     <boxsize>15</boxsize>
     <strictsyntax>1</strictsyntax>
-    <insertstars>0</insertstars>
+    <insertstars>1</insertstars>
     <syntaxhint/>
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
@@ -268,14 +270,14 @@ ta7_correct: 1;
     <options/>
   </input>
 
-  <!-- ans3: numerical — characteristic impedance Z0 -->
+  <!-- ans3: units — characteristic impedance Z0 -->
   <input>
     <name>ans3</name>
-    <type>numerical</type>
-    <tans>ta3</tans>
-    <boxsize>12</boxsize>
+    <type>units</type>
+    <tans>ta3_u</tans>
+    <boxsize>15</boxsize>
     <strictsyntax>1</strictsyntax>
-    <insertstars>0</insertstars>
+    <insertstars>1</insertstars>
     <syntaxhint/>
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
@@ -288,14 +290,14 @@ ta7_correct: 1;
     <options/>
   </input>
 
-  <!-- ans4: numerical — wavelength lambda -->
+  <!-- ans4: units — wavelength lambda -->
   <input>
     <name>ans4</name>
-    <type>numerical</type>
-    <tans>ta4</tans>
-    <boxsize>12</boxsize>
+    <type>units</type>
+    <tans>ta4_u</tans>
+    <boxsize>15</boxsize>
     <strictsyntax>1</strictsyntax>
-    <insertstars>0</insertstars>
+    <insertstars>1</insertstars>
     <syntaxhint/>
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
@@ -308,14 +310,14 @@ ta7_correct: 1;
     <options/>
   </input>
 
-  <!-- ans5: numerical — phase constant beta -->
+  <!-- ans5: units — phase constant beta -->
   <input>
     <name>ans5</name>
-    <type>numerical</type>
-    <tans>ta5</tans>
-    <boxsize>12</boxsize>
+    <type>units</type>
+    <tans>ta5_u</tans>
+    <boxsize>15</boxsize>
     <strictsyntax>1</strictsyntax>
-    <insertstars>0</insertstars>
+    <insertstars>1</insertstars>
     <syntaxhint/>
     <syntaxattribute>0</syntaxattribute>
     <forbidwords/>
@@ -372,7 +374,7 @@ ta7_correct: 1;
   <!-- PRTs                                                         -->
   <!-- ============================================================ -->
 
-  <!-- prt1: Part (a) — phase velocity (NumRelative 0.05) -->
+  <!-- prt1: Part (a) — phase velocity (UnitsRelative 0.05) -->
   <prt>
     <name>prt1</name>
     <value>1.0000000</value>
@@ -384,9 +386,9 @@ ta7_correct: 1;
     <node>
       <name>0</name>
       <description>Check part (a): phase velocity</description>
-      <answertest>NumRelative</answertest>
+      <answertest>UnitsRelative</answertest>
       <sans>ans1</sans>
-      <tans>ta1</tans>
+      <tans>ta1_u</tans>
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
@@ -408,7 +410,7 @@ ta7_correct: 1;
     </node>
   </prt>
 
-  <!-- prt2: Part (b) — distributed inductance L' (NumRelative 0.05) -->
+  <!-- prt2: Part (b) — distributed inductance L' (UnitsRelative 0.05) -->
   <prt>
     <name>prt2</name>
     <value>1.0000000</value>
@@ -420,9 +422,9 @@ ta7_correct: 1;
     <node>
       <name>0</name>
       <description>Check part (b): distributed inductance</description>
-      <answertest>NumRelative</answertest>
+      <answertest>UnitsRelative</answertest>
       <sans>ans2</sans>
-      <tans>ta2</tans>
+      <tans>ta2_u</tans>
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
@@ -444,7 +446,7 @@ ta7_correct: 1;
     </node>
   </prt>
 
-  <!-- prt3: Part (c) — characteristic impedance Z0 (NumRelative 0.05) -->
+  <!-- prt3: Part (c) — characteristic impedance Z0 (UnitsRelative 0.05) -->
   <prt>
     <name>prt3</name>
     <value>1.0000000</value>
@@ -456,9 +458,9 @@ ta7_correct: 1;
     <node>
       <name>0</name>
       <description>Check part (c): characteristic impedance</description>
-      <answertest>NumRelative</answertest>
+      <answertest>UnitsRelative</answertest>
       <sans>ans3</sans>
-      <tans>ta3</tans>
+      <tans>ta3_u</tans>
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
@@ -480,7 +482,7 @@ ta7_correct: 1;
     </node>
   </prt>
 
-  <!-- prt4: Part (d) — wavelength lambda (NumRelative 0.05) -->
+  <!-- prt4: Part (d) — wavelength lambda (UnitsRelative 0.05) -->
   <prt>
     <name>prt4</name>
     <value>1.0000000</value>
@@ -492,9 +494,9 @@ ta7_correct: 1;
     <node>
       <name>0</name>
       <description>Check part (d): wavelength</description>
-      <answertest>NumRelative</answertest>
+      <answertest>UnitsRelative</answertest>
       <sans>ans4</sans>
-      <tans>ta4</tans>
+      <tans>ta4_u</tans>
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>
@@ -516,7 +518,7 @@ ta7_correct: 1;
     </node>
   </prt>
 
-  <!-- prt5: Part (e) — phase constant beta (NumRelative 0.05) -->
+  <!-- prt5: Part (e) — phase constant beta (UnitsRelative 0.05) -->
   <prt>
     <name>prt5</name>
     <value>1.0000000</value>
@@ -528,9 +530,9 @@ ta7_correct: 1;
     <node>
       <name>0</name>
       <description>Check part (e): phase constant</description>
-      <answertest>NumRelative</answertest>
+      <answertest>UnitsRelative</answertest>
       <sans>ans5</sans>
-      <tans>ta5</tans>
+      <tans>ta5_u</tans>
       <testoptions>0.05</testoptions>
       <quiet>0</quiet>
       <truescoremode>=</truescoremode>

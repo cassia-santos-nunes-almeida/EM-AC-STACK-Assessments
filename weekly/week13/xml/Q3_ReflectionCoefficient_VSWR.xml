@@ -14,11 +14,6 @@
   <questiontext format="html">
     <text><![CDATA[
 <h3>Reflection Coefficient, VSWR, and Standing Wave Locations</h3>
-<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
-<p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
-<p><strong>Total: 10 points (10 parts, 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
-
-<hr />
 
 <p>A lossless transmission line with characteristic impedance \(Z_0 = {@Z0_disp@}\;\Omega\) is terminated
 by a load impedance \(Z_L = {@RL_disp@} {@if is(XL >= 0) then "+" else "-"@} j{@abs(XL_disp)@}\;\Omega\).
@@ -36,7 +31,7 @@ from the load.</p>
 
 <h4>Part&nbsp;(b) &mdash; Phase of the reflection coefficient (1&nbsp;pt)</h4>
 <p>Compute the phase angle \(\theta_\Gamma\) in <strong>degrees</strong>.</p>
-<p>\(\theta_\Gamma = \) [[input:ans2]] [[validation:ans2]] &deg;</p>
+<p>\(\theta_\Gamma = \) [[input:ans2]] [[validation:ans2]]&nbsp;&deg;</p>
 <p><em>Syntax hint: Enter the angle in degrees, e.g. <code>-26.57</code></em></p>
 
 <h4>Part&nbsp;(c) &mdash; VSWR (1&nbsp;pt)</h4>
@@ -46,12 +41,12 @@ from the load.</p>
 
 <h4>Part&nbsp;(d) &mdash; First voltage maximum distance from load (1&nbsp;pt)</h4>
 <p>Find the distance of the <strong>first voltage maximum</strong> from the load, \(d_{\max}\), in <strong>metres</strong>.</p>
-<p>\(d_{\max} = \) [[input:ans4]] [[validation:ans4]] m</p>
+<p>\(d_{\max} = \) [[input:ans4]] [[validation:ans4]]&nbsp;m</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>0.0382</code></em></p>
 
 <h4>Part&nbsp;(e) &mdash; First voltage minimum distance from load (1&nbsp;pt)</h4>
 <p>Find the distance of the <strong>first voltage minimum</strong> from the load, \(d_{\min}\), in <strong>metres</strong>.</p>
-<p>\(d_{\min} = \) [[input:ans5]] [[validation:ans5]] m</p>
+<p>\(d_{\min} = \) [[input:ans5]] [[validation:ans5]]&nbsp;m</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>0.1582</code></em></p>
 
 <h4>Part&nbsp;(f) &mdash; Matched load reflection coefficient (1&nbsp;pt)</h4>
@@ -71,7 +66,7 @@ transmission line with characteristic impedance \(Z_0 = {@Z0_disp@}\;\Omega\).
 This simplification is common in initial design stages before fine-tuning with matching networks.</p>
 <p>What is the <strong>maximum</strong> value of \(R_L\) (assuming \(R_L > Z_0\)) that keeps
 \(\text{VSWR} \le 2\)?</p>
-<p>\(R_{L,\max} = \) [[input:ans8]] [[validation:ans8]] &Omega;</p>
+<p>\(R_{L,\max} = \) [[input:ans8]] [[validation:ans8]]&nbsp;&Omega;</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>100</code></em></p>
 
 <h4>Part&nbsp;(i) &mdash; Connecting back: does the complex load meet the VSWR constraint? (1&nbsp;pt)</h4>

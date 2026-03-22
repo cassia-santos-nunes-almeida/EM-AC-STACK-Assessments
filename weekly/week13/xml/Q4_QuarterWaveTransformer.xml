@@ -13,11 +13,6 @@
   <questiontext format="html">
     <text><![CDATA[
 <h3>Quarter-Wave Transformer Design</h3>
-<p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
-<p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
-<p><strong>Total: 7 points | Penalty per wrong attempt: 0%</strong></p>
-
-<hr />
 
 <p>A lossless transmission line with characteristic impedance \(Z_0 = {@Z0@}\;\Omega\) feeds a purely resistive
 load \(Z_L = {@ZL@}\;\Omega\). You are asked to design a <strong>quarter-wave transformer</strong> to match the
