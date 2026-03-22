@@ -75,7 +75,7 @@ var yMax  = {#y_max#};
 var yMin  = {#y_min#};
 var Vss   = {#ta5#};
 var MAX_POINTS = 4;
-var SNAP  = 0.5;
+var SNAP  = 0.25;
 
 var board = JXG.JSXGraph.initBoard(divid, {
     boundingbox: [-0.5, yMax, 8.5, yMin],
@@ -173,7 +173,8 @@ function addPoint(x, y) {
         size: 5,
         strokeColor: '#0055d4',
         fillColor: '#3388ff',
-        snapToGrid: true
+        snapSizeX: 1,
+        snapSizeY: SNAP
     });
     var idx = pts.length;
     var lbl = board.create('text', [
@@ -244,50 +245,64 @@ board.create('button', [5.5, yMax - 1.5, 'Reset', function() {
    - Deserializer: parses saved string and recreates points
    - Watch list: [syncAnchor] — any board.update() triggers serialization
    ================================================================ */
-stack_jxg.custom_bind(
-    ans6Ref,
-    /* serializer */
-    function() {
-        if (pts.length === 0) return '[]';
-        var sorted = pts.slice().sort(function(a, b) { return a.X() - b.X(); });
-        var parts = [];
-        for (var i = 0; i < sorted.length; i++) {
-            parts.push('[' + snapVal(sorted[i].X()) + ',' + snapVal(sorted[i].Y()) + ']');
-        }
-        return '[' + parts.join(',') + ']';
-    },
-    /* deserializer — called by custom_bind on page load if input has a value */
-    function(data) {
-        /* Clear any existing points */
-        board.suspendUpdate();
-        for (var i = pts.length - 1; i >= 0; i--) {
-            board.removeObject(labels[i]);
-            board.removeObject(pts[i]);
-        }
-        pts = [];
-        labels = [];
+/* Serializer: collect all points into a Maxima-compatible nested list */
+function serializePoints() {
+    if (pts.length === 0) return '[]';
+    var sorted = pts.slice().sort(function(a, b) { return a.X() - b.X(); });
+    var parts = [];
+    for (var i = 0; i < sorted.length; i++) {
+        parts.push('[' + snapVal(sorted[i].X()) + ',' + snapVal(sorted[i].Y()) + ']');
+    }
+    return '[' + parts.join(',') + ']';
+}
 
-        if (data && data !== '[]') {
-            var matches = data.match(/\[(-?[\d.]+),\s*(-?[\d.]+)\]/g);
-            if (matches) {
-                for (var i = 0; i < matches.length && i < MAX_POINTS; i++) {
-                    var nums = matches[i].match(/(-?[\d.]+)/g);
-                    if (nums && nums.length >= 2) {
-                        addPoint(parseFloat(nums[0]), parseFloat(nums[1]));
-                    }
+/* Deserializer: parse saved string and recreate points on the board */
+function deserializePoints(data) {
+    board.suspendUpdate();
+    for (var i = pts.length - 1; i >= 0; i--) {
+        board.removeObject(labels[i]);
+        board.removeObject(pts[i]);
+    }
+    pts = [];
+    labels = [];
+
+    if (data && data !== '[]') {
+        var matches = data.match(/\[(-?[\d.]+),\s*(-?[\d.]+)\]/g);
+        if (matches) {
+            for (var i = 0; i < matches.length && i < MAX_POINTS; i++) {
+                var nums = matches[i].match(/(-?[\d.]+)/g);
+                if (nums && nums.length >= 2) {
+                    addPoint(parseFloat(nums[0]), parseFloat(nums[1]));
                 }
             }
         }
-        board.unsuspendUpdate();
-        updateTable();
-    },
-    [syncAnchor]
-);
+    }
+    board.unsuspendUpdate();
+    updateTable();
+}
 
-/* Clear the initial-value guard so the first click triggers serialization
-   (otherwise custom_bind skips if the serializer returns the same value
-   as the initial snapshot, which is '[]'). */
-stack_jxg.clear_initial(syncAnchor);
+if (typeof stack_jxg !== 'undefined' && typeof stack_jxg.custom_bind === 'function') {
+    /* Preferred path: official STACK-JS iframe binding */
+    stack_jxg.custom_bind(ans6Ref, serializePoints, deserializePoints, [syncAnchor]);
+    if (typeof stack_jxg.clear_initial === 'function') {
+        stack_jxg.clear_initial(syncAnchor);
+    }
+} else {
+    /* Fallback for STACK versions without custom_bind */
+    var stateInput = (typeof ans6Ref === 'string')
+        ? document.getElementById(ans6Ref) : ans6Ref;
+
+    if (stateInput) {
+        if (stateInput.value && stateInput.value !== '[]') {
+            deserializePoints(stateInput.value);
+        }
+        var origUpdate = board.update.bind(board);
+        board.update = function() {
+            origUpdate();
+            stateInput.value = serializePoints();
+        };
+    }
+}
 [[/jsxgraph]]
 
 <!-- Table is now created dynamically inside the JSXGraph block above -->
