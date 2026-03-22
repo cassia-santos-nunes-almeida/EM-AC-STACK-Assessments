@@ -16,7 +16,7 @@
 <h3>Lumped vs Distributed Model Identification</h3>
 <p><em>Course: Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
 <p><em>This is a training exercise &mdash; you may use books, tutors, and AI. The question requires multi-step reasoning.</em></p>
-<p><strong>Total: 8 points (8 parts, 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
+<p><strong>Total: 9 points (9 parts, 1 pt each) | Penalty per wrong attempt: 0%</strong></p>
 
 <hr />
 
@@ -79,6 +79,15 @@ phase velocity \(v_p = {@vp_disp@} \times 10^8\;\text{m/s}\)).
 <p>Use the same threshold: \(\ell/\lambda \ge 0.01\). Give your answer in <strong>Hz</strong>.</p>
 <p>\(f_{\min} = \) [[input:ans8]] [[validation:ans8]] Hz</p>
 <p><em>Syntax hint: Enter a number, e.g. <code>2e7</code>. Scientific notation accepted.</em></p>
+
+<h4>Part&nbsp;(i) &mdash; Sensitivity: what if the phase velocity is lower? (1&nbsp;pt)</h4>
+<p>Your calculated \(f_{\min} = {@ta8_disp@}\) assumes a phase velocity of
+\(v_p = {@vp_disp@} \times 10^8\;\text{m/s}\).</p>
+<p>In practice, the actual phase velocity depends on the dielectric fill, manufacturing tolerances, and temperature.
+If the true phase velocity turns out to be <strong>20% lower</strong> than assumed,
+how does this affect your design decision at the original frequency \(f = {@f_disp@}\)?</p>
+<p>[[input:ans9]] [[validation:ans9]]</p>
+<p><em>Select the most accurate statement about the engineering implication.</em></p>
 ]]></text>
   </questiontext>
   <generalfeedback format="html">
@@ -121,6 +130,13 @@ voltages and currents vary along the line and the lumped approximation (uniform 
 <p>We need \(\ell/\lambda \ge 0.01\). Since \(\lambda = v_p/f\), this gives:</p>
 <p>\[\frac{\ell}{v_p/f} \ge 0.01 \implies f \ge \frac{0.01 \cdot v_p}{\ell} = \frac{0.01 \times {@vp@}}{{@l_m@}} = {@ta8@}\;\text{Hz}\]</p>
 
+<h4>Part (i) &mdash; Sensitivity to phase velocity</h4>
+<p>If the true phase velocity is 20% lower, then:</p>
+<p>\[f_{\min,\text{new}} = \frac{0.01 \times (0.8 \, v_p)}{\ell} = 0.8 \times f_{\min} = 0.8 \times {@ta8@} = {@ta8_low@}\;\text{Hz}\]</p>
+<p>A <strong>lower</strong> \(v_p\) gives a <strong>lower</strong> \(f_{\min}\) &mdash; the distributed model threshold moves <em>down</em> in frequency.
+This means our original calculation was <strong>conservative (safe)</strong>: the actual transition to the distributed regime
+happens at a lower frequency than we assumed, so any system designed using the original \(f_{\min}\) has an extra safety margin.</p>
+
 <hr />
 <h4>Answer Summary</h4>
 <table border="1" cellpadding="5" cellspacing="0">
@@ -133,10 +149,11 @@ voltages and currents vary along the line and the lumped approximation (uniform 
 <tr><td>(f) Model at 100f</td><td>{@if is_distributed_high then "Distributed" else "Lumped"@}</td></tr>
 <tr><td>(g) Insight</td><td>Wavelength shrinks, becomes comparable to line length</td></tr>
 <tr><td>(h) f<sub>min</sub></td><td>{@ta8@} Hz</td></tr>
+<tr><td>(i) Sensitivity</td><td>Conservative (safe) — f_min decreases</td></tr>
 </table>
 ]]></text>
   </generalfeedback>
-  <defaultgrade>8.0000000</defaultgrade>
+  <defaultgrade>9.0000000</defaultgrade>
   <penalty>0.0000000</penalty>
   <hidden>0</hidden>
   <idnumber/>
@@ -198,6 +215,17 @@ ta7_correct: 1;
 
 /* Part (h): minimum frequency for distributed model */
 ta8: float(0.01 * vp / l_m);
+
+/* Part (i): sensitivity — if vp is 20% lower */
+ta8_low: float(0.8 * ta8);
+ta8_disp: if is(ta8 >= 1e9) then sconcat(string(float(ta8/1e9)), " GHz")
+          else if is(ta8 >= 1e6) then sconcat(string(float(ta8/1e6)), " MHz")
+          else if is(ta8 >= 1e3) then sconcat(string(float(ta8/1e3)), " kHz")
+          else sconcat(string(float(ta8)), " Hz");
+
+/* Radio MCQ: option 1 is always correct — lower vp → lower f_min → conservative */
+ta9: [[1,true,"The distributed model becomes necessary at a lower frequency than calculated — my design is conservative (safe)"],[2,false,"The distributed model becomes necessary at a higher frequency — my design may be optimistic (risky)"],[3,false,"The phase velocity has no effect on the model choice"],[4,false,"I must switch to the distributed model regardless of frequency"]];
+ta9_correct: 1;
 ]]></text>
   </questionvariables>
   <specificfeedback format="html">
@@ -225,10 +253,13 @@ ta8: float(0.01 * vp / l_m);
 
 <h4>Part (h) &mdash; Minimum frequency</h4>
 <div>[[feedback:prt8]]</div>
+
+<h4>Part (i) &mdash; Sensitivity</h4>
+<div>[[feedback:prt9]]</div>
 ]]></text>
   </specificfeedback>
   <questionnote>
-    <text>Set {@set@}: f={@f_disp@}, l={@l_cm@} cm, vp={@vp_disp@}×10⁸ m/s | λ={@ta1@} m, l/λ={@ta2@} | f_min={@ta8@} Hz</text>
+    <text>Set {@set@}: f={@f_disp@}, l={@l_cm@} cm, vp={@vp_disp@}×10⁸ m/s | λ={@ta1@} m, l/λ={@ta2@} | f_min={@ta8@} Hz | ta8_low={@ta8_low@}</text>
   </questionnote>
   <questiondescription format="html">
     <text><![CDATA[<p>Lumped vs distributed model identification — Week 13 training exercise.</p>]]></text>
@@ -412,6 +443,26 @@ ta8: float(0.01 * vp / l_m);
     <forbidwords/>
     <allowwords/>
     <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>1</showvalidation>
+    <options/>
+  </input>
+
+  <!-- ans9: radio — sensitivity of f_min to phase velocity -->
+  <input>
+    <name>ans9</name>
+    <type>radio</type>
+    <tans>ta9</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
     <requirelowestterms>0</requirelowestterms>
     <checkanswertype>0</checkanswertype>
     <mustverify>1</mustverify>
@@ -711,6 +762,42 @@ ta8: float(0.01 * vp / l_m);
     </node>
   </prt>
 
+  <!-- prt9: Part (i) — sensitivity radio (AlgEquiv) -->
+  <prt>
+    <name>prt9</name>
+    <value>1.0000000</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables>
+      <text/>
+    </feedbackvariables>
+    <node>
+      <name>0</name>
+      <description>Check part (i): sensitivity radio</description>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans9</sans>
+      <tans>ta9_correct</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1.0000000</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt9-0-T</trueanswernote>
+      <truefeedback format="html">
+        <text><![CDATA[<p>Correct! A lower phase velocity gives a lower \(f_{\min}\), making the original design conservative. The safety margin increases because the distributed regime starts at an even lower frequency than you calculated.</p>]]></text>
+      </truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0.0000000</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt9-0-F</falseanswernote>
+      <falsefeedback format="html">
+        <text><![CDATA[<p>Incorrect. Since \(f_{\min} = 0.01 \cdot v_p / \ell\), a lower \(v_p\) gives a lower \(f_{\min}\). This means the distributed model becomes necessary at a lower frequency — the original calculation overestimates the threshold, making the design conservative (safe).</p>]]></text>
+      </falsefeedback>
+    </node>
+  </prt>
+
   <!-- ============================================================ -->
   <!-- DEPLOYED SEEDS                                                -->
   <!-- ============================================================ -->
@@ -755,6 +842,10 @@ ta8: float(0.01 * vp / l_m);
     <testinput>
       <name>ans8</name>
       <value>ta8</value>
+    </testinput>
+    <testinput>
+      <name>ans9</name>
+      <value>ta9</value>
     </testinput>
     <expected>
       <name>prt1</name>
@@ -804,6 +895,12 @@ ta8: float(0.01 * vp / l_m);
       <expectedpenalty>0.0000000</expectedpenalty>
       <expectedanswernote>prt8-0-T</expectedanswernote>
     </expected>
+    <expected>
+      <name>prt9</name>
+      <expectedscore>1.0000000</expectedscore>
+      <expectedpenalty>0.0000000</expectedpenalty>
+      <expectedanswernote>prt9-0-T</expectedanswernote>
+    </expected>
   </qtest>
 
   <!-- ============================================================ -->
@@ -817,7 +914,8 @@ ta8: float(0.01 * vp / l_m);
   </hint>
   <hint format="html">
     <text><![CDATA[<p><strong>Hint 3:</strong> When the frequency increases by a factor of 100, the wavelength decreases by the same factor (since \(\lambda = v_p/f\) and \(v_p\) is unchanged). Therefore \(\ell/\lambda\) increases by 100. This can push a line that was safely "lumped" into the distributed regime &mdash; the paradigm shift occurs because the physical length has not changed, but the electrical length (measured in wavelengths) has grown.</p>
-<p>For part (h), rearrange the threshold condition \(\ell/\lambda \ge 0.01\) with \(\lambda = v_p/f\) to solve for the minimum frequency \(f\).</p>]]></text>
+<p>For part (h), rearrange the threshold condition \(\ell/\lambda \ge 0.01\) with \(\lambda = v_p/f\) to solve for the minimum frequency \(f\).</p>
+<p>For part (i), recall that \(f_{\min} = 0.01 \cdot v_p / \ell\). If \(v_p\) decreases, what happens to \(f_{\min}\)? Think about whether this makes your original design decision more or less safe.</p>]]></text>
   </hint>
 
 </question>

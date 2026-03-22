@@ -120,6 +120,36 @@ When a rule is superseded, mark it `[RETIRED]` but keep it in place.
 **Scope:** Exam vs. practice question XML.
 **First seen:** Sessions 1-3 (CM#13).
 
+### P-STACK-16 — Use `{#var#}` not `{@var@}` inside `[[jsxgraph]]` blocks
+**Pattern:** CAS variables injected with `{@var@}` inside `[[jsxgraph]]` blocks rendered as HTML text instead of JavaScript values, causing syntax errors or blank graphs.
+**Rule:** Inside `[[jsxgraph]]` blocks, always use `{#var#}` (the JavaScript injection syntax) to inject CAS variable values. `{@var@}` is for HTML rendering only and does not work inside script blocks.
+**Scope:** STACK JSXGraph questions.
+**First seen:** Session 7 (W13 Q5 JSXGraph debugging), March 2026.
+
+### P-STACK-17 — JSXGraph runs in a sandbox IFRAME — no direct DOM access outside the block
+**Pattern:** JavaScript inside `[[jsxgraph]]` tried to access HTML elements (tables, spans) defined in the question text outside the block. These elements were invisible because JSXGraph code runs in a sandboxed IFRAME with a different origin.
+**Rule:** JSXGraph code cannot directly access DOM elements outside its `[[jsxgraph]]...[[/jsxgraph]]` block. To interact with external elements, either: (a) create the HTML inside the block via JS DOM manipulation, or (b) use the `stack_js` messaging API (`stack_js.get_content(id)`, `stack_js.switch_content(id, newContent)`). Prefer option (a) for companion HTML like tables.
+**Scope:** STACK JSXGraph questions with companion HTML.
+**First seen:** Session 7 (W13 Q5 table not updating), March 2026.
+
+### P-STACK-18 — Dispatch `change` event when writing to STACK inputs manually
+**Pattern:** JSXGraph code wrote values to STACK input elements via `document.getElementById(ref).value = ...` but STACK never received the values because the IFRAME-to-VLE sync was not triggered.
+**Rule:** After setting `.value` on a STACK input element inside a `[[jsxgraph]]` block, always dispatch a change event: `element.dispatchEvent(new Event('change'))`. Without this, the value stays inside the IFRAME and is not forwarded to Moodle. The built-in `stack_jxg.bind_*` and `stack_jxg.custom_bind` functions handle this automatically.
+**Scope:** STACK JSXGraph manual input binding.
+**First seen:** Session 7 (W13 Q5 values not submitted), March 2026.
+
+### P-STACK-19 — Prefer `stack_jxg.custom_bind` for complex JSXGraph state
+**Pattern:** Manual binding code (getElementById + JSON.stringify + dispatchEvent) was fragile, hard to debug, and failed to restore state on page reload.
+**Rule:** For complex JSXGraph state (multiple points, sliders, or derived values), use `stack_jxg.custom_bind(inputRef, serializer, deserializer, objectList)` instead of manual binding. It handles: (a) serialization/deserialization, (b) change event dispatch, (c) state restoration on reload, and (d) binding to board update events. Use manual binding only for trivial single-value cases.
+**Scope:** STACK JSXGraph state management.
+**First seen:** Session 7 (W13 Q5 rewrite), March 2026.
+
+### P-STACK-20 — Declare `input-ref-X` attributes on `[[jsxgraph]]` tag
+**Pattern:** JSXGraph code referenced input element IDs by hardcoded strings, which broke when STACK auto-generated different IDs across question instances.
+**Rule:** Always declare input references as attributes on the `[[jsxgraph]]` tag: `[[jsxgraph input-ref-ansN="varName"]]`. This stores the auto-generated element ID in the JavaScript variable `varName`, which can then be used with `document.getElementById(varName)` or `stack_jxg.custom_bind(varName, ...)`.
+**Scope:** STACK JSXGraph input binding.
+**First seen:** Session 7 (W13 Q5), March 2026.
+
 ---
 
 ## CircuiTikZ / Diagrams
