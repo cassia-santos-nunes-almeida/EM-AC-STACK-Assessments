@@ -158,7 +158,7 @@ E_mJ : E_J * 1000;
 taB : E_mJ;
 
 /* Part A: inductor v-i relationship, correct answer is option 1 */
-taA: [[1, true, "v = L di/dt (voltage proportional to rate of change of current)"], [2, false, "v = (1/L) integral of i dt (voltage proportional to integral of current)"], [3, false, "v = L * i (voltage proportional to current)"], [4, false, "v = L / i (voltage inversely proportional to current)"]];
+taA: random_permutation([[1, true, "v = L di/dt (voltage proportional to rate of change of current)"], [2, false, "v = (1/L) integral of i dt (voltage proportional to integral of current)"], [3, false, "v = L * i (voltage proportional to current)"], [4, false, "v = L / i (voltage inversely proportional to current)"]]);
 
 /* Teacher answers for essay parts */
 taC: "See model answer in general feedback.";
@@ -546,7 +546,7 @@ E_mJ : E_J * 1000;
 taB : E_mJ;
 
 /* Part A: capacitor energy formula, correct answer is option 1 */
-taA: [[1, true, "E = (1/2) C V^2 (energy proportional to capacitance and voltage squared)"], [2, false, "E = (1/2) C I^2 (energy proportional to capacitance and current squared)"], [3, false, "E = C V (energy proportional to capacitance times voltage)"], [4, false, "E = (1/2) V^2 / C (energy inversely proportional to capacitance)"]];
+taA: random_permutation([[1, true, "E = (1/2) C V^2 (energy proportional to capacitance and voltage squared)"], [2, false, "E = (1/2) C I^2 (energy proportional to capacitance and current squared)"], [3, false, "E = C V (energy proportional to capacitance times voltage)"], [4, false, "E = (1/2) V^2 / C (energy inversely proportional to capacitance)"]]);
 
 /* Teacher answers for essay parts */
 taC: "See model answer in general feedback.";
@@ -975,7 +975,7 @@ E_mJ : E_J * 1000;
 taB : E_mJ;
 
 /* Part A: which segment has highest |v_L|, correct answer is max_seg (1 or 3) */
-taA: [[1, is(max_seg = 1), "Segment 1 (ramp up from 0 to Ipeak)"], [2, false, "Segment 2 (constant at Ipeak)"], [3, is(max_seg = 3), "Segment 3 (ramp down from Ipeak to 0)"]];
+taA: random_permutation([[1, is(max_seg = 1), "Segment 1 (ramp up from 0 to Ipeak)"], [2, false, "Segment 2 (constant at Ipeak)"], [3, is(max_seg = 3), "Segment 3 (ramp down from Ipeak to 0)"]]);
 
 /* Teacher answers for essay parts */
 taC: "See model answer in general feedback.";
@@ -1398,7 +1398,7 @@ E_mJ : E_J * 1000;
 taB : E_mJ;
 
 /* Part A: parallel capacitor combination, correct answer is option 1 */
-taA: [[1, true, "C_total = C1 + C2 (capacitances add in parallel)"], [2, false, "1/C_total = 1/C1 + 1/C2 (reciprocals add in parallel)"], [3, false, "C_total = C1 * C2 (capacitances multiply in parallel)"], [4, false, "C_total = C1*C2/(C1+C2) (product over sum in parallel)"]];
+taA: random_permutation([[1, true, "C_total = C1 + C2 (capacitances add in parallel)"], [2, false, "1/C_total = 1/C1 + 1/C2 (reciprocals add in parallel)"], [3, false, "C_total = C1 * C2 (capacitances multiply in parallel)"], [4, false, "C_total = C1*C2/(C1+C2) (product over sum in parallel)"]]);
 
 /* Teacher answers for essay parts */
 taC: "See model answer in general feedback.";

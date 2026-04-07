@@ -135,17 +135,17 @@ ta2: float(W_val*1000);  /* W in mJ */
 
 /* Part (c) MCQ: Debug — student computed wrong L, identify error */
 /* L_wrong_no_N2 means they used N instead of N^2 */
-ta3: [[1, true, "They used N instead of N² — the correct formula is L = μ₀N²A/ℓ, not L = μ₀NA/ℓ"],
+ta3: random_permutation([[1, true, "They used N instead of N² — the correct formula is L = μ₀N²A/ℓ, not L = μ₀NA/ℓ"],
       [2, false, "They forgot to convert cm to m in the radius"],
       [3, false, "They swapped the area and length — using L = μ₀N²ℓ/A"],
-      [4, false, "They forgot to include μ₀ in the formula"]];
+      [4, false, "They forgot to include μ₀ in the formula"]]);
 ta3_correct: 1;
 
 /* Part (d) MCQ: If current doubles, energy factor */
-ta4: [[1, false, "The energy doubles (W ∝ I)"],
+ta4: random_permutation([[1, false, "The energy doubles (W ∝ I)"],
       [2, true, "The energy quadruples (W ∝ I²)"],
       [3, false, "The energy stays the same (L is independent of I)"],
-      [4, false, "The energy increases by a factor of 8 (W ∝ I³)"]];
+      [4, false, "The energy increases by a factor of 8 (W ∝ I³)"]]);
 ta4_correct: 2;
 ]]></text>
   </questionvariables>

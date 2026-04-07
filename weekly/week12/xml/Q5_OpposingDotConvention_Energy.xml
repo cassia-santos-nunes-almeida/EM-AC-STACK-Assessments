@@ -163,10 +163,10 @@ i2_min: float(M*i1_val/L2);
 
 /* ===== Teacher answers ===== */
 /* Part (a) MCQ: Aiding or opposing */
-ta1: [[1, false, "Aiding — both currents enter dotted terminals, so mutual flux reinforces self-flux"],
+ta1: random_permutation([[1, false, "Aiding — both currents enter dotted terminals, so mutual flux reinforces self-flux"],
       [2, true, "Opposing — i₁ enters the dotted terminal but i₂ enters the undotted terminal"],
       [3, false, "Cannot determine — need to know the physical winding direction"],
-      [4, false, "Neither — the dot convention does not affect the coupling type"]];
+      [4, false, "Neither — the dot convention does not affect the coupling type"]]);
 ta1_correct: 2;
 
 /* Part (b): M in mH */
@@ -185,10 +185,10 @@ ta5: float(Lc_mH);
 ta6: float(W_mJ);
 
 /* Part (g) MCQ: At what i2 is energy minimized */
-ta7: [[1, true, sconcat("i₂ = M·i₁/L₂ = ", string(float(i2_min)), " A — from setting dW/di₂ = 0")],
+ta7: random_permutation([[1, true, sconcat("i₂ = M·i₁/L₂ = ", string(float(i2_min)), " A — from setting dW/di₂ = 0")],
       [2, false, "i₂ = 0 A — minimum energy occurs when only one current flows"],
       [3, false, sconcat("i₂ = i₁ = ", string(float(i1_val)), " A — minimum occurs when both currents are equal")],
-      [4, false, "i₂ = L₂·i₁/M — this maximizes the mutual coupling effect"]];
+      [4, false, "i₂ = L₂·i₁/M — this maximizes the mutual coupling effect"]]);
 ta7_correct: 1;]]></text>
   </questionvariables>
 

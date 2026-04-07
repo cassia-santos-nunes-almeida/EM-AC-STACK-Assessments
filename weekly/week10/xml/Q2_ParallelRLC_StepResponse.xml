@@ -241,9 +241,9 @@ ta_v: ev(L_val*diff(ta_iL, t), simp);
 ta_fvt: float(ta_If);
 
 /* ===== Teacher answers ===== */
-ta1: [[1, true, "R dissipates energy as heat on every half-cycle, reducing the oscillation amplitude"], [2, false, "R increases the resonant frequency until oscillations become too fast"], [3, false, "R reflects energy back into the source, removing it from the LC tank"], [4, false, "The oscillations stop because the inductor saturates after many cycles"]];
+ta1: random_permutation([[1, true, "R dissipates energy as heat on every half-cycle, reducing the oscillation amplitude"], [2, false, "R increases the resonant frequency until oscillations become too fast"], [3, false, "R reflects energy back into the source, removing it from the LC tank"], [4, false, "The oscillations stop because the inductor saturates after many cycles"]]);
 ta2: ta_If;
-ta3: [[1, is(ta_regime=1), "Overdamped"], [2, is(ta_regime=2), "Underdamped"], [3, is(ta_regime=3), "Critically damped"]];
+ta3: random_permutation([[1, is(ta_regime=1), "Overdamped"], [2, is(ta_regime=2), "Underdamped"], [3, is(ta_regime=3), "Critically damped"]]);
 
 /* Explicit correct values for PRT comparison (MCQ lists fail with AlgEquiv) */
 ta1_correct: 1;

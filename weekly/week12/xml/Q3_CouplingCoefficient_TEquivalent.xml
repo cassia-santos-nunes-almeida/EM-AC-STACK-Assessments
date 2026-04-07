@@ -204,10 +204,10 @@ k_threshold: float(sqrt(L1_mH/L2_mH));
 ta1: float(M_mH);
 
 /* Part (b) MCQ: Aiding or opposing */
-ta2: [[1, true, "Aiding — both currents enter dotted terminals, so mutual flux reinforces self-flux"],
+ta2: random_permutation([[1, true, "Aiding — both currents enter dotted terminals, so mutual flux reinforces self-flux"],
       [2, false, "Opposing — the currents create opposing magnetic fields"],
       [3, false, "Neither — the dot convention only matters for transformers, not coupled inductors"],
-      [4, false, "Cannot determine without knowing the physical orientation of the coils"]];
+      [4, false, "Cannot determine without knowing the physical orientation of the coils"]]);
 ta2_correct: 1;
 
 ta3: float(La_mH);
@@ -216,15 +216,15 @@ ta5: float(Lc_mH);
 
 /* Part (d) MCQ: Negative inductance — conditional on La_negative */
 ta6: if is(La_negative=true) then
-       [[1, true, "Yes — La is negative because M > L1 (i.e., k > sqrt(L1/L2))"],
+       random_permutation([[1, true, "Yes — La is negative because M > L1 (i.e., k > sqrt(L1/L2))"],
         [2, false, "No — all T-equivalent elements must be positive for a valid circuit"],
         [3, false, "Yes — but only because the coupling coefficient k is invalid (k > 1)"],
-        [4, false, "No — negative inductance only occurs for the opposing case"]]
+        [4, false, "No — negative inductance only occurs for the opposing case"]])
      else
-       [[1, false, "Yes — La is negative because M > L1"],
+       random_permutation([[1, false, "Yes — La is negative because M > L1"],
         [2, true, "No — for these parameters, all T-equivalent elements are non-negative"],
         [3, false, "Yes — but only because the coupling coefficient k is invalid (k > 1)"],
-        [4, false, "No — negative inductance is impossible in any circuit model"]];
+        [4, false, "No — negative inductance is impossible in any circuit model"]]);
 ta6_correct: if is(La_negative=true) then 1 else 2;
 
 /* ===== Part (e): Opposing T-equivalent Lc ===== */
@@ -235,10 +235,10 @@ Lb_opp_mH: float((L2+M)*1000);
 Lc_opp_mH: float(-M_mH);
 
 /* ===== Part (f): Opposing energy sign MCQ ===== */
-ta8: [[1, true, "Minus (\u2212) \u2014 opposing mutual flux reduces stored energy"],
+ta8: random_permutation([[1, true, "Minus (\u2212) \u2014 opposing mutual flux reduces stored energy"],
       [2, false, "Plus (+) \u2014 all energy contributions are additive"],
       [3, false, "Zero \u2014 mutual inductance does not affect stored energy"],
-      [4, false, "It depends on the values of i\u2081 and i\u2082"]];
+      [4, false, "It depends on the values of i\u2081 and i\u2082"]]);
 ta8_correct: 1;
 ]]></text>
   </questionvariables>

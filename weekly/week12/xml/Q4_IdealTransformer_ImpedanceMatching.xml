@@ -154,17 +154,17 @@ ta2: float(Zin_matched);
 ta3: float(Pmax);
 
 /* Part (d) MCQ: System efficiency at max power transfer */
-ta4: [[1, false, "25% — most power is lost in the transformer"],
+ta4: random_permutation([[1, false, "25% — most power is lost in the transformer"],
       [2, true, "50% — half the source power is dissipated in Rs, half goes to the load"],
       [3, false, "100% — the ideal transformer is perfectly efficient"],
-      [4, false, "It depends on the turns ratio"]];
+      [4, false, "It depends on the turns ratio"]]);
 ta4_correct: 2;
 
 /* Part (e) MCQ: Why impedance matching is useful */
-ta5: [[1, false, "It increases the source voltage to drive larger loads"],
+ta5: random_permutation([[1, false, "It increases the source voltage to drive larger loads"],
       [2, true, "It maximizes power delivered to the load when source and load impedances differ"],
       [3, false, "It eliminates all power loss in the circuit"],
-      [4, false, "It converts AC to DC for the load"]];
+      [4, false, "It converts AC to DC for the load"]]);
 ta5_correct: 2;
 ]]></text>
   </questionvariables>

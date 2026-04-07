@@ -95,7 +95,7 @@ VA: I_total / G_total;
 
 /* Teacher answers */
 /* Part A: node-voltage method, 1 equation */
-ta1: [[1, true, "Node-Voltage method, 1 equation needed"], [2, false, "Node-Voltage method, 2 equations needed"], [3, false, "Mesh-Current method, 1 equation needed"], [4, false, "Mesh-Current method, 2 equations needed"]];
+ta1: random_permutation([[1, true, "Node-Voltage method, 1 equation needed"], [2, false, "Node-Voltage method, 2 equations needed"], [3, false, "Mesh-Current method, 1 equation needed"], [4, false, "Mesh-Current method, 2 equations needed"]]);
 
 /* Part C: numerical answer for V_A in Volts */
 ta2: float(VA);
@@ -430,7 +430,7 @@ iR2: (i1 - i2) * 1000;
 
 /* Teacher answers */
 /* Part A: mesh-current method, 2 equations */
-ta1: [[1, true, "Mesh-Current method, 2 equations needed"], [2, false, "Mesh-Current method, 3 equations needed"], [3, false, "Node-Voltage method, 2 equations needed"], [4, false, "Node-Voltage method, 3 equations needed"]];
+ta1: random_permutation([[1, true, "Mesh-Current method, 2 equations needed"], [2, false, "Mesh-Current method, 3 equations needed"], [3, false, "Node-Voltage method, 2 equations needed"], [4, false, "Node-Voltage method, 3 equations needed"]]);
 
 /* Part C: numerical answer for i_R2 in mA */
 ta2: float(iR2);
@@ -756,7 +756,7 @@ VC: VB + Is * R2_ohm;
 
 /* Teacher answers */
 /* Part A: node-voltage method, 2 equations */
-ta1: [[1, true, "Node-Voltage method, 2 equations needed"], [2, false, "Node-Voltage method, 3 equations needed"], [3, false, "Mesh-Current method, 2 equations needed"], [4, false, "Mesh-Current method, 3 equations needed"]];
+ta1: random_permutation([[1, true, "Node-Voltage method, 2 equations needed"], [2, false, "Node-Voltage method, 3 equations needed"], [3, false, "Mesh-Current method, 2 equations needed"], [4, false, "Mesh-Current method, 3 equations needed"]]);
 
 /* Part C: numerical answer for V_B in Volts */
 ta2: float(VB);
@@ -1099,7 +1099,7 @@ VBC: VB - VCnode;
 
 /* Teacher answers */
 /* Part A: node-voltage method, 2 equations */
-ta1: [[1, true, "Node-Voltage method, 2 equations needed"], [2, false, "Node-Voltage method, 3 equations needed"], [3, false, "Mesh-Current method, 2 equations needed"], [4, false, "Mesh-Current method, 3 equations needed"]];
+ta1: random_permutation([[1, true, "Node-Voltage method, 2 equations needed"], [2, false, "Node-Voltage method, 3 equations needed"], [3, false, "Mesh-Current method, 2 equations needed"], [4, false, "Mesh-Current method, 3 equations needed"]]);
 
 /* Part C: numerical answer for V_BC in Volts */
 ta2: float(VBC);

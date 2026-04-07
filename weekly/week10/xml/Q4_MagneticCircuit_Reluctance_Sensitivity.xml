@@ -254,12 +254,12 @@ ta_analogy: 1;
 ta_dominator: if ta_Rg > ta_Rc then 1 else 2;
 ta_design_reason: 1;
 
-mcq_analogy: [[1, true, "MMF (NI) <-> Voltage; Reluctance <-> Resistance; Flux <-> Current"],
+mcq_analogy: random_permutation([[1, true, "MMF (NI) <-> Voltage; Reluctance <-> Resistance; Flux <-> Current"],
               [2, false, "MMF (NI) <-> Current; Reluctance <-> Conductance; Flux <-> Voltage"],
-              [3, false, "MMF (NI) <-> Power; Reluctance <-> Impedance; Flux <-> Energy"]];
+              [3, false, "MMF (NI) <-> Power; Reluctance <-> Impedance; Flux <-> Energy"]]);
 
-mcq_design: [[1, true, "The air gap increases reluctance, reducing L, but prevents core saturation at high currents"],
-             [2, false, "The air gap reduces eddy current losses; the inductance drop is a side effect"]];
+mcq_design: random_permutation([[1, true, "The air gap increases reluctance, reducing L, but prevents core saturation at high currents"],
+             [2, false, "The air gap reduces eddy current losses; the inductance drop is a side effect"]]);
 
 /* ===== Teacher answers for each input ===== */
 ta1: mcq_analogy;

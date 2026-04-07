@@ -156,25 +156,25 @@ emf_no_pi: float(N*omega*B0*r_val^2);
 ta1: float(peak_emf);
 
 /* Part (b) MCQ: Direction of induced current (Lenz's law) */
-ta2: [[1, true, "Clockwise (when viewed from the direction of B) — opposes the increase in flux"],
+ta2: random_permutation([[1, true, "Clockwise (when viewed from the direction of B) — opposes the increase in flux"],
       [2, false, "Counterclockwise (when viewed from the direction of B) — aids the increase in flux"],
       [3, false, "No current flows — the coil is open-circuited"],
-      [4, false, "The direction depends on the coil resistance"]];
+      [4, false, "The direction depends on the coil resistance"]]);
 ta2_correct: 1;
 
 /* Part (c) MCQ: Effect of doubling frequency */
-ta3: [[1, false, "The peak EMF stays the same (frequency does not affect EMF)"],
+ta3: random_permutation([[1, false, "The peak EMF stays the same (frequency does not affect EMF)"],
       [2, true, "The peak EMF doubles (EMF is proportional to ω)"],
       [3, false, "The peak EMF quadruples (EMF is proportional to ω²)"],
-      [4, false, "The peak EMF halves (higher frequency means less time for flux change)"]];
+      [4, false, "The peak EMF halves (higher frequency means less time for flux change)"]]);
 ta3_correct: 2;
 
 /* Part (d) MCQ: Identify the missing factor (debug task) */
 /* emf_no_omega = N*B0*A = peak_emf / omega — student forgot omega */
-ta4: [[1, true, "The angular frequency ω — they computed N·B₀·πr² instead of N·ω·B₀·πr²"],
+ta4: random_permutation([[1, true, "The angular frequency ω — they computed N·B₀·πr² instead of N·ω·B₀·πr²"],
       [2, false, "The number of turns N — they computed ω·B₀·πr²"],
       [3, false, "The factor π in the area — they computed N·ω·B₀·r² instead of N·ω·B₀·πr²"],
-      [4, false, "The magnetic field B₀ — they forgot to include the field strength"]];
+      [4, false, "The magnetic field B₀ — they forgot to include the field strength"]]);
 ta4_correct: 1;
 ]]></text>
   </questionvariables>

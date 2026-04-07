@@ -154,18 +154,18 @@ ta2: float(I_val);
 ta3: float(P_elec);
 
 /* Part (d) MCQ: Current direction through resistor */
-ta4: [[1, true, "Counterclockwise (downward through R) — opposes increasing flux into the page"],
+ta4: random_permutation([[1, true, "Counterclockwise (downward through R) — opposes increasing flux into the page"],
       [2, false, "Clockwise (upward through R) — aids the increasing flux into the page"],
       [3, false, "No current flows — the bar is not part of a closed circuit"],
-      [4, false, "The direction alternates as the bar moves"]];
+      [4, false, "The direction alternates as the bar moves"]]);
 ta4_correct: 1;
 
 /* Part (e) MCQ: What happens to power when ell doubles and v halves? */
 /* P = (B*ell*v)^2/R. With 2*ell and v/2: P' = (B*2*ell*v/2)^2/R = (B*ell*v)^2/R = P unchanged */
-ta5: [[1, true, "The power stays the same — P = (Bℓv)²/R, and doubling ℓ while halving v leaves Bℓv unchanged"],
+ta5: random_permutation([[1, true, "The power stays the same — P = (Bℓv)²/R, and doubling ℓ while halving v leaves Bℓv unchanged"],
       [2, false, "The power doubles — longer bar means more EMF"],
       [3, false, "The power halves — slower bar means less EMF"],
-      [4, false, "The power quadruples — P is proportional to ℓ²"]];
+      [4, false, "The power quadruples — P is proportional to ℓ²"]]);
 ta5_correct: 1;
 ]]></text>
   </questionvariables>
