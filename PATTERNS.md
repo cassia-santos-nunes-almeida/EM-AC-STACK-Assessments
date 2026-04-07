@@ -168,6 +168,18 @@ When a rule is superseded, mark it `[RETIRED]` but keep it in place.
 **Scope:** All STACK dropdown and radio MCQ inputs.
 **First seen:** Session 9 (W13 all questions), 2026-03-22.
 
+### P-STACK-24 — Maxima parses `[[1,2],[3,4]]` as matrix, not nested list
+**Pattern:** JSXGraph grading code indexed student answer using list syntax (`student_pts[1][1]`) but Maxima parsed the nested list `[[1,2],[3,4]]` as `matrix([1,2],[3,4])`. Matrix indexing works differently, causing "wrong type argument" errors in PRT feedbackvariables.
+**Rule:** Always convert student JSXGraph answers from matrix to list before indexing: `student_pts: if matrixp(student_raw) then args(student_raw) else student_raw;`. Then use list indexing (`student_pts[i][j]`).
+**Scope:** STACK JSXGraph grading in PRT feedbackvariables.
+**First seen:** Session 2a (JSXGraph generator audit), 2026-04-07.
+
+### P-STACK-25 — Companion essay questions require "Allow attachments" in Moodle quiz settings
+**Pattern:** Companion `_handwritten_notes` Essay questions appeared in the quiz but students could not upload files. The file upload area was invisible because the Moodle quiz-level "Allow attachments" setting was still at 0.
+**Rule:** When using exam-mode companion questions that require file uploads, the teacher must set "Allow attachments" to 1 or more in Moodle quiz settings → Files and uploads. Without this, the Essay question renders without a file picker. Document this requirement in the question text itself (auto-generated teacher notice), in the grader info, and in any deployment instructions.
+**Scope:** Moodle Essay questions with file attachments (exam-mode companion questions).
+**First seen:** Session 2a (companion question implementation), 2026-04-07.
+
 ---
 
 ## CircuiTikZ / Diagrams
