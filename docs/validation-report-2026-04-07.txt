@@ -1,0 +1,509 @@
+============================================================
+Running self-test...
+============================================================
+Self-test passed: known-good XML validated cleanly.
+
+============================================================
+Validating 21 XML file(s)...
+============================================================
+
+Validating: exams\midterm-week9\xml\pool_q1_easy.xml
+  [PASS] Check 7: Non-empty name — 'Q1-V1 Two Node Analysis (Easy, 12 pts)'
+  [PASS] Check 1: PRT chain integrity — 2 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 1 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 7: Non-empty name — 'Q1-V2 Two Mesh Analysis (Easy, 12 pts)'
+  [PASS] Check 1: PRT chain integrity — 2 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 1 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 7: Non-empty name — 'Q1-V3 T-Network Mixed Sources (Easy, 12 pts)'
+  [PASS] Check 1: PRT chain integrity — 2 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 1 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 7: Non-empty name — 'Q1-V4 Wheatstone Bridge Analysis (Easy, 12 pts)'
+  [PASS] Check 1: PRT chain integrity — 2 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 1 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 6: Base64 in exam — no base64 images in exam file
+  [WARN] Check 9: Handwritten notes companion — WARN: Q1-V1 Two Node Analysis (Easy, 12 pts) has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+  [WARN] Check 9: Handwritten notes companion — WARN: Q1-V2 Two Mesh Analysis (Easy, 12 pts) has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+  [WARN] Check 9: Handwritten notes companion — WARN: Q1-V3 T-Network Mixed Sources (Easy, 12 pts) has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+  [WARN] Check 9: Handwritten notes companion — WARN: Q1-V4 Wheatstone Bridge Analysis (Easy, 12 pts) has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+
+  Summary: 0 FAIL, 4 WARN, 29 PASS
+
+Validating: exams\midterm-week9\xml\pool_q2_medium_a.xml
+  [PASS] Check 7: Non-empty name — 'Q2 Medium A — V1: Inductor RL Circuit (Energy, KVL-Faraday, Debug)'
+  [PASS] Check 1: PRT chain integrity — 2 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 1 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 7: Non-empty name — 'Q2 Medium A — V2: Capacitor RC Circuit (Energy, KCL-Charge, Compare)'
+  [PASS] Check 1: PRT chain integrity — 2 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 1 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 7: Non-empty name — 'Q2 Medium A — V3: Inductor Energy from Current Waveform (Voltage Segments, Debug)'
+  [PASS] Check 1: PRT chain integrity — 2 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 1 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 7: Non-empty name — 'Q2 Medium A — V4: Capacitor Parallel Combination (Energy, KCL-Charge, Compare)'
+  [PASS] Check 1: PRT chain integrity — 2 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 1 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 6: Base64 in exam — no base64 images in exam file
+  [WARN] Check 9: Handwritten notes companion — WARN: Q2 Medium A — V1: Inductor RL Circuit (Energy, KVL-Faraday, Debug) has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+  [WARN] Check 9: Handwritten notes companion — WARN: Q2 Medium A — V2: Capacitor RC Circuit (Energy, KCL-Charge, Compare) has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+  [WARN] Check 9: Handwritten notes companion — WARN: Q2 Medium A — V3: Inductor Energy from Current Waveform (Voltage Segments, Debug) has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+  [WARN] Check 9: Handwritten notes companion — WARN: Q2 Medium A — V4: Capacitor Parallel Combination (Energy, KCL-Charge, Compare) has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+
+  Summary: 0 FAIL, 4 WARN, 29 PASS
+
+Validating: exams\midterm-week9\xml\pool_q3_medium_b.xml
+  [PASS] Check 7: Non-empty name — 'Q3_Medium_B_V1_RL_Step_Network'
+  [PASS] Check 1: PRT chain integrity — 3 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — no MCQ inputs found
+  [FAIL] Check 4: insertstars — Q3_Medium_B_V1_RL_Step_Network/ansA — algebraic input missing insertstars=1 (P-STACK-10)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 7: Non-empty name — 'Q3_Medium_B_V2_RC_Step_Bridge'
+  [PASS] Check 1: PRT chain integrity — 3 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — no MCQ inputs found
+  [FAIL] Check 4: insertstars — Q3_Medium_B_V2_RC_Step_Bridge/ansA — algebraic input missing insertstars=1 (P-STACK-10)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 7: Non-empty name — 'Q3_Medium_B_V3_RL_Natural_Network'
+  [PASS] Check 1: PRT chain integrity — 3 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — no MCQ inputs found
+  [FAIL] Check 4: insertstars — Q3_Medium_B_V3_RL_Natural_Network/ansA — algebraic input missing insertstars=1 (P-STACK-10)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 7: Non-empty name — 'Q3_Medium_B_V4_RC_Natural_Network'
+  [PASS] Check 1: PRT chain integrity — 3 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — no MCQ inputs found
+  [FAIL] Check 4: insertstars — Q3_Medium_B_V4_RC_Natural_Network/ansA — algebraic input missing insertstars=1 (P-STACK-10)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 6: Base64 in exam — no base64 images in exam file
+  [WARN] Check 9: Handwritten notes companion — WARN: Q3_Medium_B_V1_RL_Step_Network has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+  [WARN] Check 9: Handwritten notes companion — WARN: Q3_Medium_B_V2_RC_Step_Bridge has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+  [WARN] Check 9: Handwritten notes companion — WARN: Q3_Medium_B_V3_RL_Natural_Network has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+  [WARN] Check 9: Handwritten notes companion — WARN: Q3_Medium_B_V4_RC_Natural_Network has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+
+  Summary: 4 FAIL, 4 WARN, 25 PASS
+
+Validating: exams\midterm-week9\xml\pool_q4_difficult.xml
+  [PASS] Check 7: Non-empty name — 'Q4-V1 RC Circuit with Switch — Complete Transient'
+  [PASS] Check 1: PRT chain integrity — 3 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — no MCQ inputs found
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 7: Non-empty name — 'Q4-V2 RL Circuit with Switch — Complete Transient'
+  [PASS] Check 1: PRT chain integrity — 3 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — no MCQ inputs found
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 7: Non-empty name — 'Q4-V3 Thevenin + RC — Complete Transient'
+  [PASS] Check 1: PRT chain integrity — 4 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — no MCQ inputs found
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 6: Base64 in exam — no base64 images in exam file
+  [WARN] Check 9: Handwritten notes companion — WARN: Q4-V1 RC Circuit with Switch — Complete Transient has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+  [WARN] Check 9: Handwritten notes companion — WARN: Q4-V2 RL Circuit with Switch — Complete Transient has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+  [WARN] Check 9: Handwritten notes companion — WARN: Q4-V3 Thevenin + RC — Complete Transient has no companion handwritten notes question. For new exam questions, generate one using exam mode in STACK_XML_Generator.
+
+  Summary: 0 FAIL, 3 WARN, 22 PASS
+
+Validating: exams\midterm-week9\xml\upload_questions.xml
+  [PASS] Check 0: File scan — no STACK questions found
+
+  Summary: 0 FAIL, 0 WARN, 1 PASS
+
+Validating: weekly\week10\xml\Q1_SeriesRLC_NaturalResponse.xml
+  [PASS] Check 7: Non-empty name — 'Week 10 – Q1: Series RLC Natural Response (SPDT Switch)'
+  [PASS] Check 1: PRT chain integrity — 8 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 2 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [FAIL] Check 5: CDATA wrapping — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/prt7/feedbackvariables — bare '<' outside CDATA block (P-STACK-04)
+  [FAIL] Check 5: CDATA wrapping — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/prt8/feedbackvariables — bare '<' outside CDATA block (P-STACK-04)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/questionvariables — float literal '1e-7' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/questionvariables — float literal '1e-6' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/questionvariables — float literal '1e-7' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/questionvariables — float literal '1e6' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/questionvariables — float literal '0e-4' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/questionvariables — float literal '0e-4' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/questionvariables — float literal '0e-3' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/prt4/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/prt4/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/prt5/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/prt5/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/prt8/feedbackvariables — float literal '0e-10' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/prt8/feedbackvariables — float literal '0e-10' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q1: Series RLC Natural Response (SPDT Switch)/prt8/feedbackvariables — float literal '0e-10' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 2 FAIL, 16 WARN, 7 PASS
+
+Validating: weekly\week10\xml\Q2_ParallelRLC_StepResponse.xml
+  [PASS] Check 7: Non-empty name — 'Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)'
+  [PASS] Check 1: PRT chain integrity — 7 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 2 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [FAIL] Check 5: CDATA wrapping — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/prt5/feedbackvariables — bare '<' outside CDATA block (P-STACK-04)
+  [FAIL] Check 5: CDATA wrapping — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/prt6/feedbackvariables — bare '<' outside CDATA block (P-STACK-04)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/questionvariables — float literal '1e-6' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/questionvariables — float literal '10e-3' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/questionvariables — float literal '3e-3' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/questionvariables — float literal '0e-4' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/questionvariables — float literal '0e-4' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/questionvariables — float literal '0e-3' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/prt2/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/prt2/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/prt5/feedbackvariables — float literal '0e-10' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/prt5/feedbackvariables — float literal '0e-10' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/prt5/feedbackvariables — float literal '0e-10' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/prt6/feedbackvariables — float literal '0e-10' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/prt6/feedbackvariables — float literal '0e-10' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/prt6/feedbackvariables — float literal '0e-10' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/prt7/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q2: Parallel RLC Step Response (Non-Zero Initial Conditions)/prt7/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 2 FAIL, 16 WARN, 7 PASS
+
+Validating: weekly\week10\xml\Q3_Toroid_Ampere_BH_Flux.xml
+  [PASS] Check 7: Non-empty name — 'Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux'
+  [PASS] Check 1: PRT chain integrity — 7 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 2 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux/questionvariables — float literal '5e-4' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux/questionvariables — float literal '1e-3' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux/questionvariables — float literal '2e-3' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux/questionvariables — float literal '4e-4' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux/questionvariables — float literal '9e-4' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux/questionvariables — float literal '16e-4' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux/prt2a/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux/prt2a/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux/prt2b/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux/prt2b/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux/prt4/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q3: Toroidal Core — Ampère, B–H Relation, and Flux/prt4/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 0 FAIL, 14 WARN, 8 PASS
+
+Validating: weekly\week10\xml\Q4_MagneticCircuit_Reluctance_Sensitivity.xml
+  [PASS] Check 7: Non-empty name — 'Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity'
+  [PASS] Check 1: PRT chain integrity — 8 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 2 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [FAIL] Check 5: CDATA wrapping — Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity/prt2/feedbackvariables — bare '<' outside CDATA block (P-STACK-04)
+  [FAIL] Check 5: CDATA wrapping — Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity/prt3/feedbackvariables — bare '<' outside CDATA block (P-STACK-04)
+  [FAIL] Check 5: CDATA wrapping — Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity/prt4/feedbackvariables — bare '<' outside CDATA block (P-STACK-04)
+  [FAIL] Check 5: CDATA wrapping — Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity/prt5/feedbackvariables — bare '<' outside CDATA block (P-STACK-04)
+  [FAIL] Check 5: CDATA wrapping — Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity/prt6/feedbackvariables — bare '<' outside CDATA block (P-STACK-04)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity/questionvariables — float literal '5e-4' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity/questionvariables — float literal '1e-3' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity/questionvariables — float literal '2e-3' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity/questionvariables — float literal '4e-4' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity/questionvariables — float literal '9e-4' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity/questionvariables — float literal '16e-4' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity/prt7/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q4: Magnetic Circuit — Reluctance Model and Inductance Sensitivity/prt7/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 5 FAIL, 8 WARN, 7 PASS
+
+Validating: weekly\week10\xml\Q5_ParallelRLC_NaturalResponse_Switches.xml
+  [PASS] Check 7: Non-empty name — 'Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)'
+  [PASS] Check 1: PRT chain integrity — 8 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 1 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [FAIL] Check 5: CDATA wrapping — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/prt7/feedbackvariables — bare '<' outside CDATA block (P-STACK-04)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/questionvariables — float literal '1e-6' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/questionvariables — float literal '0e-4' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/questionvariables — float literal '0e-4' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/questionvariables — float literal '0e-3' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/prt2/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/prt2/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/prt4/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/prt4/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/prt7/feedbackvariables — float literal '0e-10' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/prt7/feedbackvariables — float literal '0e-10' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 10 – Q5: Parallel RLC Natural Response (Four-Switch Circuit)/prt7/feedbackvariables — float literal '0e-10' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 1 FAIL, 15 WARN, 7 PASS
+
+Validating: weekly\week11\xml\Q1_FaradayLaw_EMF.xml
+  [PASS] Check 7: Non-empty name — 'Week 11 – Q1: Faraday's Law — EMF from Time-Varying B Field'
+  [PASS] Check 1: PRT chain integrity — 4 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 3 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q1: Faraday's Law — EMF from Time-Varying B Field/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q1: Faraday's Law — EMF from Time-Varying B Field/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q1: Faraday's Law — EMF from Time-Varying B Field/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q1: Faraday's Law — EMF from Time-Varying B Field/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q1: Faraday's Law — EMF from Time-Varying B Field/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q1: Faraday's Law — EMF from Time-Varying B Field/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q1: Faraday's Law — EMF from Time-Varying B Field/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q1: Faraday's Law — EMF from Time-Varying B Field/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 0 FAIL, 8 WARN, 8 PASS
+
+Validating: weekly\week11\xml\Q2_MotionalEMF_SlidingBar.xml
+  [PASS] Check 7: Non-empty name — 'Week 11 – Q2: Motional EMF — Sliding Bar on Rails'
+  [PASS] Check 1: PRT chain integrity — 5 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 2 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q2: Motional EMF — Sliding Bar on Rails/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q2: Motional EMF — Sliding Bar on Rails/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q2: Motional EMF — Sliding Bar on Rails/prt2/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q2: Motional EMF — Sliding Bar on Rails/prt2/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q2: Motional EMF — Sliding Bar on Rails/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q2: Motional EMF — Sliding Bar on Rails/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q2: Motional EMF — Sliding Bar on Rails/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q2: Motional EMF — Sliding Bar on Rails/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 0 FAIL, 8 WARN, 8 PASS
+
+Validating: weekly\week11\xml\Q5_SelfInductance_Energy.xml
+  [PASS] Check 7: Non-empty name — 'Week 11 – Q5: Self-Inductance of a Solenoid & Inductor Energy'
+  [PASS] Check 1: PRT chain integrity — 4 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 2 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q5: Self-Inductance of a Solenoid & Inductor Energy/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q5: Self-Inductance of a Solenoid & Inductor Energy/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q5: Self-Inductance of a Solenoid & Inductor Energy/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q5: Self-Inductance of a Solenoid & Inductor Energy/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q5: Self-Inductance of a Solenoid & Inductor Energy/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q5: Self-Inductance of a Solenoid & Inductor Energy/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q5: Self-Inductance of a Solenoid & Inductor Energy/prt2/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 11 – Q5: Self-Inductance of a Solenoid & Inductor Energy/prt2/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 0 FAIL, 8 WARN, 8 PASS
+
+Validating: weekly\week12\xml\Q3_CouplingCoefficient_TEquivalent.xml
+  [PASS] Check 7: Non-empty name — 'Week 12 – Q3: Coupling Coefficient, Dot Convention, and T-Equivalent'
+  [PASS] Check 1: PRT chain integrity — 8 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 3 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [FAIL] Check 5: CDATA wrapping — Week 12 – Q3: Coupling Coefficient, Dot Convention, and T-Equivalent/questionvariables — bare '<' outside CDATA block (P-STACK-04)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q3: Coupling Coefficient, Dot Convention, and T-Equivalent/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q3: Coupling Coefficient, Dot Convention, and T-Equivalent/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q3: Coupling Coefficient, Dot Convention, and T-Equivalent/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q3: Coupling Coefficient, Dot Convention, and T-Equivalent/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q3: Coupling Coefficient, Dot Convention, and T-Equivalent/prt4/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q3: Coupling Coefficient, Dot Convention, and T-Equivalent/prt4/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q3: Coupling Coefficient, Dot Convention, and T-Equivalent/prt5/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q3: Coupling Coefficient, Dot Convention, and T-Equivalent/prt5/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 1 FAIL, 8 WARN, 7 PASS
+
+Validating: weekly\week12\xml\Q4_IdealTransformer_ImpedanceMatching.xml
+  [PASS] Check 7: Non-empty name — 'Week 12 – Q4: Ideal Transformer — Impedance Matching'
+  [PASS] Check 1: PRT chain integrity — 5 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 2 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q4: Ideal Transformer — Impedance Matching/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q4: Ideal Transformer — Impedance Matching/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q4: Ideal Transformer — Impedance Matching/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q4: Ideal Transformer — Impedance Matching/prt1/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q4: Ideal Transformer — Impedance Matching/prt2/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q4: Ideal Transformer — Impedance Matching/prt2/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q4: Ideal Transformer — Impedance Matching/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q4: Ideal Transformer — Impedance Matching/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q4: Ideal Transformer — Impedance Matching/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q4: Ideal Transformer — Impedance Matching/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 0 FAIL, 10 WARN, 8 PASS
+
+Validating: weekly\week12\xml\Q5_OpposingDotConvention_Energy.xml
+  [PASS] Check 7: Non-empty name — 'Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy'
+  [PASS] Check 1: PRT chain integrity — 7 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 2 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt2/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt2/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt3/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt4/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt4/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt4/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt4/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt5/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt5/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt6/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt6/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt6/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 12 – Q5: Opposing Dot Convention & Coupled Inductor Energy/prt6/feedbackvariables — float literal '0e-30' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 0 FAIL, 16 WARN, 8 PASS
+
+Validating: weekly\week13\xml\Q1_LumpedVsDistributed.xml
+  [PASS] Check 7: Non-empty name — 'Week 13 – Q1: Lumped vs Distributed Model Identification'
+  [PASS] Check 1: PRT chain integrity — 9 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 5 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [FAIL] Check 5: CDATA wrapping — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — bare '<' outside CDATA block (P-STACK-04)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — float literal '1e3' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — float literal '100e6' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — float literal '10e6' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — float literal '1e9' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — float literal '2e8' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — float literal '3e8' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — float literal '2e8' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — float literal '2e8' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — float literal '1e9' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — float literal '1e9' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — float literal '1e6' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — float literal '1e6' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — float literal '1e3' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q1: Lumped vs Distributed Model Identification/questionvariables — float literal '1e3' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 1 FAIL, 14 WARN, 7 PASS
+
+Validating: weekly\week13\xml\Q2_LosslessTL_Parameters.xml
+  [PASS] Check 7: Non-empty name — 'Week 13 – Q2: Lossless Transmission Line Parameters'
+  [PASS] Check 1: PRT chain integrity — 7 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 2 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q2: Lossless Transmission Line Parameters/questionvariables — float literal '3e8' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q2: Lossless Transmission Line Parameters/questionvariables — float literal '500e6' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q2: Lossless Transmission Line Parameters/questionvariables — float literal '1e9' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q2: Lossless Transmission Line Parameters/questionvariables — float literal '100e6' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q2: Lossless Transmission Line Parameters/questionvariables — float literal '500e6' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q2: Lossless Transmission Line Parameters/questionvariables — float literal '1e6' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q2: Lossless Transmission Line Parameters/questionvariables — float literal '1e9' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 0 FAIL, 7 WARN, 8 PASS
+
+Validating: weekly\week13\xml\Q3_ReflectionCoefficient_VSWR.xml
+  [PASS] Check 7: Non-empty name — 'Week 13 – Q3: Reflection Coefficient, VSWR, and Standing Wave Locations'
+  [PASS] Check 1: PRT chain integrity — 10 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 3 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [PASS] Check 8: Exact arithmetic — no float literals found
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 0 FAIL, 0 WARN, 9 PASS
+
+Validating: weekly\week13\xml\Q4_QuarterWaveTransformer.xml
+  [PASS] Check 7: Non-empty name — 'Week 13 – Q4: Quarter-Wave Transformer Design'
+  [PASS] Check 1: PRT chain integrity — 7 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 1 MCQ inputs, all use random_permutation()
+  [PASS] Check 4: insertstars — all algebraic inputs have insertstars=1 (or none found)
+  [PASS] Check 5: CDATA wrapping — no bare '<' found outside CDATA blocks
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q4: Quarter-Wave Transformer Design/questionvariables — float literal '3e8' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q4: Quarter-Wave Transformer Design/questionvariables — float literal '1e9' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 0 FAIL, 2 WARN, 8 PASS
+
+Validating: weekly\week13\xml\Q5_BounceDiagram_Transient.xml
+  [PASS] Check 7: Non-empty name — 'Week 13 – Q5: Bounce Diagram Transient Analysis'
+  [PASS] Check 1: PRT chain integrity — 9 PRTs, all chains valid
+  [PASS] Check 2: Answer test selection — all answer tests comply with conventions
+  [PASS] Check 3: MCQ shuffle — 1 MCQ inputs, all use random_permutation()
+  [FAIL] Check 4: insertstars — Week 13 – Q5: Bounce Diagram Transient Analysis/ans6 — algebraic input missing insertstars=1 (P-STACK-10)
+  [FAIL] Check 5: CDATA wrapping — Week 13 – Q5: Bounce Diagram Transient Analysis/prt6/feedbackvariables — bare '<' outside CDATA block (P-STACK-04)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q5: Bounce Diagram Transient Analysis/questionvariables — float literal '2e8' found, consider exact form like 1/10^7 (P-STACK-06)
+  [WARN] Check 8: Exact arithmetic — Week 13 – Q5: Bounce Diagram Transient Analysis/questionvariables — float literal '1e9' found, consider exact form like 1/10^7 (P-STACK-06)
+  [PASS] Check 6: Base64 in exam — not an exam file (skipped)
+  [PASS] Check 9: Handwritten notes companion — not an exam file (skipped)
+
+  Summary: 2 FAIL, 2 WARN, 6 PASS
+
+============================================================
+GRAND TOTAL: 18 FAIL, 167 WARN, 227 PASS
+Files scanned: 21
+============================================================

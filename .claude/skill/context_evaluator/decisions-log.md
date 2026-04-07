@@ -309,5 +309,45 @@ Each entry: `[date] — Decision` followed by reasoning and rejected alternative
 
 **Alternatives rejected:** Keep duplicates with manual sync (drift risk), merge everything into CLAUDE.md (too long, context window waste), delete skill files in favor of CLAUDE.md (loses reusability across repos).
 
+---
+
+### 2026-03-22 — Catch-up: Sessions 6–9 (2026-03-10 to 2026-03-22)
+
+Reconstructed from git log, SESSION.md, and PATTERNS.md entries. These decisions were made during sessions that predated the catch-up discipline.
+
+**Session 6 (~2026-03-11) — Week 13 Transmission Lines creation:**
+- Created 5 STACK questions (Q1–Q5) covering lumped/distributed threshold, TL parameters, reflection/VSWR, quarter-wave transformer, and bounce diagram. Total 43 points.
+- Elevated Bloom's levels for Q1 (added connecting question), Q3 (added design constraint part), Q5 (interactive JSXGraph bounce diagram) — moving from recall/apply to analyze/synthesize.
+- Adopted task decomposition strategy (P-EXEC-01) as a hard constraint after first multi-question session revealed quality issues from batch generation.
+
+**Session 7 (~2026-03-15 to 2026-03-21) — JSXGraph fix rounds (7 iterations):**
+- Discovered STACK-JS sandboxed iframe architecture through iterative debugging. Created P-STACK-16 through P-STACK-20.
+- Key decision: adopt `stack_jxg.custom_bind()` as the standard input binding method (see dedicated entry 2026-03-21).
+
+**Session 8 (2026-03-22) — Snap precision fix:**
+- Replaced `snapToGrid: true` with `snapSizeX`/`snapSizeY` (see dedicated entry 2026-03-22). Created P-STACK-21.
+
+**Session 9 (2026-03-22) — Week 13 cleanup:**
+- Removed header blocks from all 5 questions (redundant course/training/points info).
+- Fixed unit line-breaks with `&nbsp;` across Q1–Q5 (14 fixes).
+- Pilot: converted Q2 to STACK `units` input type (ans1–ans5 → `stackunits()` teacher answers, `UnitsRelative` PRT tests). Created P-STACK-22 (unit hints must not leak correct unit).
+- Added `random_permutation()` to all 12 MCQ option lists across Q1–Q5. Created P-STACK-23 (MCQ shuffle requirement).
+
+---
+
+### 2026-03-22 — Convert Q2 (LosslessTL_Parameters) to STACK units input type (pilot)
+
+**Reason:** Unit checking tests whether students know the correct physical unit, not just the numerical value. Q2 was chosen as pilot because it has 5 numerical answers with clear physical units (m/s, H/m, F/m, Ω, rad/m, m). If the pilot succeeds in Moodle testing, the pattern will extend to other questions.
+
+**Alternatives rejected:** Keeping all inputs as `numerical` (misses unit comprehension), converting all questions at once (too risky without pilot validation).
+
+---
+
+### 2026-03-22 — Require `random_permutation()` on all MCQ option lists (P-STACK-23)
+
+**Reason:** All MCQ option lists had the correct answer in a fixed position (typically index 1), allowing students to share answers by position rather than content. Wrapping with `random_permutation()` shuffles display order while preserving index-based grading. Applied retroactively to all 12 MCQ inputs in Week 13.
+
+**Alternatives rejected:** Leaving options in fixed order (sharing vulnerability), manual reordering per variant (error-prone, doesn't scale).
+
 ## Last Updated
-2026-03-22
+2026-04-07

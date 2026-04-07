@@ -131,6 +131,7 @@ These apply to all skills. Skills do not repeat them.
 | context-evaluator | STACK, Moodle, session management, context loading | .claude/skill/context_evaluator/SKILL.md |
 | circuitikz-circuit-diagrams | circuit diagram, draw circuit, CircuiTikZ, LaTeX circuit | .claude/skill/circuitikz-latex-circuit-diagrams/SKILL.md |
 | stack-xml-generator | STACK XML authoring, Maxima CAS, PRT validation | .claude/skill/stack-xml-generator/SKILL.md |
+| STACK_XML_Generator (browser) | Browser-based STACK XML generator tool | URL: stack-xml-generator.vercel.app · Repo: STACK_XML_Generator/ |
 
 Project overview, repository structure, content summaries, and constraints → see `.claude/skill/context_evaluator/context.md`.
 
@@ -138,7 +139,7 @@ Project overview, repository structure, content summaries, and constraints → s
 
 All generic STACK XML rules (syntax hints, progressive hints, grading/PRT rules, input configuration, Maxima randomization patterns, PRT validation checklist) → see **stack-xml-generator skill** (`.claude/skill/stack-xml-generator/SKILL.md`).
 
-PATTERNS.md entries P-STACK-01 through P-STACK-20 are hard constraints that override any skill defaults.
+PATTERNS.md entries P-STACK-01 through P-STACK-23 are hard constraints that override any skill defaults.
 
 ### EM&AC-Specific: RLC Circuit Formulas
 
@@ -175,4 +176,4 @@ Before creating any diagram, also read:
 
 ## Last Updated
 
-2026-03-22 (Phase 1 migration: eliminated duplications per analysis.md)
+2026-04-07 (Session 1: quality improvements — added STACK_XML_Generator to §7, updated PATTERNS ref to P-STACK-23)
