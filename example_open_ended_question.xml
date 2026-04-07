@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 22627620  -->
+  <question type="essay">
+    <name>
+      <text>Upload Handwritten Work (All Questions)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<h3>Upload Your Handwritten Calculation Work</h3>
+
+<p>This is the final step of your exam. Please upload clear photos or PDF scans of your <strong>handwritten work</strong> for all four questions. This upload is for verification and grading support — each question is graded individually through its own submission, but your handwritten work must be provided here as evidence of your solution process.</p>
+
+<hr>
+
+<h4>Checklist — Your uploads must include the following:</h4>
+
+<ul>
+  <li><strong>Q1 (Node-Voltage / Mesh-Current Analysis):</strong>
+    <ul>
+      <li>Clearly labeled node-voltage or mesh-current equations</li>
+      <li>All steps of solving the system of equations (substitution, elimination, or matrix methods)</li>
+      <li>Final answers clearly boxed or highlighted</li>
+    </ul>
+  </li>
+
+  <li><strong>Q2 (Energy Calculation):</strong>
+    <ul>
+      <li>Energy calculation with proper units shown at every step</li>
+      <li>Any intermediate steps (e.g., finding current or voltage first, integration work)</li>
+      <li>Final answer with correct units clearly indicated</li>
+    </ul>
+  </li>
+
+  <li><strong>Q3 (s-Domain / Transfer Function / Inverse Laplace):</strong>
+    <ul>
+      <li>s-domain circuit drawing with all component impedances labeled</li>
+      <li>Transfer function derivation showing all algebraic steps</li>
+      <li>Inverse Laplace transform steps (partial fraction decomposition, table look-ups, etc.)</li>
+      <li>Final time-domain expression clearly stated</li>
+    </ul>
+  </li>
+
+  <li><strong>Q4 (Switching Circuit / Transient Analysis):</strong>
+    <ul>
+      <li>Pre-switch (steady-state) analysis with initial conditions clearly identified</li>
+      <li>s-domain circuit setup after the switch event</li>
+      <li>Time-domain solution steps showing the full derivation</li>
+      <li>Verification step (e.g., checking initial and final values, or substituting t = 0 and t → infinity)</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h4>Instructions for Uploading:</h4>
+
+<ol>
+  <li><strong>Write your name and student ID on every page.</strong></li>
+  <li><strong>Number your pages</strong> (e.g., Page 1 of 5, Page 2 of 5, ...) and <strong>label which question</strong> each page corresponds to (e.g., "Q1", "Q3 continued").</li>
+  <li><strong>Ensure all photos are legible:</strong> use good lighting, keep the camera steady, and make sure the image is in focus before uploading.</li>
+  <li><strong>Use a dark pen (blue or black) on white paper</strong> for best legibility. Avoid pencil if possible.</li>
+  <li>You may upload up to <strong>4 files</strong>. Accepted formats: <strong>PDF, JPG, JPEG, PNG</strong>.</li>
+  <li>If you have multiple pages, consider combining them into a single PDF for easier organization.</li>
+</ol>
+
+<p><em>Note: This question is worth 0 points. Your handwritten work is graded through the individual question submissions (Q1–Q4). However, failure to upload legible handwritten work may affect verification of your answers.</em></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Thank you for uploading your handwritten work. Your submissions will be reviewed alongside your individual question responses. If any pages are illegible or missing, you may be contacted for clarification.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>noinline</responseformat>
+    <responserequired>0</responserequired>
+    <responsefieldlines>5</responsefieldlines>
+    <minwordlimit></minwordlimit>
+    <maxwordlimit></maxwordlimit>
+    <attachments>4</attachments>
+    <attachmentsrequired>1</attachmentsrequired>
+    <maxbytes>0</maxbytes>
+    <filetypeslist>.pdf,.jpg,.jpeg,.png</filetypeslist>
+    <graderinfo format="html">
+      <text><![CDATA[<h4>Instructor Notes — Reviewing Uploaded Handwritten Work</h4>
+
+<p>This upload carries 0 marks and is used for verification and grading support. When reviewing submissions, check the following:</p>
+
+<h5>General Checks:</h5>
+<ul>
+  <li>Student name and ID are present on every page</li>
+  <li>Pages are numbered and labeled by question</li>
+  <li>Images are legible (not blurry, not too dark, not cut off)</li>
+  <li>Work appears to be the student's own handwriting and is consistent across pages</li>
+</ul>
+
+<h5>Q1 — Node-Voltage / Mesh-Current Analysis:</h5>
+<ul>
+  <li>Verify that the method chosen (node-voltage or mesh-current) is correctly set up</li>
+  <li>Check that KCL/KVL equations are correctly written for the chosen nodes/meshes</li>
+  <li>Look for a systematic solution process (not just a final answer with no work)</li>
+  <li>Confirm the number of equations matches the number of unknowns</li>
+</ul>
+
+<h5>Q2 — Energy Calculation:</h5>
+<ul>
+  <li>Units should be tracked throughout the calculation (volts, amps, watts, joules, seconds)</li>
+  <li>Check for correct integration bounds if energy is computed via integration</li>
+  <li>Verify that intermediate values (current, voltage, power) are reasonable</li>
+</ul>
+
+<h5>Q3 — s-Domain / Transfer Function / Inverse Laplace:</h5>
+<ul>
+  <li>The s-domain circuit should correctly transform all components (R stays R, L becomes sL, C becomes 1/sC, with initial conditions if applicable)</li>
+  <li>Transfer function derivation should follow logically from the s-domain circuit</li>
+  <li>Partial fraction decomposition (if used) should be algebraically correct</li>
+  <li>Inverse Laplace result should match standard transform pairs</li>
+</ul>
+
+<h5>Q4 — Switching Circuit / Transient Analysis:</h5>
+<ul>
+  <li>Pre-switch steady-state analysis should correctly treat inductors as short circuits and capacitors as open circuits (for DC steady state)</li>
+  <li>Initial conditions should be correctly identified and carried into the s-domain model</li>
+  <li>The s-domain circuit after switching should reflect the new topology</li>
+  <li>Verification step: check that the student confirmed initial value (t = 0⁺) and final value (t → infinity) are consistent with their solution</li>
+</ul>
+
+<h5>Red Flags:</h5>
+<ul>
+  <li>Final answers that appear correct but with no supporting work or skipped steps</li>
+  <li>Handwriting that changes style between questions (possible academic integrity concern)</li>
+  <li>Uploaded images that are screenshots of typed/digital solutions rather than handwritten work</li>
+  <li>Pages that appear to be photocopies of another student's work</li>
+</ul>]]></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+  </question>
+
+</quiz>
