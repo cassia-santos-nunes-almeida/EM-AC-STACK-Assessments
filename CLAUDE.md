@@ -166,14 +166,35 @@ Before creating any diagram, also read:
 - `.claude/skill/circuitikz-latex-circuit-diagrams/references/circuit-patterns.md` — 8 standard topology templates
 - `shared/templates/circuitikz_template.tex` — starter template
 
-### Task Granularity (STACK Questions + Diagrams)
+### Task Granularity
 
-- **1–2 questions per agent** — never generate a full question set in one task
-- **1 diagram per agent** — each `.tex` file is an independent task
-- Separate concerns for complex questions: randomization, solution derivation, PRT structure, grading code
-- Validate each question independently before bundling
-- Maximize parallel agent execution for independent tasks
+- **1–2 questions per agent**, **1 diagram per agent** — validate independently before bundling
+- Separate concerns: randomization → solution derivation → PRT structure → grading code
+
+## 8. Question Design Protocol
+
+### Pre-XML Spec Gate (all new questions)
+
+Do not generate STACK XML until all five spec items are produced and confirmed.
+
+**Spec 1 — Learning objective:**
+"Students will be able to [Bloom's verb] [topic] given [context]."
+Permitted verbs — Easy: recall, identify, apply. Medium: analyze, calculate, convert, interpret. Difficult: synthesize, evaluate, design.
+
+**Spec 2 — Error model:** 2–4 specific errors with the answer each produces. These drive PRT feedback branches.
+
+**Spec 3 — PRT logic tree (text form):** Full tree before XML. Every branch terminates. Every feedback addresses an error model from Spec 2.
+
+**Spec 4 — Parameter specification:** Per randomized parameter: name, type, units, bounds/values, degenerate exclusions, total variants.
+
+**Spec 5 — Coverage check:** Difficulty tier, which week's objectives, whether already assessed this week.
+
+### Exam Companion Decision Gate
+
+Before generating exam question XML, ask once per session:
+"Will students need to show handwritten working? If yes, which questions need companion handwritten notes questions?"
+If yes, generate companion `_handwritten_notes` essay questions in the same XML export.
 
 ## Last Updated
 
-2026-04-07 (Session 1: quality improvements — added STACK_XML_Generator to §7, updated PATTERNS ref to P-STACK-23)
+2026-04-07 (Session 1: added §8 Question Design Protocol, MCQ shuffle fix, PRT validator)
