@@ -274,6 +274,18 @@ When a rule is superseded, mark it `[RETIRED]` but keep it in place.
 **Scope:** PRT answer tests for logarithmic (dB) quantities.
 **First seen:** W14-16 Q5 link budget, April 2026.
 
+### P-STACK-31 — Diagram annotations must not reveal question answers
+**Pattern:** Teaching diagrams embedded in questions contained "Key insight" boxes, NULL/MAX labels, and HPBW markers that directly revealed the answers to conceptual MCQ parts in the same question.
+**Rule:** Before embedding a diagram in a question, check every annotation and text label against all question parts. Remove any text that reveals, hints at, or narrows the answer to any auto-graded part. Diagrams should visualize the physical setup and define variables — not state conclusions the student must reach themselves.
+**Scope:** All STACK questions with embedded diagrams (TikZ, CircuiTikZ, JSXGraph).
+**First seen:** W14-16 diagram creation, 2026-04-08.
+
+### P-STACK-32 — Syntaxhint and format hint values must not match any variant answer
+**Pattern:** Syntaxhint values (greyed-out input examples like `0.877`) and format hint examples (inline `<em>e.g., 0.059</em>`) matched or were within 5% of correct answers for specific parameter set variants. Students could copy the example and get credit.
+**Rule:** (1) For every syntaxhint and format hint example, verify it is NOT within 15% of any correct answer across ALL variants. (2) Standardize examples by unit type — same input type uses the same safe example across all questions (e.g., all "enter in ohms" inputs show `42.0`). (3) The syntaxhint field and the format hint `<em>` text must show the SAME value. (4) Verify after every parameter set change.
+**Scope:** All STACK input syntaxhints and format hints.
+**First seen:** W14-16 enhancement audit, 2026-04-08.
+
 ---
 
 ## Cross-Project Rules (P-MSG, P-ENV, P-EXEC)
