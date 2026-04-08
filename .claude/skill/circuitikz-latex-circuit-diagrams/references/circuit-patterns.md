@@ -1,149 +1,220 @@
-# Circuit Topology Patterns — CircuiTikZ
+# Circuit Patterns — Reusable CircuiTikZ Templates
 
-Common circuit patterns and their CircuiTikZ implementations.
+Tested against CircuiTikZ v1.6.6 (TeX Live 2023). All patterns follow the project conventions in SKILL.md.
 
-**Important**:
-- **Preferred layout**: Vertical component arrangement on the right side
-- **Sans-serif fonts**: `\sffamily` throughout, `[american voltages, american currents]` package options
-- **Explicit markings**: Current arrows and voltage polarities on every circuit
-- **Complex labels**: Use `\node` for `\dfrac` — don't put fractions in `l=` parameter
+---
 
-## Pattern 1: Simple Single-Component Circuit
+## 1. Series RLC (DC source, switch at t=0)
 
-A voltage source with one component (resistor, capacitor, or inductor).
+Classic second-order transient. Switch opens at t=0 (was closed for t<0).
 
 ```latex
-\documentclass[border=10pt]{standalone}
-\usepackage[american voltages, american currents]{circuitikz}
-\renewcommand{\familydefault}{\sfdefault}
-
-\begin{document}
 \begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
-
-\draw (0,0) to[V, v=$V_s$] (0,4);
-\draw (0,4) -- (4,4);
-\draw (4,4) to[R, l_=$R$] (4,0);
-\draw (4,0) -- (0,0);
-
+  \draw (0,0) to[V, v=$V_s$] (0,4)
+        to[opening switch, l={\shortstack{$t{=}0$\\(opens)}}] (3,4)
+        to[R, l=$R$, i=$i(t)$] (3,2)
+        to[L, l=$L$, v=$v_L$] (6,2)
+        to[C, l=$C$, v=$v_C$] (6,0) -- (0,0);
+  \draw (3,4) -- (3,2);  % vertical wire
+  \fill (0,0) circle (2pt);
+  \fill (0,4) circle (2pt);
 \end{circuitikz}
-\end{document}
 ```
 
-## Pattern 2: Series RC Circuit
+**Variant — horizontal layout:** place all components in a single loop using coordinates (0,0)→(0,3)→(3,3)→(6,3)→(6,0)→(0,0).
+
+---
+
+## 2. Parallel RLC (Current source)
 
 ```latex
-\draw (0,0) to[V, v=$V_s$] (0,4);
-\draw (0,4) -- (4,4);
-\draw (4,4) to[R, l_=$R$] (4,2)
-            to[C, l_=$C$, v^=$v_C$] (4,0);
-\draw (4,0) -- (0,0);
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+  % Source
+  \draw (0,0) to[I, l=$I_s$, i=$i_s$] (0,3);
+  % Top wire
+  \draw (0,3) -- (6,3);
+  % Bottom wire
+  \draw (0,0) -- (6,0);
+  % Parallel branches
+  \draw (2,3) to[R, l=$R$, i>^=$i_R$] (2,0);
+  \draw (4,3) to[L, l=$L$, i>^=$i_L$] (4,0);
+  \draw (6,3) to[C, l=$C$, i>^=$i_C$, v=$v(t)$] (6,0);
+  % Junctions
+  \fill (0,0) circle (2pt); \fill (0,3) circle (2pt);
+  \fill (2,0) circle (2pt); \fill (2,3) circle (2pt);
+  \fill (4,0) circle (2pt); \fill (4,3) circle (2pt);
+  \fill (6,0) circle (2pt); \fill (6,3) circle (2pt);
+\end{circuitikz}
 ```
 
-## Pattern 3: Series RLC Circuit
+---
+
+## 3. First-Order RC (DC source, switch closes at t=0)
 
 ```latex
-\draw (0,0) to[V, v=$V_s$] (0,4);
-\draw (0,4) -- (6,4);
-\draw (6,4) to[R, l_=$R$] (6,2.7)
-            to[L, l_=$L$] (6,1.3)
-            to[C, l_=$C$, v^=$v_C$] (6,0);
-\draw (6,0) -- (0,0);
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+  \draw (0,0) to[V, v=$V_s$] (0,3)
+        to[closing switch, l={\shortstack{$t{=}0$\\(closes)}}] (3,3)
+        to[R, l=$R$, i=$i(t)$] (3,0)
+        -- (0,0);
+  \draw (3,3) -- (6,3) to[C, l=$C$, v=$v_C(t)$] (6,0) -- (3,0);
+  \fill (3,3) circle (2pt);
+  \fill (3,0) circle (2pt);
+\end{circuitikz}
 ```
 
-## Pattern 4: Parallel RLC Circuit
+---
 
-Three parallel branches with junction dots.
+## 4. First-Order RL (DC source, switch opens at t=0)
 
 ```latex
-\draw (0,0) to[I, l=$I_s$] (0,4);
-\draw (0,4) -- (2,4);
-
-% Junction dots
-\fill (2,4) circle (2pt);
-\fill (5,4) circle (2pt);
-\fill (8,4) circle (2pt);
-
-% Branch 1: Resistor
-\draw (2,4) to[R, l_=$R$] (2,0);
-
-% Branch 2: Inductor
-\draw (5,4) to[L, l_=$L$, i>_=$i_L$] (5,0);
-
-% Branch 3: Capacitor
-\draw (8,4) to[C, l_=$C$] (8,0);
-
-% Rails
-\draw (2,4) -- (5,4) -- (8,4);
-\draw (0,0) -- (2,0) -- (5,0) -- (8,0);
-
-% Voltage label
-\draw (1,4) to[open, v^=$v(t)$] (1,0);
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+  \draw (0,0) to[V, v=$V_s$] (0,3)
+        to[opening switch, l={\shortstack{$t{=}0$\\(opens)}}] (3,3)
+        to[R, l=$R$, i=$i(t)$] (3,0)
+        -- (0,0);
+  \draw (3,3) -- (6,3) to[L, l=$L$, v=$v_L(t)$] (6,0) -- (3,0);
+  \fill (3,3) circle (2pt);
+  \fill (3,0) circle (2pt);
+\end{circuitikz}
 ```
 
-## Pattern 5: Circuit with Switch
+---
 
-Using native `opening switch` / `closing switch` elements.
+## 5. Voltage Divider
 
 ```latex
-\draw (0,0) to[V, v=$V_s$] (0,4);
-\draw (0,4) -- (2,4)
-      to[opening switch, l=$t{=}0$ (opens)] (4,4)
-      -- (6,4);
-\draw (6,4) to[R, l_=$R$] (6,2)
-            to[L, l_=$L$] (6,0);
-\draw (6,0) -- (0,0);
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+  \draw (0,0) to[V, v=$V_s$] (0,4)
+        to[R, l=$R_1$, i=$i$] (3,4)
+        to[R, l=$R_2$, v=$v_o$] (3,0) -- (0,0);
+  % Output terminals
+  \draw (3,4) -- (5,4);
+  \draw (3,0) -- (5,0);
+  \draw (5,4) to[open, v^=$v_o$] (5,0);
+  \fill (3,4) circle (2pt);
+  \fill (3,0) circle (2pt);
+\end{circuitikz}
 ```
 
-## Pattern 6: Multi-Switch Circuit
+---
 
-Name every switch with `\textit{}` labels. **Critical:** the element name describes the *action at t=0*, not the prior state. `opening switch` = was closed, now opening. `closing switch` = was open, now closing.
+## 6. Current Divider
 
 ```latex
-% SW1: was closed for t<0, opens at t=0 → use "opening switch"
-\draw (2,4) -- (3,4)
-      to[opening switch, l={\shortstack{$t{=}0$\\(opens)}}] (5,4);
-\node[font=\sffamily\small\itshape, below, yshift=-4pt] at (4,4) {SW1};
-
-% SW2: was open for t<0, closes at t=0 → use "closing switch"
-\draw (6,4)
-      to[closing switch, l={\shortstack{$t{=}0$\\(closes)}}] (8,4);
-\node[font=\sffamily\small\itshape, below, yshift=-4pt] at (7,4) {SW2};
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+  \draw (0,0) to[I, l=$I_s$, i=$i_s$] (0,3) -- (4,3);
+  \draw (0,0) -- (4,0);
+  \draw (2,3) to[R, l=$R_1$, i>^=$i_1$] (2,0);
+  \draw (4,3) to[R, l=$R_2$, i>^=$i_2$] (4,0);
+  \fill (2,3) circle (2pt); \fill (2,0) circle (2pt);
+  \fill (4,3) circle (2pt); \fill (4,0) circle (2pt);
+\end{circuitikz}
 ```
 
-## Pattern 7: Reluctance Circuit (Magnetic Circuit Analogy)
+---
 
-MMF source as voltage source, reluctances as resistors, flux as current.
+## 7. Op-Amp Inverting Amplifier
 
 ```latex
-\draw (0,0) to[V, v=$NI$ (MMF)] (0,4);
-\draw (0,4) -- (7,4);
-\draw (7,4) to[R, i>^=$\Phi$] (7,2);
-\node[right, xshift=6pt] at (7,3) {$\mathcal{R}_{\mathrm{core}} = \dfrac{\ell_c}{\mu_r \mu_0 A_c}$};
-\draw (7,2) to[R] (7,0);
-\node[right, xshift=6pt] at (7,1) {$\mathcal{R}_{\mathrm{gap}} = \dfrac{\ell_g}{\mu_0 A_c}$};
-\draw (7,0) -- (0,0);
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+  \draw (0,0) node[left]{$v_{in}$}
+        to[R, l=$R_1$, o-] (3,0)
+        -- (3,0) node[op amp, anchor=-](OA){}
+        (OA.out) node[right]{$v_{out}$};
+  \draw (3,0) -- ++(0,1.5) to[R, l=$R_f$] (OA.out |- 0,1.5) -- (OA.out);
+  \draw (OA.+) -- ++(0,-0.5) node[ground]{};
+\end{circuitikz}
 ```
 
-## Pattern 8: Voltage Divider
+**Note:** Op-amp patterns need careful anchor management. Test-compile before extending.
+
+---
+
+## 8. Mutual Inductance / Ideal Transformer
 
 ```latex
-\draw (0,0) to[V, v=$V_{in}$] (0,4);
-\draw (0,4) -- (4,4);
-\draw (4,4) to[R, l=$R_1$] (4,2);
-
-% Output tap
-\fill (4,2) circle (2pt);
-\draw (4,2) -- (5.5,2) node[right]{$V_{out}$};
-
-\draw (4,2) to[R, l=$R_2$] (4,0);
-\draw (4,0) -- (0,0);
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+  % Primary
+  \draw (0,0) to[V, v=$V_1$] (0,3)
+        to[R, l=$R_1$, i=$i_1$] (3,3)
+        to[L, l=$L_1$] (3,0) -- (0,0);
+  % Coupling dots
+  \node at (3.3,2.7) {$\bullet$};
+  \node at (4.7,2.7) {$\bullet$};
+  % Core lines
+  \draw[thick] (3.8,0.3) -- (3.8,2.9);
+  \draw[thick] (4.2,0.3) -- (4.2,2.9);
+  % Secondary
+  \draw (5,3) to[L, l=$L_2$] (5,0);
+  \draw (5,3) to[short, i=$i_2$] (7,3) to[R, l=$R_L$, v=$v_o$] (7,0) -- (5,0);
+  % M label
+  \node at (4,3.5) {$M$};
+\end{circuitikz}
 ```
 
-## Tips for Clean Layouts
+---
 
-1. **Coordinate-based drawing**: CircuiTikZ uses explicit (x,y) coordinates — plan your layout on paper first
-2. **Consistent spacing**: Use integer or half-integer coordinates for alignment
-3. **Junction dots**: Always add `\fill (x,y) circle (2pt)` at parallel branch junctions
-4. **Node labels**: Use `\node[position]` for complex labels instead of `l=` parameter
-5. **Switch naming**: Always label switches with `\textit{SW1}`, `\textit{SW2}`, etc.
-6. **Voltage polarity**: Use `v=$v_C$` for inline labels, or `to[open, v^=$v(t)$]` for gap-based labels
+## 9. Magnetic Circuit (Reluctance Model)
+
+Uses the circuit analogy: MMF source, reluctance elements, flux "current."
+
+```latex
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+  % MMF source (modeled as voltage source)
+  \draw (0,0) to[V, v={$\mathcal{F} = NI$}] (0,3)
+        -- (3,3);
+  % Reluctances (modeled as resistors)
+  \draw (3,3) to[R, i>^=$\Phi$] (3,0) -- (0,0);
+  \node[right, xshift=6pt] at (3,1.5) {$\mathcal{R}_{\text{core}} = \dfrac{\ell}{\mu_r \mu_0 A}$};
+  % Air gap reluctance
+  \draw (3,3) -- (6,3) to[R] (6,0) -- (3,0);
+  \node[right, xshift=6pt] at (6,1.5) {$\mathcal{R}_{\text{gap}} = \dfrac{g}{\mu_0 A}$};
+  \fill (3,3) circle (2pt);
+  \fill (3,0) circle (2pt);
+\end{circuitikz}
+```
+
+**Note:** This uses the `\dfrac`-in-a-`\node` workaround documented in SKILL.md.
+
+---
+
+## 10. Thevenin / Norton Equivalent
+
+### Thevenin
+
+```latex
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+  \draw (0,0) to[V, v=$V_{Th}$] (0,3)
+        to[R, l=$R_{Th}$, i=$i$] (3,3)
+        -- (4,3);
+  \draw (0,0) -- (4,0);
+  \draw (4,3) to[open, v^=$v_{ab}$] (4,0);
+  \node[right] at (4,3) {$a$};
+  \node[right] at (4,0) {$b$};
+\end{circuitikz}
+```
+
+### Norton
+
+```latex
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+  \draw (0,0) to[I, l=$I_N$, i=$i_N$] (0,3) -- (4,3);
+  \draw (0,0) -- (4,0);
+  \draw (2,3) to[R, l=$R_N$] (2,0);
+  \draw (4,3) to[open, v^=$v_{ab}$] (4,0);
+  \fill (2,3) circle (2pt); \fill (2,0) circle (2pt);
+  \node[right] at (4,3) {$a$};
+  \node[right] at (4,0) {$b$};
+\end{circuitikz}
+```
+
+---
+
+## Tips for Extending Patterns
+
+- **Adding ground:** `\node[ground] at (x,y) {};` or `\draw (x,y) node[ground]{};`
+- **Adding labels to wires:** `\draw (a) to[short, i=$i$] (b);`
+- **Controlled sources:** `to[cV, v=$\alpha v_x$]` (voltage), `to[cI, l=$\beta i_x$]` (current)
+- **Dependent sources (diamond shape):** use `american controlled voltage source` for proper diamond symbol
+- **Three-phase:** repeat single-phase patterns with Y-offset; label phases A, B, C

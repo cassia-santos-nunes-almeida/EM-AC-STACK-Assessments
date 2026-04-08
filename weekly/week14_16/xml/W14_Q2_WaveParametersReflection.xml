@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Week 14 – Q2: Wave Parameters and Reflection at Media Boundary</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>A signal at frequency \(f = {@f_GHz@}\) GHz propagates from <b>Medium 1</b> (\(\varepsilon_{r1} = {@eps_r1@}\), non-magnetic, lossless) into <b>Medium 2</b> (\(\varepsilon_{r2} = {@eps_r2@}\), non-magnetic, lossless) at normal incidence.</p>
+
+<p><b>(a)</b> Phase velocity in Medium 1: \(v_{p1} = \) [[input:ans1]] [[validation:ans1]] m/s</p>
+
+<p><b>(b)</b> Wavelength in Medium 1: \(\lambda_1 = \) [[input:ans2]] [[validation:ans2]] m</p>
+
+<p><b>(c)</b> Wavenumber in Medium 1: \(k_1 = 2\pi/\lambda_1 = \) [[input:ans3]] [[validation:ans3]] rad/m</p>
+
+<p><b>(d)</b> Intrinsic impedance of Medium 1: \(\eta_1 = \) [[input:ans4]] [[validation:ans4]] \(\Omega\)</p>
+
+<p><b>(e)</b> Intrinsic impedance of Medium 2: \(\eta_2 = \) [[input:ans5]] [[validation:ans5]] \(\Omega\)</p>
+
+<p><b>(f)</b> Reflection coefficient at the boundary (Medium 1 incident): \(\Gamma = \) [[input:ans6]] [[validation:ans6]]</p>
+
+<p><b>(g)</b> Reflected power fraction: \(|\Gamma|^2 = \) [[input:ans7]] [[validation:ans7]]</p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h4>Worked Solution</h4>
+<p><b>Given:</b> \(f = {@f_GHz@}\) GHz, \(\varepsilon_{r1} = {@eps_r1@}\), \(\varepsilon_{r2} = {@eps_r2@}\), both non-magnetic and lossless.</p>
+<p><b>(a)</b> \(v_{p1} = c/\sqrt{\varepsilon_{r1}} = {@tans1@}\) m/s</p>
+<p><b>(b)</b> \(\lambda_1 = v_{p1}/f = {@tans2@}\) m</p>
+<p><b>(c)</b> \(k_1 = 2\pi/\lambda_1 = {@tans3@}\) rad/m</p>
+<p><b>(d)</b> \(\eta_1 = 120\pi/\sqrt{\varepsilon_{r1}} = {@tans4@}\;\Omega\)</p>
+<p><b>(e)</b> \(\eta_2 = 120\pi/\sqrt{\varepsilon_{r2}} = {@tans5@}\;\Omega\)</p>
+<p><b>(f)</b> \(\Gamma = (\eta_2 - \eta_1)/(\eta_2 + \eta_1) = {@tans6@}\). Negative because \(\varepsilon_{r2} > \varepsilon_{r1}\) makes \(\eta_2 < \eta_1\).</p>
+<p><b>(g)</b> \(|\Gamma|^2 = {@tans7@}\) ({@float(tans7*100)@}% reflected, {@float((1-tans7)*100)@}% transmitted).</p>
+]]></text>
+  </generalfeedback>
+  <defaultgrade>8</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+  <stackversion><text>2024120500</text></stackversion>
+  <questionvariables><text><![CDATA[
+/* Q2: Wave Parameters Across Two Media + Reflection */
+idx: 1 + rand(5);
+f_GHz: [0.9, 1.8, 2.4, 5.0, 10.0][idx];
+eps_r1: [1, 2, 1, 3, 2][idx];
+eps_r2: [4, 9, 6, 9, 12][idx];
+
+c0: 3*10^8;
+eta_0: 120*%pi;
+f_Hz: f_GHz * 10^9;
+
+tans1: float(c0 / sqrt(eps_r1));
+tans2: float(tans1 / f_Hz);
+tans3: float(2*%pi / tans2);
+tans4: float(ev(eta_0 / sqrt(eps_r1), numer));
+tans5: float(ev(eta_0 / sqrt(eps_r2), numer));
+tans6: float((tans5 - tans4) / (tans5 + tans4));
+tans7: float(tans6^2);
+
+/* Error models */
+Gamma_swapped: float((tans4 - tans5) / (tans4 + tans5));
+vp1_err: if eps_r1 > 1 then float(c0 / eps_r1) else 0;
+Gamma_abs: float(abs(tans6));
+]]></text></questionvariables>
+  <specificfeedback format="html">
+    <text><![CDATA[
+[[feedback:prt1]]
+[[feedback:prt2]]
+[[feedback:prt3]]
+[[feedback:prt4]]
+[[feedback:prt5]]
+[[feedback:prt6]]
+[[feedback:prt7]]
+]]></text>
+  </specificfeedback>
+  <questionnote><text>{@sconcat("f=", f_GHz, "GHz er1=", eps_r1, " er2=", eps_r2)@}</text></questionnote>
+  <questiondescription format="html"><text></text></questiondescription>
+  <prtcorrect format="html"><text><![CDATA[<span class="correct">Correct answer, well done!</span>]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[<span class="partially">Your answer is partially correct.</span>]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[<span class="incorrect">Incorrect answer.</span>]]></text></prtincorrect>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <input><name>ans1</name><type>numerical</type><tans>tans1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>1</insertstars><syntaxhint>2.0e8</syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords/><allowwords/><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>1</mustverify><showvalidation>3</showvalidation><options/></input>
+  <input><name>ans2</name><type>numerical</type><tans>tans2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>1</insertstars><syntaxhint>0.05</syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords/><allowwords/><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>1</mustverify><showvalidation>3</showvalidation><options/></input>
+  <input><name>ans3</name><type>numerical</type><tans>tans3</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>1</insertstars><syntaxhint>50.3</syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords/><allowwords/><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>1</mustverify><showvalidation>3</showvalidation><options/></input>
+  <input><name>ans4</name><type>numerical</type><tans>tans4</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>1</insertstars><syntaxhint>236</syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords/><allowwords/><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>1</mustverify><showvalidation>3</showvalidation><options/></input>
+  <input><name>ans5</name><type>numerical</type><tans>tans5</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>1</insertstars><syntaxhint>150</syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords/><allowwords/><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>1</mustverify><showvalidation>3</showvalidation><options/></input>
+  <input><name>ans6</name><type>numerical</type><tans>tans6</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>1</insertstars><syntaxhint>-0.25</syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords/><allowwords/><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>1</mustverify><showvalidation>3</showvalidation><options/></input>
+  <input><name>ans7</name><type>numerical</type><tans>tans7</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>1</insertstars><syntaxhint>0.04</syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords/><allowwords/><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>1</mustverify><showvalidation>3</showvalidation><options/></input>
+
+  <!-- PRT1: vp (1pt) -->
+  <prt><name>prt1</name><value>1</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[vp_err_flag: if is(eps_r1 > 1) and is(abs(vp1_err) > 0) and is(abs(ans1 - vp1_err)/abs(vp1_err) < 0.06) then 1 else 0;]]></text></feedbackvariables>
+    <node><name>0</name><answertest>NumRelative</answertest><sans>ans1</sans><tans>tans1</tans><testoptions>0.05</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1</truescore><truepenalty/><truenextnode>-1</truenextnode><trueanswernote>prt1-0-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0</falsescore><falsepenalty/><falsenextnode>1</falsenextnode><falseanswernote>prt1-0-F</falseanswernote><falsefeedback format="html"><text></text></falsefeedback></node>
+    <node><name>1</name><answertest>AlgEquiv</answertest><sans>vp_err_flag</sans><tans>1</tans><testoptions/><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0</truescore><truepenalty/><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You divided by \(\varepsilon_r\) instead of \(\sqrt{\varepsilon_r}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0</falsescore><falsepenalty/><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(v_p = c/\sqrt{\varepsilon_r}\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <!-- PRT2: lambda (1pt) -->
+  <prt><name>prt2</name><value>1</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text></text></feedbackvariables>
+    <node><name>0</name><answertest>NumRelative</answertest><sans>ans2</sans><tans>tans2</tans><testoptions>0.05</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1</truescore><truepenalty/><truenextnode>-1</truenextnode><trueanswernote>prt2-0-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0</falsescore><falsepenalty/><falsenextnode>-1</falsenextnode><falseanswernote>prt2-0-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\lambda = v_p/f\). Convert GHz to Hz.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <!-- PRT3: wavenumber k (1pt) -->
+  <prt><name>prt3</name><value>1</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text></text></feedbackvariables>
+    <node><name>0</name><answertest>NumRelative</answertest><sans>ans3</sans><tans>tans3</tans><testoptions>0.05</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1</truescore><truepenalty/><truenextnode>-1</truenextnode><trueanswernote>prt3-0-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0</falsescore><falsepenalty/><falsenextnode>-1</falsenextnode><falseanswernote>prt3-0-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(k = 2\pi/\lambda\). Use your \(\lambda\) from (b).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <!-- PRT4: eta1 (1pt) -->
+  <prt><name>prt4</name><value>1</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text></text></feedbackvariables>
+    <node><name>0</name><answertest>NumRelative</answertest><sans>ans4</sans><tans>tans4</tans><testoptions>0.05</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1</truescore><truepenalty/><truenextnode>-1</truenextnode><trueanswernote>prt4-0-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0</falsescore><falsepenalty/><falsenextnode>-1</falsenextnode><falseanswernote>prt4-0-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\eta = \eta_0/\sqrt{\varepsilon_r}\) where \(\eta_0 = 120\pi \approx 377\;\Omega\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <!-- PRT5: eta2 (1pt) -->
+  <prt><name>prt5</name><value>1</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text></text></feedbackvariables>
+    <node><name>0</name><answertest>NumRelative</answertest><sans>ans5</sans><tans>tans5</tans><testoptions>0.05</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1</truescore><truepenalty/><truenextnode>-1</truenextnode><trueanswernote>prt5-0-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0</falsescore><falsepenalty/><falsenextnode>-1</falsenextnode><falseanswernote>prt5-0-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Incorrect. Same formula with \(\varepsilon_{r2}\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <!-- PRT6: Gamma (1pt) — with method credit -->
+  <prt><name>prt6</name><value>1</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+s_sum: ans4 + ans5;
+s_Gamma: if is(abs(s_sum) > 0.01) then float((ans5 - ans4)/s_sum) else 0;
+method_ok: if is(abs(s_sum) > 0.01) and is(abs(ans6 - s_Gamma) < 0.02) then 1 else 0;
+swap_ok: if is(abs(tans6) > 0.001) and is(abs(ans6 - Gamma_swapped)/abs(Gamma_swapped) < 0.06) then 1 else 0;
+]]></text></feedbackvariables>
+    <node><name>0</name><answertest>NumRelative</answertest><sans>ans6</sans><tans>tans6</tans><testoptions>0.05</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1</truescore><truepenalty/><truenextnode>-1</truenextnode><trueanswernote>prt6-0-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Correct. \(\Gamma = {@tans6@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0</falsescore><falsepenalty/><falsenextnode>1</falsenextnode><falseanswernote>prt6-0-F</falseanswernote><falsefeedback format="html"><text></text></falsefeedback></node>
+    <node><name>1</name><answertest>AlgEquiv</answertest><sans>method_ok</sans><tans>1</tans><testoptions/><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.5</truescore><truepenalty/><truenextnode>-1</truenextnode><trueanswernote>prt6-1-T-method</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Correct formula applied to your \(\eta\) values — half credit (your \(\eta\) values were wrong).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0</falsescore><falsepenalty/><falsenextnode>2</falsenextnode><falseanswernote>prt6-1-F</falseanswernote><falsefeedback format="html"><text></text></falsefeedback></node>
+    <node><name>2</name><answertest>AlgEquiv</answertest><sans>swap_ok</sans><tans>1</tans><testoptions/><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0</truescore><truepenalty/><truenextnode>-1</truenextnode><trueanswernote>prt6-2-T-swap</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Sign reversed. \(\Gamma = (\eta_2 - \eta_1)/(\eta_2 + \eta_1)\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0</falsescore><falsepenalty/><falsenextnode>-1</falsenextnode><falseanswernote>prt6-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\Gamma = (\eta_2 - \eta_1)/(\eta_2 + \eta_1)\). Can be negative.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <!-- PRT7: Power reflection (1pt) -->
+  <prt><name>prt7</name><value>1</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[abs_err: if is(abs(Gamma_abs) > 0.001) and is(abs(ans7 - Gamma_abs)/abs(Gamma_abs) < 0.06) then 1 else 0;]]></text></feedbackvariables>
+    <node><name>0</name><answertest>NumRelative</answertest><sans>ans7</sans><tans>tans7</tans><testoptions>0.05</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1</truescore><truepenalty/><truenextnode>-1</truenextnode><trueanswernote>prt7-0-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0</falsescore><falsepenalty/><falsenextnode>1</falsenextnode><falseanswernote>prt7-0-F</falseanswernote><falsefeedback format="html"><text></text></falsefeedback></node>
+    <node><name>1</name><answertest>AlgEquiv</answertest><sans>abs_err</sans><tans>1</tans><testoptions/><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0</truescore><truepenalty/><truenextnode>-1</truenextnode><trueanswernote>prt7-1-T-abs</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(|\Gamma|\), not \(|\Gamma|^2\). Power = field squared.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0</falsescore><falsepenalty/><falsenextnode>-1</falsenextnode><falseanswernote>prt7-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(|\Gamma|^2\) — square your answer from (f).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <hint format="html"><text><![CDATA[<p>\(v_p = c/\sqrt{\varepsilon_r}\), \(\lambda = v_p/f\), \(k = 2\pi/\lambda\), \(\eta = 120\pi/\sqrt{\varepsilon_r}\).</p>]]></text></hint>
+  <hint format="html"><text><![CDATA[<p>\(\Gamma = (\eta_2 - \eta_1)/(\eta_2 + \eta_1)\) — same form as the TL \(\Gamma\) from Week 13.</p>]]></text></hint>
+  <hint format="html"><text><![CDATA[<p>Power reflection = \(|\Gamma|^2\), not \(|\Gamma|\).</p>]]></text></hint>
+</question>
+</quiz>

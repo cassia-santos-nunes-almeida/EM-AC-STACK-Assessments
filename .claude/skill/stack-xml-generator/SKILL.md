@@ -1,7 +1,12 @@
 ---
 name: stack-xml-generator
 version: 1.0.0
-description: Generates randomized Moodle STACK exam and practice questions (XML + Maxima CAS). Use this skill when the user wants to create STACK assessment content with randomized variants, PRT grading trees, and progressive hints.
+description: >
+  Use when: generating STACK XML, creating Moodle questions, writing
+  Maxima CAS code, building PRT grading trees, setting up randomization,
+  creating MCQ questions, building exam question banks, adding JSXGraph
+  interactive elements, "create a question", "generate XML", "STACK
+  question", "randomized assessment", "PRT validation".
 ---
 
 # STACK XML Generator
@@ -139,7 +144,7 @@ R1: rand_with_step(2, 8, 2);    /* 2, 4, 6, or 8 */
 
 STACK supports interactive JSXGraph elements inside `[[jsxgraph]]...[[/jsxgraph]]` blocks. These run in **sandboxed iframes** — this has critical implications for how you bind inputs and access the DOM.
 
-### Key Rules (from PATTERNS.md P-STACK-16–20)
+### Key Rules
 
 1. **Use `{#var#}` not `{@var@}` inside JSXGraph blocks.** The `{@var@}` syntax renders LaTeX delimiters (`\(...\)`) which produce invalid JavaScript. `{#var#}` gives raw Maxima values.
 

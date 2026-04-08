@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Week 16 – Q5: 5G Link Budget and Friis Equation</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>A 5G base station transmits at frequency \(f = {@f_GHz@}\) GHz to a mobile phone at distance \(r = {@r_m@}\) m.</p>
+<ul>
+  <li>Transmit power: \(P_t = {@P_t@}\) dBm</li>
+  <li>Transmit antenna gain: \(G_t = {@G_t@}\) dBi</li>
+  <li>Receive antenna gain: \(G_r = {@G_r@}\) dBi</li>
+</ul>
+
+<p><b>(a)</b> Calculate the free-space wavelength \(\lambda\).</p>
+<p>\(\lambda = \) [[input:ans1]] [[validation:ans1]] m</p>
+
+<p><b>(b)</b> Calculate the free-space path loss (FSPL) in dB.</p>
+<p>\[\text{FSPL (dB)} = 20\log_{10}\!\left(\frac{4\pi r}{\lambda}\right)\]</p>
+<p>FSPL = [[input:ans2]] [[validation:ans2]] dB</p>
+
+<p><b>(c)</b> Using the Friis transmission equation, calculate the received power.</p>
+<p>\[P_r\text{ (dBm)} = P_t + G_t + G_r - \text{FSPL}\]</p>
+<p>\(P_r = \) [[input:ans3]] [[validation:ans3]] dBm</p>
+
+<p><b>(d)</b> If the distance is <b>doubled</b> to \({@2*r_m@}\) m, by how many dB does the received power change?</p>
+<p>\(\Delta P_r = \) [[input:ans4]] [[validation:ans4]] dB</p>
+
+<p><b>(e)</b> In a 5G mmWave system, the base station uses a 64-element phased array to compensate for high path loss. Which course modules are involved in the full system design?</p>
+<p>[[input:ans5]] [[validation:ans5]]</p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h4>Worked Solution</h4>
+
+<p><b>Given:</b> \(f = {@f_GHz@}\) GHz, \(r = {@r_m@}\) m, \(P_t = {@P_t@}\) dBm, \(G_t = {@G_t@}\) dBi, \(G_r = {@G_r@}\) dBi.</p>
+
+<p><b>(a) Wavelength:</b></p>
+<p>\[\lambda = \frac{c}{f} = \frac{3 \times 10^8}{{@f_Hz@}} = {@tans1@} \text{ m}\]</p>
+
+<p><b>(b) Free-space path loss:</b></p>
+<p>\[\text{FSPL} = 20\log_{10}\!\left(\frac{4\pi \times {@r_m@}}{{@tans1@}}\right) = 20\log_{10}({@float(4*%pi*r_m/tans1)@}) = {@tans2@} \text{ dB}\]</p>
+
+<p><b>(c) Received power (Friis equation):</b></p>
+<p>\[P_r = {@P_t@} + {@G_t@} + {@G_r@} - {@tans2@} = {@tans3@} \text{ dBm}\]</p>
+
+<p><b>(d) Effect of doubling distance:</b></p>
+<p>FSPL contains \(20\log_{10}(r)\). If \(r \to 2r\):</p>
+<p>\[\Delta\text{FSPL} = 20\log_{10}(2) \approx 6.02 \text{ dB}\]</p>
+<p>So received power <b>decreases by 6 dB</b> (factor of 4 in power). This is the inverse-square law: \(P \propto 1/r^2\).</p>
+
+<p><b>(e) Cross-module connections in 5G:</b></p>
+<ul>
+  <li><b>M1 (Circuits):</b> Bias circuits, power management for the transceiver</li>
+  <li><b>M2 (Laplace/Transients):</b> Switching amplifier transient response</li>
+  <li><b>M3 (Magnetics):</b> On-chip inductors for impedance matching</li>
+  <li><b>M4 (Waves/Radiation):</b> Antenna arrays, beam steering, wave propagation — at 28 GHz, even PCB traces are transmission lines</li>
+</ul>
+<p>Answer: <b>All four modules</b> (M1 + M2 + M3 + M4) are required.</p>
+]]></text>
+  </generalfeedback>
+  <defaultgrade>8</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+  <stackversion><text>2024120500</text></stackversion>
+  <questionvariables><text><![CDATA[
+/* Q5: 5G Link Budget Calculation */
+idx: 1 + rand(5);
+
+/* Parameter sets */
+f_GHz_list: [3.5, 5, 28, 28, 39];
+r_m_list: [100, 200, 50, 100, 50];
+P_t_list: [30, 33, 27, 30, 27];
+G_t_list: [15, 15, 25, 25, 30];
+G_r_list: [3, 5, 5, 5, 8];
+
+f_GHz: f_GHz_list[idx];
+r_m: r_m_list[idx];
+P_t: P_t_list[idx];
+G_t: G_t_list[idx];
+G_r: G_r_list[idx];
+
+/* Constants */
+c0: 3*10^8;
+
+/* Derived */
+f_Hz: f_GHz * 10^9;
+
+/* (a) Wavelength */
+lambda_val: float(c0 / f_Hz);
+tans1: lambda_val;
+
+/* (b) FSPL in dB */
+FSPL_val: float(20 * log(4*%pi*r_m/lambda_val) / log(10));
+tans2: FSPL_val;
+
+/* (c) Received power in dBm */
+Pr_val: float(P_t + G_t + G_r - FSPL_val);
+tans3: Pr_val;
+
+/* (d) Change when distance doubles: always -6.02 dB */
+delta_Pr: float(-20 * log(2) / log(10));
+tans4: delta_Pr;
+
+/* (e) Module classification MCQ */
+/* Correct: All four modules (M1+M2+M3+M4) */
+ta5: random_permutation([
+  [1, true, "All four modules (M1 + M2 + M3 + M4)"],
+  [2, false, "Only M4 (Waves/Radiation)"],
+  [3, false, "M1 + M4 (Circuits + Waves)"],
+  [4, false, "M3 + M4 (Magnetics + Waves)"]
+]);
+
+/* Error model values */
+/* E1: used 10*log10 instead of 20*log10 for FSPL */
+FSPL_err: float(10 * log(4*%pi*r_m/lambda_val) / log(10));
+/* E2: added FSPL instead of subtracting */
+Pr_err_add: float(P_t + G_t + G_r + FSPL_val);
+/* E3: doubling distance gives -3 dB instead of -6 dB */
+delta_err: -3;
+]]></text></questionvariables>
+  <specificfeedback format="html">
+    <text><![CDATA[
+[[feedback:prt1]]
+[[feedback:prt2]]
+[[feedback:prt3]]
+[[feedback:prt4]]
+[[feedback:prt5]]
+]]></text>
+  </specificfeedback>
+  <questionnote><text>{@sconcat("f_GHz=", f_GHz, " r=", r_m, " Pt=", P_t, " Gt=", G_t, " Gr=", G_r)@}</text></questionnote>
+  <questiondescription format="html"><text></text></questiondescription>
+  <prtcorrect format="html"><text><![CDATA[<span class="correct">Correct answer, well done!</span>]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[<span class="partially">Your answer is partially correct.</span>]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[<span class="incorrect">Incorrect answer.</span>]]></text></prtincorrect>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <!-- INPUT: ans1 — wavelength -->
+  <input>
+    <name>ans1</name>
+    <type>numerical</type>
+    <tans>tans1</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>0.0107</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- INPUT: ans2 — FSPL in dB -->
+  <input>
+    <name>ans2</name>
+    <type>numerical</type>
+    <tans>tans2</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>85.5</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- INPUT: ans3 — received power in dBm -->
+  <input>
+    <name>ans3</name>
+    <type>numerical</type>
+    <tans>tans3</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>-41</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- INPUT: ans4 — delta Pr when distance doubles -->
+  <input>
+    <name>ans4</name>
+    <type>numerical</type>
+    <tans>tans4</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>-10</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- INPUT: ans5 — module classification MCQ (dropdown) -->
+  <input>
+    <name>ans5</name>
+    <type>dropdown</type>
+    <tans>ta5</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
+    <options/>
+  </input>
+
+  <!-- PRT1: Wavelength (1 point) -->
+  <prt>
+    <name>prt1</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>tans1</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\lambda = c/f\). Convert GHz to Hz: {@f_GHz@} GHz = {@f_Hz@} Hz.</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT2: FSPL (2 points) -->
+  <prt>
+    <name>prt2</name>
+    <value>2</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+err_10log_flag: if abs(ans2 - FSPL_err)/abs(FSPL_err) < 0.06 then 1 else 0;
+]]></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>tans2</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. FSPL = {@tans2@} dB.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>err_10log_flag</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-1-T-10log</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>You used \(10\log_{10}\) instead of \(20\log_{10}\). FSPL uses \(20\log_{10}\) because it originates from a power ratio involving \((r/\lambda)^2\): \(20\log_{10}(x) = 10\log_{10}(x^2)\).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-1-F-generic</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. FSPL = \(20\log_{10}(4\pi r/\lambda)\). Check your \(\lambda\) from part (a).</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT3: Received power (2 points) -->
+  <prt>
+    <name>prt3</name>
+    <value>2</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+err_add_flag: if abs(ans3 - Pr_err_add)/abs(Pr_err_add) < 0.06 then 1 else 0;
+]]></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>tans3</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. \(P_r = {@tans3@}\) dBm.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>err_add_flag</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-1-T-add_error</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>You <b>added</b> FSPL instead of <b>subtracting</b> it. Path loss represents energy lost during propagation, so it must be subtracted: \(P_r = P_t + G_t + G_r - \text{FSPL}\).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-1-F-generic</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. Friis equation: \(P_r = P_t + G_t + G_r - \text{FSPL}\). All values are in dB/dBm, so use addition and subtraction.</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT4: Distance doubling (2 points) -->
+  <prt>
+    <name>prt4</name>
+    <value>2</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+err_3dB_flag: if abs(ans4 - delta_err)/abs(delta_err) < 0.1 then 1 else 0;
+]]></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumAbsolute</answertest>
+      <sans>ans4</sans>
+      <tans>tans4</tans>
+      <testoptions>0.5</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. Doubling the distance increases FSPL by \(20\log_{10}(2) \approx 6\) dB, so \(P_r\) drops by 6 dB.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>err_3dB_flag</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-1-T-3dB</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>You said \(-3\) dB, which would be halving the power (doubling the distance in a \(1/r\) system). But EM power decays as \(1/r^2\), so doubling \(r\) gives \(1/4\) power = \(-6\) dB.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-1-F-generic</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. FSPL contains \(20\log_{10}(r)\). Doubling \(r\): \(\Delta\text{FSPL} = 20\log_{10}(2) \approx 6\) dB. So \(P_r\) decreases by about 6 dB.</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT5: Module classification MCQ (1 point) -->
+  <prt>
+    <name>prt5</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans5</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. A 5G mmWave system requires all four modules: bias circuits (M1), transient response (M2), on-chip inductors for matching (M3), and antenna arrays + propagation (M4).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. At mmWave frequencies, even PCB traces become transmission lines (M4). The system also needs bias circuits (M1), switching amplifiers with transient response (M2), and on-chip inductors for impedance matching (M3). All four modules are involved.</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- Hints -->
+  <hint format="html">
+    <text><![CDATA[<p>Start with \(\lambda = c/f\). Then compute \(\text{FSPL} = 20\log_{10}(4\pi r/\lambda)\). Everything is in dB, so use addition and subtraction.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p>The Friis equation in dB: \(P_r = P_t + G_t + G_r - \text{FSPL}\). Path loss is <b>subtracted</b> — it represents energy lost in propagation.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p>When distance doubles, \(20\log_{10}(2r) - 20\log_{10}(r) = 20\log_{10}(2) \approx 6\) dB. Power drops as \(1/r^2\), so doubling distance means \(1/4\) power = \(-6\) dB.</p>]]></text>
+  </hint>
+</question>
+</quiz>

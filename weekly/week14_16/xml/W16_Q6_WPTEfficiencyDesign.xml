@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Week 16 – Q6: Wireless Power Transfer Efficiency Design</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>A wireless power transfer (WPT) system, similar to a Qi phone charger, has the following parameters:</p>
+<ul>
+  <li>Transmitter coil: \(L_1 = {@L1_uH@}\;\mu\text{H}\), \(R_1 = {@R1@}\;\Omega\)</li>
+  <li>Receiver coil: \(L_2 = {@L2_uH@}\;\mu\text{H}\), \(R_2 = {@R2@}\;\Omega\)</li>
+  <li>Coupling coefficient: \(k = {@k_val@}\)</li>
+  <li>Operating frequency: \(f = {@f_kHz@}\) kHz</li>
+</ul>
+<p>Assume resonant matching (reactive parts cancelled).</p>
+
+<p><b>(a)</b> Calculate the mutual inductance \(M = k\sqrt{L_1 L_2}\).</p>
+<p>\(M = \) [[input:ans1]] [[validation:ans1]] H</p>
+
+<p><b>(b)</b> Calculate the coupling reactance \(\omega M\).</p>
+<p>\(\omega M = \) [[input:ans2]] [[validation:ans2]] \(\Omega\)</p>
+
+<p><b>(c)</b> Calculate the power transfer efficiency (at resonance):</p>
+<p>\[\eta = \frac{(\omega M)^2}{R_1 R_2 + (\omega M)^2}\]</p>
+<p>\(\eta = \) [[input:ans3]] [[validation:ans3]] (as a decimal, e.g. 0.966)</p>
+
+<p><b>(d)</b> At what <b>minimum frequency</b> \(f_{\min}\) (in kHz) would the efficiency reach at least 95%?</p>
+<p><i>Hint: rearrange the efficiency formula to solve for \(\omega\), then convert to \(f\).</i></p>
+<p>\(f_{\min} = \) [[input:ans4]] [[validation:ans4]] kHz</p>
+
+<p><b>(e)</b> Which course modules are involved in the design of this WPT system?</p>
+<p>[[input:ans5]] [[validation:ans5]]</p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h4>Worked Solution</h4>
+
+<p><b>Given:</b> \(L_1 = {@L1_uH@}\;\mu\text{H}\), \(L_2 = {@L2_uH@}\;\mu\text{H}\), \(R_1 = {@R1@}\;\Omega\), \(R_2 = {@R2@}\;\Omega\), \(k = {@k_val@}\), \(f = {@f_kHz@}\) kHz.</p>
+
+<p><b>(a) Mutual inductance:</b></p>
+<p>\[M = k\sqrt{L_1 L_2} = {@k_val@} \times \sqrt{{@L1_uH@} \times {@L2_uH@}} \;\mu\text{H} = {@M_uH_disp@}\;\mu\text{H} = {@tans1@} \text{ H}\]</p>
+
+<p><b>(b) Coupling reactance:</b></p>
+<p>\[\omega = 2\pi f = 2\pi \times {@f_kHz@} \times 10^3 \text{ rad/s}\]</p>
+<p>\[\omega M = {@float(omega_val)@} \times {@tans1@} = {@tans2@}\;\Omega\]</p>
+
+<p><b>(c) Power transfer efficiency:</b></p>
+<p>\[\eta = \frac{(\omega M)^2}{R_1 R_2 + (\omega M)^2} = \frac{({@tans2@})^2}{{@R1@} \times {@R2@} + ({@tans2@})^2} = {@tans3@}\]</p>
+<p>This is {@float(tans3*100)@}% efficiency at resonance with ideal alignment.</p>
+
+<p><b>(d) Minimum frequency for 95% efficiency:</b></p>
+<p>Set \(\eta \geq 0.95\):</p>
+<p>\[\frac{(\omega M)^2}{R_1 R_2 + (\omega M)^2} \geq 0.95\]</p>
+<p>\[(\omega M)^2 \geq 0.95\,(R_1 R_2 + (\omega M)^2)\]</p>
+<p>\[0.05\,(\omega M)^2 \geq 0.95\,R_1 R_2\]</p>
+<p>\[(\omega M)^2 \geq 19\,R_1 R_2\]</p>
+<p>\[\omega \geq \frac{\sqrt{19\,R_1 R_2}}{M}\]</p>
+<p>\[f_{\min} = \frac{1}{2\pi}\,\frac{\sqrt{19\,R_1 R_2}}{M} = {@tans4@} \text{ kHz}\]</p>
+
+<p><b>(e) Cross-module connections:</b></p>
+<ul>
+  <li><b>M1 (Circuits):</b> Power transfer, equivalent circuit analysis</li>
+  <li><b>M2 (Laplace):</b> Resonant matching: \(f_0 = 1/(2\pi\sqrt{LC})\)</li>
+  <li><b>M3 (Magnetics):</b> Mutual inductance \(M = k\sqrt{L_1 L_2}\), Faraday's law for induced EMF</li>
+</ul>
+<p>At Qi frequencies (100-200 kHz), \(\lambda \approx 3\) km \(\gg\) coil size, so wave effects (M4) are negligible. WPT uses <b>M1 + M2 + M3</b>.</p>
+]]></text>
+  </generalfeedback>
+  <defaultgrade>8</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+  <stackversion><text>2024120500</text></stackversion>
+  <questionvariables><text><![CDATA[
+/* Q6: WPT Efficiency and Minimum Frequency Design */
+idx: 1 + rand(5);
+
+/* Parameter sets */
+L1_uH_list: [5, 8, 10, 15, 20];
+L2_uH_list: [3, 5, 8, 10, 12];
+R1_list: [0.3, 0.5, 0.5, 0.8, 1.0];
+R2_list: [0.5, 0.8, 0.8, 1.0, 1.5];
+k_list: [0.2, 0.3, 0.4, 0.5, 0.3];
+f_kHz_list: [85, 100, 150, 200, 85];
+
+L1_uH: L1_uH_list[idx];
+L2_uH: L2_uH_list[idx];
+R1: R1_list[idx];
+R2: R2_list[idx];
+k_val: k_list[idx];
+f_kHz: f_kHz_list[idx];
+
+/* Convert to SI */
+L1: L1_uH * 10^(-6);
+L2: L2_uH * 10^(-6);
+f_Hz: f_kHz * 10^3;
+omega_val: 2*%pi*f_Hz;
+
+/* (a) Mutual inductance */
+M_val: float(k_val * sqrt(L1 * L2));
+tans1: M_val;
+M_uH_disp: float(M_val * 10^6);
+
+/* (b) Coupling reactance omega*M */
+wM_val: float(omega_val * M_val);
+tans2: wM_val;
+
+/* (c) Power transfer efficiency */
+eta_val: float(wM_val^2 / (R1*R2 + wM_val^2));
+tans3: eta_val;
+
+/* (d) Minimum frequency for 95% efficiency */
+/* eta >= 0.95 => (wM)^2 >= 19*R1*R2 => w >= sqrt(19*R1*R2)/M */
+/* f_min = sqrt(19*R1*R2) / (2*pi*M) */
+omega_min: float(sqrt(19*R1*R2) / M_val);
+f_min_Hz: float(omega_min / (2*%pi));
+f_min_kHz: float(f_min_Hz / 1000);
+tans4: f_min_kHz;
+
+/* (e) Module classification MCQ */
+/* Correct: M1 + M2 + M3 (no M4 — wavelength >> coil size at ~100 kHz) */
+ta5: random_permutation([
+  [1, true, "M1 + M2 + M3 (Circuits + Laplace + Magnetics)"],
+  [2, false, "All four modules (M1 + M2 + M3 + M4)"],
+  [3, false, "Only M3 (Magnetics)"],
+  [4, false, "M3 + M4 (Magnetics + Waves)"]
+]);
+
+/* Error model values */
+/* E1: M = k*(L1+L2) instead of k*sqrt(L1*L2) */
+M_err_sum: float(k_val * (L1 + L2));
+/* E2: forgot omega, used just f*M instead of 2*pi*f*M */
+wM_err_noomega: float(f_Hz * M_val);
+/* E3: efficiency > 1 (impossible) */
+]]></text></questionvariables>
+  <specificfeedback format="html">
+    <text><![CDATA[
+[[feedback:prt1]]
+[[feedback:prt2]]
+[[feedback:prt3]]
+[[feedback:prt4]]
+[[feedback:prt5]]
+]]></text>
+  </specificfeedback>
+  <questionnote><text>{@sconcat("L1=", L1_uH, "uH L2=", L2_uH, "uH R1=", R1, " R2=", R2, " k=", k_val, " f=", f_kHz, "kHz")@}</text></questionnote>
+  <questiondescription format="html"><text></text></questiondescription>
+  <prtcorrect format="html"><text><![CDATA[<span class="correct">Correct answer, well done!</span>]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[<span class="partially">Your answer is partially correct.</span>]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[<span class="incorrect">Incorrect answer.</span>]]></text></prtincorrect>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <!-- INPUT: ans1 — M in henries -->
+  <input>
+    <name>ans1</name>
+    <type>numerical</type>
+    <tans>tans1</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>3.58e-6</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- INPUT: ans2 — omega*M in ohms -->
+  <input>
+    <name>ans2</name>
+    <type>numerical</type>
+    <tans>tans2</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>3.37</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- INPUT: ans3 — efficiency (decimal) -->
+  <input>
+    <name>ans3</name>
+    <type>numerical</type>
+    <tans>tans3</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>0.85</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- INPUT: ans4 — minimum frequency in kHz -->
+  <input>
+    <name>ans4</name>
+    <type>numerical</type>
+    <tans>tans4</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>120</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- INPUT: ans5 — module classification MCQ -->
+  <input>
+    <name>ans5</name>
+    <type>dropdown</type>
+    <tans>ta5</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
+    <options/>
+  </input>
+
+  <!-- PRT1: M (1 point) -->
+  <prt>
+    <name>prt1</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+err_sum_flag: if abs(M_err_sum) > 0 and abs(ans1 - M_err_sum)/abs(M_err_sum) < 0.06 then 1 else 0;
+]]></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>tans1</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>err_sum_flag</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-1-T-sum_error</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>You used \(M = k(L_1 + L_2)\), but the correct formula is \(M = k\sqrt{L_1 L_2}\) (geometric mean, not arithmetic sum).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-1-F-generic</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(M = k\sqrt{L_1 L_2}\). Make sure to convert \(\mu\text{H}\) to H: multiply by \(10^{-6}\).</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT2: omega*M (1 point) -->
+  <prt>
+    <name>prt2</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+err_noomega_flag: if abs(wM_err_noomega) > 0 and abs(ans2 - wM_err_noomega)/abs(wM_err_noomega) < 0.06 then 1 else 0;
+]]></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>tans2</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>err_noomega_flag</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-1-T-noomega</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>You used \(f \times M\) instead of \(\omega \times M\). Remember: \(\omega = 2\pi f\), not just \(f\).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-1-F-generic</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\omega M = 2\pi f \times M\). Convert kHz to Hz: {@f_kHz@} kHz = {@f_Hz@} Hz.</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT3: Efficiency (2 points) -->
+  <prt>
+    <name>prt3</name>
+    <value>2</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+/* Check if efficiency > 1 (impossible) */
+err_over1_flag: if is(ans3 > 1) then 1 else 0;
+]]></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>tans3</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. Efficiency = {@float(tans3*100)@}% at resonance.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>err_over1_flag</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-1-T-over1</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Your efficiency is greater than 1 (100%), which is physically impossible. Check the formula: \(\eta = (\omega M)^2 / (R_1 R_2 + (\omega M)^2)\). This fraction is always less than 1.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-1-F-generic</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\eta = (\omega M)^2 / (R_1 R_2 + (\omega M)^2)\). Use your \(\omega M\) from part (b).</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT4: Minimum frequency for 95% (3 points) -->
+  <prt>
+    <name>prt4</name>
+    <value>3</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+/* Check if student forgot 2*pi (used omega directly as f) */
+f_min_err_nopi: float(sqrt(19*R1*R2) / (M_val) / 1000);
+err_nopi_flag: if abs(ans4 - f_min_err_nopi)/abs(f_min_err_nopi) < 0.06 then 1 else 0;
+]]></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>tans4</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. \(f_{\min} = {@tans4@}\) kHz.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>err_nopi_flag</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-1-T-nopi</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>You solved for \(\omega_{\min}\) correctly but forgot to convert to \(f\): \(f = \omega/(2\pi)\), not \(f = \omega\).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-1-F-generic</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. Rearrange \(\eta \geq 0.95\): \((\omega M)^2 \geq 19\,R_1 R_2\), so \(\omega \geq \sqrt{19\,R_1 R_2}/M\), then \(f = \omega/(2\pi)\). Convert to kHz.</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT5: Module classification MCQ (1 point) -->
+  <prt>
+    <name>prt5</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans5</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. At ~100 kHz, wavelength is ~3 km — far larger than the coil. No wave/radiation effects (M4). WPT uses M1 (circuits), M2 (resonance), and M3 (mutual inductance).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. The key question is: does this system need wave analysis (M4)? At {@f_kHz@} kHz, \(\lambda = c/f \approx 3\) km. Since coils are ~cm sized (\(\ll \lambda\)), wave effects are negligible. WPT uses <b>M1 + M2 + M3</b>, not M4.</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- Hints -->
+  <hint format="html">
+    <text><![CDATA[<p>\(M = k\sqrt{L_1 L_2}\) — note it's the geometric mean \(\sqrt{L_1 L_2}\), not the sum \(L_1 + L_2\). Convert \(\mu\text{H}\) to H by multiplying by \(10^{-6}\).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p>For part (d): set \(\eta = 0.95\) and solve for \(\omega\). You'll find \((\omega M)^2 = 19\,R_1 R_2\). Then \(\omega = \sqrt{19\,R_1 R_2}/M\) and \(f = \omega/(2\pi)\).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p>For the module classification: compute \(\lambda = c/f\) at the operating frequency. If \(\lambda\) is much larger than the system, wave effects don't matter and M4 is not needed.</p>]]></text>
+  </hint>
+</question>
+</quiz>

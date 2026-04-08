@@ -74,15 +74,27 @@ When a rule is superseded, mark it `[RETIRED]` but keep it in place.
 
 ### P-STACK-08 — Validate PRT node chains before committing
 **Pattern:** A single broken `truenextnode` or `falsenextnode` reference silently skipped grading nodes, causing students to receive incorrect marks with no error visible to instructors.
-**Rule:** Before finalizing any question XML, trace every PRT node chain from the root to all terminal nodes. Verify that every `truenextnode` and `falsenextnode` value either points to a valid node index or is `-1` (stop). Use the multi-tiered validation methodology documented in CLAUDE.md.
+**Rule:** <HARD-GATE> Before finalizing any question XML, trace every PRT node chain from the root to all terminal nodes. Verify that every `truenextnode` and `falsenextnode` value either points to a valid node index or is `-1` (stop). Use the multi-tiered validation methodology documented in CLAUDE.md. </HARD-GATE>
+**Rationalization table:**
+| Excuse | Reality |
+|--------|---------|
+| "It's a simple 2-node PRT" | 2-node PRTs still have 4 branch endpoints. Trace them. |
+| "I copied from a working question" | Copy errors in node indices are the #1 cause of this bug. |
+| "I'll check after I finish all questions" | Each question must validate independently before moving on. |
 **Scope:** All PRT definitions.
 **First seen:** Sessions 1-3 (CM#5).
 
 ### P-STACK-09 — Verify all parameter set variants
 **Pattern:** A question with randomized parameters worked for most variants but produced wrong answers or degenerate cases for untested combinations (e.g., `alpha` vs `omega0` yielding unexpected damping regimes).
-**Rule:** For every question with `rand()` or parameter sets, enumerate all distinct variants and verify that each produces a valid, non-degenerate answer. Test edge cases: zero crossings, sign flips, division by near-zero values.
+**Rule:** <HARD-GATE> For every question with `rand()` or parameter sets, enumerate all distinct variants and verify that each produces a valid, non-degenerate answer. Test edge cases: zero crossings, sign flips, division by near-zero values. </HARD-GATE>
 **Scope:** Randomized STACK questions.
 **First seen:** Sessions 1-3 (CM#7).
+**Rationalization table:**
+| Excuse | Reality |
+|--------|---------|
+| "There are too many variants to check all" | If there are too many to check, the randomization space is too large. Reduce it. |
+| "The formula is general, it works for all values" | Formulas break at boundaries: division by zero, sqrt of negative, damping regime changes. |
+| "I tested the first variant, the rest are similar" | The first variant is the one you tuned to. Edge cases hide in the others. |
 
 ### P-STACK-10 — insertstars=1 on all algebraic inputs
 **Pattern:** Students typed `2t` expecting multiplication but STACK rejected the input because implicit multiplication was disabled.
@@ -232,63 +244,42 @@ When a rule is superseded, mark it `[RETIRED]` but keep it in place.
 **Scope:** Git workflow for STACK content.
 **First seen:** Session 8 (W13 Q5), 2026-03-22.
 
----
+### P-STACK-26 — Follow-through grading for cascading answers
+**Pattern:** When answers cascade (A→B→C), a single early error caused students to lose marks on all downstream parts, even when their method was correct.
+**Rule:** When a PRT depends on an earlier answer, compute the expected downstream value from the student's actual earlier answer in `feedbackvariables`. Use `abs(ans - expected)/abs(expected) < tolerance` to detect correct method with wrong input. Award 50% credit for correct follow-through.
+**Scope:** PRT design for multi-part questions with dependent answers.
+**First seen:** W14-16 Q2 cascading error fix, April 2026.
 
-## Writing and Communication (message-coach)
+### P-STACK-27 — Validate physical model applicability for all parameter sets
+**Pattern:** Hertzian dipole questions had parameter sets where l/lambda > 0.1, making the R_rad = 80*pi^2*(l/lambda)^2 formula physically invalid. The question gave wrong answers silently.
+**Rule:** For any question using a physics model with validity constraints, verify the constraint holds for EVERY parameter set variant before finalizing. Document the constraint and the verification table in the question folder.
+**Scope:** Randomized questions using physics approximation formulas.
+**First seen:** W14-16 Q3/Q4 parameter validation, April 2026.
 
-### P-MSG-01 — "Flagging" is banned
-**Pattern:** Drafts included the word "flagging" (e.g., "I'm flagging this issue"), which reads as passive-aggressive or bureaucratic in professional communication.
-**Rule:** Never use the word "flagging" in any message draft. Replace with direct alternatives: "noting," "raising," "highlighting," or simply state the issue directly.
-**Scope:** All written communication (emails, Slack, comments).
-**First seen:** Message-coach convention.
+### P-STACK-28 — Guard MCQ error checks against matching the correct answer
+**Pattern:** An error-detection PRT node checked if the student's answer matched a common error value, but for some parameter variants the error value equaled the correct answer, causing false penalties.
+**Rule:** Before any error-model comparison, add a guard condition: only flag as an error if the parameter values make the error distinct from the correct answer. Use `if parameter > threshold` or similar guard before the comparison.
+**Scope:** PRT error-model branches with randomized parameters.
+**First seen:** W14-16 Q2 eps_r1=1 guard, April 2026.
 
-### P-MSG-02 — Sign-off is "Best regards,"
-**Pattern:** Inconsistent sign-offs across messages (Cheers, Thanks, Best, etc.).
-**Rule:** Use "Best regards," as the standard email sign-off unless the user specifies otherwise.
-**Scope:** Email drafts.
-**First seen:** Message-coach convention.
+### P-STACK-29 — Add conceptual MCQ parts for AI resistance
+**Pattern:** Questions consisting entirely of formula plugging were trivially solvable by AI tools, providing no assessment of understanding.
+**Rule:** Include at least one "what happens if X changes?" conceptual MCQ part per question. These test functional understanding (how does output depend on input?) rather than numerical computation. Design MCQ distractors that represent plausible misconceptions, not random values.
+**Scope:** Question design for AI-resistant assessment.
+**First seen:** W14-16 Q1 full restructure, April 2026.
 
-### P-MSG-03 — Anti-AI banned words check
-**Pattern:** Drafts contained words that signal AI-generated text (e.g., "delve," "leverage," "synergy," "utilize," "facilitate"), undermining authenticity.
-**Rule:** Before finalizing any message, scan for and remove common AI-tell words. Replace with plain, direct language. Maintain a banned-words list and check against it.
-**Scope:** All written communication.
-**First seen:** Message-coach convention.
-
----
-
-## Environment and Tooling
-
-### P-ENV-01 — Use `python` not `python3`
-**Pattern:** Commands using `python3` failed because the environment aliases only `python`.
-**Rule:** Always invoke `python`, never `python3`. If a script has a `#!/usr/bin/env python3` shebang, update it to `python`.
-**Scope:** All CLI Python invocations.
-**First seen:** Environment setup.
-
-### P-ENV-02 — Google Drive search unreliable for .pptx
-**Pattern:** Google Drive search returned incomplete or no results when searching for `.pptx` files by name or content.
-**Rule:** Do not rely on Google Drive search to locate `.pptx` files. Instead, navigate the folder hierarchy manually or use known file paths. If search is required, try multiple query variations and verify results.
-**Scope:** Google Drive file retrieval.
-**First seen:** Environment discovery.
-
-### P-ENV-03 — NotebookLM auth tokens expire
-**Pattern:** NotebookLM authentication tokens expired mid-session, causing silent failures in API calls.
-**Rule:** Assume NotebookLM auth tokens may expire at any time. Check for auth errors before retrying content operations. Re-authenticate proactively if a session runs long.
-**Scope:** NotebookLM integration.
-**First seen:** Environment discovery.
+### P-STACK-30 — NumRelative on dB values: check magnitude
+**Pattern:** NumRelative tolerance works correctly on negative dBm values when |value| is large (> 10), but fails on values near 0 dBm where 5% tolerance is meaninglessly small.
+**Rule:** For dB/dBm answers: use NumRelative (5%) when |value| > 10. Use NumAbsolute (tolerance 0.5 dB) when |value| <= 10. This extends the P-STACK-02/P-STACK-05 zero/nonzero rule to the dB domain.
+**Scope:** PRT answer tests for logarithmic (dB) quantities.
+**First seen:** W14-16 Q5 link budget, April 2026.
 
 ---
 
-## Execution
+## Cross-Project Rules (P-MSG, P-ENV, P-EXEC)
 
-### P-EXEC-01 — Large tasks must be decomposed before starting
-
-**Pattern:** Large tasks attempted as a single block produced incomplete or
-inconsistent output requiring full rework.
-**Rule:** Any task with 3+ deliverables, 2+ files, or 2+ skills required must
-be decomposed into subtasks with an explicit dependency map before any work
-begins. Present the plan and wait for confirmation. Never start without this step.
-**Scope:** All sessions, all skills.
-**First seen:** Workflow optimization session, March 2026.
+These rules have been moved to `.claude/skill/context_evaluator/shared-patterns.md`
+(synced from my-claude-skills). They are loaded at session open alongside this file.
 
 ---
 

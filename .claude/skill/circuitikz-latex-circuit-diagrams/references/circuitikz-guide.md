@@ -1,171 +1,201 @@
-# CircuiTikZ Reference Guide
+# CircuiTikZ Component Reference
 
-Quick reference for generating circuit diagrams with CircuiTikZ (LaTeX).
+Tested against CircuiTikZ v1.6.6 (TeX Live 2023). American style conventions.
 
-## System Dependencies
+---
 
-```bash
-apt-get install -y texlive-latex-base texlive-pictures texlive-latex-recommended texlive-latex-extra pdf2svg
-```
-
-## Basic .tex Structure
+## Package Setup
 
 ```latex
-\documentclass[border=10pt]{standalone}
 \usepackage[american voltages, american currents]{circuitikz}
-\usepackage{amsmath}
-\renewcommand{\familydefault}{\sfdefault}
-
-\begin{document}
-\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
-  % Drawing commands here
-\end{circuitikz}
-\end{document}
 ```
 
-## Compilation
+Key options: `american voltages` gives +/- signs (not arrows), `american currents` gives conventional flow arrows.
 
-```bash
-python shared/scripts/render_circuitikz.py input.tex [output.svg]
-python shared/scripts/render_circuitikz.py --all directory/
-```
-
-## Power Sources
-
-| Component | Syntax | Description |
-|-----------|--------|-------------|
-| DC Voltage | `to[V, v=$V_s$]` | Circle with + and - |
-| AC Voltage | `to[sinusoidal voltage source, v=$V_s$]` | Circle with sine wave |
-| Current | `to[I, l=$I_s$]` | Circle with arrow |
-| Battery | `to[battery1, v=$9V$]` | Long/short line pair |
+---
 
 ## Passive Components
 
-| Component | Syntax | Description |
-|-----------|--------|-------------|
-| Resistor | `to[R, l=$R$]` | Zigzag (American) |
-| Capacitor | `to[C, l=$C$]` | Two parallel plates |
-| Polar Capacitor | `to[eC, l=$C$]` | With polarity |
-| Inductor | `to[L, l=$L$]` | Coil loops |
-| Inductor (European) | `to[cute inductor, l=$L$]` | Filled rectangle |
+| Component | Syntax | Notes |
+|-----------|--------|-------|
+| Resistor (zigzag) | `to[R, l=$R$]` | American style default |
+| Resistor (box/European) | `to[R, european]` | Or set globally |
+| Inductor | `to[L, l=$L$]` | American coil symbol |
+| Capacitor | `to[C, l=$C$]` | Two parallel lines |
+| Polar capacitor | `to[eC, l=$C$]` | Electrolytic, curved plate |
+| Variable resistor | `to[vR, l=$R$]` | Arrow through resistor |
+| Potentiometer | `to[pR, l=$R$]` | Three-terminal |
+| Fuse | `to[fuse, l=$F$]` | |
+
+---
+
+## Sources
+
+| Component | Syntax | Notes |
+|-----------|--------|-------|
+| DC voltage | `to[V, v=$V_s$]` | Circle with +/- |
+| AC voltage | `to[sinusoidal voltage source, v=$V_s$]` | Circle with sine wave |
+| DC current | `to[I, l=$I_s$]` | Circle with arrow |
+| Battery | `to[battery1, v=$9\,\text{V}$]` | Single cell |
+| Controlled voltage | `to[cV, v=$\alpha v_x$]` | Diamond shape |
+| Controlled current | `to[cI, l=$\beta i_x$]` | Diamond shape |
+| American controlled voltage | `to[american controlled voltage source]` | Explicit diamond |
+
+---
 
 ## Switches
 
-| Component | Syntax | Description |
-|-----------|--------|-------------|
-| Opening switch | `to[opening switch, l=$t{=}0$]` | Switch shown opening |
-| Closing switch | `to[closing switch, l=$t{=}0$]` | Switch shown closing |
-| Normal open | `to[nos]` | Normally open switch |
-| Normal closed | `to[ncs]` | Normally closed switch |
+| Component | Syntax | Meaning at t=0 |
+|-----------|--------|----------------|
+| Opening switch | `to[opening switch]` | Was closed, now opens |
+| Closing switch | `to[closing switch]` | Was open, now closes |
+| Normal open | `to[nos]` | Open contact |
+| Normal closed | `to[ncs]` | Closed contact |
 
-## Drawing Paths
+**Convention:** The element name describes the *action*, not the state before t=0.
 
-### Components along a path
+Multi-line switch label:
 ```latex
-\draw (0,0) to[R, l=$R$] (4,0);     % Horizontal resistor
-\draw (4,4) to[C, l_=$C$] (4,0);    % Vertical capacitor (label left)
+to[opening switch, l={\shortstack{$t{=}0$\\(opens)}}]
 ```
 
-### Wire
-```latex
-\draw (0,4) -- (4,4);               % Simple wire connection
-```
+---
 
-### Junction dot
-```latex
-\fill (4,4) circle (2pt);           % Filled dot at junction
-```
+## Labels and Annotations
 
-## Label Positioning
+### Component Labels
 
-- `l=$R$` — label above/right (default position)
-- `l_=$R$` — label below/left (opposite side)
-- `v=$v_C$` — voltage label (+ at start, - at end)
-- `v^=$v_C$` — voltage label (reversed polarity)
-- `i=$i$` — current arrow along component
-- `i>^=$\Phi$` — current arrow with explicit direction
+| Syntax | Position |
+|--------|----------|
+| `l=$R$` | Default side (above/right for horizontal, right for vertical) |
+| `l_=$R$` | Opposite side |
 
-## Complex Labels (IMPORTANT)
+### Voltage Labels
 
-`\dfrac` inside `l=` causes "Extra \endgroup" errors. Use `\node` instead:
+| Syntax | Polarity |
+|--------|----------|
+| `v=$v_C$` | + at start node, - at end node |
+| `v^=$v_C$` | Reversed: + at end, - at start |
+| `v_=$v_C$` | Opposite side placement |
+
+### Current Arrows
+
+| Syntax | Direction |
+|--------|-----------|
+| `i=$i$` | Along component, default direction |
+| `i>=$i$` | Explicit rightward/downward |
+| `i<=$i$` | Explicit leftward/upward |
+| `i>^=$i$` | Arrow with label on opposite side |
+
+---
+
+## Wires and Connections
+
+| Element | Syntax |
+|---------|--------|
+| Plain wire | `to[short]` or `--` |
+| Wire with current | `to[short, i=$i$]` |
+| Open circuit | `to[open, v^=$v$]` |
+| Short circuit | `to[short]` |
+| Junction dot | `\fill (x,y) circle (2pt);` |
+| Ground | `\node[ground] at (x,y) {};` |
+| Chassis ground | `\node[cground] at (x,y) {};` |
+
+---
+
+## Semiconductors
+
+| Component | Syntax |
+|-----------|--------|
+| Diode | `to[D, l=$D$]` |
+| Zener | `to[zD]` |
+| LED | `to[leDo]` |
+| NPN BJT | `node[npn](Q1){}` |
+| PNP BJT | `node[pnp](Q1){}` |
+| N-MOSFET | `node[nmos](M1){}` |
+| P-MOSFET | `node[pmos](M1){}` |
+| Op-amp | `node[op amp](OA){}` |
+
+Transistors and op-amps use `node` syntax with anchors (`.B`, `.C`, `.E` for BJT; `.+`, `.-`, `.out` for op-amp).
+
+---
+
+## Complex Labels Workaround
+
+CircuiTikZ's `l=` chokes on `\dfrac`. Use a separate `\node`:
 
 ```latex
 \draw (6,4) to[R] (6,2);
 \node[right, xshift=6pt] at (6,3) {$\mathcal{R} = \dfrac{\ell}{\mu_r \mu_0 A}$};
 ```
 
-## Multi-line Labels
+This also works for any multi-line or complex math that breaks inside `l=`.
 
-Use `\shortstack` for multi-line component labels:
+## Equals Signs Inside Labels
 
-```latex
-to[opening switch, l={\shortstack{$t{=}0$\\(closes)}}]
-```
-
-## Open Circuit (Voltage Label Across Gap)
+If a label value contains `=`, the key-value parser breaks. **Wrap in braces**:
 
 ```latex
-\draw (1,4) to[open, v^=$v(t)$] (1,0);
+% WRONG
+to[V, v=$V = IR$]
+
+% CORRECT
+to[V, v={$V = IR$}]
 ```
 
-## Physical/Geometric Diagrams (TikZ)
+Applies to `l=`, `v=`, `i=` parameters. Rule: if the label has `=`, brace it.
 
-For non-circuit diagrams (toroid cross-sections, C-cores):
+---
+
+## Coordinate and Layout Tips
+
+1. **Grid-based:** Use integer or half-integer coordinates for alignment.
+2. **Vertical source:** Place voltage source on the left, positive terminal on top.
+3. **Adequate spacing:** Leave at least 2 units between parallel vertical branches so labels don't overlap.
+4. **Named coordinates:** Use `coordinate(name)` for reuse:
+   ```latex
+   \draw (0,3) to[R, l=$R$] (3,3) coordinate(A);
+   \draw (A) to[L, l=$L$] (A |- 0,0);
+   ```
+5. **Relative positioning:** `++(dx,dy)` moves from current position, `+(dx,dy)` is relative but doesn't update position.
+
+---
+
+## Color and Style
 
 ```latex
-\documentclass[border=10pt]{standalone}
-\usepackage{tikz}
-\usepackage{amsmath}
-\renewcommand{\familydefault}{\sfdefault}
+% Colored component
+\draw[red] (0,0) to[R, l=$R$, color=red] (3,0);
 
-\begin{document}
-\begin{tikzpicture}[every node/.style={font=\sffamily}, >=stealth]
-  \fill[gray!40, draw=black] ...  % Core material
-  \draw[->, red!70!black, thick] ...  % Flux arrows
-\end{tikzpicture}
-\end{document}
+% Thick wire
+\draw[line width=1.5pt] (0,0) -- (3,0);
+
+% Dashed wire
+\draw[dashed] (0,0) -- (3,0);
+
+% Annotation arrow
+\draw[->, thick, blue] (2,1) -- (2,2) node[above]{$\vec{B}$};
 ```
 
-## Project Conventions
+---
 
-- **Sans-serif**: `\renewcommand{\familydefault}{\sfdefault}` + `every node/.style={font=\sffamily}`
-- **American style**: `[american voltages, american currents]`
-- **Line width**: `line width=0.8pt`
-- **Border**: `\documentclass[border=10pt]{standalone}`
-- **Switch names**: Always label with `\textit{SW1}`, `\textit{SW2}`, etc.
-- **Flux arrows**: `red!70!black` color for magnetic flux
-- **Core material**: `gray!40` fill for ferromagnetic cores
+## Units in Labels
 
-## Complete Example
+Use `\,` thin space before unit text:
 
 ```latex
-\documentclass[border=10pt]{standalone}
-\usepackage[american voltages, american currents]{circuitikz}
-\usepackage{amsmath}
-\renewcommand{\familydefault}{\sfdefault}
-
-\begin{document}
-\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
-
-% Voltage source
-\draw (0,0) to[V, v=$V_s$] (0,4);
-
-% Top rail with switch
-\draw (0,4) -- (2,4)
-      to[opening switch, l=$t{=}0$ (opens)] (4,4)
-      -- (6,4);
-
-% Series R-L-C
-\draw (6,4) to[R, l_=$R$] (6,2.7)
-            to[L, l_=$L$] (6,1.3)
-            to[C, l_=$C$, v^=$v_C$] (6,0);
-
-% Bottom return
-\draw (6,0) -- (0,0);
-
-% Current arrow
-\draw[->, >=stealth, thick] (4.3,4.3) -- (5.5,4.3) node[midway, above]{$i(t)$};
-
-\end{circuitikz}
-\end{document}
+l=$R = 100\,\Omega$
+l=$C = 10\,\mu\text{F}$
+l=$L = 5\,\text{mH}$
+v=$V_s = 12\,\text{V}$
 ```
+
+---
+
+## Version Notes
+
+- **v1.6.x:** `eC` for electrolytic capacitor is stable. `sinusoidal voltage source` is the canonical AC source name.
+- **v1.4+:** `opening switch` / `closing switch` are available. Older versions use `open` / `close`.
+- **v1.0+:** `american voltages` / `american currents` package options available.
+
+If you encounter unknown component errors, check `\pgfcircversion` in your TeX installation.

@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Week 14 – Q1: Media Classification and Skin Depth</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>An electromagnetic wave at frequency \(f = {@f_MHz@}\) MHz propagates through <b>{@mat_name@}</b> with the following properties:</p>
+<ul>
+  <li>Conductivity: \(\sigma = {@sigma_c@} \times 10^{{@sigma_e@}}\) S/m</li>
+  <li>Relative permittivity: \(\varepsilon_r = {@eps_r@}\)</li>
+  <li>Relative permeability: \(\mu_r = {@mu_r@}\)</li>
+</ul>
+
+<p><b>(a)</b> Compute the loss tangent \(\tan\delta = \dfrac{\sigma}{\omega\varepsilon}\).</p>
+<p>\(\tan\delta = \) [[input:ans1]] [[validation:ans1]]</p>
+
+<p><b>(b)</b> Classify this medium:</p>
+<p>[[input:ans2]] [[validation:ans2]]</p>
+
+<p><b>(c)</b> Compute the attenuation constant \(\alpha\) (in Np/m) using the appropriate formula:</p>
+<ul>
+  <li>Good conductor (\(\tan\delta \gg 1\)): \(\alpha = \sqrt{\pi f \mu \sigma}\)</li>
+  <li>Low-loss dielectric (\(\tan\delta \ll 1\)): \(\alpha \approx \dfrac{\sigma}{2}\sqrt{\dfrac{\mu}{\varepsilon}}\)</li>
+</ul>
+<p>where \(\mu = \mu_r\mu_0\) and \(\varepsilon = \varepsilon_r\varepsilon_0\).</p>
+<p>\(\alpha = \) [[input:ans3]] [[validation:ans3]] Np/m</p>
+
+<p><b>(d)</b> Compute the skin depth \(\delta_s = 1/\alpha\).</p>
+<p>\(\delta_s = \) [[input:ans4]] [[validation:ans4]] m</p>
+
+<p><b>(e)</b> If the operating frequency is <b>doubled</b>, how does \(\alpha\) change?</p>
+<p>[[input:ans5]] [[validation:ans5]]</p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h4>Worked Solution</h4>
+
+<p><b>Given:</b> \(\sigma = {@sigma_c@} \times 10^{{@sigma_e@}}\) S/m, \(\varepsilon_r = {@eps_r@}\), \(\mu_r = {@mu_r@}\), \(f = {@f_MHz@}\) MHz.</p>
+
+<p><b>(a) Loss tangent:</b></p>
+<p>\[\omega = 2\pi \times {@f_MHz@} \times 10^6 \text{ rad/s}, \quad \varepsilon = {@eps_r@}\,\varepsilon_0\]</p>
+<p>\[\tan\delta = \frac{\sigma}{\omega\varepsilon} = {@tans1@}\]</p>
+
+<p><b>(b) Classification:</b> {@if is_conductor then "Good conductor" else "Low-loss dielectric"@}.</p>
+<p>{@if is_conductor then "Since tan delta >> 1, conduction current dominates — this is a good conductor." else "Since tan delta << 1, displacement current dominates — this is a low-loss dielectric."@}</p>
+
+<p><b>(c) Attenuation constant:</b></p>
+{@if is_conductor then "<p>Using the good-conductor formula:</p><p>\\[\\alpha = \\sqrt{\\pi f \\mu \\sigma}\\]</p>" else "<p>Using the low-loss formula:</p><p>\\[\\alpha = \\frac{\\sigma}{2}\\sqrt{\\frac{\\mu}{\\varepsilon}} = \\frac{\\sigma\\,\\eta}{2}\\]</p><p>where \\(\\eta = \\sqrt{\\mu/\\varepsilon}\\) is the intrinsic impedance of the medium.</p>"@}
+<p>\[\alpha = {@tans3@} \text{ Np/m}\]</p>
+
+<p><b>(d) Skin depth:</b></p>
+<p>\[\delta_s = 1/\alpha = {@tans4@} \text{ m}\]</p>
+
+<p><b>(e) Effect of doubling frequency:</b></p>
+{@if is_conductor then "<p>For a good conductor, \\(\\alpha = \\sqrt{\\pi f \\mu \\sigma} \\propto \\sqrt{f}\\). Doubling \\(f\\) increases \\(\\alpha\\) by \\(\\sqrt{2}\\).</p>" else "<p>For a low-loss dielectric, \\(\\alpha \\approx (\\sigma/2)\\sqrt{\\mu/\\varepsilon}\\). This expression does <b>not</b> depend on frequency (for non-dispersive media). So \\(\\alpha\\) does <b>not change</b> when \\(f\\) doubles.</p>"@}
+<p>This distinction is physically important: in conductors, higher frequencies are attenuated faster (skin effect); in low-loss dielectrics, attenuation is set by the material's conductivity and impedance, not frequency.</p>
+]]></text>
+  </generalfeedback>
+  <defaultgrade>8</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+  <stackversion><text>2024120500</text></stackversion>
+  <questionvariables><text><![CDATA[
+/* Q1: Media Classification and Attenuation */
+/* Mix of good conductors (sets 1-3) and low-loss dielectrics (sets 4-5) */
+idx: 1 + rand(5);
+
+/* [sigma_coeff, sigma_exponent, eps_r, mu_r, f_MHz, material] */
+sigma_c: [5.8, 3.5, 1.0, 1.0, 1.0][idx];
+sigma_e: [7, 7, 7, -3, -2][idx];
+eps_r: [1, 1, 1, 10, 5][idx];
+mu_r: [1, 1, 200, 1, 1][idx];
+f_MHz: [100, 500, 60, 100, 1000][idx];
+mat_name: ["copper", "aluminum", "iron", "dry earth", "wet wood"][idx];
+
+sigma: sigma_c * 10^sigma_e;
+
+/* Constants — exact arithmetic (P-STACK-06) */
+mu_0: 4*%pi/10^7;
+eps_0: 1/(36*%pi*10^9);
+
+f_Hz: f_MHz * 10^6;
+omega: 2*%pi * f_Hz;
+mu: mu_r * mu_0;
+eps: eps_r * eps_0;
+
+/* (a) Loss tangent */
+tans1: float(sigma / (omega * eps));
+
+/* Classification flag */
+is_conductor: is(tans1 > 10);
+
+/* (b) Classification MCQ — correct answer depends on variant */
+ta2: if is_conductor then
+  random_permutation([
+    [1, true, "Good conductor"],
+    [2, false, "Low-loss dielectric"],
+    [3, false, "Lossless (perfect dielectric)"]
+  ])
+else
+  random_permutation([
+    [1, false, "Good conductor"],
+    [2, true, "Low-loss dielectric"],
+    [3, false, "Lossless (perfect dielectric)"]
+  ]);
+correct_b: if is_conductor then 1 else 2;
+
+/* (c) Attenuation constant — formula depends on classification */
+alpha_val: if is_conductor then float(sqrt(%pi * f_Hz * mu * sigma))
+           else float(sigma / 2 * sqrt(mu / eps));
+tans3: alpha_val;
+
+/* (d) Skin depth */
+tans4: float(1 / alpha_val);
+
+/* (e) Frequency doubling MCQ — answer depends on medium type */
+ta5: if is_conductor then
+  random_permutation([
+    [1, true, "Increases by factor sqrt(2)"],
+    [2, false, "Does not change"],
+    [3, false, "Doubles"],
+    [4, false, "Decreases by factor sqrt(2)"]
+  ])
+else
+  random_permutation([
+    [1, false, "Increases by factor sqrt(2)"],
+    [2, true, "Does not change"],
+    [3, false, "Doubles"],
+    [4, false, "Decreases by factor sqrt(2)"]
+  ]);
+correct_e: if is_conductor then 1 else 2;
+
+/* Error models */
+/* Used wrong formula (conductor formula for low-loss or vice versa) */
+alpha_cross: if is_conductor then float(sigma / 2 * sqrt(mu / eps))
+             else float(sqrt(%pi * f_Hz * mu * sigma));
+/* Forgot mu_r */
+alpha_nomur: if is_conductor then float(sqrt(%pi * f_Hz * mu_0 * sigma))
+             else float(sigma / 2 * sqrt(mu_0 / eps));
+]]></text></questionvariables>
+  <specificfeedback format="html">
+    <text><![CDATA[
+[[feedback:prt1]]
+[[feedback:prt2]]
+[[feedback:prt3]]
+[[feedback:prt4]]
+[[feedback:prt5]]
+]]></text>
+  </specificfeedback>
+  <questionnote><text>{@sconcat("idx=", idx, " ", mat_name, " sigma=", sigma, " er=", eps_r, " mur=", mu_r, " f=", f_MHz, "MHz conductor=", is_conductor)@}</text></questionnote>
+  <questiondescription format="html"><text></text></questiondescription>
+  <prtcorrect format="html"><text><![CDATA[<span class="correct">Correct answer, well done!</span>]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[<span class="partially">Your answer is partially correct.</span>]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[<span class="incorrect">Incorrect answer.</span>]]></text></prtincorrect>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <input>
+    <name>ans1</name>
+    <type>numerical</type>
+    <tans>tans1</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>1.5e6</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+  <input>
+    <name>ans2</name>
+    <type>dropdown</type>
+    <tans>ta2</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
+    <options/>
+  </input>
+  <input>
+    <name>ans3</name>
+    <type>numerical</type>
+    <tans>tans3</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>0.059</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+  <input>
+    <name>ans4</name>
+    <type>numerical</type>
+    <tans>tans4</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>6.5e-4</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+  <input>
+    <name>ans5</name>
+    <type>dropdown</type>
+    <tans>ta5</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
+    <options/>
+  </input>
+
+  <!-- PRT1: Loss tangent (1pt) -->
+  <prt>
+    <name>prt1</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>tans1</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\tan\delta = \sigma/(\omega\varepsilon)\) where \(\omega = 2\pi f\) and \(\varepsilon = \varepsilon_r\varepsilon_0\).</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT2: Classification (1pt) -->
+  <prt>
+    <name>prt2</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans2</sans>
+      <tans>correct_b</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. With \(\tan\delta = {@tans1@}\): if \(\gg 1\) it is a good conductor; if \(\ll 1\) it is a low-loss dielectric.</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT3: Attenuation constant (2pt) — with cross-formula and mu_r error detection -->
+  <prt>
+    <name>prt3</name>
+    <value>2</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+/* Did student use the wrong formula? */
+cross_flag: if is(abs(alpha_cross) > 0) and is(abs(ans3 - alpha_cross)/abs(alpha_cross) < 0.06) then 1 else 0;
+/* Did student forget mu_r? */
+mur_flag: if is(mu_r > 1) and is(abs(alpha_nomur) > 0) and is(abs(ans3 - alpha_nomur)/abs(alpha_nomur) < 0.06) then 1 else 0;
+]]></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>tans3</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. \(\alpha = {@tans3@}\) Np/m.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>cross_flag</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-1-T-crossformula</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>You used the <b>wrong formula</b> for this medium type. Check your classification in (b): {@if is_conductor then "this is a good conductor, use \\(\\alpha = \\sqrt{\\pi f \\mu \\sigma}\\)" else "this is a low-loss dielectric, use \\(\\alpha = (\\sigma/2)\\sqrt{\\mu/\\varepsilon}\\)"@}.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt3-1-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>mur_flag</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-2-T-mur</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>You used \(\mu_0\) instead of \(\mu = \mu_r\mu_0\). For this material \(\mu_r = {@mu_r@}\).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-2-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. {@if is_conductor then "Good conductor: \\(\\alpha = \\sqrt{\\pi f \\mu \\sigma}\\)" else "Low-loss: \\(\\alpha = (\\sigma/2)\\sqrt{\\mu/\\varepsilon}\\)"@} where \(\mu = \mu_r\mu_0\), \(\varepsilon = \varepsilon_r\varepsilon_0\).</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT4: Skin depth (2pt) -->
+  <prt>
+    <name>prt4</name>
+    <value>2</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>tans4</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. \(\delta_s = {@tans4@}\) m.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\delta_s = 1/\alpha\). Use your \(\alpha\) from part (c).</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT5: Frequency doubling MCQ (2pt) — answer depends on medium type -->
+  <prt>
+    <name>prt5</name>
+    <value>2</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans5</sans>
+      <tans>correct_e</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. {@if is_conductor then "For a good conductor, \\(\\alpha \\propto \\sqrt{f}\\), so doubling \\(f\\) increases \\(\\alpha\\) by \\(\\sqrt{2}\\)." else "For a low-loss dielectric, \\(\\alpha = (\\sigma/2)\\sqrt{\\mu/\\varepsilon}\\) — no frequency dependence. \\(\\alpha\\) does not change."@}</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. Look at your formula from part (c): does it contain \(f\)? {@if is_conductor then "The good-conductor formula \\(\\alpha = \\sqrt{\\pi f \\mu \\sigma}\\) depends on \\(\\sqrt{f}\\)." else "The low-loss formula \\(\\alpha = (\\sigma/2)\\sqrt{\\mu/\\varepsilon}\\) has no \\(f\\) in it."@}</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <hint format="html">
+    <text><![CDATA[<p>Compute \(\tan\delta = \sigma/(\omega\varepsilon)\) first. If much greater than 1, use the good-conductor formula. If much less than 1, use the low-loss formula.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p>Remember \(\mu = \mu_r\mu_0\) and \(\varepsilon = \varepsilon_r\varepsilon_0\). Don't forget \(\mu_r\) or \(\varepsilon_r\).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p>For part (e): examine whether your formula for \(\alpha\) contains frequency \(f\). If yes, how does \(\alpha\) scale with \(f\)?</p>]]></text>
+  </hint>
+</question>
+</quiz>

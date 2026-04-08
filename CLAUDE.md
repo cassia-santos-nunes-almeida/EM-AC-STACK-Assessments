@@ -80,13 +80,14 @@ Before returning any output:
 At the start of every session, before any task work:
 1. Read CLAUDE.md (this file) — confirm active constraints and project identity.
 2. Read PATTERNS.md — load all accumulated corrections and rules. Treat every entry as a hard constraint, not a suggestion.
-3. Read SESSION.md if present — resume from last known state.
-4. Read `.claude/skill/context_evaluator/context.md` — stable architecture facts.
-5. Read `.claude/skill/context_evaluator/personal-preferences.md` — communication and coding style.
-6. Confirm readiness: state which skills are relevant to today's work and flag any conflict between loaded files.
+3. Read `.claude/skill/context_evaluator/shared-patterns.md` — cross-project rules (synced from my-claude-skills). When a rule here conflicts with a project-specific PATTERNS.md entry, the project-specific rule wins.
+4. Read SESSION.md if present — resume from last known state.
+5. Read `.claude/skill/context_evaluator/context.md` — stable architecture facts.
+6. Read `.claude/skill/context_evaluator/personal-preferences.md` — communication and coding style.
+7. Confirm readiness: state which skills are relevant to today's work and flag any conflict between loaded files.
 
 Do not begin task work until these steps are confirmed.
-To trigger this protocol, say: **open session** or **load context**.
+To trigger: **open session**, **load context**, **new session**, **let's start**, **let's start the day**, **where did we stop**, **good morning**, or similar.
 
 ### Session Close
 At the end of every session, before returning control:
@@ -101,8 +102,12 @@ At the end of every session, before returning control:
    - Open decisions or blockers.
    - Which PATTERNS.md entries were triggered today.
 4. If any SKILL.md should be updated based on today's work, state the proposed change explicitly and ask for confirmation before writing.
+5. **Handover (optional):** If ending work for today, ask once: "Do you want me to save a handover to Notion before we close?" If yes, invoke the handover skill. Context-evaluator writes local state first, handover reads it second.
 
-To trigger this protocol, say: **close session** or **wrap up**.
+To trigger: **wrap up**, **close session**, **let's call it a day**, **close the work**, **finish this session**, **I'm done for now**, **that's all for today**, or similar.
+
+### Correction Capture (during session)
+When the user corrects an error or overrides a default behavior, assess: is this a one-time adjustment or a repeatable rule? If unclear, ask: "Should this become a permanent rule in PATTERNS.md?" If yes, draft the entry immediately.
 
 ## 6. Cross-Skill Rules
 
@@ -131,6 +136,7 @@ These apply to all skills. Skills do not repeat them.
 | context-evaluator | STACK, Moodle, session management, context loading | .claude/skill/context_evaluator/SKILL.md |
 | circuitikz-circuit-diagrams | circuit diagram, draw circuit, CircuiTikZ, LaTeX circuit | .claude/skill/circuitikz-latex-circuit-diagrams/SKILL.md |
 | stack-xml-generator | STACK XML authoring, Maxima CAS, PRT validation | .claude/skill/stack-xml-generator/SKILL.md |
+| stack-question-validator | Post-generation quality check, PATTERNS compliance | .claude/skill/stack-question-validator/SKILL.md |
 | STACK_XML_Generator (browser) | Browser-based STACK XML generator tool | URL: stack-xml-generator.vercel.app · Repo: STACK_XML_Generator/ |
 
 Project overview, repository structure, content summaries, and constraints → see `.claude/skill/context_evaluator/context.md`.

@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Week 15 – Q4: Radiation Pattern and Antenna Efficiency</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>A Hertzian dipole antenna of length \(\ell = {@l_cm@}\) cm operates at \(f = {@f_GHz@}\) GHz in free space. The wire has an ohmic loss resistance \(R_{\text{loss}} = {@R_loss@}\;\Omega\).</p>
+
+<h4>Part A — Radiation Efficiency</h4>
+
+<p><b>(a)</b> Calculate the radiation resistance \(R_{\text{rad}}\).</p>
+<p>\(R_{\text{rad}} = \) [[input:ans1]] [[validation:ans1]] \(\Omega\)</p>
+
+<p><b>(b)</b> Calculate the radiation efficiency \(\xi = \dfrac{R_{\text{rad}}}{R_{\text{rad}} + R_{\text{loss}}}\).</p>
+<p>\(\xi = \) [[input:ans2]] [[validation:ans2]] (as a decimal, e.g. 0.47)</p>
+
+<p><b>(c)</b> Calculate the antenna gain \(G = \xi \times D\), where \(D = 1.5\) for a Hertzian dipole. Express in dBi.</p>
+<p>\(G = \) [[input:ans3]] [[validation:ans3]] dBi</p>
+
+<h4>Part B — MATLAB Radiation Pattern</h4>
+
+<p>Complete the MATLAB code below to plot the <b>normalized power radiation pattern</b> \(F(\theta) = \sin^2\theta\) as a polar plot.</p>
+
+<pre><code>theta = 0:0.01:_____;          % ans4: upper bound of angular range (radians)
+F = _____;                     % ans5: normalized power pattern as function of theta
+polarplot(theta, F)
+title('Hertzian Dipole — Normalized Power Pattern')
+
+% The half-power beamwidth (HPBW) angles occur where F = 0.5.
+% Solving sin^2(theta) = 0.5:
+theta_hpbw_1 = _____;          % ans6: first HPBW angle (radians, 0 &lt; theta &lt; pi)
+theta_hpbw_2 = _____;          % ans7: second HPBW angle (radians, 0 &lt; theta &lt; pi)
+</code></pre>
+
+<p><b>(d)</b> Upper bound of <code>theta</code> range for a full polar plot (in radians):</p>
+<p>[[input:ans4]] [[validation:ans4]]</p>
+
+<p><b>(e)</b> Normalized power pattern expression \(F(\theta)\) as a function of <code>theta</code>:</p>
+<p>[[input:ans5]] [[validation:ans5]]</p>
+
+<p><b>(f)</b> First HPBW angle \(\theta_1\) (in radians, between 0 and \(\pi\)):</p>
+<p>[[input:ans6]] [[validation:ans6]]</p>
+
+<p><b>(g)</b> Second HPBW angle \(\theta_2\) (in radians, between 0 and \(\pi\)):</p>
+<p>[[input:ans7]] [[validation:ans7]]</p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h4>Worked Solution</h4>
+
+<p><b>Given:</b> \(\ell = {@l_cm@}\) cm, \(f = {@f_GHz@}\) GHz, \(R_{\text{loss}} = {@R_loss@}\;\Omega\).</p>
+
+<p><b>(a)</b> \(\lambda = c/f = {@lambda_val@}\) m, \(\ell/\lambda = {@ratio_val@}\).</p>
+<p>\[R_{\text{rad}} = 80\pi^2\left(\frac{\ell}{\lambda}\right)^2 = 80\pi^2 \times ({@ratio_val@})^2 = {@tans1@}\;\Omega\]</p>
+
+<p><b>(b)</b> Radiation efficiency:</p>
+<p>\[\xi = \frac{R_{\text{rad}}}{R_{\text{rad}} + R_{\text{loss}}} = \frac{{@tans1@}}{{@tans1@} + {@R_loss@}} = {@tans2@}\]</p>
+<p>This means only {@float(tans2*100)@}% of the input power is radiated; the rest is lost as heat in the wire.</p>
+
+<p><b>(c)</b> Gain:</p>
+<p>\[G = \xi \times D = {@tans2@} \times 1.5 = {@G_linear@}\]</p>
+<p>\[G_{\text{dBi}} = 10\log_{10}({@G_linear@}) = {@tans3@} \text{ dBi}\]</p>
+
+<p><b>(d)–(g) MATLAB code:</b></p>
+<pre><code>theta = 0:0.01:2*pi;           % full polar plot needs 0 to 2*pi
+F = sin(theta).^2;             % normalized power pattern
+polarplot(theta, F)
+
+theta_hpbw_1 = pi/4;           % sin^2(pi/4) = 0.5
+theta_hpbw_2 = 3*pi/4;         % sin^2(3*pi/4) = 0.5
+</code></pre>
+<p>The HPBW = \(\theta_2 - \theta_1 = 3\pi/4 - \pi/4 = \pi/2 = 90°\).</p>
+<p>Physical meaning: the Hertzian dipole radiates maximum power broadside (\(\theta = 90°\)) and zero along its axis (\(\theta = 0°, 180°\)). The half-power beamwidth of 90° means it is a relatively unfocused radiator.</p>
+]]></text>
+  </generalfeedback>
+  <defaultgrade>8</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+  <stackversion><text>2024120500</text></stackversion>
+  <questionvariables><text><![CDATA[
+/* Q4: Radiation Pattern Code + Efficiency */
+idx: 1 + rand(4);
+
+/* Parameter sets — all satisfy l/lambda < 0.1 (verified) */
+/* Set1: 0.5cm/2GHz=0.033, Set2: 1cm/1GHz=0.033, Set3: 1cm/2GHz=0.067, Set4: 2cm/1GHz=0.067 */
+l_cm_list: [0.5, 1, 1, 2];
+f_GHz_list: [2, 1, 2, 1];
+R_loss_list: [0.5, 1, 2, 5];
+
+l_cm: l_cm_list[idx];
+f_GHz: f_GHz_list[idx];
+R_loss: R_loss_list[idx];
+
+/* Constants */
+c0: 3*10^8;
+
+/* Derived */
+l_m: l_cm / 100;
+f_Hz: f_GHz * 10^9;
+lambda_val: float(c0 / f_Hz);
+ratio_val: float(l_m / lambda_val);
+
+/* (a) Radiation resistance */
+R_rad: float(80 * %pi^2 * ratio_val^2);
+tans1: R_rad;
+
+/* (b) Radiation efficiency */
+xi: float(R_rad / (R_rad + R_loss));
+tans2: xi;
+
+/* (c) Gain in dBi */
+G_linear: float(xi * 1.5);
+G_dBi: float(10 * log(G_linear) / log(10));
+tans3: G_dBi;
+
+/* (d) Angular range upper bound */
+tans4: 2*%pi;
+
+/* (e) Power pattern — algebraic expression */
+tans5: sin(theta)^2;
+
+/* (f) HPBW angle 1 */
+tans6: %pi/4;
+
+/* (g) HPBW angle 2 */
+tans7: 3*%pi/4;
+
+/* Error model values */
+/* E1: sin(theta) instead of sin(theta)^2 */
+pattern_err: sin(theta);
+/* E3: efficiency = R_rad/R_loss instead of R_rad/(R_rad+R_loss) */
+xi_err: float(R_rad / R_loss);
+]]></text></questionvariables>
+  <specificfeedback format="html">
+    <text><![CDATA[
+[[feedback:prt1]]
+[[feedback:prt2]]
+[[feedback:prt3]]
+[[feedback:prt4]]
+[[feedback:prt5]]
+[[feedback:prt6]]
+[[feedback:prt7]]
+]]></text>
+  </specificfeedback>
+  <questionnote><text>{@sconcat("l_cm=", l_cm, " f_GHz=", f_GHz, " R_loss=", R_loss, " R_rad=", tans1, " xi=", tans2)@}</text></questionnote>
+  <questiondescription format="html"><text></text></questiondescription>
+  <prtcorrect format="html"><text><![CDATA[<span class="correct">Correct answer, well done!</span>]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[<span class="partially">Your answer is partially correct.</span>]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[<span class="incorrect">Incorrect answer.</span>]]></text></prtincorrect>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <!-- INPUT: ans1 — R_rad (numerical) -->
+  <input>
+    <name>ans1</name>
+    <type>numerical</type>
+    <tans>tans1</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>0.877</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- INPUT: ans2 — efficiency xi (numerical) -->
+  <input>
+    <name>ans2</name>
+    <type>numerical</type>
+    <tans>tans2</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>0.47</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- INPUT: ans3 — gain G in dBi (numerical) -->
+  <input>
+    <name>ans3</name>
+    <type>numerical</type>
+    <tans>tans3</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>-1.5</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- INPUT: ans4 — theta upper bound (algebraic) -->
+  <input>
+    <name>ans4</name>
+    <type>algebraic</type>
+    <tans>tans4</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- INPUT: ans5 — pattern expression (algebraic) -->
+  <input>
+    <name>ans5</name>
+    <type>algebraic</type>
+    <tans>tans5</tans>
+    <boxsize>20</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>cos(theta)^2</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- INPUT: ans6 — HPBW angle 1 (algebraic) -->
+  <input>
+    <name>ans6</name>
+    <type>algebraic</type>
+    <tans>tans6</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- INPUT: ans7 — HPBW angle 2 (algebraic) -->
+  <input>
+    <name>ans7</name>
+    <type>algebraic</type>
+    <tans>tans7</tans>
+    <boxsize>10</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- PRT1: R_rad (1 point) -->
+  <prt>
+    <name>prt1</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>tans1</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. First compute \(\lambda = c/f\) and \(\ell/\lambda\), then \(R_{\text{rad}} = 80\pi^2(\ell/\lambda)^2\).</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT2: Efficiency (2 points) -->
+  <prt>
+    <name>prt2</name>
+    <value>2</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+err_xi_flag: if abs(xi_err) > 0 and abs(ans2 - xi_err)/abs(xi_err) < 0.06 then 1 else 0;
+]]></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>tans2</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. \(\xi = {@tans2@}\).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>err_xi_flag</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-1-T-ratio_error</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>You computed \(R_{\text{rad}}/R_{\text{loss}}\), but efficiency is \(\xi = R_{\text{rad}}/(R_{\text{rad}} + R_{\text{loss}})\). The denominator is the <b>total</b> resistance.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-1-F-generic</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\xi = R_{\text{rad}}/(R_{\text{rad}} + R_{\text{loss}})\). Efficiency must be between 0 and 1.</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT3: Gain in dBi (1 point) -->
+  <prt>
+    <name>prt3</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans3</sans>
+      <tans>tans3</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(G = \xi \times D = \xi \times 1.5\), then convert to dBi: \(G_{\text{dBi}} = 10\log_{10}(G)\). Note that G can be less than 1 (negative dBi) when efficiency is low.</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT4: theta upper bound (1 point) -->
+  <prt>
+    <name>prt4</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans4</sans>
+      <tans>tans4</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. A full polar plot requires \(\theta\) from 0 to \(2\pi\).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>For a complete polar plot, \(\theta\) must sweep from 0 to \(2\pi\). Using only 0 to \(\pi\) would show only the upper half of the pattern.</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT5: Pattern expression (1 point) -->
+  <prt>
+    <name>prt5</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans5</sans>
+      <tans>tans5</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. The normalized power pattern is \(\sin^2\theta\).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans5</sans>
+      <tans>pattern_err</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-1-T-sin_error</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>You wrote \(\sin\theta\), which is the <b>field</b> pattern. The question asks for the <b>power</b> pattern, which is \(\sin^2\theta\) (power is proportional to field squared).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-1-F-generic</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. The Hertzian dipole far-field \(E_\theta \propto \sin\theta\), so the power pattern (proportional to \(|E|^2\)) is \(\sin^2\theta\). Type: <code>sin(theta)^2</code>.</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT6: HPBW angle 1 (0.5 points) -->
+  <prt>
+    <name>prt6</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+/* Check if student gave degrees instead of radians */
+err_deg_flag: if abs(ans6 - 45) < 2 then 1 else 0;
+]]></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans6</sans>
+      <tans>tans6</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. \(\sin^2(\pi/4) = 0.5\).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt6-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>err_deg_flag</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-1-T-degrees</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>You gave 45°, but MATLAB uses <b>radians</b>. The answer is \(\pi/4\). Type: <code>%pi/4</code>.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt6-1-F-generic</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. Solve \(\sin^2\theta = 0.5\) for \(\theta\) in the range \((0, \pi)\). The first solution is \(\theta = \pi/4\).</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT7: HPBW angle 2 (0.5 points) -->
+  <prt>
+    <name>prt7</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+err_deg2_flag: if abs(ans7 - 135) < 2 then 1 else 0;
+]]></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans7</sans>
+      <tans>tans7</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. \(\sin^2(3\pi/4) = 0.5\).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt7-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>err_deg2_flag</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-1-T-degrees</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>You gave 135°, but the answer should be in <b>radians</b>: \(3\pi/4\). Type: <code>3*%pi/4</code>.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-1-F-generic</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. The second solution to \(\sin^2\theta = 0.5\) in \((0,\pi)\) is \(\theta = 3\pi/4\).</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- Hints -->
+  <hint format="html">
+    <text><![CDATA[<p>For Part A: compute \(\lambda = c/f\), then \(\ell/\lambda\), then \(R_{\text{rad}} = 80\pi^2(\ell/\lambda)^2\). Efficiency is a voltage-divider-like ratio of \(R_{\text{rad}}\) to total resistance.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p>For Part B: MATLAB's <code>polarplot</code> needs a full \(0\) to \(2\pi\) sweep. The <b>power</b> pattern is \(\sin^2\theta\) (not \(\sin\theta\) — that's the field pattern).</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p>The half-power angles solve \(\sin^2\theta = 0.5\), i.e. \(\sin\theta = 1/\sqrt{2}\). In radians: \(\theta = \pi/4\) and \(\theta = 3\pi/4\).</p>]]></text>
+  </hint>
+</question>
+</quiz>

@@ -2,10 +2,16 @@
   "permissions": {
     "allow": [
       "Read(///maa1.cc.lut.fi/home/z116447/Documents/GitHub/**)",
-      "Bash(for f:*)",
-      "Bash(do test:*)",
-      "Bash(echo \"  EXISTS: $f\")",
-      "Bash(echo \"  MISSING: $f\")"
+      "Write(///maa1.cc.lut.fi/home/z116447/Documents/GitHub/EM-AC-STACK-Assessments/**)",
+      "Edit(///maa1.cc.lut.fi/home/z116447/Documents/GitHub/EM-AC-STACK-Assessments/**)",
+      "Glob(///maa1.cc.lut.fi/home/z116447/Documents/GitHub/**)",
+      "Grep(///maa1.cc.lut.fi/home/z116447/Documents/GitHub/**)",
+      "Bash(cd *)",
+      "Bash(mkdir *)",
+      "Bash(mv *)",
+      "Bash(ls *)",
+      "Bash(git *)",
+      "Bash(cat *)"
     ]
   }
 }

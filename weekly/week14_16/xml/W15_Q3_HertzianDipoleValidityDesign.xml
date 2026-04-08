@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Week 15 – Q3: Hertzian Dipole Validity and Design Correction</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>An engineer proposes to model a dipole antenna as a Hertzian dipole. The antenna parameters are:</p>
+<ul>
+  <li>Length: \(\ell = {@l_cm@}\) cm</li>
+  <li>Current amplitude: \(I_0 = {@I_0@}\) A</li>
+  <li>Operating frequency: \(f = {@f_GHz@}\) GHz</li>
+  <li>Medium: free space (\(\eta_0 = 120\pi \approx 377\;\Omega\))</li>
+</ul>
+
+<h4>Part A — Validity Check</h4>
+
+<p><b>(a)</b> Calculate the wavelength \(\lambda\).</p>
+<p>\(\lambda = \) [[input:ans1]] [[validation:ans1]] m</p>
+
+<p><b>(b)</b> Calculate the ratio \(\ell/\lambda\).</p>
+<p>\(\ell/\lambda = \) [[input:ans2]] [[validation:ans2]]</p>
+
+<p><b>(c)</b> The Hertzian dipole model requires \(\ell/\lambda &lt; 0.1\). Is this model valid for the given antenna?</p>
+<p>[[input:ans3]] [[validation:ans3]]</p>
+
+<h4>Part B — Design Correction</h4>
+
+<p>Since the model is not valid for the given length, you must propose a corrected design.</p>
+
+<p><b>(d)</b> What is the <b>maximum antenna length</b> \(\ell_{\max}\) (in cm) for which the Hertzian dipole model would be valid at this frequency? Use the criterion \(\ell/\lambda &lt; 0.1\).</p>
+<p>\(\ell_{\max} = \) [[input:ans4]] [[validation:ans4]] cm</p>
+
+<h4>Part C — Radiation Parameters at \(\ell_{\max}\)</h4>
+
+<p>Using \(\ell = \ell_{\max}\) from part (d), compute the antenna's radiation parameters.</p>
+
+<p><b>(e)</b> Radiation resistance \(R_{\text{rad}} = 80\pi^2(\ell_{\max}/\lambda)^2\).</p>
+<p>\(R_{\text{rad}} = \) [[input:ans5]] [[validation:ans5]] \(\Omega\)</p>
+
+<p><b>(f)</b> Total radiated power \(P_{\text{rad}} = \frac{1}{2}I_0^2 R_{\text{rad}}\).</p>
+<p>\(P_{\text{rad}} = \) [[input:ans6]] [[validation:ans6]] W</p>
+
+<p><b>(g)</b> Directivity of a Hertzian dipole in dBi.</p>
+<p>\(D = \) [[input:ans7]] [[validation:ans7]] dBi</p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h4>Worked Solution</h4>
+
+<p><b>Given:</b> \(\ell = {@l_cm@}\) cm, \(f = {@f_GHz@}\) GHz, \(I_0 = {@I_0@}\) A.</p>
+
+<p><b>(a)</b> \(\lambda = c/f = 3\times10^8/{@f_Hz@} = {@tans1@}\) m = {@float(tans1*100)@} cm</p>
+
+<p><b>(b)</b> \(\ell/\lambda = {@l_cm@}/{@float(tans1*100)@} = {@tans2@}\)</p>
+
+<p><b>(c)</b> Since \(\ell/\lambda = {@tans2@} > 0.1\), the Hertzian dipole model is <b>NOT valid</b>. The antenna is too long relative to the wavelength for the uniform-current assumption to hold.</p>
+
+<p><b>(d)</b> Maximum valid length: \(\ell_{\max} = 0.1 \times \lambda = 0.1 \times {@float(tans1*100)@}\text{ cm} = {@tans4@}\) cm.</p>
+
+<p><b>(e)</b> At \(\ell = \ell_{\max}\), the ratio is \(\ell/\lambda = 0.1\), so:</p>
+<p>\[R_{\text{rad}} = 80\pi^2(0.1)^2 = 0.8\pi^2 \approx 7.90\;\Omega\]</p>
+<p>This is always the same at the validity boundary — a key insight about how small radiation resistance is for short dipoles.</p>
+
+<p><b>(f)</b> \(P_{\text{rad}} = \frac{1}{2} \times ({@I_0@})^2 \times 7.90 = {@tans6@}\) W</p>
+
+<p><b>(g)</b> \(D = 1.5 = 10\log_{10}(1.5) = 1.76\) dBi. This is the same for <b>all</b> Hertzian dipoles — directivity depends only on the \(\sin^2\theta\) pattern, not on length or frequency.</p>
+]]></text>
+  </generalfeedback>
+  <defaultgrade>8</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber/>
+  <stackversion><text>2024120500</text></stackversion>
+  <questionvariables><text><![CDATA[
+/* Q3: Hertzian Dipole — Validity Check and Design Correction */
+/* ALL variants have l/lambda > 0.1 (invalid Hertzian dipole) */
+idx: 1 + rand(5);
+
+l_cm_list: [5, 10, 8, 4, 15];
+I_0_list: [1, 2, 0.5, 5, 1];
+f_GHz_list: [1, 2, 5, 2, 0.5];
+
+l_cm: l_cm_list[idx];
+I_0: I_0_list[idx];
+f_GHz: f_GHz_list[idx];
+
+c0: 3*10^8;
+l_m: l_cm / 100;
+f_Hz: f_GHz * 10^9;
+
+/* (a) Wavelength */
+lambda_val: float(c0 / f_Hz);
+tans1: lambda_val;
+
+/* (b) l/lambda ratio — always > 0.1 */
+ratio_val: float(l_m / lambda_val);
+tans2: ratio_val;
+
+/* (c) Validity MCQ — always "No" */
+ta3: random_permutation([
+  [1, false, "Yes — valid"],
+  [2, true, "No — invalid (too long for this frequency)"]
+]);
+
+/* (d) Maximum valid length: l_max = 0.1 * lambda, in cm */
+l_max_cm: float(0.1 * lambda_val * 100);
+tans4: l_max_cm;
+
+/* (e) R_rad at l_max: always 80*pi^2*(0.1)^2 = 0.8*pi^2 ≈ 7.896 Ohm */
+R_rad_at_lmax: float(80 * %pi^2 * 0.1^2);
+tans5: R_rad_at_lmax;
+
+/* (f) P_rad using l_max */
+P_rad_at_lmax: float(1/2 * I_0^2 * R_rad_at_lmax);
+tans6: P_rad_at_lmax;
+
+/* (g) Directivity in dBi — always 1.76 */
+D_dBi: float(10 * log(3/2) / log(10));
+tans7: D_dBi;
+
+/* Error models */
+D_linear: 1.5;
+P_rad_no_half: float(I_0^2 * R_rad_at_lmax);
+]]></text></questionvariables>
+  <specificfeedback format="html">
+    <text><![CDATA[
+[[feedback:prt1]]
+[[feedback:prt2]]
+[[feedback:prt3]]
+[[feedback:prt4]]
+[[feedback:prt5]]
+[[feedback:prt6]]
+[[feedback:prt7]]
+]]></text>
+  </specificfeedback>
+  <questionnote><text>{@sconcat("l=", l_cm, "cm f=", f_GHz, "GHz I0=", I_0, "A ratio=", tans2, " lmax=", tans4, "cm")@}</text></questionnote>
+  <questiondescription format="html"><text></text></questiondescription>
+  <prtcorrect format="html"><text><![CDATA[<span class="correct">Correct answer, well done!</span>]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[<span class="partially">Your answer is partially correct.</span>]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[<span class="incorrect">Incorrect answer.</span>]]></text></prtincorrect>
+  <multiplicationsign>dot</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <variantsselectionseed/>
+
+  <input>
+    <name>ans1</name>
+    <type>numerical</type>
+    <tans>tans1</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>0.125</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+  <input>
+    <name>ans2</name>
+    <type>numerical</type>
+    <tans>tans2</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>0.25</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+  <input>
+    <name>ans3</name>
+    <type>dropdown</type>
+    <tans>ta3</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>0</insertstars>
+    <syntaxhint/>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>1</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>0</mustverify>
+    <showvalidation>0</showvalidation>
+    <options/>
+  </input>
+  <input>
+    <name>ans4</name>
+    <type>numerical</type>
+    <tans>tans4</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>2.5</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+  <input>
+    <name>ans5</name>
+    <type>numerical</type>
+    <tans>tans5</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>7.9</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+  <input>
+    <name>ans6</name>
+    <type>numerical</type>
+    <tans>tans6</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>3.95</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+  <input>
+    <name>ans7</name>
+    <type>numerical</type>
+    <tans>tans7</tans>
+    <boxsize>15</boxsize>
+    <strictsyntax>1</strictsyntax>
+    <insertstars>1</insertstars>
+    <syntaxhint>3.01</syntaxhint>
+    <syntaxattribute>0</syntaxattribute>
+    <forbidwords/>
+    <allowwords/>
+    <forbidfloat>0</forbidfloat>
+    <requirelowestterms>0</requirelowestterms>
+    <checkanswertype>0</checkanswertype>
+    <mustverify>1</mustverify>
+    <showvalidation>3</showvalidation>
+    <options/>
+  </input>
+
+  <!-- PRT1: lambda (1pt) -->
+  <prt>
+    <name>prt1</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans1</sans>
+      <tans>tans1</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt1-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt1-0-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\lambda = c/f\). Convert GHz to Hz.</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT2: l/lambda (1pt) -->
+  <prt>
+    <name>prt2</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans2</sans>
+      <tans>tans2</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt2-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. \(\ell/\lambda = {@tans2@} > 0.1\).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt2-0-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. Convert \(\ell\) to metres: {@l_cm@} cm = {@l_m@} m. Then \(\ell/\lambda\).</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT3: Validity MCQ (1pt) -->
+  <prt>
+    <name>prt3</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>ans3</sans>
+      <tans>2</tans>
+      <testoptions/>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt3-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. \(\ell/\lambda = {@tans2@} > 0.1\), so the Hertzian model does not apply.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt3-0-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. With \(\ell/\lambda = {@tans2@}\), which is greater than 0.1, the Hertzian dipole model is <b>not valid</b>. The uniform-current assumption fails when the antenna is not much shorter than \(\lambda\).</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT4: l_max (1pt) with follow-through -->
+  <prt>
+    <name>prt4</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans4</sans>
+      <tans>tans4</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt4-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. \(\ell_{\max} = 0.1\lambda = {@tans4@}\) cm.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt4-0-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. The criterion is \(\ell/\lambda &lt; 0.1\), so the maximum length is \(\ell_{\max} = 0.1 \times \lambda\). Convert to cm.</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT5: R_rad (1pt) — follow-through from student's l_max -->
+  <prt>
+    <name>prt5</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+/* Follow-through: compute R_rad from student's proposed l_max */
+s_ratio: ans4 / (100 * lambda_val);
+s_Rrad: float(80 * %pi^2 * s_ratio^2);
+ft_ok: if is(abs(s_Rrad) > 0.001) and is(abs(ans5 - s_Rrad)/abs(s_Rrad) < 0.06) then 1 else 0;
+]]></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans5</sans>
+      <tans>tans5</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. \(R_{\text{rad}} = 80\pi^2(0.1)^2 \approx 7.90\;\Omega\).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt5-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>ft_ok</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.5</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt5-1-T-ft</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Your \(R_{\text{rad}}\) is consistent with your \(\ell_{\max}\) from part (d) — correct formula, but \(\ell_{\max}\) was wrong. Half credit.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt5-1-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(R_{\text{rad}} = 80\pi^2(\ell_{\max}/\lambda)^2\). At the validity boundary \(\ell_{\max}/\lambda = 0.1\), this gives \(80\pi^2 \times 0.01 \approx 7.90\;\Omega\).</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT6: P_rad (1pt) — follow-through -->
+  <prt>
+    <name>prt6</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+s_Prad: float(1/2 * I_0^2 * s_Rrad);
+ft_P_ok: if is(abs(s_Prad) > 0.0001) and is(abs(ans6 - s_Prad)/abs(s_Prad) < 0.06) then 1 else 0;
+no_half: if is(abs(P_rad_no_half) > 0.001) and is(abs(ans6 - P_rad_no_half)/abs(P_rad_no_half) < 0.06) then 1 else 0;
+]]></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans6</sans>
+      <tans>tans6</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt6-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>no_half</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-1-T-nohalf</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Missing the \(\frac{1}{2}\) factor. \(P_{\text{rad}} = \frac{1}{2}I_0^2 R_{\text{rad}}\).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>2</falsenextnode>
+      <falseanswernote>prt6-1-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>2</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>ft_P_ok</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0.5</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt6-2-T-ft</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Your \(P_{\text{rad}}\) is consistent with your \(R_{\text{rad}}\) — correct method, but upstream error. Half credit.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt6-2-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(P_{\text{rad}} = \frac{1}{2}I_0^2 R_{\text{rad}}\).</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <!-- PRT7: D in dBi (1pt) -->
+  <prt>
+    <name>prt7</name>
+    <value>1</value>
+    <autosimplify>1</autosimplify>
+    <feedbackstyle>1</feedbackstyle>
+    <feedbackvariables><text><![CDATA[
+lin_err: if is(abs(ans7 - D_linear)/abs(D_linear) < 0.06) then 1 else 0;
+]]></text></feedbackvariables>
+    <node>
+      <name>0</name>
+      <answertest>NumRelative</answertest>
+      <sans>ans7</sans>
+      <tans>tans7</tans>
+      <testoptions>0.05</testoptions>
+      <quiet>0</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>1</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-0-T</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>Correct. \(D = 10\log_{10}(1.5) = 1.76\) dBi.</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>1</falsenextnode>
+      <falseanswernote>prt7-0-F</falseanswernote>
+      <falsefeedback format="html"><text></text></falsefeedback>
+    </node>
+    <node>
+      <name>1</name>
+      <answertest>AlgEquiv</answertest>
+      <sans>lin_err</sans>
+      <tans>1</tans>
+      <testoptions/>
+      <quiet>1</quiet>
+      <truescoremode>=</truescoremode>
+      <truescore>0</truescore>
+      <truepenalty/>
+      <truenextnode>-1</truenextnode>
+      <trueanswernote>prt7-1-T-lin</trueanswernote>
+      <truefeedback format="html"><text><![CDATA[<p>You gave \(D = 1.5\) (linear). Convert to dBi: \(10\log_{10}(1.5) = 1.76\).</p>]]></text></truefeedback>
+      <falsescoremode>=</falsescoremode>
+      <falsescore>0</falsescore>
+      <falsepenalty/>
+      <falsenextnode>-1</falsenextnode>
+      <falseanswernote>prt7-1-F</falseanswernote>
+      <falsefeedback format="html"><text><![CDATA[<p>Incorrect. Hertzian dipole directivity is always \(D = 1.5\). In dBi: \(10\log_{10}(1.5) = 1.76\).</p>]]></text></falsefeedback>
+    </node>
+  </prt>
+
+  <hint format="html">
+    <text><![CDATA[<p>\(\lambda = c/f\). Then \(\ell/\lambda\) — if this exceeds 0.1, the Hertzian model is invalid.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p>Maximum valid length: \(\ell_{\max} = 0.1\lambda\). Convert to cm by multiplying by 100.</p>]]></text>
+  </hint>
+  <hint format="html">
+    <text><![CDATA[<p>At \(\ell/\lambda = 0.1\): \(R_{\text{rad}} = 80\pi^2(0.1)^2 \approx 7.90\;\Omega\). Then \(P_{\text{rad}} = \frac{1}{2}I_0^2 R_{\text{rad}}\). Directivity is always 1.76 dBi for any Hertzian dipole.</p>]]></text>
+  </hint>
+</question>
+</quiz>
