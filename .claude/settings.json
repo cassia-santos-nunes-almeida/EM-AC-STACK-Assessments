@@ -1,16 +1,4 @@
 {
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "timeout 45 bash //maa1.cc.lut.fi/home/z116447/Documents/GitHub/my-claude-skills/scripts/sync-to-projects.sh EM-AC-STACK-Assessments 2>&1 || echo '[SYNC WARNING] Skill sync failed or timed out. Skills may be outdated. Run manually: bash //maa1.cc.lut.fi/home/z116447/Documents/GitHub/my-claude-skills/scripts/sync-to-projects.sh EM-AC-STACK-Assessments'"
-          }
-        ]
-      }
-    ]
-  },
   "permissions": {
     "allow": [
       "Read(///maa1.cc.lut.fi/home/z116447/Documents/GitHub/**)",
@@ -23,7 +11,22 @@
       "Bash(mv *)",
       "Bash(ls *)",
       "Bash(git *)",
-      "Bash(cat *)"
+      "Bash(cat *)",
+      "mcp__claude_ai_Notion__notion-search",
+      "mcp__claude_ai_Notion__notion-fetch",
+      "mcp__claude_ai_Notion__notion-create-pages"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "timeout 45 bash //maa1.cc.lut.fi/home/z116447/Documents/GitHub/my-claude-skills/scripts/sync-to-projects.sh EM-AC-STACK-Assessments 2>&1 || echo '[SYNC WARNING] Skill sync failed or timed out. Skills may be outdated. Run manually: bash //maa1.cc.lut.fi/home/z116447/Documents/GitHub/my-claude-skills/scripts/sync-to-projects.sh EM-AC-STACK-Assessments'"
+          }
+        ]
+      }
     ]
   }
 }
