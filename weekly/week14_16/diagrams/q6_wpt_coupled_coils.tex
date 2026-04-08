@@ -1,0 +1,74 @@
+% Q6: Wireless Power Transfer — Coupled Coils System
+% Teaching diagram: physical layout + equivalent circuit
+\documentclass[border=10pt]{standalone}
+\usepackage[american voltages, american currents]{circuitikz}
+\usepackage{amsmath}
+
+\begin{document}
+\begin{circuitikz}[line width=0.8pt, >=stealth]
+
+% ===== LEFT: Physical Layout =====
+\node[font=\sffamily\small\bfseries] at (3, 7) {Physical Setup};
+
+% --- Ground surface ---
+\fill[brown!20] (0, 2.8) rectangle (6, 3.2);
+\draw[thick, brown!50] (0, 3.2) -- (6, 3.2);
+\node[right, font=\sffamily\footnotesize, brown!60] at (6.1, 3.0) {Ground};
+
+% --- Vehicle underside ---
+\fill[gray!20] (0.5, 5.2) rectangle (5.5, 5.5);
+\draw[thick, gray!50] (0.5, 5.2) -- (5.5, 5.2);
+\node[right, font=\sffamily\footnotesize, gray!60] at (5.6, 5.35) {Vehicle};
+
+% --- Transmitter coil (ground) ---
+\draw[ultra thick, red!60!black] (1.5, 2.5) arc (180:0:1.5 and 0.3);
+\draw[ultra thick, red!60!black] (1.5, 2.2) arc (180:0:1.5 and 0.3);
+\draw[ultra thick, red!60!black] (1.5, 1.9) arc (180:0:1.5 and 0.3);
+\node[below, font=\sffamily\small, red!60!black] at (3, 1.7) {Tx coil: $L_1$, $R_1$};
+
+% --- Receiver coil (vehicle) ---
+\draw[ultra thick, blue!60!black] (1.5, 5.5) arc (180:0:1.5 and 0.3);
+\draw[ultra thick, blue!60!black] (1.5, 5.8) arc (180:0:1.5 and 0.3);
+\draw[ultra thick, blue!60!black] (1.5, 6.1) arc (180:0:1.5 and 0.3);
+\node[above, font=\sffamily\small, blue!60!black] at (3, 6.3) {Rx coil: $L_2$, $R_2$};
+
+% --- Magnetic field lines ---
+\foreach \yshift in {0, 0.3, 0.6} {
+    \draw[thin, purple!50, ->] (1.8, {3.0+\yshift}) .. controls (0.5, {4.0+\yshift*0.3}) and (0.5, {4.5-\yshift*0.3}) .. (1.8, {5.3-\yshift});
+    \draw[thin, purple!50, ->] (4.2, {3.0+\yshift}) .. controls (5.5, {4.0+\yshift*0.3}) and (5.5, {4.5-\yshift*0.3}) .. (4.2, {5.3-\yshift});
+}
+\node[font=\sffamily\footnotesize, purple!60] at (0.2, 4.1) {$\vec{B}$};
+
+% --- Coupling coefficient ---
+\draw[<->, thick, orange!80!black] (5.8, 2.5) -- (5.8, 5.5);
+\node[right, font=\sffamily\small, orange!80!black] at (5.9, 4.0) {$k$};
+\node[right, font=\sffamily\footnotesize, orange!80!black, text width=2cm] at (5.8, 3.4) {Coupling\\(alignment\\dependent)};
+
+% --- Air gap label ---
+\draw[<->, thin, gray] (0.3, 3.2) -- (0.3, 5.2);
+\node[left, font=\sffamily\footnotesize, gray] at (0.3, 4.2) {Air gap};
+
+% ===== RIGHT: Equivalent Circuit =====
+\node[font=\sffamily\small\bfseries] at (11, 7) {Equivalent Circuit};
+
+% --- Primary (Tx) loop ---
+\draw (8,1) to[sV, l={\footnotesize $V_s$}] (8,5) -- (9.5,5)
+      to[L, l={\footnotesize $L_1$}] (9.5,3)
+      to[R, l={\footnotesize $R_1$}] (9.5,1) -- (8,1);
+
+% --- Secondary (Rx) loop ---
+\draw (12.5,1) to[R, l_={\footnotesize $R_2$}] (12.5,3)
+      to[L, l_={\footnotesize $L_2$}] (12.5,5) -- (14,5)
+      to[R, l={\footnotesize $R_L$}] (14,1) -- (12.5,1);
+
+% --- Coupling symbol ---
+\draw[<->, thick, purple!60] (10.5, 3.5) -- (11.5, 3.5);
+\node[above, font=\sffamily\footnotesize, purple!60] at (11, 3.6) {$M = k\sqrt{L_1 L_2}$};
+
+% --- Efficiency formula ---
+\node[font=\sffamily\small, text width=5cm, align=center] at (11, 0.3)
+    {$\eta = \dfrac{(\omega M)^2}{R_1 R_2 + (\omega M)^2}$};
+
+
+\end{circuitikz}
+\end{document}
