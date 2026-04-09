@@ -3,7 +3,11 @@
     "allow": [
       "Read(///maa1.cc.lut.fi/home/z116447/Documents/GitHub/**)",
       "Write(///maa1.cc.lut.fi/home/z116447/Documents/GitHub/EM-AC-STACK-Assessments/**)",
+      "Write(**\\EM-AC-STACK-Assessments\\**)",
+      "Write(**/EM-AC-STACK-Assessments/**)",
       "Edit(///maa1.cc.lut.fi/home/z116447/Documents/GitHub/EM-AC-STACK-Assessments/**)",
+      "Edit(**\\EM-AC-STACK-Assessments\\**)",
+      "Edit(**/EM-AC-STACK-Assessments/**)",
       "Glob(///maa1.cc.lut.fi/home/z116447/Documents/GitHub/**)",
       "Grep(///maa1.cc.lut.fi/home/z116447/Documents/GitHub/**)",
       "Bash(cd *)",
@@ -12,6 +16,11 @@
       "Bash(ls *)",
       "Bash(git *)",
       "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(*/python* *)",
+      "Bash(/c/Users/z116447/AppData/Local/Programs/Python/Python313/python.exe *)",
       "mcp__claude_ai_Notion__notion-search",
       "mcp__claude_ai_Notion__notion-fetch",
       "mcp__claude_ai_Notion__notion-create-pages"

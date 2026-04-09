@@ -1,0 +1,1949 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ============================================================ -->
+<!-- Q1 V1: E-core with Center-Limb Air Gap -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Midterm 2 - Q1V1: Magnetic Circuit + Faraday (E-core with Center-Limb Air Gap)</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Midterm 2 &ndash; Q1V1: Magnetic Circuit with Faraday Induction (E-core with Center-Limb Air Gap)</h3>
+<p><em>Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><strong>Total: 9 points | Penalty per wrong attempt: 10%</strong></p>
+<p><em>Inspired by Ulaby Ch.5 Example 5-6 and Nilsson Ch.6 Problems 6.1&ndash;6.5.</em></p>
+<hr />
+
+<h4>Scenario</h4>
+<p>An <strong>E-core</strong> electromagnet has a ferromagnetic core shaped like the letter E. Two coils are wound on the outer limbs. A single <strong>air gap</strong> of length \(\ell_g\) exists in the <strong>center limb</strong>. The mean magnetic path length through the core (excluding the gap) is \(\ell_c\).</p>
+
+<p>[DIAGRAM: E-core with Center-Limb Air Gap &mdash; will be replaced with CircuiTikZ SVG after compilation]</p>
+<pre>       ┌────────┬────────┬────────┐
+       │  Coil 1│  GAP   │ Coil 2 │
+       │ (N₁)   │ (ℓ_g)  │ (N₂)   │
+       │        │        │        │
+       └────────┴────────┴────────┘
+         Ferromagnetic core (μ_r·μ₀)
+         Mean path ℓ_c, cross-section A_c</pre>
+
+<h4>Given Data</h4>
+<ul>
+  <li>Primary coil: \(N_1 = {@N1_val@}\) turns</li>
+  <li>Secondary coil: \(N_2 = {@N2_val@}\) turns</li>
+  <li>Core relative permeability: \(\mu_r = {@mur_val@}\)</li>
+  <li>Mean core path length: \(\ell_c = {@lc_val@}\;\text{m}\)</li>
+  <li>Air gap length: \(\ell_g = {@lg_val@}\;\text{m}\)</li>
+  <li>Core cross-sectional area: \(A_c = {@Ac_val@}\;\text{m}^2\)</li>
+  <li>Primary current: \(i_1(t) = I_0 \sin(\omega t)\) with \(I_0 = {@I0_val@}\;\text{A}\) and \(f = {@f_val@}\;\text{Hz}\)</li>
+  <li>Permeability of free space: \(\mu_0 = 4\pi \times 10^{-7}\;\text{H/m}\)</li>
+</ul>
+
+<hr />
+
+<h4>Part (a) &mdash; Total Reluctance (2 points)</h4>
+<p>Calculate the <strong>total reluctance</strong> \(\mathcal{R}_{\text{total}}\) of the magnetic circuit (core + air gap).</p>
+<p>\(\mathcal{R}_{\text{total}} = \) [[input:ans1]] \(\text{A-turns/Wb}\)</p>
+<p>[[validation:ans1]]</p>
+<p><em>Enter a number, e.g. <code>1.23e5</code> or <code>123000</code></em></p>
+
+<h4>Part (b) &mdash; Peak Magnetic Flux (2 points)</h4>
+<p>Given the sinusoidal primary current, calculate the <strong>peak magnetic flux</strong> \(\Phi_{\max}\) in the core.</p>
+<p>\(\Phi_{\max} = \) [[input:ans2]] \(\text{Wb}\)</p>
+<p>[[validation:ans2]]</p>
+<p><em>Enter a number, e.g. <code>4.56e-4</code> or <code>0.000456</code></em></p>
+
+<h4>Part (c) &mdash; Peak Induced EMF (1 point)</h4>
+<p>Using Faraday&rsquo;s law, calculate the <strong>peak induced EMF</strong> in the secondary coil (Coil 2).</p>
+<p>Recall: \(\text{emf}_2(t) = -N_2 \frac{d\Phi}{dt}\), so \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>
+<p>\(|\text{EMF}_{2,\text{peak}}| = \) [[input:ans3]] \(\text{V}\)</p>
+<p>[[validation:ans3]]</p>
+<p><em>Enter a number, e.g. <code>0.567</code></em></p>
+
+<h4>Part (d) &mdash; Error Identification (1 point)</h4>
+<p>A student attempted this problem and made <strong>two errors</strong>. Their work is shown below:</p>
+<blockquote>
+A student wrote the following solution:
+\[ \mathcal{R}_{\text{total}} = \frac{\ell_c}{\mu_r \mu_0 A_c} \]
+(Note: the student did <em>not</em> add an air gap term.)
+Then: \(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}}\)
+Finally: \(\text{EMF}_{2,\text{peak}} = N_2 \cdot \Phi_{\max}\)
+(Note: the student wrote \(N_2 \cdot \Phi_{\max}\) without the \(\omega\) factor.)
+</blockquote>
+<p><strong>Select ALL statements that identify actual errors in the student&rsquo;s work:</strong></p>
+<p>[[input:ans4]]</p>
+<p>[[validation:ans4]]</p>
+
+<h4>Part (e) &mdash; Qualitative Analysis (3 points, manually graded)</h4>
+<p>Suppose the air gap length is <strong>doubled</strong> (from \(\ell_g\) to \(2\ell_g\)).</p>
+<p>Explain qualitatively what happens to:</p>
+<ol>
+  <li>The total reluctance \(\mathcal{R}_{\text{total}}\)</li>
+  <li>The peak flux \(\Phi_{\max}\)</li>
+  <li>The peak induced EMF \(|\text{EMF}_{2,\text{peak}}|\)</li>
+</ol>
+<p>Does the EMF increase or decrease? By approximately what factor? Justify your reasoning.</p>
+<p>[[input:ans5]]</p>
+<p>[[validation:ans5]]</p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h4>Solution for V1 (E-core with Center-Limb Air Gap)</h4>
+<p><strong>Part (a):</strong></p>
+<p>\(\mathcal{R}_{\text{core}} = \frac{\ell_c}{\mu_r \mu_0 A_c} = {@float(R_core)@}\;\text{A-turns/Wb}\)</p>
+<p>\(\mathcal{R}_{\text{gap}} = \frac{\ell_g}{\mu_0 A_c} = {@float(R_gap)@}\;\text{A-turns/Wb}\)</p>
+<p>\(\mathcal{R}_{\text{total}} = {@R_total_num@}\;\text{A-turns/Wb}\)</p>
+
+<p><strong>Part (b):</strong></p>
+<p>\(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}} = {@Phi_max_num@}\;\text{Wb}\)</p>
+
+<p><strong>Part (c):</strong></p>
+<p>\(\omega = 2\pi f = {@float(omega_val)@}\;\text{rad/s}\)</p>
+<p>\(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max} = {@emf_peak_num@}\;\text{V}\)</p>
+
+<p><strong>Part (d):</strong> The errors in the worked solution are statements {@correct_errors@}.</p>
+
+<p><strong>Part (e):</strong> If \(\ell_g\) doubles:</p>
+<ul>
+  <li>\(\mathcal{R}_{\text{gap}}\) roughly doubles (since \(\mathcal{R}_{\text{gap}} \propto \ell_g\))</li>
+  <li>\(\mathcal{R}_{\text{total}}\) increases (but not by 2&times; because the core reluctance is unchanged)</li>
+  <li>\(\Phi_{\max}\) decreases (inversely proportional to \(\mathcal{R}_{\text{total}}\))</li>
+  <li>\(|\text{EMF}_{2,\text{peak}}|\) decreases by the same factor as \(\Phi_{\max}\)</li>
+</ul>
+]]></text>
+  </generalfeedback>
+  <defaultgrade>9</defaultgrade>
+  <penalty>0.1000000</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion>
+    <text>2024032401</text>
+  </stackversion>
+  <questionvariables>
+    <text><![CDATA[
+/* V1: E-core with Center-Limb Air Gap */
+/* Physical parameters */
+mu0: 4*%pi/10^7;
+N1_val: 200;
+N2_val: 100;
+mur_val: 2000;
+lc_val: 0.4;
+lg_val: 0.002;
+Ac_val: 0.0004;
+I0_val: 2;
+f_val: 50;
+
+/* Derived quantities — exact arithmetic */
+omega_val: 2*%pi*f_val;
+R_core: lc_val/(mur_val*mu0*Ac_val);
+R_gap: lg_val/(mu0*Ac_val);
+R_total: R_core + R_gap;
+
+Phi_max: N1_val*I0_val/R_total;
+emf_peak: N2_val*omega_val*Phi_max;
+
+/* Error model values */
+Phi_no_gap: N1_val*I0_val/R_core;
+emf_no_omega: N2_val*Phi_max;
+emf_wrong_N: N1_val*omega_val*Phi_max;
+
+/* Numerical versions for display */
+R_total_num: float(R_total);
+Phi_max_num: float(Phi_max);
+emf_peak_num: float(emf_peak);
+
+/* Debug MCQ-MA options (checkbox) */
+debug_opts: random_permutation([[1, false, "The formula R_core = ℓ_c/(μ_r·μ₀·A_c) was applied incorrectly"], [2, true, "The air gap reluctance was not included in the total reluctance"], [3, false, "The number of turns N₂ was correctly used in Faraday's law"], [4, true, "The derivative of sin(ωt) is missing the factor ω"], [5, false, "The cross-sectional area A_c was used correctly throughout"]]);
+correct_errors: {2,4};
+
+/* Teacher answers */
+ta_reluctance: float(R_total);
+ta_flux: float(Phi_max);
+ta_emf: float(emf_peak);
+ta_debug: correct_errors;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html">
+    <text><![CDATA[
+[[feedback:prt_reluctance]]
+[[feedback:prt_flux]]
+[[feedback:prt_emf]]
+[[feedback:prt_debug]]
+]]></text>
+  </specificfeedback>
+  <questionnote>
+    <text>{@R_total_num@}, {@Phi_max_num@}, {@emf_peak_num@}, {@correct_errors@}</text>
+  </questionnote>
+  <questiondescription format="html">
+    <text></text>
+  </questiondescription>
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+  <multiplicativetries>0</multiplicativetries>
+    <input>
+      <name>ans1</name>
+      <type>numerical</type>
+      <tans>ta_reluctance</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>1</insertstars>
+      <syntaxhint>1.23e5</syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>numerical</type>
+      <tans>ta_flux</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>1</insertstars>
+      <syntaxhint>4.56e-4</syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>numerical</type>
+      <tans>ta_emf</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>1</insertstars>
+      <syntaxhint>0.567</syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>checkbox</type>
+      <tans>ta_debug</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>essay</type>
+      <tans></tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options></options>
+    </input>
+    <prt>
+      <name>prt_reluctance</name>
+      <value>2.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans1</sans>
+        <tans>ta_reluctance</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_reluctance-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct total reluctance.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt_reluctance-1-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans1</sans>
+        <tans>float(R_core)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_reluctance-2-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>You calculated the core reluctance only. You must add the air gap reluctance: \(\mathcal{R}_{\text{gap}} = \frac{\ell_g}{\mu_0 A_c}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_reluctance-2-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\mathcal{R}_{\text{total}} = \frac{\ell_c}{\mu_r \mu_0 A_c} + \frac{\ell_g}{\mu_0 A_c}\).</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt_flux</name>
+      <value>2.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans2</sans>
+        <tans>ta_flux</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_flux-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct peak flux.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt_flux-1-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans2</sans>
+        <tans>float(Phi_no_gap)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.3000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_flux-2-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>This flux value ignores the air gap. You must use the total reluctance (core + gap) in \(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_flux-2-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}}\).</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt_emf</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans3</sans>
+        <tans>ta_emf</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_emf-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct peak induced EMF.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt_emf-1-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans3</sans>
+        <tans>float(emf_no_omega)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_emf-2-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>You forgot the \(\omega\) factor. The derivative of \(\sin(\omega t)\) is \(\omega \cos(\omega t)\), so \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt_emf-2-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans3</sans>
+        <tans>float(emf_wrong_N)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_emf-3-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>You used \(N_1\) instead of \(N_2\). The induced EMF in the secondary coil uses \(N_2\): \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_emf-3-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt_debug</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>Sets</answertest>
+        <sans>ans4</sans>
+        <tans>ta_debug</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_debug-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct! You identified all errors in the worked solution.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_debug-1-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Not all errors were correctly identified. Review the worked solution carefully.</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+</question>
+
+<!-- ============================================================ -->
+<!-- Q1 V2: C-core with Single Air Gap -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Midterm 2 - Q1V2: Magnetic Circuit + Faraday (C-core with Single Air Gap)</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Midterm 2 &ndash; Q1V2: Magnetic Circuit with Faraday Induction (C-core with Single Air Gap)</h3>
+<p><em>Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><strong>Total: 9 points | Penalty per wrong attempt: 10%</strong></p>
+<p><em>Inspired by Ulaby Ch.5 Example 5-6 and Nilsson Ch.6 Problems 6.1&ndash;6.5.</em></p>
+<hr />
+
+<h4>Scenario</h4>
+<p>A <strong>C-core</strong> electromagnet has a U-shaped ferromagnetic core with a single <strong>air gap</strong> at the top. Coil 1 (primary, \(N_1\) turns) is wound on the left arm and Coil 2 (secondary, \(N_2\) turns) on the right arm.</p>
+
+<p>[DIAGRAM: C-core with Single Air Gap &mdash; will be replaced with CircuiTikZ SVG after compilation]</p>
+<pre>       ┌──────────────────────┐
+       │   Ferromagnetic core  │
+  Coil 1    (μ_r·μ₀)     Coil 2
+  (N₁)  │              │  (N₂)
+       └──────┐  ┌──────┘
+              │  │  ← Air gap (ℓ_g)
+              └──┘</pre>
+
+<h4>Given Data</h4>
+<ul>
+  <li>Primary coil: \(N_1 = {@N1_val@}\) turns</li>
+  <li>Secondary coil: \(N_2 = {@N2_val@}\) turns</li>
+  <li>Core relative permeability: \(\mu_r = {@mur_val@}\)</li>
+  <li>Mean core path length: \(\ell_c = {@lc_val@}\;\text{m}\)</li>
+  <li>Air gap length: \(\ell_g = {@lg_val@}\;\text{m}\)</li>
+  <li>Core cross-sectional area: \(A_c = {@Ac_val@}\;\text{m}^2\)</li>
+  <li>Primary current: \(i_1(t) = I_0 \sin(\omega t)\) with \(I_0 = {@I0_val@}\;\text{A}\) and \(f = {@f_val@}\;\text{Hz}\)</li>
+  <li>Permeability of free space: \(\mu_0 = 4\pi \times 10^{-7}\;\text{H/m}\)</li>
+</ul>
+
+<hr />
+
+<h4>Part (a) &mdash; Total Reluctance (2 points)</h4>
+<p>Calculate the <strong>total reluctance</strong> \(\mathcal{R}_{\text{total}}\) of the magnetic circuit (core + air gap).</p>
+<p>\(\mathcal{R}_{\text{total}} = \) [[input:ans1]] \(\text{A-turns/Wb}\)</p>
+<p>[[validation:ans1]]</p>
+<p><em>Enter a number, e.g. <code>1.23e5</code> or <code>123000</code></em></p>
+
+<h4>Part (b) &mdash; Peak Magnetic Flux (2 points)</h4>
+<p>Given the sinusoidal primary current, calculate the <strong>peak magnetic flux</strong> \(\Phi_{\max}\) in the core.</p>
+<p>\(\Phi_{\max} = \) [[input:ans2]] \(\text{Wb}\)</p>
+<p>[[validation:ans2]]</p>
+<p><em>Enter a number, e.g. <code>4.56e-4</code> or <code>0.000456</code></em></p>
+
+<h4>Part (c) &mdash; Peak Induced EMF (1 point)</h4>
+<p>Using Faraday&rsquo;s law, calculate the <strong>peak induced EMF</strong> in the secondary coil (Coil 2).</p>
+<p>Recall: \(\text{emf}_2(t) = -N_2 \frac{d\Phi}{dt}\), so \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>
+<p>\(|\text{EMF}_{2,\text{peak}}| = \) [[input:ans3]] \(\text{V}\)</p>
+<p>[[validation:ans3]]</p>
+<p><em>Enter a number, e.g. <code>0.567</code></em></p>
+
+<h4>Part (d) &mdash; Error Identification (1 point)</h4>
+<p>A student attempted this problem and made <strong>two errors</strong>. Their work is shown below:</p>
+<blockquote>
+A student wrote:
+\(\mathcal{R}_{\text{total}} = \frac{\ell_c}{\mu_r \mu_0 A_c} + \frac{\ell_g}{\mu_0 A_c}\) (correct)
+\(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}}\) (correct)
+\(\text{EMF}_{2,\text{peak}} = -N_1 \cdot \omega \cdot \Phi_{\max}\)
+(Error: used \(N_1\) instead of \(N_2\), and the sign is wrong by Lenz's law convention.)
+</blockquote>
+<p><strong>Select ALL statements that identify actual errors in the student&rsquo;s work:</strong></p>
+<p>[[input:ans4]]</p>
+<p>[[validation:ans4]]</p>
+
+<h4>Part (e) &mdash; Qualitative Analysis (3 points, manually graded)</h4>
+<p>Suppose the air gap length is <strong>doubled</strong> (from \(\ell_g\) to \(2\ell_g\)).</p>
+<p>Explain qualitatively what happens to:</p>
+<ol>
+  <li>The total reluctance \(\mathcal{R}_{\text{total}}\)</li>
+  <li>The peak flux \(\Phi_{\max}\)</li>
+  <li>The peak induced EMF \(|\text{EMF}_{2,\text{peak}}|\)</li>
+</ol>
+<p>Does the EMF increase or decrease? By approximately what factor? Justify your reasoning.</p>
+<p>[[input:ans5]]</p>
+<p>[[validation:ans5]]</p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h4>Solution for V2 (C-core with Single Air Gap)</h4>
+<p><strong>Part (a):</strong></p>
+<p>\(\mathcal{R}_{\text{core}} = \frac{\ell_c}{\mu_r \mu_0 A_c} = {@float(R_core)@}\;\text{A-turns/Wb}\)</p>
+<p>\(\mathcal{R}_{\text{gap}} = \frac{\ell_g}{\mu_0 A_c} = {@float(R_gap)@}\;\text{A-turns/Wb}\)</p>
+<p>\(\mathcal{R}_{\text{total}} = {@R_total_num@}\;\text{A-turns/Wb}\)</p>
+
+<p><strong>Part (b):</strong></p>
+<p>\(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}} = {@Phi_max_num@}\;\text{Wb}\)</p>
+
+<p><strong>Part (c):</strong></p>
+<p>\(\omega = 2\pi f = {@float(omega_val)@}\;\text{rad/s}\)</p>
+<p>\(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max} = {@emf_peak_num@}\;\text{V}\)</p>
+
+<p><strong>Part (d):</strong> The errors in the worked solution are statements {@correct_errors@}.</p>
+
+<p><strong>Part (e):</strong> If \(\ell_g\) doubles:</p>
+<ul>
+  <li>\(\mathcal{R}_{\text{gap}}\) roughly doubles (since \(\mathcal{R}_{\text{gap}} \propto \ell_g\))</li>
+  <li>\(\mathcal{R}_{\text{total}}\) increases (but not by 2&times; because the core reluctance is unchanged)</li>
+  <li>\(\Phi_{\max}\) decreases (inversely proportional to \(\mathcal{R}_{\text{total}}\))</li>
+  <li>\(|\text{EMF}_{2,\text{peak}}|\) decreases by the same factor as \(\Phi_{\max}\)</li>
+</ul>
+]]></text>
+  </generalfeedback>
+  <defaultgrade>9</defaultgrade>
+  <penalty>0.1000000</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion>
+    <text>2024032401</text>
+  </stackversion>
+  <questionvariables>
+    <text><![CDATA[
+/* V2: C-core with Single Air Gap */
+/* Physical parameters */
+mu0: 4*%pi/10^7;
+N1_val: 300;
+N2_val: 150;
+mur_val: 1500;
+lc_val: 0.3;
+lg_val: 0.001;
+Ac_val: 0.0006;
+I0_val: 1.5;
+f_val: 60;
+
+/* Derived quantities — exact arithmetic */
+omega_val: 2*%pi*f_val;
+R_core: lc_val/(mur_val*mu0*Ac_val);
+R_gap: lg_val/(mu0*Ac_val);
+R_total: R_core + R_gap;
+
+Phi_max: N1_val*I0_val/R_total;
+emf_peak: N2_val*omega_val*Phi_max;
+
+/* Error model values */
+Phi_no_gap: N1_val*I0_val/R_core;
+emf_no_omega: N2_val*Phi_max;
+emf_wrong_N: N1_val*omega_val*Phi_max;
+
+/* Numerical versions for display */
+R_total_num: float(R_total);
+Phi_max_num: float(Phi_max);
+emf_peak_num: float(emf_peak);
+
+/* Debug MCQ-MA options (checkbox) */
+debug_opts: random_permutation([[1, true, "The student used N₁ instead of N₂ in the Faraday's law step"], [2, false, "The total reluctance correctly includes both core and gap"], [3, false, "The derivative d(sin ωt)/dt = ω cos(ωt) was applied correctly"], [4, false, "The core permeability μ_r was omitted from the reluctance formula"], [5, true, "The sign of the induced EMF violates Lenz's law"]]);
+correct_errors: {1,5};
+
+/* Teacher answers */
+ta_reluctance: float(R_total);
+ta_flux: float(Phi_max);
+ta_emf: float(emf_peak);
+ta_debug: correct_errors;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html">
+    <text><![CDATA[
+[[feedback:prt_reluctance]]
+[[feedback:prt_flux]]
+[[feedback:prt_emf]]
+[[feedback:prt_debug]]
+]]></text>
+  </specificfeedback>
+  <questionnote>
+    <text>{@R_total_num@}, {@Phi_max_num@}, {@emf_peak_num@}, {@correct_errors@}</text>
+  </questionnote>
+  <questiondescription format="html">
+    <text></text>
+  </questiondescription>
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+  <multiplicativetries>0</multiplicativetries>
+    <input>
+      <name>ans1</name>
+      <type>numerical</type>
+      <tans>ta_reluctance</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>1</insertstars>
+      <syntaxhint>1.23e5</syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>numerical</type>
+      <tans>ta_flux</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>1</insertstars>
+      <syntaxhint>4.56e-4</syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>numerical</type>
+      <tans>ta_emf</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>1</insertstars>
+      <syntaxhint>0.567</syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>checkbox</type>
+      <tans>ta_debug</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>essay</type>
+      <tans></tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options></options>
+    </input>
+    <prt>
+      <name>prt_reluctance</name>
+      <value>2.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans1</sans>
+        <tans>ta_reluctance</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_reluctance-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct total reluctance.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt_reluctance-1-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans1</sans>
+        <tans>float(R_core)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_reluctance-2-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>You calculated the core reluctance only. You must add the air gap reluctance: \(\mathcal{R}_{\text{gap}} = \frac{\ell_g}{\mu_0 A_c}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_reluctance-2-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\mathcal{R}_{\text{total}} = \frac{\ell_c}{\mu_r \mu_0 A_c} + \frac{\ell_g}{\mu_0 A_c}\).</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt_flux</name>
+      <value>2.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans2</sans>
+        <tans>ta_flux</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_flux-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct peak flux.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt_flux-1-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans2</sans>
+        <tans>float(Phi_no_gap)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.3000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_flux-2-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>This flux value ignores the air gap. You must use the total reluctance (core + gap) in \(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_flux-2-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}}\).</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt_emf</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans3</sans>
+        <tans>ta_emf</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_emf-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct peak induced EMF.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt_emf-1-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans3</sans>
+        <tans>float(emf_no_omega)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_emf-2-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>You forgot the \(\omega\) factor. The derivative of \(\sin(\omega t)\) is \(\omega \cos(\omega t)\), so \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt_emf-2-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans3</sans>
+        <tans>float(emf_wrong_N)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_emf-3-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>You used \(N_1\) instead of \(N_2\). The induced EMF in the secondary coil uses \(N_2\): \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_emf-3-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt_debug</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>Sets</answertest>
+        <sans>ans4</sans>
+        <tans>ta_debug</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_debug-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct! You identified all errors in the worked solution.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_debug-1-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Not all errors were correctly identified. Review the worked solution carefully.</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+</question>
+
+<!-- ============================================================ -->
+<!-- Q1 V3: Toroid with Cut (Air Gap) -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Midterm 2 - Q1V3: Magnetic Circuit + Faraday (Toroid with Cut (Air Gap))</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Midterm 2 &ndash; Q1V3: Magnetic Circuit with Faraday Induction (Toroid with Cut (Air Gap))</h3>
+<p><em>Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><strong>Total: 9 points | Penalty per wrong attempt: 10%</strong></p>
+<p><em>Inspired by Ulaby Ch.5 Example 5-6 and Nilsson Ch.6 Problems 6.1&ndash;6.5.</em></p>
+<hr />
+
+<h4>Scenario</h4>
+<p>A <strong>toroidal</strong> core made of ferromagnetic material has a narrow <strong>cut</strong> (air gap) of length \(\ell_g\). Coil 1 (\(N_1\) turns) is wound on one half of the toroid, Coil 2 (\(N_2\) turns) on the other half.</p>
+
+<p>[DIAGRAM: Toroid with Cut (Air Gap) &mdash; will be replaced with CircuiTikZ SVG after compilation]</p>
+<pre>          ╭──── Coil 1 (N₁) ────╮
+         ╱                        ╲
+        │    Toroidal core         │
+        │    (μ_r·μ₀)              │
+         ╲                        ╱
+          ╰── Coil 2 (N₂) ──╮╭──╯
+                            ││ ← Gap (ℓ_g)
+                            ╰╯</pre>
+
+<h4>Given Data</h4>
+<ul>
+  <li>Primary coil: \(N_1 = {@N1_val@}\) turns</li>
+  <li>Secondary coil: \(N_2 = {@N2_val@}\) turns</li>
+  <li>Core relative permeability: \(\mu_r = {@mur_val@}\)</li>
+  <li>Mean core path length: \(\ell_c = {@lc_val@}\;\text{m}\)</li>
+  <li>Air gap length: \(\ell_g = {@lg_val@}\;\text{m}\)</li>
+  <li>Core cross-sectional area: \(A_c = {@Ac_val@}\;\text{m}^2\)</li>
+  <li>Primary current: \(i_1(t) = I_0 \sin(\omega t)\) with \(I_0 = {@I0_val@}\;\text{A}\) and \(f = {@f_val@}\;\text{Hz}\)</li>
+  <li>Permeability of free space: \(\mu_0 = 4\pi \times 10^{-7}\;\text{H/m}\)</li>
+</ul>
+
+<hr />
+
+<h4>Part (a) &mdash; Total Reluctance (2 points)</h4>
+<p>Calculate the <strong>total reluctance</strong> \(\mathcal{R}_{\text{total}}\) of the magnetic circuit (core + air gap).</p>
+<p>\(\mathcal{R}_{\text{total}} = \) [[input:ans1]] \(\text{A-turns/Wb}\)</p>
+<p>[[validation:ans1]]</p>
+<p><em>Enter a number, e.g. <code>1.23e5</code> or <code>123000</code></em></p>
+
+<h4>Part (b) &mdash; Peak Magnetic Flux (2 points)</h4>
+<p>Given the sinusoidal primary current, calculate the <strong>peak magnetic flux</strong> \(\Phi_{\max}\) in the core.</p>
+<p>\(\Phi_{\max} = \) [[input:ans2]] \(\text{Wb}\)</p>
+<p>[[validation:ans2]]</p>
+<p><em>Enter a number, e.g. <code>4.56e-4</code> or <code>0.000456</code></em></p>
+
+<h4>Part (c) &mdash; Peak Induced EMF (1 point)</h4>
+<p>Using Faraday&rsquo;s law, calculate the <strong>peak induced EMF</strong> in the secondary coil (Coil 2).</p>
+<p>Recall: \(\text{emf}_2(t) = -N_2 \frac{d\Phi}{dt}\), so \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>
+<p>\(|\text{EMF}_{2,\text{peak}}| = \) [[input:ans3]] \(\text{V}\)</p>
+<p>[[validation:ans3]]</p>
+<p><em>Enter a number, e.g. <code>0.567</code></em></p>
+
+<h4>Part (d) &mdash; Error Identification (1 point)</h4>
+<p>A student attempted this problem and made <strong>two errors</strong>. Their work is shown below:</p>
+<blockquote>
+A student wrote:
+\(\mathcal{R}_{\text{total}} = \frac{\ell_c}{\mu_r \mu_0 A_c}\)
+(Error: did not include air gap reluctance.)
+\(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}}\)
+\(\text{EMF}_{2,\text{peak}} = N_1 \cdot \omega \cdot \Phi_{\max}\)
+(Error: used \(N_1\) instead of \(N_2\).)
+</blockquote>
+<p><strong>Select ALL statements that identify actual errors in the student&rsquo;s work:</strong></p>
+<p>[[input:ans4]]</p>
+<p>[[validation:ans4]]</p>
+
+<h4>Part (e) &mdash; Qualitative Analysis (3 points, manually graded)</h4>
+<p>Suppose the air gap length is <strong>doubled</strong> (from \(\ell_g\) to \(2\ell_g\)).</p>
+<p>Explain qualitatively what happens to:</p>
+<ol>
+  <li>The total reluctance \(\mathcal{R}_{\text{total}}\)</li>
+  <li>The peak flux \(\Phi_{\max}\)</li>
+  <li>The peak induced EMF \(|\text{EMF}_{2,\text{peak}}|\)</li>
+</ol>
+<p>Does the EMF increase or decrease? By approximately what factor? Justify your reasoning.</p>
+<p>[[input:ans5]]</p>
+<p>[[validation:ans5]]</p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h4>Solution for V3 (Toroid with Cut (Air Gap))</h4>
+<p><strong>Part (a):</strong></p>
+<p>\(\mathcal{R}_{\text{core}} = \frac{\ell_c}{\mu_r \mu_0 A_c} = {@float(R_core)@}\;\text{A-turns/Wb}\)</p>
+<p>\(\mathcal{R}_{\text{gap}} = \frac{\ell_g}{\mu_0 A_c} = {@float(R_gap)@}\;\text{A-turns/Wb}\)</p>
+<p>\(\mathcal{R}_{\text{total}} = {@R_total_num@}\;\text{A-turns/Wb}\)</p>
+
+<p><strong>Part (b):</strong></p>
+<p>\(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}} = {@Phi_max_num@}\;\text{Wb}\)</p>
+
+<p><strong>Part (c):</strong></p>
+<p>\(\omega = 2\pi f = {@float(omega_val)@}\;\text{rad/s}\)</p>
+<p>\(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max} = {@emf_peak_num@}\;\text{V}\)</p>
+
+<p><strong>Part (d):</strong> The errors in the worked solution are statements {@correct_errors@}.</p>
+
+<p><strong>Part (e):</strong> If \(\ell_g\) doubles:</p>
+<ul>
+  <li>\(\mathcal{R}_{\text{gap}}\) roughly doubles (since \(\mathcal{R}_{\text{gap}} \propto \ell_g\))</li>
+  <li>\(\mathcal{R}_{\text{total}}\) increases (but not by 2&times; because the core reluctance is unchanged)</li>
+  <li>\(\Phi_{\max}\) decreases (inversely proportional to \(\mathcal{R}_{\text{total}}\))</li>
+  <li>\(|\text{EMF}_{2,\text{peak}}|\) decreases by the same factor as \(\Phi_{\max}\)</li>
+</ul>
+]]></text>
+  </generalfeedback>
+  <defaultgrade>9</defaultgrade>
+  <penalty>0.1000000</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion>
+    <text>2024032401</text>
+  </stackversion>
+  <questionvariables>
+    <text><![CDATA[
+/* V3: Toroid with Cut (Air Gap) */
+/* Physical parameters */
+mu0: 4*%pi/10^7;
+N1_val: 500;
+N2_val: 250;
+mur_val: 3000;
+lc_val: 0.5;
+lg_val: 0.0015;
+Ac_val: 0.0003;
+I0_val: 1;
+f_val: 50;
+
+/* Derived quantities — exact arithmetic */
+omega_val: 2*%pi*f_val;
+R_core: lc_val/(mur_val*mu0*Ac_val);
+R_gap: lg_val/(mu0*Ac_val);
+R_total: R_core + R_gap;
+
+Phi_max: N1_val*I0_val/R_total;
+emf_peak: N2_val*omega_val*Phi_max;
+
+/* Error model values */
+Phi_no_gap: N1_val*I0_val/R_core;
+emf_no_omega: N2_val*Phi_max;
+emf_wrong_N: N1_val*omega_val*Phi_max;
+
+/* Numerical versions for display */
+R_total_num: float(R_total);
+Phi_max_num: float(Phi_max);
+emf_peak_num: float(emf_peak);
+
+/* Debug MCQ-MA options (checkbox) */
+debug_opts: random_permutation([[1, false, "The ω factor in the Faraday's law derivative was applied correctly"], [2, true, "The air gap reluctance was not included in R_total"], [3, true, "The student used N₁ instead of N₂ in the EMF calculation"], [4, false, "The cross-sectional area was doubled incorrectly"], [5, false, "The core reluctance formula is correct"]]);
+correct_errors: {2,3};
+
+/* Teacher answers */
+ta_reluctance: float(R_total);
+ta_flux: float(Phi_max);
+ta_emf: float(emf_peak);
+ta_debug: correct_errors;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html">
+    <text><![CDATA[
+[[feedback:prt_reluctance]]
+[[feedback:prt_flux]]
+[[feedback:prt_emf]]
+[[feedback:prt_debug]]
+]]></text>
+  </specificfeedback>
+  <questionnote>
+    <text>{@R_total_num@}, {@Phi_max_num@}, {@emf_peak_num@}, {@correct_errors@}</text>
+  </questionnote>
+  <questiondescription format="html">
+    <text></text>
+  </questiondescription>
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+  <multiplicativetries>0</multiplicativetries>
+    <input>
+      <name>ans1</name>
+      <type>numerical</type>
+      <tans>ta_reluctance</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>1</insertstars>
+      <syntaxhint>1.23e5</syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>numerical</type>
+      <tans>ta_flux</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>1</insertstars>
+      <syntaxhint>4.56e-4</syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>numerical</type>
+      <tans>ta_emf</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>1</insertstars>
+      <syntaxhint>0.567</syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>checkbox</type>
+      <tans>ta_debug</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>essay</type>
+      <tans></tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options></options>
+    </input>
+    <prt>
+      <name>prt_reluctance</name>
+      <value>2.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans1</sans>
+        <tans>ta_reluctance</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_reluctance-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct total reluctance.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt_reluctance-1-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans1</sans>
+        <tans>float(R_core)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_reluctance-2-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>You calculated the core reluctance only. You must add the air gap reluctance: \(\mathcal{R}_{\text{gap}} = \frac{\ell_g}{\mu_0 A_c}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_reluctance-2-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\mathcal{R}_{\text{total}} = \frac{\ell_c}{\mu_r \mu_0 A_c} + \frac{\ell_g}{\mu_0 A_c}\).</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt_flux</name>
+      <value>2.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans2</sans>
+        <tans>ta_flux</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_flux-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct peak flux.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt_flux-1-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans2</sans>
+        <tans>float(Phi_no_gap)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.3000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_flux-2-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>This flux value ignores the air gap. You must use the total reluctance (core + gap) in \(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_flux-2-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}}\).</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt_emf</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans3</sans>
+        <tans>ta_emf</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_emf-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct peak induced EMF.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt_emf-1-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans3</sans>
+        <tans>float(emf_no_omega)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_emf-2-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>You forgot the \(\omega\) factor. The derivative of \(\sin(\omega t)\) is \(\omega \cos(\omega t)\), so \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt_emf-2-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans3</sans>
+        <tans>float(emf_wrong_N)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_emf-3-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>You used \(N_1\) instead of \(N_2\). The induced EMF in the secondary coil uses \(N_2\): \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_emf-3-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt_debug</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>Sets</answertest>
+        <sans>ans4</sans>
+        <tans>ta_debug</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_debug-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct! You identified all errors in the worked solution.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_debug-1-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Not all errors were correctly identified. Review the worked solution carefully.</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+</question>
+
+<!-- ============================================================ -->
+<!-- Q1 V4: Rectangular Core with Two Series Air Gaps -->
+<!-- ============================================================ -->
+<question type="stack">
+  <name>
+    <text>Midterm 2 - Q1V4: Magnetic Circuit + Faraday (Rectangular Core with Two Series Air Gaps)</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Midterm 2 &ndash; Q1V4: Magnetic Circuit with Faraday Induction (Rectangular Core with Two Series Air Gaps)</h3>
+<p><em>Electromagnetism and Circuit Analysis &mdash; LUT University, Finland</em></p>
+<p><strong>Total: 9 points | Penalty per wrong attempt: 10%</strong></p>
+<p><em>Inspired by Ulaby Ch.5 Example 5-6 and Nilsson Ch.6 Problems 6.1&ndash;6.5.</em></p>
+<hr />
+
+<h4>Scenario</h4>
+<p>A <strong>rectangular</strong> ferromagnetic core has <strong>two air gaps</strong> of equal length \(\ell_{g}/2\) each (total gap length \(\ell_g\)). Coil 1 (\(N_1\) turns) is wound on the top section, Coil 2 (\(N_2\) turns) on the bottom section.</p>
+
+<p>[DIAGRAM: Rectangular Core with Two Series Air Gaps &mdash; will be replaced with CircuiTikZ SVG after compilation]</p>
+<pre>       ┌───── Coil 1 (N₁) ─────┐
+       │                         │
+  Gap 1 ┤                         ├ Gap 2
+  (ℓ_g/2)                       (ℓ_g/2)
+       │                         │
+       └───── Coil 2 (N₂) ─────┘
+         Rectangular core (μ_r·μ₀)
+         ℓ_c = total core path, A_c = cross-section</pre>
+
+<h4>Given Data</h4>
+<ul>
+  <li>Primary coil: \(N_1 = {@N1_val@}\) turns</li>
+  <li>Secondary coil: \(N_2 = {@N2_val@}\) turns</li>
+  <li>Core relative permeability: \(\mu_r = {@mur_val@}\)</li>
+  <li>Mean core path length: \(\ell_c = {@lc_val@}\;\text{m}\)</li>
+  <li>Air gap length: \(\ell_g = {@lg_val@}\;\text{m}\)</li>
+  <li>Core cross-sectional area: \(A_c = {@Ac_val@}\;\text{m}^2\)</li>
+  <li>Primary current: \(i_1(t) = I_0 \sin(\omega t)\) with \(I_0 = {@I0_val@}\;\text{A}\) and \(f = {@f_val@}\;\text{Hz}\)</li>
+  <li>Permeability of free space: \(\mu_0 = 4\pi \times 10^{-7}\;\text{H/m}\)</li>
+</ul>
+
+<hr />
+
+<h4>Part (a) &mdash; Total Reluctance (2 points)</h4>
+<p>Calculate the <strong>total reluctance</strong> \(\mathcal{R}_{\text{total}}\) of the magnetic circuit (core + air gap).</p>
+<p>\(\mathcal{R}_{\text{total}} = \) [[input:ans1]] \(\text{A-turns/Wb}\)</p>
+<p>[[validation:ans1]]</p>
+<p><em>Enter a number, e.g. <code>1.23e5</code> or <code>123000</code></em></p>
+
+<h4>Part (b) &mdash; Peak Magnetic Flux (2 points)</h4>
+<p>Given the sinusoidal primary current, calculate the <strong>peak magnetic flux</strong> \(\Phi_{\max}\) in the core.</p>
+<p>\(\Phi_{\max} = \) [[input:ans2]] \(\text{Wb}\)</p>
+<p>[[validation:ans2]]</p>
+<p><em>Enter a number, e.g. <code>4.56e-4</code> or <code>0.000456</code></em></p>
+
+<h4>Part (c) &mdash; Peak Induced EMF (1 point)</h4>
+<p>Using Faraday&rsquo;s law, calculate the <strong>peak induced EMF</strong> in the secondary coil (Coil 2).</p>
+<p>Recall: \(\text{emf}_2(t) = -N_2 \frac{d\Phi}{dt}\), so \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>
+<p>\(|\text{EMF}_{2,\text{peak}}| = \) [[input:ans3]] \(\text{V}\)</p>
+<p>[[validation:ans3]]</p>
+<p><em>Enter a number, e.g. <code>0.567</code></em></p>
+
+<h4>Part (d) &mdash; Error Identification (1 point)</h4>
+<p>A student attempted this problem and made <strong>two errors</strong>. Their work is shown below:</p>
+<blockquote>
+A student wrote:
+\(\mathcal{R}_{\text{total}} = \frac{\ell_c}{\mu_r \mu_0 A_c} + \frac{\ell_g}{\mu_0 A_c}\) (correct)
+\(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}}\) (correct)
+\(\text{EMF}_{2,\text{peak}} = -N_2 \cdot \Phi_{\max}\)
+(Error: forgot \(\omega\) from the derivative, and wrong sign.)
+</blockquote>
+<p><strong>Select ALL statements that identify actual errors in the student&rsquo;s work:</strong></p>
+<p>[[input:ans4]]</p>
+<p>[[validation:ans4]]</p>
+
+<h4>Part (e) &mdash; Qualitative Analysis (3 points, manually graded)</h4>
+<p>Suppose the air gap length is <strong>doubled</strong> (from \(\ell_g\) to \(2\ell_g\)).</p>
+<p>Explain qualitatively what happens to:</p>
+<ol>
+  <li>The total reluctance \(\mathcal{R}_{\text{total}}\)</li>
+  <li>The peak flux \(\Phi_{\max}\)</li>
+  <li>The peak induced EMF \(|\text{EMF}_{2,\text{peak}}|\)</li>
+</ol>
+<p>Does the EMF increase or decrease? By approximately what factor? Justify your reasoning.</p>
+<p>[[input:ans5]]</p>
+<p>[[validation:ans5]]</p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[
+<h4>Solution for V4 (Rectangular Core with Two Series Air Gaps)</h4>
+<p><strong>Part (a):</strong></p>
+<p>\(\mathcal{R}_{\text{core}} = \frac{\ell_c}{\mu_r \mu_0 A_c} = {@float(R_core)@}\;\text{A-turns/Wb}\)</p>
+<p>\(\mathcal{R}_{\text{gap}} = \frac{\ell_g}{\mu_0 A_c} = {@float(R_gap)@}\;\text{A-turns/Wb}\)</p>
+<p>\(\mathcal{R}_{\text{total}} = {@R_total_num@}\;\text{A-turns/Wb}\)</p>
+
+<p><strong>Part (b):</strong></p>
+<p>\(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}} = {@Phi_max_num@}\;\text{Wb}\)</p>
+
+<p><strong>Part (c):</strong></p>
+<p>\(\omega = 2\pi f = {@float(omega_val)@}\;\text{rad/s}\)</p>
+<p>\(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max} = {@emf_peak_num@}\;\text{V}\)</p>
+
+<p><strong>Part (d):</strong> The errors in the worked solution are statements {@correct_errors@}.</p>
+
+<p><strong>Part (e):</strong> If \(\ell_g\) doubles:</p>
+<ul>
+  <li>\(\mathcal{R}_{\text{gap}}\) roughly doubles (since \(\mathcal{R}_{\text{gap}} \propto \ell_g\))</li>
+  <li>\(\mathcal{R}_{\text{total}}\) increases (but not by 2&times; because the core reluctance is unchanged)</li>
+  <li>\(\Phi_{\max}\) decreases (inversely proportional to \(\mathcal{R}_{\text{total}}\))</li>
+  <li>\(|\text{EMF}_{2,\text{peak}}|\) decreases by the same factor as \(\Phi_{\max}\)</li>
+</ul>
+]]></text>
+  </generalfeedback>
+  <defaultgrade>9</defaultgrade>
+  <penalty>0.1000000</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion>
+    <text>2024032401</text>
+  </stackversion>
+  <questionvariables>
+    <text><![CDATA[
+/* V4: Rectangular Core with Two Series Air Gaps */
+/* Physical parameters */
+mu0: 4*%pi/10^7;
+N1_val: 400;
+N2_val: 200;
+mur_val: 2500;
+lc_val: 0.6;
+lg_val: 0.002;
+Ac_val: 0.0005;
+I0_val: 1.8;
+f_val: 60;
+
+/* Derived quantities — exact arithmetic */
+omega_val: 2*%pi*f_val;
+R_core: lc_val/(mur_val*mu0*Ac_val);
+R_gap: lg_val/(mu0*Ac_val);
+R_total: R_core + R_gap;
+
+Phi_max: N1_val*I0_val/R_total;
+emf_peak: N2_val*omega_val*Phi_max;
+
+/* Error model values */
+Phi_no_gap: N1_val*I0_val/R_core;
+emf_no_omega: N2_val*Phi_max;
+emf_wrong_N: N1_val*omega_val*Phi_max;
+
+/* Numerical versions for display */
+R_total_num: float(R_total);
+Phi_max_num: float(Phi_max);
+emf_peak_num: float(emf_peak);
+
+/* Debug MCQ-MA options (checkbox) */
+debug_opts: random_permutation([[1, false, "The total reluctance correctly includes core and both gaps"], [2, false, "N₂ was correctly used in Faraday's law"], [3, true, "The derivative of sin(ωt) is missing the factor ω"], [4, false, "The core permeability was correctly included"], [5, true, "The sign of the EMF contradicts Lenz's law"]]);
+correct_errors: {3,5};
+
+/* Teacher answers */
+ta_reluctance: float(R_total);
+ta_flux: float(Phi_max);
+ta_emf: float(emf_peak);
+ta_debug: correct_errors;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html">
+    <text><![CDATA[
+[[feedback:prt_reluctance]]
+[[feedback:prt_flux]]
+[[feedback:prt_emf]]
+[[feedback:prt_debug]]
+]]></text>
+  </specificfeedback>
+  <questionnote>
+    <text>{@R_total_num@}, {@Phi_max_num@}, {@emf_peak_num@}, {@correct_errors@}</text>
+  </questionnote>
+  <questiondescription format="html">
+    <text></text>
+  </questiondescription>
+  <prtcorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done!]]></text>
+  </prtcorrect>
+  <prtpartiallycorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+  </prtpartiallycorrect>
+  <prtincorrect format="html">
+    <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+  </prtincorrect>
+  <multiplicativetries>0</multiplicativetries>
+    <input>
+      <name>ans1</name>
+      <type>numerical</type>
+      <tans>ta_reluctance</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>1</insertstars>
+      <syntaxhint>1.23e5</syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>numerical</type>
+      <tans>ta_flux</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>1</insertstars>
+      <syntaxhint>4.56e-4</syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>numerical</type>
+      <tans>ta_emf</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>1</insertstars>
+      <syntaxhint>0.567</syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>checkbox</type>
+      <tans>ta_debug</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>essay</type>
+      <tans></tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options></options>
+    </input>
+    <prt>
+      <name>prt_reluctance</name>
+      <value>2.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans1</sans>
+        <tans>ta_reluctance</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_reluctance-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct total reluctance.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt_reluctance-1-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans1</sans>
+        <tans>float(R_core)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_reluctance-2-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>You calculated the core reluctance only. You must add the air gap reluctance: \(\mathcal{R}_{\text{gap}} = \frac{\ell_g}{\mu_0 A_c}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_reluctance-2-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\mathcal{R}_{\text{total}} = \frac{\ell_c}{\mu_r \mu_0 A_c} + \frac{\ell_g}{\mu_0 A_c}\).</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt_flux</name>
+      <value>2.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans2</sans>
+        <tans>ta_flux</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_flux-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct peak flux.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt_flux-1-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans2</sans>
+        <tans>float(Phi_no_gap)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.3000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_flux-2-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>This flux value ignores the air gap. You must use the total reluctance (core + gap) in \(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_flux-2-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(\Phi_{\max} = \frac{N_1 I_0}{\mathcal{R}_{\text{total}}}\).</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt_emf</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans3</sans>
+        <tans>ta_emf</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_emf-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct peak induced EMF.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt_emf-1-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans3</sans>
+        <tans>float(emf_no_omega)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_emf-2-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>You forgot the \(\omega\) factor. The derivative of \(\sin(\omega t)\) is \(\omega \cos(\omega t)\), so \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt_emf-2-F</falseanswernote>
+        <falsefeedback format="html"><text></text></falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <answertest>NumRelative</answertest>
+        <sans>ans3</sans>
+        <tans>float(emf_wrong_N)</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_emf-3-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>You used \(N_1\) instead of \(N_2\). The induced EMF in the secondary coil uses \(N_2\): \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_emf-3-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Incorrect. \(|\text{EMF}_{2,\text{peak}}| = N_2 \cdot \omega \cdot \Phi_{\max}\).</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt_debug</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables><text></text></feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>Sets</answertest>
+        <sans>ans4</sans>
+        <tans>ta_debug</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt_debug-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[<p>Correct! You identified all errors in the worked solution.</p>]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt_debug-1-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[<p>Not all errors were correctly identified. Review the worked solution carefully.</p>]]></text></falsefeedback>
+      </node>
+    </prt>
+</question>
+
+<!-- ============================================================ -->
+<!-- Companion Essay: Handwritten Upload for Q1 -->
+<!-- ============================================================ -->
+<question type="essay">
+  <name>
+    <text>Midterm 2 - Q1: Upload Handwritten Work (Magnetic Circuit + Faraday)</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[
+<h3>Upload Your Handwritten Work for Q1</h3>
+
+<p>Upload clear photos or PDF scans of your <strong>handwritten work</strong> for Question 1 (Magnetic Circuit with Faraday Induction). This is for verification and grading support.</p>
+
+<hr />
+
+<h4>Your uploads must include:</h4>
+<ul>
+  <li><strong>Part (a) &mdash; Reluctance:</strong>
+    <ul>
+      <li>The equivalent reluctance circuit you drew from the physical diagram</li>
+      <li>Core reluctance and air gap reluctance calculations with units</li>
+      <li>Total reluctance clearly stated</li>
+    </ul>
+  </li>
+  <li><strong>Part (b) &mdash; Flux:</strong>
+    <ul>
+      <li>Application of Ampere&rsquo;s law / reluctance model</li>
+      <li>Peak flux calculation showing N&middot;I / R_total</li>
+    </ul>
+  </li>
+  <li><strong>Part (c) &mdash; Induced EMF:</strong>
+    <ul>
+      <li>Faraday&rsquo;s law setup showing the time derivative</li>
+      <li>Differentiation step: d(sin &omega;t)/dt = &omega; cos(&omega;t)</li>
+      <li>Final EMF calculation</li>
+    </ul>
+  </li>
+  <li><strong>Part (e) &mdash; Qualitative analysis:</strong>
+    <ul>
+      <li>Reasoning about how doubling the gap affects each quantity</li>
+      <li>Proportionality argument</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h4>Upload Instructions:</h4>
+<ol>
+  <li>Write your <strong>name and student ID</strong> on every page.</li>
+  <li>Use a <strong>dark pen</strong> (blue or black) on white paper.</li>
+  <li>Ensure photos are <strong>legible</strong> (good lighting, in focus).</li>
+  <li>You may upload up to <strong>2 files</strong>. Accepted: <strong>PDF, JPG, JPEG, PNG</strong>.</li>
+</ol>
+
+<p><em>Note: This upload is worth 0 points. Your handwritten work supports the grading of the main question. Failure to upload may affect verification of your answers.</em></p>
+
+<p><strong>Teacher notice:</strong> Ensure &ldquo;Allow attachments&rdquo; is set to 2 or more in Moodle quiz settings &rarr; Files and uploads.</p>
+]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Thank you for uploading your handwritten work for Q1.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>0</defaultgrade>
+  <penalty>0</penalty>
+  <hidden>0</hidden>
+  <responseformat>noinline</responseformat>
+  <responserequired>0</responserequired>
+  <responsefieldlines>5</responsefieldlines>
+  <attachments>2</attachments>
+  <attachmentsrequired>1</attachmentsrequired>
+  <filetypeslist>.pdf,.jpg,.jpeg,.png</filetypeslist>
+  <graderinfo format="html">
+    <text><![CDATA[
+<h4>Instructor Notes &mdash; Q1 Handwritten Work Review</h4>
+<ul>
+  <li>Check that the student drew a reluctance circuit from the physical diagram</li>
+  <li>Verify correct formulas for R_core and R_gap</li>
+  <li>Check Faraday&rsquo;s law differentiation step</li>
+  <li>For Part (e): look for proportionality reasoning, not just &ldquo;it decreases&rdquo;</li>
+  <li><strong>Red flags:</strong> Final answers with no supporting work, inconsistent handwriting</li>
+</ul>
+]]></text>
+  </graderinfo>
+  <responsetemplate format="html">
+    <text></text>
+  </responsetemplate>
+</question>
+
+</quiz>

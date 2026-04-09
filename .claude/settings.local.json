@@ -2,7 +2,15 @@
   "permissions": {
     "allow": [
       "Bash(/tmp/check_files.txt:*)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "WebSearch",
+      "WebFetch(domain:www.frontiersin.org)",
+      "WebFetch(domain:arxiv.org)",
+      "WebFetch(domain:docs.moodle.org)",
+      "mcp__claude_ai_Consensus__search",
+      "mcp__claude_ai_academic-research-mcp__ieee_search",
+      "mcp__claude_ai_academic-research-mcp__eric_search",
+      "mcp__claude_ai_academic-research-mcp__asee_peer_search"
     ]
   }
 }
