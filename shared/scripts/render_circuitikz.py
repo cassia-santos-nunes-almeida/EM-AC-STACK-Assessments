@@ -10,22 +10,39 @@ Single-file mode:
 
 Batch mode (--all):
     Compiles every .tex file in the given directory to .svg.
+
+Supports pdf2svg (preferred) or dvisvgm (fallback) for PDF-to-SVG conversion.
 """
 import argparse
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
 
 
+def _find_svg_converter():
+    """Return ('pdf2svg', ...) or ('dvisvgm', ...) depending on availability."""
+    if shutil.which("pdf2svg"):
+        return "pdf2svg"
+    if shutil.which("dvisvgm"):
+        return "dvisvgm"
+    return None
+
+
 def compile_tex_to_svg(tex_path: Path, svg_path: Path) -> bool:
-    """Compile a .tex file to .svg via pdflatex + pdf2svg.
+    """Compile a .tex file to .svg via pdflatex + pdf2svg/dvisvgm.
 
     Returns True on success, False on failure.
     """
     tex_path = tex_path.resolve()
     svg_path = svg_path.resolve()
+
+    converter = _find_svg_converter()
+    if converter is None:
+        print("ERROR: Neither pdf2svg nor dvisvgm found on PATH.", file=sys.stderr)
+        return False
 
     with tempfile.TemporaryDirectory() as tmpdir:
         # pdflatex → PDF
@@ -45,17 +62,24 @@ def compile_tex_to_svg(tex_path: Path, svg_path: Path) -> bool:
                 print(f"  {line}", file=sys.stderr)
             return False
 
-        # pdf2svg → SVG
-        result = subprocess.run(
-            ["pdf2svg", str(pdf_path), str(svg_path)],
-            capture_output=True, text=True, timeout=30,
-        )
+        # PDF → SVG
+        if converter == "pdf2svg":
+            result = subprocess.run(
+                ["pdf2svg", str(pdf_path), str(svg_path)],
+                capture_output=True, text=True, timeout=30,
+            )
+        else:  # dvisvgm
+            result = subprocess.run(
+                ["dvisvgm", "--pdf", str(pdf_path), "-o", str(svg_path), "--no-fonts"],
+                capture_output=True, text=True, timeout=30,
+            )
+
         if result.returncode != 0:
-            print(f"ERROR converting {pdf_name} to SVG:", file=sys.stderr)
+            print(f"ERROR converting {pdf_name} to SVG ({converter}):", file=sys.stderr)
             print(f"  {result.stderr}", file=sys.stderr)
             return False
 
-    print(f"  {tex_path.name} → {svg_path.name}")
+    print(f"  {tex_path.name} -> {svg_path.name}  [{converter}]")
     return True
 
 

@@ -1,0 +1,39 @@
+% Q2V3: Series RLC Step Response, Critically Damped — Exam diagram
+% Vs connected at t=0 via closing switch, series R-L-C, measure v_C(t)
+\documentclass[border=10pt]{standalone}
+\usepackage[american voltages, american currents]{circuitikz}
+\usepackage{amsmath}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+
+% === Voltage source (left, vertical) ===
+\draw (0,5) to[V, v=$V_s$] (0,0);
+
+% === Closing switch on top wire ===
+\draw (0,5) to[closing switch] (3,5);
+
+% Switch labels (separate nodes, spaced vertically)
+\node[above, font=\sffamily\itshape\small] at (1.5,5.6) {SW1};
+\node[above, font=\sffamily\footnotesize] at (1.5,5.2) {$t{=}0$ (closes)};
+
+% === Series R-L from switch to right side ===
+\draw (3,5) to[R, l=$R$, i=$i(t)$] (6,5)
+            -- (6,5) to[L, l=$L$] (6,2.5)
+            to[C, l=$C$, v^=$v_C(t)$] (6,0);
+
+% === Bottom return wire ===
+\draw (6,0) -- (0,0);
+
+% === Junction dots ===
+\fill (0,0) circle (2pt);
+\fill (0,5) circle (2pt);
+\fill (6,5) circle (2pt);
+
+% === Ground reference (optional clarity) ===
+\node[ground] at (3,0) {};
+\draw (0,0) -- (3,0);
+
+\end{circuitikz}
+\end{document}

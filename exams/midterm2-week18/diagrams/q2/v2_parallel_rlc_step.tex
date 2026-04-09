@@ -1,0 +1,42 @@
+% Q2V2: Parallel RLC Step Response, Overdamped — Exam diagram
+% Current source Is switches on at t=0, parallel R||L||C
+\documentclass[border=10pt]{standalone}
+\usepackage[american voltages, american currents]{circuitikz}
+\usepackage{amsmath}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+
+% === Current source with closing switch ===
+\draw (0,0) to[I, l=$I_s$, i=$i_s$] (0,3.5);
+\draw (0,3.5) to[closing switch] (0,5);
+
+% Switch labels (separate nodes to avoid overlap)
+\node[left, font=\sffamily\itshape\small] at (-0.5,4.25) {SW1};
+\node[left, font=\sffamily\footnotesize] at (-0.5,4.7) {$t{=}0$};
+\node[left, font=\sffamily\footnotesize] at (-0.5,3.8) {(closes)};
+
+% === Top wire ===
+\draw (0,5) -- (8,5);
+% === Bottom wire ===
+\draw (0,0) -- (8,0);
+
+% === Parallel branches ===
+\draw (2.5,5) to[R, l=$R$, i>^=$i_R$] (2.5,0);
+\draw (5,5) to[L, l=$L$, i>^=$i_L$] (5,0);
+\draw (8,5) to[C, l=$C$, i>^=$i_C$] (8,0);
+
+% === Voltage across combination (offset further right for clearance from C label) ===
+\draw (10,5) to[open, v^=$v(t)$] (10,0);
+\draw (8,5) -- (10,5);
+\draw (8,0) -- (10,0);
+
+% === Junction dots ===
+\fill (0,0) circle (2pt); \fill (0,5) circle (2pt);
+\fill (2.5,0) circle (2pt); \fill (2.5,5) circle (2pt);
+\fill (5,0) circle (2pt); \fill (5,5) circle (2pt);
+\fill (8,0) circle (2pt); \fill (8,5) circle (2pt);
+
+\end{circuitikz}
+\end{document}

@@ -1,0 +1,45 @@
+% Q2V4: Parallel RLC Natural Response, Underdamped — Exam diagram
+% Pre-charged capacitor V0, switch closes at t=0 connecting R||L
+\documentclass[border=10pt]{standalone}
+\usepackage[american voltages, american currents]{circuitikz}
+\usepackage{amsmath}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+
+% === Pre-charged capacitor (left branch) ===
+\draw (0,0) to[C, l=$C$, v=$V_0$] (0,4);
+
+% === Closing switch from capacitor top to parallel branches ===
+\draw (0,4) to[closing switch] (3,4);
+
+% Switch labels (separate nodes, spaced vertically)
+\node[above, font=\sffamily\itshape\small] at (1.5,4.6) {SW1};
+\node[above, font=\sffamily\footnotesize] at (1.5,4.2) {$t{=}0$ (closes)};
+
+% === Top wire ===
+\draw (3,4) -- (6,4);
+
+% === Bottom wire ===
+\draw (0,0) -- (6,0);
+
+% === Parallel R and L branches ===
+\draw (3,4) to[R, l=$R$, i>^=$i_R$] (3,0);
+\draw (6,4) to[L, l=$L$, i>^=$i_L$] (6,0);
+
+% === Voltage across combination ===
+\draw (7,4) to[open, v^=$v(t)$] (7,0);
+\draw (6,4) -- (7,4);
+\draw (6,0) -- (7,0);
+
+% === Junction dots ===
+\fill (0,0) circle (2pt); \fill (0,4) circle (2pt);
+\fill (3,0) circle (2pt); \fill (3,4) circle (2pt);
+\fill (6,0) circle (2pt); \fill (6,4) circle (2pt);
+
+% === Initial condition label (below capacitor, clear of C label) ===
+\node[left, font=\sffamily\small, text=blue!60!black] at (-0.3,0.8) {$v(0^-)=V_0$};
+
+\end{circuitikz}
+\end{document}

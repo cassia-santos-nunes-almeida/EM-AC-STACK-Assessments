@@ -1,0 +1,60 @@
+% Q2V1: Series RLC Natural Response, Underdamped — Exam diagram
+% SPDT switch: position a (t<0) connects Vs, position b (t>=0) bypasses source
+% After switch: R-L-C closed loop, current i(t) flows
+\documentclass[border=10pt]{standalone}
+\usepackage[american voltages, american currents]{circuitikz}
+\usepackage{amsmath}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{circuitikz}[line width=0.8pt, every node/.style={font=\sffamily}]
+
+% === Voltage source (left, vertical) ===
+\draw (0,5) to[V, v=$V_s$] (0,0);
+
+% === Wire from Vs+ to SPDT position a ===
+\draw (0,5) -- (1.5,5);
+
+% === SPDT Switch SW1 ===
+% Position a: (1.5, 5)  — connects to Vs+ (t < 0)
+% Position b: (1.5, 2.5) — bypass (t >= 0, closes the R-L-C loop)
+% Common:     (3.5, 4.3) — goes to R-L-C chain
+
+% Terminal dots
+\fill (1.5,5) circle (2pt);
+\fill (1.5,2.5) circle (2pt);
+\fill (3.5,4.3) circle (2pt);
+
+% Switch arm: solid from common toward a (t<0 state)
+\draw[thick] (3.5,4.3) -- (1.65,4.95);
+
+% Dashed from common toward b (t>=0 path)
+\draw[dashed, gray, thick] (3.5,4.3) -- (1.65,2.6);
+
+% Position labels
+\node[above, font=\sffamily\small] at (1.5,5.1) {\textit{a}};
+\node[left, font=\sffamily\small] at (1.35,2.5) {\textit{b}};
+\node[above right, font=\sffamily\itshape\small] at (3.5,4.35) {SW1};
+\node[font=\sffamily\footnotesize] at (2.9,5.15) {$t = 0$};
+
+% Wire from position b to bottom rail
+\draw (1.5,2.5) -- (1.5,0);
+\fill (1.5,0) circle (2pt);
+
+% Wire from common to top rail, then to R
+\draw (3.5,4.3) -- (3.5,5) -- (7,5);
+
+% === Series R-L-C on right side (vertical) ===
+\draw (7,5) to[R, l_=$R$] (7,3.3)
+            to[L, l_=$L$] (7,1.7)
+            to[C, l_=$C$, v^=$v_C$] (7,0);
+
+% === Bottom return wire ===
+\draw (7,0) -- (0,0);
+
+% === Current arrow ===
+\draw[->, >=stealth, thick] (4.0,5.3) -- (6.3,5.3)
+    node[midway, above]{$i(t)$};
+
+\end{circuitikz}
+\end{document}

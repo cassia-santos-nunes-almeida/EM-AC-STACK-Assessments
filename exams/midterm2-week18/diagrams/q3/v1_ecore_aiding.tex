@@ -1,0 +1,86 @@
+% Q3V1: E-core, Aiding Dots — Physical winding diagram
+% Both coils wound SAME SENSE (clockwise from top)
+% Shows winding cross-sections (dot/cross), terminal labels, current entry
+% Does NOT show dot placements — that is Part (a) answer (P-STACK-31)
+\documentclass[border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{decorations.pathreplacing}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily},
+    >=stealth,
+]
+
+% === E-core (no air gap) ===
+\def\coreW{8}
+\def\coreH{6}
+\def\barH{0.7}
+\def\limbW{0.8}
+
+% Bottom yoke
+\fill[gray!40, draw=black, line width=0.8pt]
+    (0,0) rectangle (\coreW,\barH);
+% Left limb
+\fill[gray!40, draw=black, line width=0.8pt]
+    (0,\barH) rectangle (\limbW,{\coreH-\barH});
+% Center limb (full height, no gap)
+\fill[gray!40, draw=black, line width=0.8pt]
+    ({0.5*\coreW-0.5*\limbW},\barH) rectangle ({0.5*\coreW+0.5*\limbW},{\coreH-\barH});
+% Right limb
+\fill[gray!40, draw=black, line width=0.8pt]
+    ({\coreW-\limbW},\barH) rectangle (\coreW,{\coreH-\barH});
+% Top yoke
+\fill[gray!40, draw=black, line width=0.8pt]
+    (0,{\coreH-\barH}) rectangle (\coreW,\coreH);
+
+% === Coil 1 (left limb) — clockwise from top ===
+% Clockwise from top → dot on left, cross on right in front view
+\foreach \ycoil in {1.2, 1.7, 2.2, 2.7, 3.2, 3.7, 4.2, 4.7} {
+    % Left side: dot (current out of page)
+    \fill ({-0.3},\ycoil) circle (1.5pt);
+    % Right side: cross (current into page)
+    \draw[line width=0.7pt] ({\limbW+0.22},{\ycoil-0.07}) -- ({\limbW+0.40},{\ycoil+0.07});
+    \draw[line width=0.7pt] ({\limbW+0.22},{\ycoil+0.07}) -- ({\limbW+0.40},{\ycoil-0.07});
+}
+
+% Coil 1 terminal labels (spaced to avoid overlap)
+\node[left, font=\sffamily\small, text=blue!60!black] at (-0.6, 4.7) {$a_1$};
+\node[left, font=\sffamily\small, text=blue!60!black] at (-0.6, 1.0) {$b_1$};
+\draw[->, thick, blue!60!black] (-1.2, 5.3) -- (-1.2, 4.7);
+\node[left, font=\sffamily\small, text=blue!60!black] at (-1.4, 5.0) {$i_1$};
+
+% Coil 1 label
+\node[font=\sffamily\bfseries] at (-0.3, 3.0) {Coil 1};
+
+% === Coil 2 (right limb) — SAME SENSE as Coil 1 ===
+% Same sense (clockwise from top) → dot on left, cross on right
+\foreach \ycoil in {1.2, 1.7, 2.2, 2.7, 3.2, 3.7, 4.2, 4.7} {
+    % Left side: dot (current out of page)
+    \pgfmathsetmacro{\leftX}{\coreW-\limbW-0.40}
+    \fill ({\leftX+0.09},\ycoil) circle (1.5pt);
+    % Right side: cross (current into page)
+    \draw[line width=0.7pt] ({\coreW+0.20},{\ycoil-0.07}) -- ({\coreW+0.38},{\ycoil+0.07});
+    \draw[line width=0.7pt] ({\coreW+0.20},{\ycoil+0.07}) -- ({\coreW+0.38},{\ycoil-0.07});
+}
+
+% Coil 2 terminal labels (spaced to avoid overlap)
+\node[right, font=\sffamily\small, text=red!60!black] at ({\coreW+0.6}, 4.7) {$a_2$};
+\node[right, font=\sffamily\small, text=red!60!black] at ({\coreW+0.6}, 1.0) {$b_2$};
+\draw[->, thick, red!60!black] ({\coreW+1.2}, 5.3) -- ({\coreW+1.2}, 4.7);
+\node[right, font=\sffamily\small, text=red!60!black] at ({\coreW+1.4}, 5.0) {$i_2$};
+
+% Coil 2 label
+\node[font=\sffamily\bfseries] at ({\coreW+0.3}, 3.0) {Coil 2};
+
+% === Winding sense annotation ===
+\draw[->, thick, gray!60!black] (0.4, 5.6) arc[start angle=180, end angle=0, radius=0.4];
+\node[above, font=\sffamily\footnotesize, gray!60!black] at (0.4, 6.1) {CW};
+\draw[->, thick, gray!60!black] ({\coreW-0.4}, 5.6) arc[start angle=180, end angle=0, radius=0.4];
+\node[above, font=\sffamily\footnotesize, gray!60!black] at ({\coreW-0.4}, 6.1) {CW};
+\node[font=\sffamily\footnotesize, gray!60!black] at ({0.5*\coreW}, 6.4) {(viewed from top)};
+
+\end{tikzpicture}
+\end{document}

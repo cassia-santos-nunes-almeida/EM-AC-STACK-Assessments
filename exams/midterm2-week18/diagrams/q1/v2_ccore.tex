@@ -1,0 +1,107 @@
+% Q1V2: C-core (U-core) with Single Air Gap — Exam diagram (hybrid style C)
+% Shows: core geometry, coil positions, gap location, dimensions
+% Strips: flux arrows, mu_r label, reluctance circuit (P-STACK-31)
+\documentclass[border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{patterns, decorations.pathreplacing}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily},
+    >=stealth,
+    dim/.style={<->, line width=0.6pt, gray!70!black},
+    dimlabel/.style={font=\sffamily\small, text=gray!70!black},
+]
+
+% === C-core: U-shape bottom + top bar with gap ===
+\def\coreW{6}       % total width
+\def\coreH{5.5}     % total height
+\def\barH{0.7}      % yoke height
+\def\limbW{0.8}     % limb width
+\def\gapH{0.5}      % air gap height
+
+% Bottom yoke (base of U)
+\fill[gray!40, draw=black, line width=0.8pt]
+    (0,0) rectangle (\coreW,\barH);
+
+% Left limb
+\fill[gray!40, draw=black, line width=0.8pt]
+    (0,\barH) rectangle (\limbW,\coreH);
+
+% Right limb
+\fill[gray!40, draw=black, line width=0.8pt]
+    ({\coreW-\limbW},\barH) rectangle (\coreW,\coreH);
+
+% Top bar (with gap in center)
+% Left portion of top bar
+\fill[gray!40, draw=black, line width=0.8pt]
+    (0,\coreH) rectangle ({0.5*\coreW-0.5*\gapH},{\coreH+\barH});
+% Right portion of top bar
+\fill[gray!40, draw=black, line width=0.8pt]
+    ({0.5*\coreW+0.5*\gapH},\coreH) rectangle (\coreW,{\coreH+\barH});
+
+% === Air gap at top center ===
+\fill[white]
+    ({0.5*\coreW-0.5*\gapH},\coreH) rectangle ({0.5*\coreW+0.5*\gapH},{\coreH+\barH});
+\draw[line width=0.8pt]
+    ({0.5*\coreW-0.5*\gapH},\coreH) rectangle ({0.5*\coreW+0.5*\gapH},{\coreH+\barH});
+% Hatching inside gap
+\foreach \xx in {0.12, 0.25, 0.38} {
+    \draw[thin, gray!50]
+        ({0.5*\coreW-0.5*\gapH+\xx},{\coreH+0.1})
+        -- ({0.5*\coreW-0.5*\gapH+\xx},{\coreH+\barH-0.1});
+}
+
+% === Coil 1 (left limb) ===
+\foreach \ycoil in {1.2, 1.7, 2.2, 2.7, 3.2, 3.7, 4.2, 4.7} {
+    % Outer winding mark (dot)
+    \fill ({-0.3},\ycoil) circle (1.2pt);
+    % Inner winding mark (cross)
+    \draw[line width=0.6pt] ({\limbW+0.22},{\ycoil-0.06}) -- ({\limbW+0.38},{\ycoil+0.06});
+    \draw[line width=0.6pt] ({\limbW+0.22},{\ycoil+0.06}) -- ({\limbW+0.38},{\ycoil-0.06});
+}
+\node[left, font=\sffamily] at (-0.6, 1.8) {$N_1$};
+
+% === Coil 2 (right limb) ===
+\foreach \ycoil in {1.2, 1.7, 2.2, 2.7, 3.2, 3.7, 4.2, 4.7} {
+    % Inner winding mark (cross)
+    \pgfmathsetmacro{\innerX}{\coreW-\limbW-0.3}
+    \draw[line width=0.6pt] ({\innerX-0.08},{\ycoil-0.06}) -- ({\innerX+0.08},{\ycoil+0.06});
+    \draw[line width=0.6pt] ({\innerX-0.08},{\ycoil+0.06}) -- ({\innerX+0.08},{\ycoil-0.06});
+    % Outer winding mark (dot)
+    \fill ({\coreW+0.3},\ycoil) circle (1.2pt);
+}
+\node[right, font=\sffamily] at ({\coreW+0.6}, 3.0) {$N_2$};
+
+% === Dimension: air gap length ===
+\draw[dim] ({0.5*\coreW-0.5*\gapH},{\coreH+\barH+0.3})
+        -- ({0.5*\coreW+0.5*\gapH},{\coreH+\barH+0.3});
+\node[dimlabel, above] at ({0.5*\coreW},{\coreH+\barH+0.35}) {$\ell_g$};
+
+% === Dimension: cross-sectional area (pointing to right limb, clear of mean path) ===
+\draw[->, line width=0.6pt, gray!70!black]
+    ({\coreW+0.8},{0.5*(\barH+\coreH)+1.5}) -- ({\coreW+0.1},{0.5*(\barH+\coreH)+1.5});
+\node[dimlabel, right] at ({\coreW+0.8},{0.5*(\barH+\coreH)+1.5}) {$A_c$};
+
+% === Mean magnetic path (dashed centerline through core) ===
+% Path: left limb center → top yoke center (with gap) → right limb center → bottom yoke center
+\draw[dashed, line width=1.0pt, orange!70!black]
+    ({0.5*\limbW},{0.5*\barH})                           % bottom-left corner
+    -- ({0.5*\limbW},{\coreH+0.5*\barH})                % up left limb + into top yoke
+    -- ({0.5*\coreW-0.5*\gapH},{\coreH+0.5*\barH})     % right to gap edge
+    ({0.5*\coreW+0.5*\gapH},{\coreH+0.5*\barH})        % resume after gap
+    -- ({\coreW-0.5*\limbW},{\coreH+0.5*\barH})         % continue to right limb
+    -- ({\coreW-0.5*\limbW},{0.5*\barH})                 % down right limb
+    -- ({0.5*\limbW},{0.5*\barH});                       % left along bottom yoke
+\node[dimlabel, left, text=orange!70!black] at (-0.5, {0.5*(\barH+\coreH)}) {$\ell_c$};
+% Arrow indicator on the path
+\draw[->, orange!70!black, line width=1.0pt] ({0.5*\limbW},{3.5}) -- ({0.5*\limbW},{4.0});
+
+% === Current arrow on primary ===
+\draw[->, thick, blue!60!black] (-0.7, 4.8) -- (-0.7, 4.2);
+\node[left, font=\sffamily\small, text=blue!60!black] at (-0.9, 4.5) {$I(t)$};
+
+\end{tikzpicture}
+\end{document}
