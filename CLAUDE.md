@@ -106,6 +106,14 @@ At the end of every session, before returning control:
 
 To trigger: **wrap up**, **close session**, **let's call it a day**, **close the work**, **finish this session**, **I'm done for now**, **that's all for today**, or similar.
 
+### Session Boundary Protocol (summary)
+
+At **session end**, run both protocols in order:
+1. **context_evaluator** -- writes `SESSION.md` + `PATTERNS.md` (local project state)
+2. **handover** -- saves structured handover to Notion (cross-chat continuity)
+
+At **session start**, context_evaluator loads local files automatically. Use handover **FETCH** only when resuming in a brand-new chat that lacks prior context.
+
 ### Correction Capture (during session)
 When the user corrects an error or overrides a default behavior, assess: is this a one-time adjustment or a repeatable rule? If unclear, ask: "Should this become a permanent rule in PATTERNS.md?" If yes, draft the entry immediately.
 
@@ -129,17 +137,25 @@ These apply to all skills. Skills do not repeat them.
 * Session state lives in SESSION.md — write it at close, read it at open
 * Never duplicate content between CLAUDE.md and a SKILL.md — reference by name
 
-## 7. Skill Index
+## 7. Skills
 
-| Skill | Trigger | File |
-|-------|---------|------|
-| context-evaluator | STACK, Moodle, session management, context loading | .claude/skill/context_evaluator/SKILL.md |
-| circuitikz-circuit-diagrams | circuit diagram, draw circuit, CircuiTikZ, LaTeX circuit | .claude/skill/circuitikz-latex-circuit-diagrams/SKILL.md |
-| stack-xml-generator | STACK XML authoring, Maxima CAS, PRT validation | .claude/skill/stack-xml-generator/SKILL.md |
-| stack-question-validator | Post-generation quality check, PATTERNS compliance | .claude/skill/stack-question-validator/SKILL.md |
-| STACK_XML_Generator (browser) | Browser-based STACK XML generator tool | URL: stack-xml-generator.vercel.app · Repo: STACK_XML_Generator/ |
+| Skill | Purpose | Location |
+|-------|---------|----------|
+| context-evaluator | Session lifecycle, context loading, correction capture | `.claude/skill/context_evaluator/SKILL.md` |
+| circuitikz-circuit-diagrams | LaTeX circuit diagram generation | `.claude/skill/circuitikz-latex-circuit-diagrams/SKILL.md` |
+| stack-xml-generator | STACK XML authoring, Maxima CAS, PRT validation | `.claude/skill/stack-xml-generator/SKILL.md` |
+| stack-question-validator | Post-generation quality check, PATTERNS compliance | `.claude/skill/stack-question-validator/SKILL.md` |
 
-Project overview, repository structure, content summaries, and constraints → see `.claude/skill/context_evaluator/context.md`.
+## Reference
+
+| Topic | File |
+|-------|------|
+| Architecture, tech stack, constraints | `.claude/skill/context_evaluator/context.md` |
+| Current session state, pending tasks, blockers | `.claude/skill/context_evaluator/SESSION.md` |
+| Accumulated corrections and hard constraints | `PATTERNS.md` |
+| All design decisions with rationale | `.claude/skill/context_evaluator/decisions-log.md` |
+| Communication and coding preferences | `.claude/skill/context_evaluator/personal-preferences.md` |
+| Cross-project rules (synced from my-claude-skills) | `.claude/skill/context_evaluator/shared-patterns.md` |
 
 ## STACK XML Conventions
 
