@@ -24,7 +24,7 @@
 <ul>
   <li>\(R = 10\;\Omega\)</li>
   <li>\(L = 10\;\text{mH}\)</li>
-  <li>\(C = 100\;\mu\text{F}\)</li>
+  <li>\(C = 50\;\mu\text{F}\)</li>
   <li>Source: \(V_s = 20\;\text{V}\)</li>
 </ul>
 
@@ -98,7 +98,7 @@
 /* V1: Series RLC Natural Response, Underdamped */
 R_val: 10;
 L_val: 0.01;
-C_val: 0.0001;
+C_val: 0.00005;
 Vs_val: 20;
 t1: 0.001;
 
@@ -1264,7 +1264,7 @@ ta_debug: correct_errors;
 <h4>Component Values</h4>
 <ul>
   <li>\(R = 100\;\Omega\)</li>
-  <li>\(L = 50\;\text{mH}\)</li>
+  <li>\(L = 25\;\text{mH}\)</li>
   <li>\(C = 5\;\mu\text{F}\)</li>
   <li>Source: \(V_0 = 15\;\text{V}\)</li>
 </ul>
@@ -1338,7 +1338,7 @@ ta_debug: correct_errors;
     <text><![CDATA[
 /* V4: Parallel RLC Natural Response, Underdamped */
 R_val: 100;
-L_val: 0.05;
+L_val: 0.025;
 C_val: 5e-06;
 V0_val: 15;
 t1: 0.0005;
@@ -1356,7 +1356,7 @@ regime_opts: random_permutation([[1, true, "Underdamped"], [2, false, "Overdampe
 
 /* Response at t1 */
 omega_d: sqrt(omega0_val^2 - alpha_val^2);
-val_at_t1: float(V0_val*exp(-alpha_val*t1)*(cos(omega_d*t1) + (alpha_val/omega_d)*sin(omega_d*t1)));
+val_at_t1: float(V0_val*exp(-alpha_val*t1)*(cos(omega_d*t1) - (alpha_val/omega_d)*sin(omega_d*t1)));
 
 /* Debug MCQ-MA */
 debug_opts: random_permutation([[1, false, "The initial value v(0+) = V_0 is correct"], [2, true, "The decay envelope uses omega_0 instead of alpha for the time constant"], [3, true, "The oscillation frequency should be omega_d, not omega_0"], [4, false, "The final value should be nonzero"], [5, false, "The waveform should be a pure exponential (no oscillation)"]]);

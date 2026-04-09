@@ -43,12 +43,12 @@
 <p><strong>Select ALL statements that are TRUE about this transmission line system:</strong></p>
 <p>[[input:ans6]] &nbsp; [[validation:ans6]]</p>
 
-<h4>Part (d) &mdash; Quarter-Wave Transformer Design (3 points, manually graded)</h4>
-<p>A quarter-wave transformer (QWT) section is to be inserted between the line and load to eliminate reflections at the design frequency.</p>
+<h4>Part (d) &mdash; Quarter-Wave Transformer Analysis (3 points, manually graded)</h4>
+<p>An engineer proposes using a quarter-wave transformer (QWT) to eliminate reflections. The standard QWT formula is \(Z_{QWT} = \sqrt{Z_0 \cdot R_L}\).</p>
 <ol>
-  <li>What characteristic impedance \(Z_{QWT}\) should this section have?</li>
-  <li>What is the physical length of the QWT section at the design frequency \(f\)?</li>
-  <li>If the operating frequency shifts by 10%, does the VSWR improve or worsen? Explain qualitatively.</li>
+  <li>Apply this formula to the open-circuit load (\(R_L \to \infty\)). What value do you get for \(Z_{QWT}\)? Is this physically realizable? Explain.</li>
+  <li>Suggest an alternative approach to reduce reflections for an open-circuit termination. Briefly describe the principle.</li>
+  <li>If the operating frequency shifts by 10% from the design frequency of any matching network, does the VSWR improve or worsen? Explain qualitatively.</li>
 </ol>
 <p>[[input:ans7]] &nbsp; [[validation:ans7]]</p>
 ]]></text>
@@ -94,7 +94,7 @@ V_at_3T: float(V1_plus*(1 + Gamma_L)*(1 + Gamma_L*Gamma_g));
 VSWR_val: if abs(Gamma_L) < 0.999 then float((1 + abs(Gamma_L))/(1 - abs(Gamma_L))) else 999;
 
 /* MCQ-MA */
-mcq_opts: random_permutation([[1, true, "The steady-state voltage equals V_g * R_L / (R_g + R_L)"], [2, false, "The line settles after exactly one round trip (because source is matched)"], [3, true, "Increasing R_L toward Z_0 would reduce reflections at the load"], [4, false, "VSWR = 1 means the line is perfectly matched at both ends"], [5, false, "Doubling the line length doubles the number of bounces needed"]]);
+mcq_opts: random_permutation([[1, true, "The steady-state voltage equals V_g * R_L / (R_g + R_L)"], [2, false, "The voltage at the load equals the steady-state value immediately when the first wave arrives (at t = T)"], [3, true, "Increasing R_L toward Z_0 would reduce reflections at the load"], [4, false, "VSWR = 1 means the line is perfectly matched at both ends"], [5, false, "Doubling the line length doubles the number of bounces needed"]]);
 correct_mcq: {1,3};
 
 /* Teacher answers */
@@ -445,12 +445,12 @@ ta_mcq: correct_mcq;
 <p><strong>Select ALL statements that are TRUE about this transmission line system:</strong></p>
 <p>[[input:ans6]] &nbsp; [[validation:ans6]]</p>
 
-<h4>Part (d) &mdash; Quarter-Wave Transformer Design (3 points, manually graded)</h4>
-<p>A quarter-wave transformer (QWT) section is to be inserted between the line and load to eliminate reflections at the design frequency.</p>
+<h4>Part (d) &mdash; Quarter-Wave Transformer Analysis (3 points, manually graded)</h4>
+<p>An engineer proposes using a quarter-wave transformer (QWT) to eliminate reflections. The standard QWT formula is \(Z_{QWT} = \sqrt{Z_0 \cdot R_L}\).</p>
 <ol>
-  <li>What characteristic impedance \(Z_{QWT}\) should this section have?</li>
-  <li>What is the physical length of the QWT section at the design frequency \(f\)?</li>
-  <li>If the operating frequency shifts by 10%, does the VSWR improve or worsen? Explain qualitatively.</li>
+  <li>Apply this formula to the short-circuit load. What value do you get for \(Z_{QWT}\)? Is this physically realizable? Explain.</li>
+  <li>Suggest an alternative approach to reduce reflections for a short-circuit termination (e.g., stub matching). Briefly describe the principle.</li>
+  <li>If the operating frequency shifts by 10% from the design frequency of any matching network, does the VSWR improve or worsen? Explain qualitatively.</li>
 </ol>
 <p>[[input:ans7]] &nbsp; [[validation:ans7]]</p>
 ]]></text>
@@ -865,7 +865,7 @@ ta_mcq: correct_mcq;
 \(V_1^+ = {@ta_V1p@}\;\text{V}\), \(T = {@ta_T@}\;\text{s}\)</p>
 <p><strong>Part (b):</strong> \(V(\ell, 3T) = V_1^+(1+\Gamma_L)(1+\Gamma_L\Gamma_g) = {@ta_V3T@}\;\text{V}\)</p>
 <p><strong>Part (c):</strong> Correct selections: {@correct_mcq@}</p>
-<p><strong>Part (d):</strong> \(Z_{QWT} = \sqrt{Z_0 \cdot R_L}\). Length = \(\lambda/4\) at design frequency. At 10% off, the QWT is no longer \(\lambda/4\), so \(\Gamma \neq 0\) and VSWR worsens.</p>
+<p><strong>Part (d):</strong> \(Z_{QWT} = \sqrt{Z_0 \cdot 0} = 0\;\Omega\). A QWT with zero impedance is a wire, not a transformer. The standard QWT cannot match a short-circuit load. Alternatives: stub matching (single/double stub) or a series reactive element. At 10% off design frequency, any narrowband matching degrades.</p>
 ]]></text></generalfeedback>
   <defaultgrade>10</defaultgrade>
   <penalty>0.1000000</penalty>
@@ -1267,7 +1267,7 @@ ta_mcq: correct_mcq;
 \(V_1^+ = {@ta_V1p@}\;\text{V}\), \(T = {@ta_T@}\;\text{s}\)</p>
 <p><strong>Part (b):</strong> \(V(\ell, 3T) = V_1^+(1+\Gamma_L)(1+\Gamma_L\Gamma_g) = {@ta_V3T@}\;\text{V}\)</p>
 <p><strong>Part (c):</strong> Correct selections: {@correct_mcq@}</p>
-<p><strong>Part (d):</strong> \(Z_{QWT} = \sqrt{Z_0 \cdot R_L}\). Length = \(\lambda/4\) at design frequency. At 10% off, the QWT is no longer \(\lambda/4\), so \(\Gamma \neq 0\) and VSWR worsens.</p>
+<p><strong>Part (d):</strong> \(Z_{QWT} = \sqrt{Z_0 \cdot \infty} \to \infty\). A QWT with infinite impedance is physically unrealizable. The standard QWT cannot match an open-circuit load. Alternatives: stub matching or adding a shunt reactive element. At 10% off design frequency, any narrowband matching degrades.</p>
 ]]></text></generalfeedback>
   <defaultgrade>10</defaultgrade>
   <penalty>0.1000000</penalty>
@@ -1300,7 +1300,7 @@ V_at_3T: float(V1_plus*(1 + Gamma_L)*(1 + Gamma_L*Gamma_g));
 VSWR_val: if abs(Gamma_L) < 0.999 then float((1 + abs(Gamma_L))/(1 - abs(Gamma_L))) else 999;
 
 /* MCQ-MA */
-mcq_opts: random_permutation([[1, true, "The steady-state voltage equals V_g * R_L / (R_g + R_L)"], [2, false, "The line settles after exactly one round trip (because source is matched)"], [3, true, "Increasing R_L toward Z_0 would reduce reflections at the load"], [4, false, "VSWR = 1 means the line is perfectly matched at both ends"], [5, false, "Doubling the line length doubles the number of bounces needed"]]);
+mcq_opts: random_permutation([[1, true, "The steady-state voltage equals V_g * R_L / (R_g + R_L)"], [2, false, "The voltage at the load equals the steady-state value immediately when the first wave arrives (at t = T)"], [3, true, "Increasing R_L toward Z_0 would reduce reflections at the load"], [4, false, "VSWR = 1 means the line is perfectly matched at both ends"], [5, false, "Doubling the line length doubles the number of bounces needed"]]);
 correct_mcq: {1,3};
 
 /* Teacher answers */

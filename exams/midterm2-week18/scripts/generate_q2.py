@@ -16,11 +16,11 @@ VARIANTS = [
         "id": "V1",
         "name": "Series RLC Natural Response, Underdamped",
         "topology": "series", "response": "natural", "regime": "underdamped",
-        "R": 10, "L": 0.01, "C": 100e-6,  # R=10 Ohm, L=10mH, C=100uF
+        "R": 10, "L": 0.01, "C": 50e-6,  # R=10 Ohm, L=10mH, C=50uF
         "Vs": 20, "Is": None,  # voltage source for charging
         "t1": 0.001,  # evaluation time = 1 ms
         "R_display": "10\\;\\Omega", "L_display": "10\\;\\text{mH}",
-        "C_display": "100\\;\\mu\\text{F}", "source_display": "V_s = 20\\;\\text{V}",
+        "C_display": "50\\;\\mu\\text{F}", "source_display": "V_s = 20\\;\\text{V}",
         "circuit_desc": (
             "A series RLC circuit is powered by a DC voltage source \\(V_s\\). "
             "The capacitor is fully charged in steady state. At \\(t = 0\\), a switch disconnects "
@@ -123,10 +123,10 @@ VARIANTS = [
         "id": "V4",
         "name": "Parallel RLC Natural Response, Underdamped",
         "topology": "parallel", "response": "natural", "regime": "underdamped",
-        "R": 100, "L": 0.05, "C": 5e-6,  # R=100 Ohm, L=50mH, C=5uF
+        "R": 100, "L": 0.025, "C": 5e-6,  # R=100 Ohm, L=25mH, C=5uF
         "Vs": None, "Is": None, "V0": 15,  # pre-charged capacitor
         "t1": 0.0005,  # 0.5 ms
-        "R_display": "100\\;\\Omega", "L_display": "50\\;\\text{mH}",
+        "R_display": "100\\;\\Omega", "L_display": "25\\;\\text{mH}",
         "C_display": "5\\;\\mu\\text{F}", "source_display": "V_0 = 15\\;\\text{V}",
         "circuit_desc": (
             "A parallel RLC circuit has a capacitor pre-charged to \\(V_0\\). "
@@ -198,10 +198,11 @@ def compute_values(v):
         Vs = v["Vs"]
         val_at_t1 = Vs * (1 - (1 + alpha * t1) * math.exp(-alpha * t1))
     elif v["id"] == "V4":
-        # Parallel RLC natural, underdamped: v(t) = V0*exp(-alpha*t)*(cos(omega_d*t) + (alpha/omega_d)*sin(omega_d*t))
+        # Parallel RLC natural, underdamped: v(t) = V0*exp(-alpha*t)*(cos(omega_d*t) - (alpha/omega_d)*sin(omega_d*t))
+        # Sign: dv/dt(0+) = -(V0)/(RC) = -2*alpha*V0, so A2 = -V0*alpha/omega_d (negative)
         V0 = v["V0"]
         val_at_t1 = V0 * math.exp(-alpha * t1) * (
-            math.cos(omega_d * t1) + (alpha / omega_d) * math.sin(omega_d * t1)
+            math.cos(omega_d * t1) - (alpha / omega_d) * math.sin(omega_d * t1)
         )
 
     return {

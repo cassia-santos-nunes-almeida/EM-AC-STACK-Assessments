@@ -24,9 +24,9 @@ VARIANTS = [
             "The radar signal must penetrate \\(d = 2\\;\\text{m}\\) of moist soil "
             "(\\(\\sigma = 0.01\\;\\text{S/m}\\), \\(\\varepsilon_r = 10\\), \\(\\mu_r = 1\\)) "
             "before reflecting off a buried pipe. After emerging from the soil, the return signal "
-            "travels \\(R = 5\\;\\text{m}\\) through free space to the receiver."
+            "travels \\(R = 15\\;\\text{m}\\) through free space to the receiver."
         ),
-        "f": 100e6, "d": 2, "R": 5,
+        "f": 100e6, "d": 2, "R": 15,
         "sigma": 0.01, "eps_r": 10, "mu_r": 1,
         "Pt_dBm": 30, "Gt_dBi": 10, "Gr_dBi": 10,
         "mcq_true": [1, 3],
@@ -42,13 +42,13 @@ VARIANTS = [
         "id": "V2",
         "name": "Through-wall Wi-Fi communication",
         "scenario": (
-            "A 5 GHz Wi-Fi access point transmits through a concrete wall "
-            "(\\(\\sigma = 0.05\\;\\text{S/m}\\), \\(\\varepsilon_r = 6\\), \\(\\mu_r = 1\\), "
+            "A 5 GHz Wi-Fi access point transmits through a dry concrete wall "
+            "(\\(\\sigma = 0.005\\;\\text{S/m}\\), \\(\\varepsilon_r = 6\\), \\(\\mu_r = 1\\), "
             "thickness \\(d = 0.3\\;\\text{m}\\)) to a laptop \\(R = 10\\;\\text{m}\\) away "
             "(measured from the wall exit to the laptop)."
         ),
         "f": 5e9, "d": 0.3, "R": 10,
-        "sigma": 0.05, "eps_r": 6, "mu_r": 1,
+        "sigma": 0.005, "eps_r": 6, "mu_r": 1,
         "Pt_dBm": 20, "Gt_dBi": 3, "Gr_dBi": 0,
         "mcq_true": [1, 4],
         "mcq_opts": [

@@ -14,7 +14,7 @@
 <hr />
 
 <h4>Scenario</h4>
-<p>A ground-penetrating radar (GPR) system operates at \(f = 100\;\text{MHz}\). The radar signal must penetrate \(d = 2\;\text{m}\) of moist soil (\(\sigma = 0.01\;\text{S/m}\), \(\varepsilon_r = 10\), \(\mu_r = 1\)) before reflecting off a buried pipe. After emerging from the soil, the return signal travels \(R = 5\;\text{m}\) through free space to the receiver.</p>
+<p>A ground-penetrating radar (GPR) system operates at \(f = 100\;\text{MHz}\). The radar signal must penetrate \(d = 2\;\text{m}\) of moist soil (\(\sigma = 0.01\;\text{S/m}\), \(\varepsilon_r = 10\), \(\mu_r = 1\)) before reflecting off a buried pipe. After emerging from the soil, the return signal travels \(R = 15\;\text{m}\) through free space to the receiver.</p>
 <p><img src="@@PLUGINFILE@@/v1_gpr_soil.svg" alt="Ground-penetrating radar signal path through soil" style="max-width:100%%; width:600px;" /></p>
 
 <h4>System Parameters</h4>
@@ -87,7 +87,7 @@ sigma_val: 0.01;
 epsr_val: 10;
 mur_val: 1;
 d_val: 2;
-R_val: 5;
+R_val: 15;
 Pt_dBm: 30;
 Gt_dBi: 10;
 Gr_dBi: 10;
@@ -440,7 +440,7 @@ ta_mcq: correct_mcq;
 <hr />
 
 <h4>Scenario</h4>
-<p>A 5 GHz Wi-Fi access point transmits through a concrete wall (\(\sigma = 0.05\;\text{S/m}\), \(\varepsilon_r = 6\), \(\mu_r = 1\), thickness \(d = 0.3\;\text{m}\)) to a laptop \(R = 10\;\text{m}\) away (measured from the wall exit to the laptop).</p>
+<p>A 5 GHz Wi-Fi access point transmits through a dry concrete wall (\(\sigma = 0.005\;\text{S/m}\), \(\varepsilon_r = 6\), \(\mu_r = 1\), thickness \(d = 0.3\;\text{m}\)) to a laptop \(R = 10\;\text{m}\) away (measured from the wall exit to the laptop).</p>
 <p><img src="@@PLUGINFILE@@/v2_wifi_wall.svg" alt="Wi-Fi signal path through concrete wall" style="max-width:100%%; width:600px;" /></p>
 
 <h4>System Parameters</h4>
@@ -509,7 +509,7 @@ ta_mcq: correct_mcq;
 /* V2: Through-wall Wi-Fi communication */
 f_val: 5000000000.0;
 omega_val: 2*%pi*f_val;
-sigma_val: 0.05;
+sigma_val: 0.005;
 epsr_val: 6;
 mur_val: 1;
 d_val: 0.3;

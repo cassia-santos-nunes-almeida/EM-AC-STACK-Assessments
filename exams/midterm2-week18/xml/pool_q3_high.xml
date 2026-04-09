@@ -497,8 +497,8 @@ W_num: float(W_val);
 dot_opts: random_permutation([[1, false, "Dots on top terminals of both coils"], [2, true, "Dot on top of Coil 1, dot on bottom of Coil 2 (opposite sense)"], [3, false, "Dots on bottom terminals of both coils"], [4, false, "Dot on bottom of Coil 1, dot on top of Coil 2"]]);
 
 /* Part (d) MCQ-MA */
-mcq_opts: random_permutation([[1, false, "Increase the coupling coefficient k"], [2, true, "Increase i_1"], [3, false, "Decrease L_2"], [4, true, "Increase L_1"], [5, false, "Reverse the direction of i_2 (makes both enter dotted terminals)"]]);
-correct_mcq: {2,4};
+mcq_opts: random_permutation([[1, false, "Increase the coupling coefficient k"], [2, true, "Increase i_1"], [3, false, "Decrease L_2"], [4, true, "Increase L_1"], [5, true, "Reverse the direction of i_2 (makes both enter dotted terminals)"]]);
+correct_mcq: {2,4,5};
 
 /* Teacher answers */
 ta_dot: dot_opts;
@@ -1253,8 +1253,8 @@ W_num: float(W_val);
 dot_opts: random_permutation([[1, false, "Dots on the same side of both coils"], [2, true, "Dot on top of Coil 1, dot on bottom of Coil 2 (opposite winding)"], [3, false, "No dots are needed for this configuration"], [4, false, "Dots on opposite sides, but reversed from option B"]]);
 
 /* Part (d) MCQ-MA */
-mcq_opts: random_permutation([[1, false, "Decrease k"], [2, true, "Increase i_2"], [3, true, "Increase L_2"], [4, false, "Reverse i_1 direction (makes mutual term positive)"], [5, false, "Replace opposing dots with aiding dots"]]);
-correct_mcq: {2,3};
+mcq_opts: random_permutation([[1, false, "Increase the coupling coefficient k"], [2, true, "Increase i_2"], [3, true, "Increase L_2"], [4, false, "Decrease i_1 by half"], [5, true, "Replace opposing dots with aiding dots"]]);
+correct_mcq: {2,3,5};
 
 /* Teacher answers */
 ta_dot: dot_opts;
