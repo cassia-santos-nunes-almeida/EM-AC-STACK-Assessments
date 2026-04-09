@@ -1,80 +1,73 @@
 # SESSION.md — Current State
 
 Overwritten at every session close. Read at every session open.
-Last updated: 2026-04-09 · Session focus: Midterm 2 diagrams — all 19 authored, reviewed, embedded
+Last updated: 2026-04-09 · Session focus: Midterm 2 diagrams + physics audit
 
 ## Completed This Session
 
-* [x] **Phase 1: Infrastructure** — Updated `render_circuitikz.py` with `dvisvgm` fallback (pdf2svg unavailable), created `diagrams/q1-q5/` subfolders
-* [x] **Phase 2a: Q1 magnetic core diagrams** — 4 TikZ diagrams (E-core, C-core, toroid, rectangular) with air gaps, coil windings, dimension labels, dashed mean-path centerline for ℓ_c
-* [x] **Phase 2b: Q2 RLC circuit diagrams** — 4 CircuiTikZ diagrams (series underdamped natural, parallel overdamped step, series critically damped step, parallel underdamped natural) with switches, component values
-* [x] **Phase 2c: Q3 winding diagrams** — 4 TikZ diagrams showing physical winding cross-sections (dot/cross marks) for dot convention task. CW/CCW annotations. Dots NOT shown (that's the answer per P-STACK-31)
-* [x] **Phase 2d: Q4 TL system diagrams** — 3 diagrams (V1+V2 shared resistive, V3 short, V4 open circuit) with source, TL, and load
-* [x] **Phase 2e: Q5 signal path diagrams** — 4 scenario-specific TikZ diagrams (GPR soil, Wi-Fi wall, IoT earth, satellite roof) with physical context, signal paths, medium labels
-* [x] **Phase 3: Compilation** — All 19 .tex → .svg via pdflatex + dvisvgm
-* [x] **Phase 4: XML embedding** — 20 diagrams embedded in 5 XMLs via @@PLUGINFILE@@ + <file encoding="base64"> (same approach as W14-16)
-* [x] **Visual review** — All 19 PNGs inspected for overlaps; 8 issues found and fixed across Q1-Q4
-* [x] **Commit** — `ccf8772` feat: add 19 diagrams for midterm 2
+* [x] **19 diagrams authored** — TikZ/CircuiTikZ for Q1-Q5 (magnetic cores, RLC circuits, winding diagrams, TL systems, signal paths)
+* [x] **Compilation pipeline** — pdflatex + dvisvgm (pdf2svg unavailable); render_circuitikz.py updated with fallback
+* [x] **Visual review** — all 19 PNGs inspected; 8 label overlap issues found and fixed
+* [x] **XML embedding** — 20 diagrams embedded via @@PLUGINFILE@@ + base64 <file> elements
+* [x] **Full physics audit** — 5 parallel agents audited all formulas, parameter sets, PRT logic, and MCQ answer keys against Ulaby and Nilsson
+* [x] **5 critical bugs fixed:**
+  - Q2 V4: sign error in v(t) sin coefficient (-alpha/omega_d)
+  - Q2 V1/V4: alpha_wrong == alpha (R²=L/C coincidence) — changed C and L
+  - Q3 V2: MCQ opt5 FALSE→TRUE (reversing i₂ increases energy)
+  - Q3 V4: MCQ redesigned (was all-TRUE, now 2F+3T)
+* [x] **4 medium issues fixed:**
+  - Q4 V3/V4: QWT Part(d) reframed for short/open degenerate cases
+  - Q4 V1/V4: MCQ settling statement reworded
+  - Q5 V1: GPR R increased 5m→15m (far-field condition)
+  - Q5 V2: sigma 0.05→0.005 (dry concrete = low-loss, adds classification variety)
+* [x] **JSXGraph for Q4: assessed and skipped** — single numerical answer, not multi-point placement
+* [x] **Q3 drag-and-drop: assessed and deferred** — dropdown MCQ sufficient for exam
 
-## Decisions Made This Session
+## Commits This Session
 
-* **Style C (hybrid):** Weekly visual conventions + exam-appropriate content. No flux arrows, μ_r labels, or formula callouts (P-STACK-31)
-* **Q1 ℓ_c:** Replaced misleading brace with dashed orange mean-path centerline through core center
-* **Q4 V1+V2 consolidated:** Identical topology → one shared diagram
-* **JSXGraph for Q4: SKIPPED** — Q4 Part (b) asks for a single numerical value, not a multi-point placement. JSXGraph overhead disproportionate. Students compute bounce diagram on paper (companion essay upload)
-* **Q3 drag-and-drop: DEFERRED** — Current dropdown MCQ works correctly for exam. Upgrade would require separate Moodle question type or complex JSXGraph. Low benefit/risk ratio for exam day
+1. `ccf8772` feat: add 19 diagrams for midterm 2, embed in all 5 question XMLs
+2. `8406dd8` docs: session close — midterm 2 diagrams complete
+3. `fe3d9a9` fix: physics audit corrections across Q2-Q5 (5 critical, 4 medium)
 
 ## Next Session — Remaining Work
 
 **Priority 1: Moodle import + testing**
 - Import all 5 XMLs to test Moodle instance
-- Verify: STACK grading, diagram rendering via @@PLUGINFILE@@, essay rendering, companion uploads
+- Verify: STACK grading, diagram rendering (@@PLUGINFILE@@), essay rendering, companion uploads
 - Test file upload (P-STACK-25: "Allow attachments" setting)
-- Check diagram sizing in Moodle (style="max-width:100%; width:600px")
+- Check diagram sizing (style="max-width:100%; width:600px")
 
 **Priority 2: Instructor solve-through**
 - Time budget validation (~160 min working target)
-- Verify answer key correctness against Ulaby/Nilsson for all 20 variants
-- Check: does every variant produce a valid, non-degenerate answer? (P-STACK-09)
+- Verify answer key correctness for all 20 variants (especially Q2 V1/V4 new values, Q5 V1/V2 new parameters)
+- Cross-check with Maxima CAS
 
 **Priority 3: Notion handover**
-- Local handover at `exams/midterm2-week18/HANDOVER_2026-04-08.md` — needs update with diagram work
-- Reconnect Notion MCP server, then create the page
+- Update local handover at `exams/midterm2-week18/HANDOVER_2026-04-08.md`
+- Post to Notion when MCP reconnected
 
-**Priority 4 (optional): Diagram refinements after Moodle testing**
-- Adjust sizing if diagrams render too large/small in Moodle
-- Check mobile rendering
-- Fix any issues found during testing
+## Open Decisions
 
-## Open Decisions / Blockers
-
-* [ ] Q5 all variants are quasi-conductor — acceptable or need one low-loss/good-conductor?
-* [ ] Diagram size in Moodle: 600px width — verify after import
+* [ ] Q5: 3 quasi-conductor + 1 low-loss — sufficient classification variety?
+* [ ] Diagram size in Moodle — verify after import
 
 ## Patterns Triggered This Session
 
 | Pattern ID | What happened | Action |
 |------------|--------------|--------|
-| P-STACK-15 | Considered base64 data URIs for exam — used @@PLUGINFILE@@ instead | Correct approach confirmed |
-| P-STACK-31 | Stripped all answer-revealing annotations from diagrams | Applied to all 19 diagrams |
-| P-DIAG-03 | Verified diagram labels match XML text | Checked during visual review |
-| P-DIAG-05 | Spacing issues found in Q1-Q4 | Fixed: N₁/ℓ_c, switch labels, terminal/current |
-| P-DIAG-07 | Compiled and visually inspected all diagrams | 8 overlap issues found and fixed |
-| P-EXEC-01 | 19 diagrams decomposed into 5 phases before execution | Task tracking used throughout |
-
-## Skills Used This Session
-
-* [x] context-evaluator (session open)
-* [x] circuitikz-circuit-diagrams (19 diagrams authored, compiled, reviewed)
-* [x] stack-xml-generator (XML embedding via @@PLUGINFILE@@)
-* [ ] stack-question-validator (not needed — no new PRT work)
+| P-STACK-09 | Q2 V1/V4 had R²=L/C making alpha_wrong == alpha | Fixed by changing C (V1) and L (V4) |
+| P-STACK-15 | Used @@PLUGINFILE@@ not inline base64 for exam diagrams | Correct approach confirmed |
+| P-STACK-27 | Q5 V1 GPR far-field borderline (R=5m, lambda=3m) | Increased R to 15m |
+| P-STACK-28 | Q3 V4 MCQ all-TRUE — guard conditions not applied | Redesigned options with proper F/T mix |
+| P-STACK-31 | All diagrams stripped of answer-revealing annotations | 19 diagrams audited |
+| P-DIAG-05 | Label overlaps found in Q1-Q4 diagrams | 8 issues fixed after visual review |
+| P-DIAG-07 | All diagrams compiled and visually inspected | pdftoppm PNG review pass |
+| P-EXEC-01 | Large task decomposed: diagrams → compile → embed → audit → fix | Task tracking used throughout |
 
 ## Compilation Notes (carried forward)
 
 - `pdflatex` at `/c/Users/z116447/AppData/Local/Programs/MiKTeX/miktex/bin/x64/pdflatex`
-- `dvisvgm` available: `dvisvgm --pdf input.pdf -o output.svg --no-fonts`
+- `dvisvgm`: `dvisvgm --pdf input.pdf -o output.svg --no-fonts`
 - `pdf2svg` NOT available — render script uses dvisvgm fallback
-- `pdftoppm` available for PNG preview: `pdftoppm -png -r 150 input.pdf output`
+- `pdftoppm` for PNG preview: `pdftoppm -png -r 150 input.pdf output`
 - Python at `/c/Users/z116447/AppData/Local/Programs/Python/Python313/python.exe`
-- CircuiTikZ + `every node/.style={font=\sffamily}` — works in `circuitikz` environment
-- cairosvg installed but requires cairo DLL (not available on this system)
