@@ -10,7 +10,9 @@ description: >
 
 # STACK XML Generator
 
-This skill generates Moodle STACK assessment questions with randomized parameters, Potential Response Trees (PRTs), and Maxima CAS code. It produces well-structured XML ready for Moodle import.
+This skill generates Moodle STACK assessment questions with randomized
+parameters, Potential Response Trees (PRTs), and Maxima CAS code. It
+produces well-structured XML ready for Moodle import.
 
 ## When to Use This Skill
 
@@ -21,14 +23,20 @@ This skill generates Moodle STACK assessment questions with randomized parameter
 
 ## Output Format
 
-- One XML file per question pool, named `pool_q{N}_{difficulty}.xml` (exams) or `Q{N}_{TopicDescription}.xml` (practice)
-- Each variant is a separate `<question>` element with its own STACK variables, PRTs, and feedback
+- One XML file per question pool, named `pool_q{N}_{difficulty}.xml`
+  (exams) or `Q{N}_{TopicDescription}.xml` (practice)
+- Each variant is a separate `<question>` element with its own STACK
+  variables, PRTs, and feedback
 
-## Mandatory Conventions
+---
+
+## Input and Display
 
 ### Syntax Hints
 
-Every `[[input:ansN]]` in the question HTML MUST be followed by a visible syntax hint line immediately AFTER the input field. Never place the syntax hint before the input.
+Every `[[input:ansN]]` in the question HTML MUST be followed by a
+visible syntax hint line immediately AFTER the input field. Never
+place the syntax hint before the input.
 
 ```html
 [[input:ansN]]
@@ -49,24 +57,15 @@ Type-specific hint text:
 
 ### Progressive Hints
 
-Every question MUST include 2-3 `<hint>` elements at the end of the `<question>` block (Moodle's progressive hints shown on "Try again"):
+Every question MUST include 2--3 `<hint>` elements at the end of the
+`<question>` block (Moodle's progressive hints shown on "Try again"):
 
 1. **Hint 1:** Intuition / physical reasoning
 2. **Hint 2:** Relevant formulas and approach
 3. **Hint 3:** Worked step or partial derivation
 
-These are separate from the per-input syntax hints — syntax hints are always visible; conceptual hints are revealed progressively.
-
-### Grading (PRT) Rules
-
-| Rule | Details |
-|------|---------|
-| Numerical answers | Use `NumRelative` with appropriate tolerance (typically 5%). Never `AlgEquiv` alone for rounded values. |
-| Answer is 0 | Use `NumAbsolute` with tolerance 0.01. `NumRelative` divides by zero. |
-| Complex expressions | 2-node PRT: Node 0 = `AlgEquiv`; Node 1 fallback = evaluate at 2-3 test points with `NumRelative` (5%). |
-| Complex-valued roots | 2-node PRT: Node 0 = `AlgEquiv`; Node 1 = compare `realpart()`/`imagpart()` with `NumRelative` (2%). |
-| `SigFigsStrict` | Never use as a scoring gate — do not penalize students for significant-figure formatting. |
-| Specific feedback | Never use `{@ansN@}` in `<specificfeedback>` — STACK renders these as CAS variable symbols. Use `[[feedback:prtN]]` only. |
+These are separate from syntax hints -- syntax hints are always
+visible; conceptual hints are revealed progressively.
 
 ### Input Configuration
 
@@ -76,131 +75,212 @@ These are separate from the per-input syntax hints — syntax hints are always v
 | Classification MCQs (short labels) | `type="dropdown"` | Compact for single-word/short-phrase options |
 | Reasoning MCQs (long text) | `type="radio"` | Full option text always visible; dropdowns truncate |
 | MCQ option format | `[[value, bool, "text"]]` | STACK 4.x Maxima list format in `questionvariables` |
+| MCQ option shuffling | `random_permutation(options)` | Shuffle option order so correct answer position varies (P-STACK-23) |
 
-### Randomization
+See `references/answer-tests-and-inputs.md` §8 for the full input
+types catalog (14 types with extra options for each).
 
-- Use Maxima `rand()` or `rand_with_step()` with constrained ranges to avoid degenerate cases
-- Numerical inputs use tolerances +/-0.01 to +/-0.5
-- Algebraic inputs are minimized in favor of numerical inputs
+### Forbidden Words Keywords
 
-## PRT Validation Checklist
+Use `<forbidwords>` to prevent students from entering Maxima commands
+that trivialize the problem:
+
+| Keyword | Blocks |
+|---------|--------|
+| `[[BASIC-ALGEBRA]]` | `simplify`, `factor`, `expand`, `solve`, etc. |
+| `[[BASIC-CALCULUS]]` | `int`, `diff`, `taylor`, etc. |
+| `[[BASIC-MATRIX]]` | `transpose`, `invert`, `charpoly`, etc. |
+
+Individual commands can also be listed:
+`<forbidwords>expand, factor</forbidwords>`.
+
+### Question-Level Options
+
+| Option | XML tag | Values | Notes |
+|--------|---------|--------|-------|
+| Complex number symbol | `<complexno>` | `i`, `j`, `symi`, `symj` | For circuit analysis, use `j`. `symi`/`symj` display as upright (non-italic) symbols. |
+| Decimal separator | `<decimals>` | `.` or `,` | For Finnish/European students who use comma. Teachers must still use `.` in Maxima code. |
+| Multiplication sign | `<multiplicationsign>` | `none`, `dot`, `cross` | Controls how `*` renders in displayed expressions. |
+| Fraction display | via `stack_disp_fractions("inline")` | `displayed`, `inline`, `negpow` | Set in questionvariables. `negpow` uses `x^{-1}` notation. |
+
+---
+
+## Grading and PRTs
+
+### Answer Test Selection
+
+| Situation | Test | Details |
+|-----------|------|---------|
+| Numerical answer (nonzero) | `NumRelative` | Typically 5% tolerance. |
+| Answer is 0 | `NumAbsolute` | Tolerance 0.01. `NumRelative` divides by zero and fails silently. |
+| Symbolic expression | `AlgEquiv` | Workhorse test. For complex expressions, add a `NumRelative` fallback node. |
+| Complex-valued roots | 2-node PRT | Node 0 = `AlgEquiv`; Node 1 = compare `realpart()`/`imagpart()` with `NumRelative` (2%). |
+| Significant figures | `SigFigsStrict` | **Never use as a scoring gate** -- do not penalize students for sig-fig formatting. |
+
+See `references/answer-tests-and-inputs.md` for the full catalog
+(40 tests with test_options format for each).
+
+### PRT Rules
+
+- Never use `{@ansN@}` in `<specificfeedback>` -- STACK renders
+  these as CAS variable symbols. Use `[[feedback:prtN]]` only.
+- Set `%stack_prt_stop_p: true` in feedbackvariables to bail out of
+  PRT execution without penalty when student input would cause errors.
+- Answer notes must be unique per node, non-empty, and cannot contain
+  `;` or `|`. Do not make them depend on random variables.
+
+### Feedback Style
+
+The `<feedbackstyle>` tag inside `<prt>` controls display:
+
+| Value | Mode | Shows |
+|-------|------|-------|
+| `0` | Formative | Feedback text only, no score or symbols |
+| `1` | Standard (default) | Score, symbols, and feedback text |
+| `2` | Compact | Symbols and feedback, minimal layout |
+| `3` | Symbol only | Tick/cross symbol, no text |
+
+### PRT Validation Checklist
 
 Before finalizing any STACK XML, validate every PRT:
 
-### Tier 1 — Structural Integrity
+**Tier 1 -- Structural Integrity**
 - [ ] Every `truenextnode` / `falsenextnode` points to an existing node or `-1` (exit)
 - [ ] Every node is reachable from node 0 (root)
 - [ ] All variables in PRT node tests are defined in `<feedbackvariables>` or `<questionvariables>`
 
-### Tier 2 — Grading Correctness
+**Tier 2 -- Grading Correctness**
 - [ ] `NumAbsolute` for zero-valued answers (tolerance 0.01)
 - [ ] `NumRelative` fallback on symbolic PRTs against `float()`
 - [ ] Score consistency: 1.0 (exact/5%), 0.7 (close/15%), 0.3 (order-of-magnitude), 0.0 (wrong)
 - [ ] No `SigFigsStrict` as scoring gate
 - [ ] No `{@ansN@}` in specificfeedback
 
-### Tier 3 — XML/CAS Safety
+**Tier 3 -- XML/CAS Safety**
 - [ ] `<feedbackvariables>` containing `<` operators are wrapped in `<![CDATA[...]]>`
 - [ ] Penalty settings are intentional (0 for practice, >0 for exams)
 - [ ] `insertstars=1` on all algebraic inputs
 - [ ] Exact arithmetic for symbolic constants (e.g. `4*%pi/10^7`, not `4*%pi*1e-7`)
 
-### Tier 4 — Pedagogical Quality
+**Tier 4 -- Pedagogical Quality**
 - [ ] Syntax hints present after every `[[input:ansN]]`
-- [ ] Progressive hints (2-3 `<hint>` elements) per question
+- [ ] Progressive hints (2--3 `<hint>` elements) per question
 - [ ] No answer leaks via `syntaxhint`, placeholder text, or hint content
 
-## Maxima CAS Patterns
+---
 
-### Parameter Randomization
+## Randomization and CAS
 
-```maxima
-/* Use rand_with_step for constrained random values */
-R1: rand_with_step(2, 8, 2);    /* 2, 4, 6, or 8 */
+### Randomization
 
-/* Verify parameter combinations produce valid problems */
+- Use Maxima `rand()` or `rand_with_step()` with constrained ranges
+  to avoid degenerate cases
+- Numerical inputs use tolerances +/-0.01 to +/-0.5
+- Algebraic inputs are minimized in favor of numerical inputs
+
+### Simplification Control
+
+Control whether Maxima auto-simplifies expressions using `simp:false`
+and `simp:true` in `<questionvariables>`. Use `ev(expr, simp)` to
+force-simplify a single expression while global simplification is off.
+
+Typical pattern: compute answers with `simp:true` (default), then
+switch to `simp:false` for worked-solution display variables.
+
+Question-level and PRT-level simplify are independent XML settings.
+Turn PRT auto-simplify off when using form tests like `Expanded` or
+`FacForm`. See `references/maxima-for-stack.md` §6 for full details.
+
+### Linked Multi-Part Questions (random_group)
+
+To link two or more STACK questions so they share the same random seed
+(and therefore the same parameter values), enter the same string in
+the `random_group` field of each question. All questions with matching
+`random_group` and identical `<questionvariables>` code will produce
+the same random values for a given student.
+
+For full Maxima reference (functions, display, pitfalls), see
+`references/maxima-for-stack.md`.
+
+---
+
+## Question Blocks (Conditional Content)
+
+STACK supports block tags in question text for conditional rendering,
+loops, and variable definitions.
+
+### `[[if]]` -- Conditional Content
+
+```html
+[[if test="damping_type = overdamped"]]
+<p>Since \(\alpha > \omega_0\), the circuit is overdamped.</p>
+[[elif test="damping_type = underdamped"]]
+<p>Since \(\alpha < \omega_0\), the circuit is underdamped.</p>
+[[else]]
+<p>Since \(\alpha = \omega_0\), the circuit is critically damped.</p>
+[[/if]]
 ```
 
-### Key Syntax
+The `test` attribute takes a Maxima boolean expression. Use this in
+generalfeedback to show regime-specific worked solutions, or in
+questiontext to adapt the problem description.
 
-- `float()` — convert exact to decimal
-- `realpart()` / `imagpart()` — extract complex number components
-- `%pi` — the constant pi
-- `%e` — Euler's number
-- `%i` or `j` — imaginary unit (configure per question)
+### `[[foreach]]` -- Loop Over Lists
 
-## Common Mistakes to Avoid
+```html
+<table>
+[[foreach v="component_list"]]
+<tr><td>{@v[1]@}</td><td>{@v[2]@}</td></tr>
+[[/foreach]]
+</table>
+```
 
-1. **`NumAbsolute` for zero, `NumRelative` for nonzero** — `NumRelative` divides by the reference value; if it's 0, grading fails silently.
-2. **Exact arithmetic** — write `4*%pi/10^7` not `4*%pi*1e-7`. Floats cause `AlgEquiv` failures on symbolic expressions.
-3. **CDATA wrapping** — XML parsers interpret bare `<` as tag openers inside `<feedbackvariables>`.
-4. **Syntax hints define aliases** — if a hint tells students to type `mur`, ensure `questionvariables` defines a matching alias.
-5. **Don't leak answers** via `syntaxhint`, textarea placeholders, or overly specific hints.
-6. **Match MCQ type to option length** — `dropdown` for short labels, `radio` for long descriptions.
-7. **Test all parameter variants** — a single untested variant can produce wrong answers or degenerate cases.
+### `[[define]]` -- Set Variables in Question Text
+
+```html
+[[define x='3' /]]
+```
+
+### `[[comment]]` -- Authoring Notes
+
+```html
+[[comment]]
+This question covers Week 12, Sec 5.3 of the textbook.
+[[/comment]]
+```
+
+Content inside `[[comment]]` blocks is stripped from the student view.
+
+---
 
 ## JSXGraph Integration
 
-STACK supports interactive JSXGraph elements inside `[[jsxgraph]]...[[/jsxgraph]]` blocks. These run in **sandboxed iframes** — this has critical implications for how you bind inputs and access the DOM.
+STACK supports interactive JSXGraph elements inside
+`[[jsxgraph]]...[[/jsxgraph]]` blocks. These run in **sandboxed
+iframes** with critical implications for input binding and DOM access.
 
 ### Key Rules
 
-1. **Use `{#var#}` not `{@var@}` inside JSXGraph blocks.** The `{@var@}` syntax renders LaTeX delimiters (`\(...\)`) which produce invalid JavaScript. `{#var#}` gives raw Maxima values.
+1. **Use `{#var#}` not `{@var@}` inside JSXGraph blocks.** `{@var@}`
+   renders LaTeX delimiters which produce invalid JavaScript.
+2. **JSXGraph runs in a sandboxed iframe.** `document.getElementById()`
+   cannot reach STACK inputs in the parent page.
+3. **Use `stack_jxg.custom_bind()` for input binding** -- handles
+   iframe-to-parent communication and state restore on page reload.
+4. **Declare `input-ref-X` attributes** on the `[[jsxgraph]]` tag to
+   get references to STACK inputs.
+5. **Use `snapSizeX`/`snapSizeY`** instead of `snapToGrid` (which
+   snaps to integers only). Set snap <= PRT tolerance / 2.
 
-2. **JSXGraph runs in a sandboxed iframe.** `document.getElementById()` cannot reach elements in the parent page (STACK inputs, HTML tables). Create display elements dynamically inside the JSXGraph block.
+For hidden input configuration, serialization format, grading
+patterns, and worked examples, see
+`references/jsxgraph-conventions.md`.
 
-3. **Use `stack_jxg.custom_bind()` for input binding.** This is the official STACK-JS mechanism for serializing graph state to a hidden input across the iframe boundary.
-
-4. **Dispatch change events** when writing to inputs manually (if not using `custom_bind`). Otherwise STACK won't detect the value change.
-
-5. **Declare `input-ref-X` attributes** on the `[[jsxgraph]]` tag to get references to STACK inputs.
-
-### Recommended Pattern for Point Collection
-
-```javascript
-[[jsxgraph input-ref-ans6="ans6Ref" width="680px" height="440px"]]
-var board = JXG.JSXGraph.initBoard(divid, { ... });
-
-/* Hidden anchor for custom_bind watch */
-var syncAnchor = board.create('point', [0,0], {visible: false, fixed: true});
-
-/* Use snapSizeX/Y instead of snapToGrid (which snaps to integers only) */
-var p = board.create('point', [x, y], {
-    snapSizeX: 1,
-    snapSizeY: 0.25
-});
-
-/* Bind with serializer/deserializer */
-stack_jxg.custom_bind(ans6Ref, serializeFn, deserializeFn, [syncAnchor]);
-stack_jxg.clear_initial(syncAnchor);
-[[/jsxgraph]]
-```
-
-### Hidden Input Configuration for JSXGraph
-
-```xml
-<input>
-    <name>ans6</name>
-    <type>algebraic</type>
-    <tans>correct_points</tans>
-    <mustverify>0</mustverify>
-    <showvalidation>0</showvalidation>
-    <options>hideanswer</options>
-</input>
-```
-
-### Grading JSXGraph Points in PRT
-
-Maxima parses `[[x1,y1],[x2,y2]]` as a **matrix**, not a nested list. Convert with `args()`:
-```maxima
-student_pts: if matrixp(ans6) then args(ans6) else ans6;
-```
-
-Then use nearest-point matching with separate x/y tolerances for order-independent grading.
-
-See `references/jsxgraph-conventions.md` for the complete authoring guide.
+---
 
 ## Reference Files
 
-- `references/stack-xml-conventions.md` — Complete XML structure reference with examples
-- `references/jsxgraph-conventions.md` — JSXGraph authoring guide (binding, snapping, grading)
+- `references/stack-xml-conventions.md` -- Complete XML structure reference with examples
+- `references/jsxgraph-conventions.md` -- JSXGraph authoring guide (binding, snapping, grading)
+- `references/maxima-for-stack.md` -- Maxima commands, simplification control, texput display, STACK-specific functions
+- `references/answer-tests-and-inputs.md` -- Full answer test catalog, input types with extra options, forbidden words, question tests
