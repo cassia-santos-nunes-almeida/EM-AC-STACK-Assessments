@@ -1,6 +1,5 @@
 ---
 name: stack-xml-generator
-version: 1.0.0
 description: >
   Use when: generating STACK XML, creating Moodle questions, writing
   Maxima CAS code, building PRT grading trees, setting up randomization,

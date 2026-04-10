@@ -1,20 +1,31 @@
 # CircuiTikZ Component Reference
 
-Tested against CircuiTikZ v1.6.6 (TeX Live 2023). American style conventions.
+Tested against CircuiTikZ v1.8.5 (2026-02-04). American style conventions.
 
 ---
 
 ## Package Setup
 
 ```latex
-\usepackage[american voltages, american currents]{circuitikz}
+\usepackage[RPvoltages, american currents]{circuitikz}
 ```
 
-Key options: `american voltages` gives +/- signs (not arrows), `american currents` gives conventional flow arrows.
+**Voltage direction options (pick one):**
+- `RPvoltages` -- Rising Potential. Recommended for new circuits. Arrow points in direction of rising potential, batteries and current sources are fixed.
+- `EFvoltages` -- Electric Field. Arrow in direction of electric field, batteries fixed.
+- `american voltages` -- Uses - and + signs (traditional American textbook).
+- `european voltages` -- Uses arrows (traditional European).
+
+**Other key options:**
+- `american currents` / `european currents` -- current source style
+- `american` -- shorthand for all American styles (resistors, inductors, ports, voltages, currents)
+- `european` -- shorthand for all European styles
+- `siunitx` -- integrates with siunitx package so `l=$10\,\si{\ohm}$` renders correctly
+- `smartlabels` -- labels rotate along the bipole (useful for diagonal components)
 
 ---
 
-## Passive Components
+## Resistive Bipoles
 
 | Component | Syntax | Notes |
 |-----------|--------|-------|
@@ -26,6 +37,9 @@ Key options: `american voltages` gives +/- signs (not arrows), `american current
 | Variable resistor | `to[vR, l=$R$]` | Arrow through resistor |
 | Potentiometer | `to[pR, l=$R$]` | Three-terminal |
 | Fuse | `to[fuse, l=$F$]` | |
+| Generic bipole | `to[generic]` | Rectangular box |
+| Short circuit | `to[short]` | Wire connection |
+| Open circuit | `to[open, v^=$v$]` | Gap (useful for voltage labels) |
 
 ---
 
@@ -35,11 +49,14 @@ Key options: `american voltages` gives +/- signs (not arrows), `american current
 |-----------|--------|-------|
 | DC voltage | `to[V, v=$V_s$]` | Circle with +/- |
 | AC voltage | `to[sinusoidal voltage source, v=$V_s$]` | Circle with sine wave |
+| Sinusoidal current | `to[sinusoidal current source, l=$I_s$]` | Circle with sine wave |
 | DC current | `to[I, l=$I_s$]` | Circle with arrow |
-| Battery | `to[battery1, v=$9\,\text{V}$]` | Single cell |
-| Controlled voltage | `to[cV, v=$\alpha v_x$]` | Diamond shape |
-| Controlled current | `to[cI, l=$\beta i_x$]` | Diamond shape |
-| American controlled voltage | `to[american controlled voltage source]` | Explicit diamond |
+| Battery (single cell) | `to[battery1, v=$9\,\text{V}$]` | Thin lines |
+| Battery (multi-cell) | `to[battery, v=$9\,\text{V}$]` | Stacked cells |
+| Controlled voltage | `to[cV, v=$\alpha v_x$]` | Diamond shape (dependent source) |
+| Controlled current | `to[cI, l=$\beta i_x$]` | Diamond shape (dependent source) |
+| Controlled sinusoidal V | `to[controlled sinusoidal voltage source]` | Diamond with sine |
+| Noise voltage source | `to[noise voltage source]` | Gray-filled circle |
 
 ---
 
@@ -98,25 +115,141 @@ to[opening switch, l={\shortstack{$t{=}0$\\(opens)}}]
 | Open circuit | `to[open, v^=$v$]` |
 | Short circuit | `to[short]` |
 | Junction dot | `\fill (x,y) circle (2pt);` |
-| Ground | `\node[ground] at (x,y) {};` |
-| Chassis ground | `\node[cground] at (x,y) {};` |
 
 ---
 
-## Semiconductors
+## Grounds and Power Supplies (node-style)
 
-| Component | Syntax |
-|-----------|--------|
-| Diode | `to[D, l=$D$]` |
-| Zener | `to[zD]` |
-| LED | `to[leDo]` |
-| NPN BJT | `node[npn](Q1){}` |
-| PNP BJT | `node[pnp](Q1){}` |
-| N-MOSFET | `node[nmos](M1){}` |
-| P-MOSFET | `node[pmos](M1){}` |
-| Op-amp | `node[op amp](OA){}` |
+Place with `\draw (x,y) node[type]{label};` or at the end of a path.
 
-Transistors and op-amps use `node` syntax with anchors (`.B`, `.C`, `.E` for BJT; `.+`, `.-`, `.out` for op-amp).
+| Component | Syntax | Notes |
+|-----------|--------|-------|
+| Ground (standard) | `node[ground]{}` | Three horizontal lines |
+| Reference ground | `node[rground]{}` | Triangle |
+| Signal ground | `node[sground]{}` | Fillable triangle |
+| Tailless ground | `node[tlground]{}` | Single line |
+| European ground | `node[eground]{}` | Declining lines |
+| Chassis ground | `node[cground]{}` | Chassis/frame symbol |
+| Noiseless ground | `node[nground]{}` | |
+| Protective ground | `node[pground]{}` | Circle with lines |
+| VCC/VDD | `node[vcc]{VCC}` | Upward arrow |
+| VEE/VSS | `node[vee]{VEE}` | Downward arrow |
+
+Example -- op-amp with power rails:
+
+```latex
+\draw (A.up) -- ++(0,0.3) node[vcc]{\SI{+10}{V}};
+\draw (A.down) -- ++(0,-0.3) node[vee]{\SI{-10}{V}};
+\draw (output) -- ++(0,-1) node[ground]{};
+```
+
+---
+
+## Diodes
+
+Three fill styles: `empty` (default, fillable), `full` (solid), `stroke` (line through).
+Set globally with `fulldiode`, `emptydiode`, or `strokediode` package option.
+
+| Component | Syntax | Aliases |
+|-----------|--------|---------|
+| Diode | `to[D, l=$D$]` | `empty diode` |
+| Schottky diode | `to[sD]` | `empty Schottky diode` |
+| Zener diode | `to[zD]` | `empty Zener diode` |
+| LED | `to[leD]` | `empty led` |
+| Photodiode | `to[pD]` | `empty photodiode` |
+| TVS diode | `to[tvsD]` | `empty TVS diode` |
+| Varicap | `to[VCo]` | `empty varcap` |
+| Full diode | `to[D*]` | Solid fill |
+| Full Zener | `to[zD*]` | Solid fill |
+| Full LED | `to[leD*]` | Solid fill |
+
+### Thyristors (tripole-like diodes)
+
+| Component | Syntax | Anchors |
+|-----------|--------|---------|
+| Thyristor | `to[Ty]` | anode, cathode, gate |
+| Triac | `to[Tr]` | anode, cathode, gate |
+| PUT | `to[PUT]` | anode, cathode, gate |
+
+---
+
+## Transistors (node-style)
+
+Place with `\node[type](name){label} at (x,y) {};` then connect anchors.
+
+### BJTs
+
+| Component | Syntax | Anchors |
+|-----------|--------|---------|
+| NPN | `node[npn](Q1){Q}` | B (base), C (collector), E (emitter) |
+| PNP | `node[pnp](Q1){}` | B, C, E |
+| NPN with body diode | `node[npn, bodydiode](Q1){}` | B, C, E, body C in/out, body E in/out |
+| Photo NPN | `node[npn, photo](Q1){}` | B, C, E |
+
+### FETs
+
+| Component | Syntax | Anchors |
+|-----------|--------|---------|
+| N-MOSFET | `node[nmos](M1){Q}` | G (gate), D (drain), S (source) |
+| P-MOSFET | `node[pmos](M1){}` | G, D, S |
+| N-MOSFET depletion | `node[nmosd](M1){}` | G, D, S |
+| P-MOSFET depletion | `node[pmosd](M1){}` | G, D, S |
+| HEMT | `node[hemt](M1){}` | G, D, S |
+
+### IGBTs
+
+| Component | Syntax | Anchors |
+|-----------|--------|---------|
+| N-IGBT | `node[nigbt](Q1){Q}` | G, D (collector), S (emitter) |
+| P-IGBT | `node[pigbt](Q1){}` | G, D, S |
+
+### Transistor connection example
+
+```latex
+\node[npn](Q1) at (3,2) {$Q_1$};
+\draw (Q1.B) -- ++(-1,0) node[left]{$v_{in}$};
+\draw (Q1.C) -- ++(0,1) node[vcc]{VCC};
+\draw (Q1.E) -- ++(0,-1) node[ground]{};
+```
+
+---
+
+## Op-amps (node-style)
+
+| Component | Syntax | Anchors |
+|-----------|--------|---------|
+| Op-amp | `node[op amp](A){}` | + (non-inv), - (inv), out, up, down |
+
+Scale with `scale=0.6` in `\begin{circuitikz}` options and add `transform shape`.
+
+```latex
+\begin{circuitikz}[baseline=(vo.center), scale=0.6, transform shape]
+  \node[op amp](A) at (0,0) {};
+  \draw (A.+) -- ++(-0.5,0) node[left]{$v_+$};
+  \draw (A.-) -- ++(-0.5,0) node[left]{$v_-$};
+  \draw (A.out) -- ++(0.5,0) node[right](vo){$v_o$};
+\end{circuitikz}
+```
+
+---
+
+## Instruments
+
+| Component | Syntax | Notes |
+|-----------|--------|-------|
+| Voltmeter (legacy) | `to[voltmeter]` | Circle with V |
+| Ammeter (legacy) | `to[ammeter]` | Circle with A |
+| Ohmmeter (legacy) | `to[ohmmeter]` | Circle with omega |
+| Round meter (new) | `to[rmeter, t=V]` | Configurable symbol |
+| Round meter + arrow | `to[rmeterwa, t=A]` | With direction arrow |
+| Square meter | `to[smeter, t=V]` | Square instrument |
+
+New style (recommended):
+
+```latex
+\tikzset{vmeter/.style={rmeterwa, t=V}}
+\tikzset{ameter/.style={rmeterwa, t=A}}
+```
 
 ---
 
@@ -194,8 +327,16 @@ v=$V_s = 12\,\text{V}$
 
 ## Version Notes
 
-- **v1.6.x:** `eC` for electrolytic capacitor is stable. `sinusoidal voltage source` is the canonical AC source name.
-- **v1.4+:** `opening switch` / `closing switch` are available. Older versions use `open` / `close`.
-- **v1.0+:** `american voltages` / `american currents` package options available.
+- **v1.8.5 (2026-02-04):** Current version. Experimental automatic advanced voltages/currents/flows.
+- **v1.2.0+:** Voltage arrows, symbols, and label positions recalculated. Minor label adjustments may be needed for older documents.
+- **v1.0+:** `RPvoltages` and `EFvoltages` options available. Recommended over `american voltages` for new work.
+- **v0.9.4+:** Styling of circuits concept introduced. Use `\ctikzset{}` for component-level customization.
+- **v0.9.0+:** Voltage direction rationalized. Legacy `american voltages` and `european voltages` kept for backward compatibility.
+
+**Version rollback:** If you need an older version, use LaTeX kernel rollback:
+
+```latex
+\usepackage[]{circuitikz}[=v0.8.3]  % or v0.4, v0.6, etc.
+```
 
 If you encounter unknown component errors, check `\pgfcircversion` in your TeX installation.

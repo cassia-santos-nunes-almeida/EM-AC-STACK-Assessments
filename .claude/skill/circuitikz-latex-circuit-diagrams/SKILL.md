@@ -1,6 +1,5 @@
 ---
 name: circuitikz-circuit-diagrams
-version: 2.1.0
 description: >
   Use when: drawing circuit diagrams, creating circuit schematics,
   CircuiTikZ, TikZ, LaTeX circuit, "draw a circuit", "create a diagram",
@@ -12,7 +11,7 @@ description: >
 
 This skill generates professional circuit diagrams from natural language descriptions using CircuiTikZ (LaTeX) for circuit schematics and TikZ for physical/geometric diagrams (e.g., magnetic core cross-sections).
 
-**Target version:** CircuiTikZ v1.6.x (TeX Live 2023). Check with `\pgfcircversion` if unsure.
+**Target version:** CircuiTikZ v1.8.5 (2026-02-04). All components below are backward-compatible to v1.0+. Check with `\pgfcircversion` if unsure.
 
 ## When to Use This Skill
 
@@ -80,7 +79,7 @@ Users can describe circuits in natural language:
 
 ```latex
 \documentclass[border=10pt]{standalone}
-\usepackage[american voltages, american currents]{circuitikz}
+\usepackage[RPvoltages, american currents]{circuitikz}
 \usepackage{amsmath}
 \renewcommand{\familydefault}{\sfdefault}  % sans-serif
 
@@ -97,14 +96,33 @@ For physical/geometric diagrams (toroid cross-sections, C-cores), use `\usepacka
 
 - **Vertical layout preferred**: Power source on left (vertical, positive terminal on top), components arranged vertically on right side
 - **Sans-serif fonts**: `\sffamily` throughout, `\renewcommand{\familydefault}{\sfdefault}`
-- **American style**: `[american voltages, american currents]`
+- **Voltage direction**: `RPvoltages` (Rising Potential) -- recommended for new circuits. See Voltage Direction Options section above.
 - **Line width**: `line width=0.8pt`
 - **Border**: `\documentclass[border=10pt]{standalone}` — without border, labels get clipped at SVG edges
 - **Explicit markings**: Current arrows and voltage polarity markings on every circuit
 - **High-contrast**: Black lines on white background
 - **Adequate spacing**: Leave at least 2 coordinate units between parallel vertical branches so labels don't overlap
 
+## Voltage Direction Options
+
+The package supports four voltage direction conventions. You **should** specify one:
+
+| Option | Meaning | When to use |
+|--------|---------|-------------|
+| `RPvoltages` | Rising Potential -- arrow in direction of rising potential, batteries fixed | **Recommended for new circuits.** Passive sign convention. |
+| `EFvoltages` | Electric Field -- arrow in direction of electric field, batteries fixed | Alternative to RP, follows E-field convention. |
+| `american voltages` | Uses - and + signs | Traditional American textbook style. |
+| `european voltages` | Uses arrows | Traditional European style. |
+
+Default (no option) is `nooldvoltagedirection` which can produce wrong battery polarity. Use `RPvoltages` for new work.
+
+```latex
+\usepackage[RPvoltages, american currents]{circuitikz}
+```
+
 ## Key CircuiTikZ Components
+
+### Passive components
 
 | Component | Syntax |
 |-----------|--------|
@@ -112,18 +130,98 @@ For physical/geometric diagrams (toroid cross-sections, C-cores), use `\usepacka
 | Inductor | `to[L, l=$L$]` |
 | Capacitor | `to[C, l=$C$]` |
 | Polar Capacitor | `to[eC, l=$C$]` |
+| Fuse | `to[fuse, l=$F$]` |
+| Short circuit | `to[short]` |
+| Open circuit | `to[open, v^=$v(t)$]` |
+
+### Sources
+
+| Component | Syntax |
+|-----------|--------|
 | DC Voltage source | `to[V, v=$V_s$]` |
 | AC Voltage source | `to[sinusoidal voltage source, v=$V_s$]` |
 | Current source | `to[I, l=$I_s$]` |
-| Battery | `to[battery1, v=$9V$]` |
+| Battery (single cell) | `to[battery1, v=$9V$]` |
+| Battery (multi-cell) | `to[battery, v=$9V$]` |
+| Controlled voltage (diamond) | `to[cV, v=$\alpha v_x$]` |
+| Controlled current (diamond) | `to[cI, l=$\beta i_x$]` |
+
+### Switches
+
+| Component | Syntax |
+|-----------|--------|
 | SPST switch (opening) | `to[opening switch, l=$t{=}0$]` |
 | SPST switch (closing) | `to[closing switch, l=$t{=}0$]` |
 | Normal open | `to[nos]` |
 | Normal closed | `to[ncs]` |
+
+### Grounds and power supplies (node-style)
+
+| Component | Syntax | Notes |
+|-----------|--------|-------|
+| Ground | `node[ground]{}` | Standard ground symbol |
+| Reference ground | `node[rground]{}` | Triangle ground |
+| Signal ground | `node[sground]{}` | Fillable |
+| European ground | `node[eground]{}` | Three horizontal lines |
+| Chassis ground | `node[cground]{}` | Chassis/frame |
+| VCC/VDD | `node[vcc]{VCC}` | Power supply up arrow |
+| VEE/VSS | `node[vee]{VEE}` | Power supply down arrow |
+
+### Diodes
+
+| Component | Syntax |
+|-----------|--------|
+| Diode | `to[D, l=$D$]` |
+| Zener diode | `to[zD]` |
+| LED | `to[leD]` |
+| Photodiode | `to[pD]` |
+| Schottky diode | `to[sD]` |
+| TVS diode | `to[tvsD]` |
+| Thyristor | `to[Ty]` |
+| Triac | `to[Tr]` |
+
+Use `full diode` / `empty diode` / `stroke diode` for explicit fill styles, or set globally with `fulldiode`, `emptydiode`, `strokediode` package options.
+
+### Transistors (node-style)
+
+| Component | Syntax | Anchors |
+|-----------|--------|---------|
+| NPN BJT | `node[npn](Q){Q}` | B (base), C (collector), E (emitter) |
+| PNP BJT | `node[pnp](Q){}` | B, C, E |
+| N-channel MOSFET | `node[nmos](Q){Q}` | G (gate), D (drain), S (source) |
+| P-channel MOSFET | `node[pmos](Q){}` | G, D, S |
+| N-IGBT | `node[nigbt](Q){Q}` | G, D (collector), S (emitter) |
+| P-IGBT | `node[pigbt](Q){}` | G, D, S |
+
+### Op-amps (node-style)
+
+| Component | Syntax | Anchors |
+|-----------|--------|---------|
+| Op-amp | `node[op amp](A){}` | + (non-inv), - (inv), out, up, down |
+
+Op-amp example with power rails:
+
+```latex
+\node[op amp](A) at (0,0) {};
+\draw (A.up) -- ++(0,0.3) node[vcc]{\SI{+10}{V}};
+\draw (A.down) -- ++(0,-0.3) node[vee]{\SI{-10}{V}};
+```
+
+### Instruments
+
+| Component | Syntax |
+|-----------|--------|
+| Voltmeter | `to[voltmeter]` or `to[vmeter]` |
+| Ammeter | `to[ammeter]` or `to[ameter]` |
+| Ohmmeter | `to[ohmmeter]` or `to[ometer]` |
+
+### Labels and arrows
+
+| Annotation | Syntax |
+|-----------|--------|
 | Voltage label | `v=$v_C$` or `v^=$v_o(t)$` |
 | Current arrow | `i>^=$\Phi$` |
 | Junction dot | `\fill (x,y) circle (2pt);` |
-| Open circuit voltage | `to[open, v^=$v(t)$]` |
 
 ## Switch Conventions
 
